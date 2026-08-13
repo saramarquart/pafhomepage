@@ -932,3 +932,14 @@ body.home .nav.open .brand-mark { filter: none; }
   .hero-lens { display: none; }
   .hero-minimal .hero-min-title { opacity: 1; animation: none; }
 }
+
+/* NAV INTRO — brand + menu items gently fly in from the left, staggered (Givaudan) */
+.brand { animation: navFlyIn .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: .05s; }
+.nav-links > * { animation: navFlyIn .7s cubic-bezier(.2,.7,.2,1) both; }
+.nav-links > *:nth-child(1) { animation-delay: .18s; }
+.nav-links > *:nth-child(2) { animation-delay: .28s; }
+.nav-links > *:nth-child(3) { animation-delay: .38s; }
+.nav-links > *:nth-child(4) { animation-delay: .48s; }
+@keyframes navFlyIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
+@media (max-width: 720px) { .nav-links > * { animation: none; } }         /* drawer: no fly-in */
+@media (prefers-reduced-motion: reduce) { .brand, .nav-links > * { animation: none; } }
