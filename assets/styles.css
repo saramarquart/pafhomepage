@@ -871,3 +871,29 @@ body.home .nav.open .brand-mark { filter: none; }
 .page-hero.media h1 { color: #fff; }
 .page-hero.media .lead { color: rgba(255,255,255,.9); }
 .page-hero.media .eyebrow { color: #C7D6A0; }
+
+/* HERO VIDEO CROSSFADE — two stacked clips blended to hide the loop seam */
+.hero-media .xfade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.1s ease; }
+.hero-media .xfade:nth-child(2) { opacity: 0; }
+
+/* VIDEO-BG SECTION (Innovation) + footer legal + imprint prose */
+.videobg { position: relative; overflow: hidden; background: #16130e; }
+.videobg .vbg { position: absolute; inset: 0; z-index: 0; }
+.videobg .vbg .xfade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.1s ease; }
+.videobg .vbg .xfade:nth-child(2) { opacity: 0; }
+.videobg::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(20,26,16,.85), rgba(17,21,13,.88)); }
+.videobg > .wrap { position: relative; z-index: 2; }
+.videobg h2, .videobg h3 { color: #fff; }
+.videobg p { color: rgba(255,255,255,.82); }
+.videobg .eyebrow { color: #C7D6A0; }
+.videobg .feature.on-dark { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); backdrop-filter: blur(6px); box-shadow: none; }
+.videobg .feature .k b { color: #fff; }
+.videobg .feature .k span { color: rgba(255,255,255,.6); }
+
+.footer-legal a { color: rgba(255,255,255,.6); }
+.footer-legal a:hover { color: #fff; text-decoration: underline; }
+
+.prose h3 { margin: 0 0 6px; }
+.prose h4 { margin: 28px 0 6px; font-family: var(--serif); font-size: 1.05rem; font-weight: 700; }
+.prose p { margin: 0 0 6px; }
+.prose a { color: #5E7038; }

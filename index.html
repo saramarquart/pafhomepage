@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=7" />
+  <link rel="stylesheet" href="assets/styles.css?v=9" />
   <meta property="og:title" content="Planet A Foods — The renewable ingredient company" />
   <meta property="og:description" content="Recreating the world's most-loved flavours from resilient nature, at industrial scale." />
   <meta property="og:type" content="website" />
@@ -51,6 +51,8 @@
             <a href="capabilities.html">Capabilities</a>
             <a href="index.html#innovation">Innovation</a>
             <a href="index.html#academy">Academy</a>
+            <a href="press.html">Press</a>
+            <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
           </div>
         </div>
@@ -62,8 +64,11 @@
 
   <!-- HERO — minimal: full-bleed blue-hour rainforest video, one quiet line. -->
   <section class="hero hero-video hero-minimal">
-    <div class="hero-media" aria-hidden="true">
-      <video class="media-vid" autoplay muted loop playsinline preload="metadata" poster="assets/img/mist.jpg">
+    <div class="hero-media" data-xfade aria-hidden="true">
+      <video class="xfade" autoplay muted playsinline preload="auto" poster="assets/img/mist.jpg">
+        <source src="assets/img/hero.mp4" type="video/mp4">
+      </video>
+      <video class="xfade" muted playsinline preload="auto" poster="assets/img/mist.jpg">
         <source src="assets/img/hero.mp4" type="video/mp4">
       </video>
     </div>
@@ -282,7 +287,11 @@
   </section>
 
   <!-- INNOVATION + ACADEMY -->
-  <section id="innovation" class="dark">
+  <section id="innovation" class="dark videobg">
+    <div class="vbg" data-xfade aria-hidden="true">
+      <video class="xfade" autoplay muted playsinline preload="none" poster="assets/img/forest.jpg"><source src="assets/img/forest.mp4" type="video/mp4"></video>
+      <video class="xfade" muted playsinline preload="none" poster="assets/img/forest.jpg"><source src="assets/img/forest.mp4" type="video/mp4"></video>
+    </div>
     <div class="wrap">
       <div class="two-up">
         <div class="feature on-dark reveal">
@@ -366,10 +375,10 @@
           <p style="max-width:32ch;color:rgba(255,255,255,.6)">The renewable ingredient company. Renewing the taste the world loves.</p>
         </div>
         <div><h4>Portfolio</h4><a href="portfolio.html#choviva">ChoViva</a><a href="portfolio.html#butter">ChoViva Butter</a><a href="portfolio.html">All products</a></div>
-        <div><h4>Company</h4><a href="capabilities.html">Capabilities</a><a href="technology.html">Technology</a><a href="contact.html">Contact</a></div>
+        <div><h4>Company</h4><a href="capabilities.html">Capabilities</a><a href="technology.html">Technology</a><a href="press.html">Press</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
         <div><h4>Get in touch</h4><a href="contact.html">Partner with us</a><a href="mailto:hello@planet-a-foods.com">hello@planet-a-foods.com</a></div>
       </div>
-      <div class="footer-bottom"><span>© <span data-year>2026</span> Planet A Foods GmbH. All rights reserved.</span><span>Munich, Germany · GFSI-certified · Two production sites</span></div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> Planet A Foods GmbH. All rights reserved.</span><span class="footer-legal"><a href="imprint.html">Imprint</a> · <a href="https://planet-a-foods.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></span></div>
     </div>
   </footer>
 

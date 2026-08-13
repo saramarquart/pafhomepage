@@ -46,6 +46,13 @@ const CLIPS = {
     file: "clouds.mp4",
     prompt: "Soft white clouds drifting slowly over green mountain peaks in bright daylight." + STYLE,
   },
+  forest: {
+    file: "forest.mp4",
+    prompt: "A calm, almost still view looking up through a lush green forest canopy, soft sunlight " +
+      "filtering between the leaves, only gentle subtle movement of leaves and light. Minimal camera " +
+      "motion, begins and ends in nearly the same place so it loops smoothly. Serene, premium, bright " +
+      "natural daylight, no people, no text.",
+  },
 };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

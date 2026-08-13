@@ -96,3 +96,33 @@
     el.textContent = new Date().getFullYear();
   });
 })();
+
+/* Video crossfade — blend two stacked clips so any looping bg has no hard cut. */
+(function () {
+  "use strict";
+  function setup(wrap) {
+    var vids = wrap.querySelectorAll("video.xfade");
+    if (vids.length < 2) { if (vids[0]) { vids[0].loop = true; var q = vids[0].play(); if (q && q.catch) q.catch(function(){}); } return; }
+    var FADE = 1.1, cur = 0;
+    vids[0].style.opacity = 1; vids[1].style.opacity = 0;
+    function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    function tick(e){
+      var v = e.target;
+      if (v !== vids[cur] || !v.duration) return;
+      if (v.currentTime >= v.duration - FADE) {
+        var n = (cur + 1) % 2, other = vids[n];
+        try { other.currentTime = 0; } catch (err) {}
+        play(other); other.style.opacity = 1; v.style.opacity = 0; cur = n;
+      }
+    }
+    vids[0].addEventListener("timeupdate", tick);
+    vids[1].addEventListener("timeupdate", tick);
+    play(vids[0]);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (en) { if (en.isIntersecting) play(vids[cur]); else { vids[0].pause(); vids[1].pause(); } });
+      }, { threshold: 0.05 }).observe(wrap);
+    }
+  }
+  document.querySelectorAll("[data-xfade]").forEach(setup);
+})();
