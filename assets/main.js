@@ -126,3 +126,14 @@
   }
   document.querySelectorAll("[data-xfade]").forEach(setup);
 })();
+
+/* Pause the hero lens video once its intro fade completes (it's hidden after). */
+(function () {
+  var lens = document.querySelector(".hero-lens");
+  if (!lens) return;
+  var v = lens.querySelector("video");
+  if (!v) return;
+  lens.addEventListener("animationend", function (e) {
+    if (e.animationName === "heroLensIntro") { try { v.pause(); } catch (x) {} }
+  });
+})();
