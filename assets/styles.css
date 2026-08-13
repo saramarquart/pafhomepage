@@ -943,3 +943,23 @@ body.home .nav.open .brand-mark { filter: none; }
 @keyframes navFlyIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
 @media (max-width: 720px) { .nav-links > * { animation: none; } }         /* drawer: no fly-in */
 @media (prefers-reduced-motion: reduce) { .brand, .nav-links > * { animation: none; } }
+
+/* Subpages with a dark image hero get the landing's transparent-over-hero nav */
+body.dark-hero .nav:not(.scrolled) { background: transparent; backdrop-filter: none; border-bottom-color: rgba(255,255,255,.18); }
+body.dark-hero .nav:not(.scrolled) .brand-name { color: #fff; }
+body.dark-hero .nav:not(.scrolled) .nav-top { color: #fff; }
+body.dark-hero .nav:not(.scrolled) .nav-item .nav-top::after { border-color: #fff; }
+body.dark-hero .nav:not(.scrolled) .nav-cta.btn { color: #fff; border-color: rgba(255,255,255,.5); }
+body.dark-hero .nav:not(.scrolled) .nav-cta.btn:hover { background: #fff; color: var(--ink); border-color: #fff; }
+body.dark-hero .nav:not(.scrolled) .nav-toggle { border-color: rgba(255,255,255,.5); }
+body.dark-hero .nav:not(.scrolled) .nav-toggle span,
+body.dark-hero .nav:not(.scrolled) .nav-toggle span::before,
+body.dark-hero .nav:not(.scrolled) .nav-toggle span::after { background: #fff; }
+body.dark-hero .nav:not(.scrolled) .brand-mark { filter: invert(1) brightness(1.7); }
+body.dark-hero .nav.open { background: rgba(255,255,255,.98); backdrop-filter: blur(20px); border-bottom-color: var(--line); }
+body.dark-hero .nav.open .brand-name, body.dark-hero .nav.open .nav-top { color: var(--ink); }
+body.dark-hero .nav.open .nav-cta.btn { color: var(--ink); border-color: var(--line-2); }
+body.dark-hero .nav.open .brand-mark { filter: none; }
+body.dark-hero .nav.open .nav-toggle span,
+body.dark-hero .nav.open .nav-toggle span::before,
+body.dark-hero .nav.open .nav-toggle span::after { background: var(--ink); }
