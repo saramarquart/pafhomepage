@@ -36,6 +36,18 @@ const STYLE =
   "backgrounds, no harsh colours, nothing red.";
 
 const SLOTS = {
+  "cb-palette": { file: "cb-palette.jpg", aspect: "16:9",
+    prompt: "Four neat mounds of cocoa-style powder in a row on a bright white surface, a palette of shades from warm reddish cocoa brown to deeper brown to dark brown to near-black, soft daylight, premium, generous negative space." },
+  "cb-cookies": { file: "cb-cookies.jpg", aspect: "4:3",
+    prompt: "Dark near-black round sandwich cookies with a white cream filling, stacked on a bright white surface, soft daylight, appetising and premium." },
+  "cb-drink": { file: "cb-drink.jpg", aspect: "4:3",
+    prompt: "A tall glass of chocolate milk drink with a straw on a bright white surface, soft daylight, fresh and premium." },
+  "cb-cake": { file: "cb-cake.jpg", aspect: "4:3",
+    prompt: "A slice of rich dark chocolate cake on a white plate on a bright neutral surface, soft daylight, appetising." },
+  "cb-icecream": { file: "cb-icecream.jpg", aspect: "4:3",
+    prompt: "Two scoops of chocolate ice cream in a bright ceramic bowl on a white surface, soft daylight, premium." },
+  "cb-syrup": { file: "cb-syrup.jpg", aspect: "4:3",
+    prompt: "Glossy dark chocolate syrup drizzling from a spoon onto a bright white surface, soft daylight, appetising." },
   "sol-sweet-goods": { file: "sol-sweet-goods.jpg", aspect: "16:9",
     prompt: "An elegant flat lay of chocolate tablets, pralines and moulded bars on a bright white marble surface, soft daylight, premium and appetising, generous negative space." },
   "sol-snacks-bakery": { file: "sol-snacks-bakery.jpg", aspect: "16:9",
