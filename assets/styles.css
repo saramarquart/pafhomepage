@@ -1133,3 +1133,13 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .draft-note { font-size:.8rem; color:var(--muted); margin-top:14px; }
 .prod-link { display:inline-flex; align-items:center; gap:8px; margin-top:16px; color:#5E7038; font-weight:600; font-size:.92rem; }
 .card .prod-link { margin-top:14px; }
+/* related-products grid (Solutions pages) */
+.rel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:clamp(24px,3vw,40px); }
+.rel-card { display:block; border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; background:#fff; transition:transform .3s ease, box-shadow .3s ease; }
+.rel-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-sm); }
+.rel-card .rc-media { aspect-ratio:16/10; background-size:cover; background-position:center; filter:saturate(1.03) contrast(1.02); }
+.rel-card .rc-body { padding:16px 18px 18px; }
+.rel-card h3 { font-size:1.05rem; margin:0 0 3px; }
+.rel-card p { font-size:.85rem; color:var(--ink-2); margin:0; }
+@media (max-width:820px){ .rel-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .rel-grid { grid-template-columns:1fr; } }
