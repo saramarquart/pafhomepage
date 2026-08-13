@@ -146,3 +146,41 @@
     if (e.animationName === "heroLensIntro") { try { v.pause(); } catch (x) {} }
   });
 })();
+
+/* Premium pass — hairline scroll-progress bar + gentle image parallax.
+   rAF-throttled, passive, and fully disabled under prefers-reduced-motion. */
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  document.body.appendChild(bar);
+  function progress() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (window.pageYOffset || h.scrollTop) / max : 0;
+    bar.style.width = (Math.max(0, Math.min(1, p)) * 100) + "%";
+  }
+
+  var items = reduce ? [] : Array.prototype.slice.call(
+    document.querySelectorAll(".split-media, .scale-band .bg, .insight-media, .page-hero .bg"));
+  function parallax() {
+    var vh = window.innerHeight;
+    for (var i = 0; i < items.length; i++) {
+      var el = items[i], r = el.getBoundingClientRect();
+      if (r.bottom < -120 || r.top > vh + 120) continue;
+      var off = ((r.top + r.height / 2) - vh / 2) / vh;      // ~ -0.5..0.5
+      var y = Math.max(-18, Math.min(18, off * -36));
+      el.style.transform = "translate3d(0," + y.toFixed(1) + "px,0) scale(1.12)";
+    }
+  }
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () { progress(); parallax(); ticking = false; });
+  }
+  progress(); parallax();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+})();

@@ -963,3 +963,61 @@ body.dark-hero .nav.open .brand-mark { filter: none; }
 body.dark-hero .nav.open .nav-toggle span,
 body.dark-hero .nav.open .nav-toggle span::before,
 body.dark-hero .nav.open .nav-toggle span::after { background: var(--ink); }
+
+/* ============================================================================
+   PREMIUM PASS (v20) — rhythm · nav scrim · scroll motion · unified grade ·
+   micro-interactions. Final authoritative layer; the design already resolves to
+   white + a single olive accent (#5E7038) + Archivo, so this is polish, not a redo.
+   ========================================================================== */
+
+/* 1 — More air. Premium reads as space: widen the vertical rhythm + tighten measure. */
+section { padding: clamp(88px, 11vw, 184px) 0; }
+.sec-head { margin-bottom: clamp(44px, 5.5vw, 76px); }
+.sec-head h2 { margin: 18px 0 20px; }
+.statement { padding: clamp(92px, 12vw, 168px) 0; }
+.statement-lead { max-width: 40ch; }
+.lead { max-width: 56ch; }
+
+/* 2 — Nav legibility over the hero: a whisper of shade behind the transparent
+   nav so white text stays crisp over busy footage (invisible-feeling). */
+.nav-in { position: relative; z-index: 1; }
+body.home .nav:not(.scrolled)::before,
+body.dark-hero .nav:not(.scrolled)::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(8,10,6,.45), rgba(8,10,6,.12) 62%, transparent);
+}
+body.home .nav:not(.scrolled), body.dark-hero .nav:not(.scrolled) { border-bottom-color: transparent; }
+
+/* 3 — Scroll progress: a hairline accent bar tracking read position. */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: #5E7038; z-index: 300; pointer-events: none; }
+
+/* 4 — Focus-visible: accessible + refined (keyboard users get an accent ring). */
+a:focus-visible, button:focus-visible, .btn:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #5E7038; outline-offset: 3px; border-radius: 4px;
+}
+
+/* 5 — One consistent, subtle photographic grade across all imagery. */
+.split-media, .scale-band .bg, .insight-media, .page-hero .bg,
+.card-media img.pm, .hero-figure, .cinematic .bg {
+  filter: saturate(1.03) contrast(1.02);
+}
+
+/* 6 — Parallax hooks: JS drives the translate; the scale gives it room to move. */
+.split-media, .scale-band .bg, .insight-media, .page-hero .bg {
+  will-change: transform; transform: translate3d(0,0,0) scale(1.12);
+}
+
+/* 7 — Micro-interactions: slower, more deliberate (Givaudan pacing). */
+.btn { transition: transform .3s cubic-bezier(.2,.8,.2,1), background .3s ease, box-shadow .3s ease, color .3s ease, border-color .3s ease; }
+.insight { transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; }
+.insight:hover { transform: translateY(-8px); }
+.footer a { transition: color .25s ease, padding-left .25s ease; }
+.footer a:hover { padding-left: 5px; }
+.reveal { transition: opacity 1.05s cubic-bezier(.16,.84,.3,1), transform 1.05s cubic-bezier(.16,.84,.3,1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .split-media, .scale-band .bg, .insight-media, .page-hero .bg { transform: none; }
+  .scroll-progress { display: none; }
+}
