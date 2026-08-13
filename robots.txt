@@ -1,5 +1,7 @@
+# TEST / STAGING domain — intentionally kept out of search engines until go-live
+# on the apex domain. Pages stay crawlable so the per-page
+# <meta name="robots" content="noindex"> is read and honored. Do not add
+# "Disallow: /" here — that would block crawlers from seeing the noindex.
 User-agent: *
 Allow: /
 Disallow: /_masktest.html
-
-Sitemap: https://test.planet-a-foods.com/sitemap.xml
