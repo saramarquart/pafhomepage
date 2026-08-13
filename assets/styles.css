@@ -1143,3 +1143,26 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .rel-card p { font-size:.85rem; color:var(--ink-2); margin:0; }
 @media (max-width:820px){ .rel-grid { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:520px){ .rel-grid { grid-template-columns:1fr; } }
+
+/* ============================================================================
+   MOBILE NAV DRAWER — guaranteed legibility. On transparent-over-hero pages the
+   white nav-text rules could leak into the open drawer, hiding the menu items.
+   This forces a solid panel + dark text for the open drawer on every page.
+   ========================================================================== */
+@media (max-width: 720px) {
+  .nav.open { background: #ffffff !important; backdrop-filter: blur(20px) saturate(1.1); border-bottom-color: var(--line) !important; }
+  .nav.open .nav-links { background: #ffffff; }
+  .nav.open .nav-links a,
+  .nav.open .nav-top,
+  .nav.open .dd a,
+  .nav.open .brand-name { color: var(--ink) !important; }
+  .nav.open .dd-label { color: var(--muted) !important; }
+  .nav.open .nav-item .nav-top::after { border-color: var(--ink) !important; }
+  .nav.open .nav-toggle span,
+  .nav.open .nav-toggle span::before,
+  .nav.open .nav-toggle span::after { background: var(--ink) !important; }
+  .nav.open .brand-mark { filter: none !important; }
+  .nav.open .nav-cta.btn { color: var(--ink) !important; border-color: var(--line-2) !important; background: transparent !important; }
+  .nav.open .dd { background: transparent !important; }
+  .nav.open .dd a { padding-left: 14px; }
+}
