@@ -696,7 +696,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 .hero-meta { margin-top: 30px; padding-top: 22px; gap: 28px; }
 .hero-meta b { font-size: 1.5rem; }
 .hero-figure { min-height: clamp(300px, 38vw, 480px); }
-@media (max-height: 760px) { .hero { min-height: auto; } }
+@media (max-height: 760px) { .hero:not(.hero-video) { min-height: auto; } }
 
 /* dropdowns on mobile → tap-to-expand accordion */
 @media (max-width: 720px) {
@@ -897,3 +897,6 @@ body.home .nav.open .brand-mark { filter: none; }
 .prose h4 { margin: 28px 0 6px; font-family: var(--serif); font-size: 1.05rem; font-weight: 700; }
 .prose p { margin: 0 0 6px; }
 .prose a { color: #5E7038; }
+
+/* Full-bleed video hero must always fill the viewport (never collapse to header) */
+.hero.hero-video { min-height: 100vh; }
