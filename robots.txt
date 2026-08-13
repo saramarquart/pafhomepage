@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_masktest.html
+
+Sitemap: https://test.planet-a-foods.com/sitemap.xml
