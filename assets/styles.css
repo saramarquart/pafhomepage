@@ -1176,3 +1176,29 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .gallery .g-wide img { aspect-ratio:16/6; }
 @media(max-width:720px){ .gallery{ grid-template-columns:1fr 1fr; } }
 @media(max-width:480px){ .gallery{ grid-template-columns:1fr; } }
+
+/* ============================================================================
+   MOBILE POLISH (v24) — right-sized heroes & type, tighter rhythm, full-width
+   stacked CTAs and better tap targets on phones. (<=720px)
+   ========================================================================== */
+@media (max-width: 720px) {
+  .page-hero h1 { font-size: clamp(2rem, 8.2vw, 2.6rem); line-height: 1.1; letter-spacing: -0.02em; }
+  .hero-video h1, .hero-min-title { font-size: clamp(2rem, 8.6vw, 2.7rem); }
+  h2 { font-size: clamp(1.5rem, 6.2vw, 2.1rem); }
+  .prod-hero { min-height: 64vh; padding-bottom: clamp(30px, 7vw, 52px); }
+  .page-hero { padding-top: clamp(92px, 24vw, 124px); padding-bottom: clamp(30px, 7vw, 52px); }
+  section { padding: clamp(54px, 12vw, 90px) 0; }
+  .lead, .measure p, .prose p { font-size: 1rem; }
+  .hero-actions { gap: 10px; width: 100%; }
+  .hero-actions .btn { flex: 1 1 44%; justify-content: center; }
+  .cta-actions { flex-direction: column; align-items: stretch; }
+  .cta-actions .btn { width: 100%; justify-content: center; }
+  .statrow { gap: 14px; margin-top: 26px; }
+  .founder-quote { padding-left: 18px; }
+  .founder-quote p { font-size: 1.15rem; }
+  .app-cloud span { font-size: .86rem; padding: 7px 14px; }
+  .gallery figcaption { font-size: .8rem; padding: 10px 12px; }
+  .timeline { margin-top: 26px; }
+  .prod-split { gap: 24px; }
+  .sec-head { margin-bottom: 28px; }
+}
