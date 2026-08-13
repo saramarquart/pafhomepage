@@ -345,7 +345,7 @@ body {
   height: clamp(440px, 78vh, 780px); display: flex; align-items: flex-end; color: #fff; }
 .cinematic .bg { position: absolute; inset: -6%; z-index: 0; background-color: #241811;
   background-size: cover; background-position: center;
-  background-image: var(--img, none),
+  background-image:
     radial-gradient(80% 120% at 18% 8%,  rgba(185,138,62,.34), transparent 55%),
     radial-gradient(90% 120% at 92% 92%, rgba(62,90,57,.42),  transparent 55%),
     linear-gradient(158deg, #3A2416 0%, #241811 55%, #150C07 100%);
@@ -636,7 +636,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 .hero-meta div { color: var(--ink-2); }
 .hero-meta b { color: var(--ink); }
 .hero-figure { align-self: stretch; min-height: clamp(320px,42vw,540px); border-radius: 20px;
-  background: var(--img) center / cover no-repeat; background-color: #EFEDE6;
+  background-position: center; background-size: cover; background-repeat: no-repeat; background-color: #EFEDE6;
   box-shadow: 0 44px 96px -54px rgba(0,0,0,.42); }
 @media (max-width: 860px){ .hero-grid { grid-template-columns: 1fr; } .hero-figure { min-height: 300px; } }
 
@@ -755,7 +755,7 @@ body.home .nav:not(.scrolled) .nav-toggle span::after { background: #fff; }
 .split-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
   min-height: clamp(400px, 48vw, 600px); border-radius: var(--r-lg); overflow: hidden;
   border: 1px solid var(--line); margin: clamp(56px,8vw,120px) 0; }
-.split-media { background: var(--img) center / cover no-repeat; min-height: 320px; }
+.split-media { background-position: center; background-size: cover; background-repeat: no-repeat; min-height: 320px; }
 .split-copy { align-self: center; padding: clamp(34px,5vw,72px); }
 .split-copy h2 { margin: 14px 0 16px; }
 .split-copy .btn { margin-top: 24px; }
@@ -788,7 +788,7 @@ body.home .nav:not(.scrolled) .nav-toggle span::after { background: #fff; }
 
 /* SCALE band (image bg) */
 .scale-band { position: relative; overflow: hidden; color: #fff; background: #26301c; }
-.scale-band .bg { position: absolute; inset: 0; z-index: 0; background: var(--img) center / cover no-repeat; }
+.scale-band .bg { position: absolute; inset: 0; z-index: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
 .scale-band::after { content: ""; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(120deg, rgba(28,36,20,.92), rgba(28,36,20,.6)); }
 .scale-in { position: relative; z-index: 2; display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px; align-items: center; }
@@ -802,7 +802,7 @@ body.home .nav:not(.scrolled) .nav-toggle span::after { background: #fff; }
 .insight { display: block; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
   background: #fff; transition: transform .3s ease, box-shadow .3s ease; }
 .insight:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-.insight-media { aspect-ratio: 16 / 10; background: var(--img) center / cover no-repeat; }
+.insight-media { aspect-ratio: 16 / 10; background-position: center; background-size: cover; background-repeat: no-repeat; }
 .insight-body { padding: 22px 24px 26px; }
 .insight-tag { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #5E7038; }
 .insight-body h3 { margin: 10px 0 8px; font-size: 1.2rem; }
@@ -833,7 +833,7 @@ body.home .nav.open .nav-toggle span::after { background: var(--ink); }
 /* PRODUCT SHOTS on portfolio cards */
 .card.has-media { min-height: auto; }
 .card-media { position: relative; margin: -30px -30px 22px; aspect-ratio: 4 / 3;
-  background: var(--img) center / cover no-repeat; background-color: #EDEBE4;
+  background-position: center; background-size: cover; background-repeat: no-repeat; background-color: #EDEBE4;
   border-bottom: 1px solid var(--line); }
 .card-media .tag { position: absolute; top: 14px; right: 14px; box-shadow: 0 6px 16px rgba(0,0,0,.16); }
 .card-media .tag-alt { background: rgba(255,255,255,.95); color: #4C5A2E; }
@@ -863,7 +863,7 @@ body.home .nav.open .brand-mark { filter: none; }
 
 /* SUBPAGE IMAGE HEROES — nature, premium, calm (dark image + scrim + white text) */
 .page-hero { position: relative; overflow: hidden; }
-.page-hero .bg { position: absolute; inset: 0; z-index: 0; background: var(--img) center / cover no-repeat; }
+.page-hero .bg { position: absolute; inset: 0; z-index: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
 .page-hero.media { background: #14140f; color: #fff; }
 .page-hero.media::after { content: ""; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(100deg, rgba(15,19,11,.84), rgba(15,19,11,.5) 55%, rgba(15,19,11,.32)); }
