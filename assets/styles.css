@@ -873,13 +873,13 @@ body.home .nav.open .brand-mark { filter: none; }
 .page-hero.media .eyebrow { color: #C7D6A0; }
 
 /* HERO VIDEO CROSSFADE — two stacked clips blended to hide the loop seam */
-.hero-media .xfade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.1s ease; }
+.hero-media .xfade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: none; }
 .hero-media .xfade:nth-child(2) { opacity: 0; }
 
 /* VIDEO-BG SECTION (Innovation) + footer legal + imprint prose */
 .videobg { position: relative; overflow: hidden; background: #16130e; }
 .videobg .vbg { position: absolute; inset: 0; z-index: 0; }
-.videobg .vbg .xfade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.1s ease; }
+.videobg .vbg .xfade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: none; }
 .videobg .vbg .xfade:nth-child(2) { opacity: 0; }
 .videobg::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(20,26,16,.85), rgba(17,21,13,.88)); }
 .videobg > .wrap { position: relative; z-index: 2; }

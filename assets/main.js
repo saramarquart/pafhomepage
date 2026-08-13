@@ -97,30 +97,39 @@
   });
 })();
 
-/* Video crossfade — blend two stacked clips so any looping bg has no hard cut. */
+/* Video crossfade — two copies of the same clip running half a loop apart,
+   cross-dissolved by distance-to-seam, so the loop point is never visible
+   (no hard cut, no poster flash, no seek-to-0 jump). */
 (function () {
   "use strict";
+  function play(v) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
   function setup(wrap) {
     var vids = wrap.querySelectorAll("video.xfade");
-    if (vids.length < 2) { if (vids[0]) { vids[0].loop = true; var q = vids[0].play(); if (q && q.catch) q.catch(function(){}); } return; }
-    var FADE = 1.1, cur = 0;
-    vids[0].style.opacity = 1; vids[1].style.opacity = 0;
-    function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
-    function tick(e){
-      var v = e.target;
-      if (v !== vids[cur] || !v.duration) return;
-      if (v.currentTime >= v.duration - FADE) {
-        var n = (cur + 1) % 2, other = vids[n];
-        try { other.currentTime = 0; } catch (err) {}
-        play(other); other.style.opacity = 1; v.style.opacity = 0; cur = n;
+    if (vids.length < 2) { if (vids[0]) { vids[0].loop = true; play(vids[0]); } return; }
+    var a = vids[0], b = vids[1];
+    a.loop = true; b.loop = true;
+    a.style.opacity = 1; b.style.opacity = 0;
+    play(a);
+    (function offset() {
+      if (b.readyState >= 1 && b.duration && isFinite(b.duration)) {
+        try { b.currentTime = b.duration / 2; } catch (e) {}
+        play(b);
+      } else { b.addEventListener("loadedmetadata", offset, { once: true }); }
+    })();
+    function frame() {
+      var d = a.duration;
+      if (d && isFinite(d)) {
+        var da = Math.min(a.currentTime, d - a.currentTime);   // A's distance from its loop seam
+        var db = Math.min(b.currentTime, d - b.currentTime);   // B's distance from its loop seam
+        var oa = (da + db) > 0 ? da / (da + db) : 1;           // show whichever is farther from a seam
+        a.style.opacity = oa; b.style.opacity = 1 - oa;
       }
+      requestAnimationFrame(frame);
     }
-    vids[0].addEventListener("timeupdate", tick);
-    vids[1].addEventListener("timeupdate", tick);
-    play(vids[0]);
+    requestAnimationFrame(frame);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) {
-        es.forEach(function (en) { if (en.isIntersecting) play(vids[cur]); else { vids[0].pause(); vids[1].pause(); } });
+        es.forEach(function (en) { if (en.isIntersecting) { play(a); play(b); } else { a.pause(); b.pause(); } });
       }, { threshold: 0.05 }).observe(wrap);
     }
   }
