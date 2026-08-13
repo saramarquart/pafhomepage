@@ -1088,3 +1088,48 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .partner-cell:hover img { filter:grayscale(0); opacity:1; }
 @media (max-width:900px){ .partner-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:600px){ .partner-grid { grid-template-columns:repeat(2,1fr); } }
+
+/* ============================================================================
+   PRODUCT PAGES (v22) — video-hero product detail: overview, variants,
+   applications, benefits. Existing system (white, olive #5E7038, Archivo).
+   ========================================================================== */
+.prod-hero { min-height: 78vh; display: flex; align-items: flex-end; padding-bottom: clamp(48px,7vw,96px); }
+.prod-hero .bg { overflow: hidden; }
+.prod-hero .bg .media-vid { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.prod-hero .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:30px; }
+.prod-eyebrow { color:#C7D6A0; }
+
+/* overview split (image + copy) */
+.prod-split { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,64px); align-items:center; }
+.prod-split .prod-figure { aspect-ratio:4/3; border-radius:var(--r-lg); overflow:hidden; background:#EDEBE4; box-shadow:var(--shadow-sm); }
+.prod-split .prod-figure img { width:100%; height:100%; object-fit:cover; }
+@media (max-width:820px){ .prod-split { grid-template-columns:1fr; } }
+
+/* variant cards */
+.variant-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:clamp(28px,3.5vw,44px); }
+.variant { border:1px solid var(--line); border-radius:var(--r-lg); padding:26px 26px 22px; background:#fff;
+  transition:transform .35s ease, box-shadow .35s ease; }
+.variant:hover { transform:translateY(-4px); box-shadow:var(--shadow-sm); }
+.variant h3 { font-size:1.18rem; margin:0 0 4px; }
+.variant .v-tag { font-size:.66rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#5E7038; }
+.variant .v-desc { color:var(--ink-2); font-size:.94rem; margin:8px 0 16px; }
+.variant .v-facts { display:flex; gap:26px; border-top:1px solid var(--line); padding-top:14px; }
+.variant .v-facts b { display:block; font-family:var(--serif); font-weight:700; font-size:1.15rem; letter-spacing:-.01em; }
+.variant .v-facts span { font-size:.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+@media (max-width:560px){ .variant-grid { grid-template-columns:1fr; } }
+
+/* benefit checklist */
+.benefits { list-style:none; padding:0; margin:clamp(24px,3vw,40px) 0 0; display:grid; grid-template-columns:repeat(2,1fr); gap:14px 34px; }
+.benefits li { position:relative; padding-left:32px; color:var(--ink-2); font-size:1rem; line-height:1.4; }
+.benefits li::before { content:""; position:absolute; left:0; top:1px; width:20px; height:20px; border-radius:50%; background:rgba(94,112,56,.14); }
+.benefits li::after { content:""; position:absolute; left:7px; top:5px; width:5px; height:9px; border-right:2px solid #5E7038; border-bottom:2px solid #5E7038; transform:rotate(45deg); }
+@media (max-width:620px){ .benefits { grid-template-columns:1fr; } }
+
+/* application tag cloud */
+.app-cloud { display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(22px,3vw,36px); }
+.app-cloud span { border:1px solid var(--line); border-radius:var(--r-pill); padding:9px 17px; font-size:.92rem; color:var(--ink-2); background:#fff; }
+
+/* small note under drafted content */
+.draft-note { font-size:.8rem; color:var(--muted); margin-top:14px; }
+.prod-link { display:inline-flex; align-items:center; gap:8px; margin-top:16px; color:#5E7038; font-weight:600; font-size:.92rem; }
+.card .prod-link { margin-top:14px; }
