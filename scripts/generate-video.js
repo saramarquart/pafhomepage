@@ -26,10 +26,11 @@ const STYLE =
 const CLIPS = {
   hero: {
     file: "hero.mp4",
-    prompt: "A slow, gentle aerial drift low over a vast lush tropical rainforest canopy at blue " +
-      "hour — dense green treetops layered into soft blue-green morning mist, a faint warm glow low " +
-      "on the horizon. Very calm and serene, cool blue-green tones. Pure untouched jungle wilderness. " +
-      "Absolutely no buildings, no houses, no roads, no people, no structures of any kind." + STYLE,
+    prompt: "A calm, almost still wide view of a misty tropical rainforest canopy at blue hour in " +
+      "soft blue-green tones. The camera is nearly static — only the soft mist drifts gently and the " +
+      "light shifts subtly. No flythrough, no travelling, no fast movement; a peaceful ambient mood " +
+      "that begins and ends in almost the same place so it loops seamlessly. Pure untouched jungle — " +
+      "no buildings, no roads, no people, no structures. Cinematic, serene, premium, bright natural daylight.",
   },
   rainforest: {
     file: "rainforest.mp4",
@@ -56,7 +57,7 @@ async function veo(key, clip) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       instances: [{ prompt: clip.prompt }],
-      parameters: { aspectRatio: "16:9", sampleCount: 1 },
+      parameters: { aspectRatio: "16:9", sampleCount: 1, resolution: "1080p" },
     }),
   });
   if (!startRes.ok) throw new Error(`start HTTP ${startRes.status}: ${(await startRes.text()).slice(0, 300)}`);

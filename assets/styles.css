@@ -860,3 +860,14 @@ body.home .nav.open .brand-logo { filter: none; }                  /* mobile dra
 /* mark adapts to dark backgrounds (hero nav over video, footer) */
 body.home .nav:not(.scrolled) .brand-mark, .footer .brand-mark { filter: invert(1) brightness(1.7); }
 body.home .nav.open .brand-mark { filter: none; }
+
+/* SUBPAGE IMAGE HEROES — nature, premium, calm (dark image + scrim + white text) */
+.page-hero { position: relative; overflow: hidden; }
+.page-hero .bg { position: absolute; inset: 0; z-index: 0; background: var(--img) center / cover no-repeat; }
+.page-hero.media { background: #14140f; color: #fff; }
+.page-hero.media::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(100deg, rgba(15,19,11,.84), rgba(15,19,11,.5) 55%, rgba(15,19,11,.32)); }
+.page-hero.media .wrap { position: relative; z-index: 2; }
+.page-hero.media h1 { color: #fff; }
+.page-hero.media .lead { color: rgba(255,255,255,.9); }
+.page-hero.media .eyebrow { color: #C7D6A0; }
