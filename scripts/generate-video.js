@@ -24,6 +24,20 @@ const STYLE =
   "serene and premium, no people, no text, no captions.";
 
 const CLIPS = {
+  sunflower: { file: "sunflower.mp4",
+    prompt: "A bright sunflower field under soft daylight, tall green stems and golden blooms swaying almost imperceptibly in a gentle breeze." + STYLE },
+  "cocoa-grove": { file: "cocoa-grove.mp4",
+    prompt: "A lush green cacao plantation, ripe cocoa pods on the trees, soft dappled daylight, gentle leaf movement." + STYLE },
+  "hazelnut-grove": { file: "hazelnut-grove.mp4",
+    prompt: "A bright hazelnut orchard, rows of green trees with clusters of nuts, soft daylight, a calm gentle breeze." + STYLE },
+  "coffee-grove": { file: "coffee-grove.mp4",
+    prompt: "A green coffee plantation on a soft hillside, glossy shrubs with red cherries, bright morning light, gentle movement." + STYLE },
+  grain: { file: "grain.mp4",
+    prompt: "A bright golden field of wheat, ears of grain swaying gently in a light breeze, warm calm daylight." + STYLE },
+  meadow: { file: "meadow.mp4",
+    prompt: "A bright green alpine meadow with soft wildflowers, gentle breeze through the grass, distant soft hills, serene daylight." + STYLE },
+  facility: { file: "facility.mp4",
+    prompt: "Interior of a bright, clean, modern food production facility, polished stainless steel and soft daylight, slow ambient drift of light steam, no people." + STYLE },
   hero: {
     file: "hero.mp4",
     prompt: "A calm, almost still wide view of a misty tropical rainforest canopy at blue hour in " +

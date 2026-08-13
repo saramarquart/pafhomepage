@@ -36,6 +36,18 @@ const STYLE =
   "backgrounds, no harsh colours, nothing red.";
 
 const SLOTS = {
+  "sol-sweet-goods": { file: "sol-sweet-goods.jpg", aspect: "16:9",
+    prompt: "An elegant flat lay of chocolate tablets, pralines and moulded bars on a bright white marble surface, soft daylight, premium and appetising, generous negative space." },
+  "sol-snacks-bakery": { file: "sol-snacks-bakery.jpg", aspect: "16:9",
+    prompt: "Artisan biscuits, cookies and wafers with chocolate chips and coatings on a bright white linen surface, soft daylight." },
+  "sol-confectionery": { file: "sol-confectionery.jpg", aspect: "16:9",
+    prompt: "A refined arrangement of confectionery bars, filled bites and pralines on a bright neutral surface, premium studio daylight." },
+  "sol-beverages": { file: "sol-beverages.jpg", aspect: "16:9",
+    prompt: "A cup of coffee and a glass of iced coffee on a bright white surface, soft daylight, calm and premium, generous space." },
+  "sol-spreads": { file: "sol-spreads.jpg", aspect: "16:9",
+    prompt: "An open jar of smooth hazelnut-chocolate spread with a swirl on a knife, bright neutral surface, soft daylight, appetising." },
+  "sol-codev": { file: "sol-codev.jpg", aspect: "16:9",
+    prompt: "A bright, clean, minimal food innovation lab bench with softly out-of-focus glassware and a few ingredients, calm and premium, daylight." },
   hero: {
     file: "hero.jpg", aspect: "16:9",
     prompt:
