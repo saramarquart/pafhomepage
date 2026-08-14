@@ -36,6 +36,12 @@ const STYLE =
   "backgrounds, no harsh colours, nothing red.";
 
 const SLOTS = {
+  "land-hands": { file: "land-hands.jpg", aspect: "16:9",
+    prompt: "A pair of gentle human hands cradling ripe cocoa pods and a few fresh green leaves, warm soft natural daylight, bright and serene, shallow depth of field, generous negative space — the quiet bond between people and nature." },
+  "land-harvest": { file: "land-harvest.jpg", aspect: "16:9",
+    prompt: "Human hands harvesting coffee cherries from a lush green branch in soft morning light, close and warm, no face in focus, bright and calm, shallow depth of field, premium editorial." },
+  "land-culture": { file: "land-culture.jpg", aspect: "16:9",
+    prompt: "Two hands gently breaking a piece of chocolate over a bright warm-white surface, soft daylight, intimate and human, generous space, premium and calm." },
   "cb-palette": { file: "cb-palette.jpg", aspect: "16:9",
     prompt: "Four neat mounds of cocoa-style powder in a row on a bright white surface, a palette of shades from warm reddish cocoa brown to deeper brown to dark brown to near-black, soft daylight, premium, generous negative space." },
   "cb-cookies": { file: "cb-cookies.jpg", aspect: "4:3",
