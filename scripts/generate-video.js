@@ -38,6 +38,15 @@ const CLIPS = {
     prompt: "A bright green alpine meadow with soft wildflowers, gentle breeze through the grass, distant soft hills, serene daylight." + STYLE },
   facility: { file: "facility.mp4",
     prompt: "Interior of a bright, clean, modern food production facility, polished stainless steel and soft daylight, slow ambient drift of light steam, no people." + STYLE },
+  bluehour: {
+    file: "bluehour.mp4",
+    prompt: "A calm, almost still wide view of a serene mountain lake at blue hour, deep blue and " +
+      "soft teal twilight tones, still mirror-like water with faint low mist drifting across the " +
+      "surface, gentle silhouetted hills under a deep dusk sky with the first faint glow of evening. " +
+      "The camera is nearly static — only the mist drifts and the light shifts subtly; no flythrough, " +
+      "no travelling, no fast movement. A peaceful, premium, meditative mood that begins and ends in " +
+      "almost the same place so it loops seamlessly. No people, no buildings, no boats, no text.",
+  },
   hero: {
     file: "hero.mp4",
     prompt: "A calm, almost still wide view of a misty tropical rainforest canopy at blue hour in " +
