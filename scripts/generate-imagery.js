@@ -29,11 +29,12 @@ const BACKUP_DIR = path.join(IMG_DIR, "_backup");
 /* Shared art direction so every image feels like one set: bright, clean, white,
    natural, olive-green world, calm & premium — Givaudan, not stock-y. */
 const STYLE =
-  "Bright, clean, natural editorial food photography with lots of soft white and " +
-  "daylight. Fresh, calm and premium, olive-green and warm-neutral palette, matte " +
-  "textures, shallow depth of field, generous negative space, airy and confident, " +
-  "Fortune-500 aesthetic. No text, no logos, no faces in focus, no dark moody " +
-  "backgrounds, no harsh colours, nothing red.";
+  "Shot on 35mm film with natural available light — documentary, candid and a little " +
+  "imperfect, honest and grounded. Real texture, subtle film grain, muted natural colours, " +
+  "gentle soft focus and shallow depth of field, a lived-in unstyled feel, like editorial " +
+  "reportage by a real photographer on location. Avoid glossy studio perfection, plastic or " +
+  "waxy surfaces, over-saturation, HDR, heavy retouching and any CGI or 3D-render look. " +
+  "Warm neutral, olive-green palette. No text, no logos, no watermarks.";
 
 const SLOTS = {
   "land-hands": { file: "land-hands.jpg", aspect: "16:9",
