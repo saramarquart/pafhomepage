@@ -38,7 +38,7 @@ const STYLE =
 
 const SLOTS = {
   "land-hands": { file: "land-hands.jpg", aspect: "16:9",
-    prompt: "A pair of gentle human hands cradling ripe cocoa pods and a few fresh green leaves, warm soft natural daylight, bright and serene, shallow depth of field, generous negative space — the quiet bond between people and nature." },
+    prompt: "A close documentary photo of a farmer's weathered hands holding TWO large, heavy ripe cacao pods on a cacao farm. The pods are BIG (bigger than the hands), long and oval with deep vertical ridges and furrows; the skin is thick, matte and bumpy — mottled and uneven in blotchy patches of green, yellow, orange, rust-red and brown, covered in natural spots, freckles, warts, scars, blemishes and weathering, absolutely NOT smooth, NOT uniform in colour, NOT glossy, NOT plastic. Real leaves, dappled natural light, dirt under the fingernails, honest and imperfect." },
   "land-harvest": { file: "land-harvest.jpg", aspect: "16:9",
     prompt: "Human hands harvesting coffee cherries from a lush green branch in soft morning light, close and warm, no face in focus, bright and calm, shallow depth of field, premium editorial." },
   "land-culture": { file: "land-culture.jpg", aspect: "16:9",
