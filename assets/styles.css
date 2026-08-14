@@ -1202,3 +1202,27 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
   .prod-split { gap: 24px; }
   .sec-head { margin-bottom: 28px; }
 }
+
+/* ============================================================================
+   MOBILE DROPDOWN FIX (v25) — the desktop rule `.nav-item.open .dd { transform:
+   translateX(-50%) }` (specificity 0,2,0) outranked the mobile `.dd{transform:none}`
+   (0,1,0), so an OPEN dropdown kept its desktop centering transform and slid
+   off-screen to the LEFT on phones. Force the accordion fully in-flow + full width.
+   ========================================================================== */
+@media (max-width: 720px) {
+  .nav .dd,
+  .nav-item.open .dd,
+  .nav-item:hover .dd {
+    position: static !important;
+    transform: none !important;
+    left: auto !important; right: auto !important; top: auto !important;
+    min-width: 0 !important; width: 100% !important;
+    box-shadow: none !important; border: none !important;
+    background: transparent !important;
+    padding: 0 0 8px !important;
+    opacity: 1 !important; visibility: visible !important;
+  }
+  .nav-item.open .dd { display: grid !important; }
+  .nav-item:not(.open) .dd { display: none !important; }
+  .nav .dd a { padding-left: 12px !important; }
+}
