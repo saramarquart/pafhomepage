@@ -39,6 +39,10 @@ const STYLE =
   "plastic. No text, no logos, no watermarks.";
 
 const SLOTS = {
+  "grape-seeds": { file: "grape-seeds.jpg", aspect: "16:9",
+    prompt: "A close, candid macro photograph of a small heap of dried wine-grape seeds (grape pips) spilled across a bright warm-white surface — small hard seeds in mixed browns, tans and deep purple-black, natural irregular teardrop shapes, a few split husks, skin flecks and fine dust scattered among them, some pips rolled loosely off to one side and out of focus. Humble, cheap, abundant and tactile — an overlooked side-stream shown honestly and beautifully, a handful of nothing that becomes something. Shallow depth of field, generous negative space." },
+  "grape-seeds-hand": { file: "grape-seeds-hand.jpg", aspect: "16:9",
+    prompt: "A candid documentary photo of an open cupped hand holding a small pile of dried wine-grape seeds (grape pips) over a bright neutral surface, a few seeds slipping between the fingers, natural available light, worn honest skin, close and intimate. The humble raw material in a real human hand." },
   "land-hands": { file: "land-hands.jpg", aspect: "16:9",
     prompt: "A close documentary photo of a farmer's weathered hands holding TWO large, heavy ripe cacao pods on a cacao farm. The pods are BIG (bigger than the hands), long and oval with deep vertical ridges and furrows; the skin is thick, matte and bumpy — mottled and uneven in blotchy patches of green, yellow, orange, rust-red and brown, covered in natural spots, freckles, warts, scars, blemishes and weathering, absolutely NOT smooth, NOT uniform in colour, NOT glossy, NOT plastic. Real leaves, dappled natural light, dirt under the fingernails, honest and imperfect." },
   "land-harvest": { file: "land-harvest.jpg", aspect: "16:9",
