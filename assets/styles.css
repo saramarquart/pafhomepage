@@ -825,9 +825,11 @@ body.home .nav.open .nav-toggle span::after { background: var(--ink); }
 .hero-minimal .hero-in-v { max-width: none; width: 100%; text-align: center;
   display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .hero-min-title { color: #fff; font-family: var(--serif); font-weight: 600;
-  font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -.02em; text-shadow: 0 2px 34px rgba(0,0,0,.4); }
+  font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -.02em; text-shadow: 0 2px 34px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4); }
 .hero-minimal .hero-media::after {
-  background: linear-gradient(to top, rgba(8,12,18,.5), rgba(8,12,18,.05) 38%, rgba(8,12,18,.22)); }
+  background:
+    radial-gradient(115% 78% at 50% 52%, rgba(8,12,18,.55) 0%, rgba(8,12,18,.24) 52%, transparent 100%),
+    linear-gradient(to top, rgba(8,12,18,.5), rgba(8,12,18,.12) 40%, rgba(8,12,18,.34)); }
 .hero-minimal .scroll-cue { color: rgba(255,255,255,.72); }
 
 /* PRODUCT SHOTS on portfolio cards */
