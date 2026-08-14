@@ -1226,3 +1226,16 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
   .nav-item:not(.open) .dd { display: none !important; }
   .nav .dd a { padding-left: 12px !important; }
 }
+
+/* ============================================================================
+   NAV HARMONIZATION (v26) — the dropdown arrows sat at 50% opacity, so they
+   nearly vanished over the landing's bright video while staying crisp on the
+   darker subpage heroes. Make the arrows crisp + identical on every page, and
+   firm up the landing/hero scrim so brand, links and arrows read the same.
+   ========================================================================== */
+.nav-item .nav-top::after { opacity: .85 !important; }
+.nav-item:hover .nav-top::after { opacity: 1 !important; }
+body.home .nav:not(.scrolled)::before,
+body.dark-hero .nav:not(.scrolled)::before {
+  background: linear-gradient(to bottom, rgba(8,10,6,.55), rgba(8,10,6,.18) 62%, transparent) !important;
+}
