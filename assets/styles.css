@@ -861,6 +861,9 @@ body.home .nav.open .brand-logo { filter: none; }                  /* mobile dra
 .brand-name b { font-weight: 600; color: #5E7038; margin: 0 .05em; }
 /* mark adapts to dark backgrounds (hero nav over video, footer) */
 body.home .nav:not(.scrolled) .brand-mark, .footer .brand-mark { filter: invert(1) brightness(1.7); }
+/* Landing hero: shrink the logo overlay ~33% (32px→21px, scrolled 28px→19px) */
+body.home .nav .brand-mark { width: 21px; height: 21px; }
+body.home .nav.scrolled .brand-mark { width: 19px; height: 19px; }
 body.home .nav.open .brand-mark { filter: none; }
 
 /* SUBPAGE IMAGE HEROES — nature, premium, calm (dark image + scrim + white text) */
