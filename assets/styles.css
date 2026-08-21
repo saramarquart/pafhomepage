@@ -1244,3 +1244,124 @@ body.home .nav:not(.scrolled)::before,
 body.dark-hero .nav:not(.scrolled)::before {
   background: linear-gradient(to bottom, rgba(8,10,6,.55), rgba(8,10,6,.18) 62%, transparent) !important;
 }
+
+/* ============================================================================
+   PREMIUM POLISH (v30) — the craft layer. The design already resolves to
+   white ground + a single olive accent (#5E7038) + Archivo/Inter. This is the
+   final authoritative pass: a warm elevation system, a deliberate type scale,
+   one shared easing curve, tactile image framing, and finishing details. It
+   only elevates the existing vocabulary — no renamed classes, no new layout.
+   ========================================================================== */
+
+:root {
+  /* One deliberate easing curve for everything that moves (calm, confident). */
+  --ease: cubic-bezier(.22, .61, .28, 1);
+
+  /* WARM elevation system — shadows tinted toward espresso (not neutral gray),
+     layered (ambient + key) so cards feel lit rather than outlined. Low alpha,
+     large soft blur = expensive, not "CSS-y". */
+  --e-1:
+    0 1px 1px rgba(36, 26, 16, .04),
+    0 6px 14px -8px rgba(36, 26, 16, .10);
+  --e-2:
+    0 1px 2px rgba(36, 26, 16, .05),
+    0 10px 26px -14px rgba(36, 26, 16, .16),
+    0 30px 60px -40px rgba(36, 26, 16, .14);
+  --e-3:
+    0 2px 4px rgba(36, 26, 16, .06),
+    0 18px 42px -22px rgba(36, 26, 16, .22),
+    0 46px 92px -52px rgba(36, 26, 16, .24);
+  /* re-point the legacy tokens so every prior use inherits the warmer grade */
+  --shadow: var(--e-3);
+  --shadow-sm: var(--e-2);
+}
+
+/* --- 1 · TYPOGRAPHY — a deliberate scale, balanced wrapping, honed measure --- */
+h1, h2, h3, h4 { text-wrap: balance; }
+.hero h1, .hero-min-title, .page-hero h1, .cin-title, .prod-hero h1 { text-wrap: balance; }
+/* leads and editorial paragraphs wrap for even rag, not orphans */
+.lead, .statement-lead, .prose p, .measure p, .founder-quote p, blockquote { text-wrap: pretty; }
+/* Lead: a touch more line-height + a hair more weight so it reads as considered
+   sub-head copy, not thin body text. */
+.lead { line-height: 1.5; font-weight: 340; letter-spacing: .002em; }
+/* Body measure discipline — long prose never runs past a comfortable line. */
+.prose, .measure { max-width: 66ch; }
+p { max-width: 74ch; }
+.hero p, .page-hero p, .cta-band p, .videobg p, .dark p, .pullquote p,
+.card p, .variant .v-desc, .step p, .insight-body p, .rel-card p,
+.crop span, .app-d, .footer p, .stat span, .form p { max-width: none; }
+/* Eyebrow: slightly finer tracking rhythm, optical baseline lift */
+.eyebrow { font-size: .72rem; letter-spacing: .24em; }
+/* Section heads: honor the accent-line eyebrow, then a confident gap to the H2.
+   (Pages set this inline inconsistently — normalize the default.) */
+.sec-head .eyebrow + h2 { margin-top: 18px; }
+
+/* --- 2 · ELEVATION applied — tactile cards that lift on the shared curve --- */
+.card, .app, .variant, .partner-cell, .insight, .rel-card, .feature.on-dark,
+.gallery figure {
+  box-shadow: var(--e-1);
+  transition: transform .42s var(--ease), box-shadow .42s var(--ease), border-color .42s var(--ease);
+}
+.card:hover { transform: translateY(-8px); box-shadow: var(--e-3); border-color: var(--line-2); }
+.app:hover { transform: translateY(-5px); box-shadow: var(--e-2); border-color: var(--line-2); }
+.variant:hover, .partner-cell:hover, .gallery figure:hover { transform: translateY(-5px); box-shadow: var(--e-2); }
+.insight:hover, .rel-card:hover { box-shadow: var(--e-3); }
+.form { box-shadow: var(--e-2); }
+/* the person photo already lifts on grayscale→colour; deepen its grounding */
+.person .photo { box-shadow: var(--e-3); }
+
+/* --- 3 · IMAGERY — zoom-within-frame. The photo scales, the frame clips it,
+   so hover feels like the image breathing, never the card jumping. --- */
+.card-media, .rel-card .rc-media, .insight-media, .prod-split .prod-figure,
+.gallery figure { overflow: hidden; }
+.card-media img.pm, .insight-media, .rc-media, .prod-split .prod-figure img,
+.gallery img {
+  transition: transform .7s var(--ease), filter .7s var(--ease);
+  will-change: transform;
+}
+.card:hover .card-media img.pm,
+.insight:hover .insight-media,
+.rel-card:hover .rc-media,
+.prod-split .prod-figure:hover img,
+.gallery figure:hover img { transform: scale(1.045); }
+/* split media zoom lives inside its clipped grid cell (parallax sets its own
+   transform inline, so only nudge the scale via a wrapper-safe filter shift) */
+.split-media { transition: filter .7s var(--ease); }
+.split-grid:hover .split-media { filter: saturate(1.06) contrast(1.03) brightness(1.02); }
+
+/* --- 4 · BUTTONS — confident weight, refined hover, crisper arrow --- */
+.btn { letter-spacing: .01em; transition: transform .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+.btn-primary:hover { box-shadow: var(--e-2); }
+.btn-ghost:hover { box-shadow: var(--e-1); }
+.arrow::after { transition: transform .3s var(--ease); }
+.arrow:hover::after { transform: translateX(5px); }
+
+/* --- 5 · LINKS & NAV — the underline reveal glides on the shared curve --- */
+.nav-links a::after { transition: right .3s var(--ease); }
+.engine-link, .prod-link { position: relative; }
+.engine-link::after, .prod-link::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -3px;
+  height: 1.5px; background: currentColor; transition: right .3s var(--ease);
+}
+.engine-link:hover::after, .prod-link:hover::after { right: 0; }
+
+/* --- 6 · FINISHING — selection, marker, rules, tap feedback --- */
+::selection { background: rgba(94, 112, 56, .18); color: var(--ink); }
+hr { border: 0; height: 1px; background: var(--line); margin: clamp(32px, 5vw, 64px) 0; }
+.prose ul, .prose ol { padding-left: 1.15em; }
+.prose li { margin-bottom: .4em; }
+.prose ul li::marker { color: #5E7038; }
+/* buttons/cards settle on tap (mobile) instead of sticking in hover state */
+.btn:active { transform: translateY(0) scale(.985); }
+.card:active, .app:active, .variant:active { transform: translateY(-2px); }
+/* keep imagery from ever looking stretched if a source ratio is odd */
+.hero-figure, .split-media, .scale-band .bg, .page-hero .bg, .cinematic .bg,
+.card-media, .rc-media, .insight-media { background-repeat: no-repeat; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover, .app:hover, .variant:hover, .partner-cell:hover,
+  .gallery figure:hover { transform: none; }
+  .card:hover .card-media img.pm, .insight:hover .insight-media,
+  .rel-card:hover .rc-media, .prod-split .prod-figure:hover img,
+  .gallery figure:hover img { transform: none; }
+}
