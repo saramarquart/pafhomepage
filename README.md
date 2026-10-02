@@ -19,6 +19,20 @@ A complete, self-contained marketing site for **www.planet-a-foods.com**, reposi
 | `contact.html` | Partner with us / request a sample (offline-safe form) |
 | `assets/` | `styles.css`, `main.js`, `logo.svg` |
 
+## Careers: where the open positions come from (Personio → paf_sonio)
+
+`careers.html` lists the open positions. **`assets/jobs-config.js` is the switch** (this site has no
+build step, so a config file plays the role of an env variable):
+
+| `source` | What the page does |
+|---|---|
+| `"personio"` (default) | The hand-written job cards link to `planetafoods.jobs.personio.de`, exactly as before. Nothing is fetched. |
+| `"paf_sonio"` | `assets/jobs.js` loads the published jobs from paf_sonio's public feed (`feedUrl`, `https://sonio.planet-a-foods.com/api/public/jobs`) and renders them in the same card markup; each card opens the paf_sonio job page with `?source=website` (applications then show "Company website" as their source). Every other Personio link (e.g. "See all vacancies") goes to `https://sonio.planet-a-foods.com/careers?source=website`. If the feed is unreachable, one card links to that careers page instead of stale roles. Feed text is inserted as text, and only links on the paf_sonio origin are used. |
+
+The feed answers browsers only from the website origins configured in paf_sonio
+(`PUBLIC_JOBS_ORIGINS`, default `https://www.planet-a-foods.com,https://planet-a-foods.com`). To try
+it on `test.planet-a-foods.com`, add that origin to `PUBLIC_JOBS_ORIGINS` in paf_sonio first.
+
 ## Run it locally
 - Double-click `index.html`, **or**
 - Serve the folder: `python3 -m http.server 8080` → open `http://localhost:8080`
