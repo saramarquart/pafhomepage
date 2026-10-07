@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/home.css?v=1" />
+  <link rel="stylesheet" href="assets/home.css?v=3" />
   <link rel="preload" as="image" href="assets/img/poster-hero.jpg" />
   <meta property="og:title" content="Planet A Foods — A backbone for the world's most fragile commodities" />
   <meta property="og:description" content="One technology platform. A growing portfolio of ingredient alternatives for the crops climate change puts at risk." />
@@ -75,23 +75,23 @@
 
   <main>
 
-    <!-- 01 · HERO — Was seid ihr? -->
+    <!-- 01 · HERO — Was seid ihr? Full-bleed image right, colour band of facts below. -->
     <section class="screen hero" id="top">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div class="reveal">
-            <p class="eyebrow">Food ingredient supplier</p>
-            <h1>A backbone for the world's most fragile commodities.</h1>
-            <p class="lead">One technology platform. A growing portfolio of ingredient alternatives for the crops climate change puts at risk.</p>
-          </div>
-          <div class="media breathe reveal" aria-hidden="true">
-            <video autoplay muted loop playsinline preload="auto" poster="assets/img/poster-hero.jpg">
-              <source src="assets/img/hero.mp4" type="video/mp4">
-            </video>
-          </div>
+      <div class="hero-top">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Food ingredient supplier</p>
+          <h1>A backbone for the world's most fragile commodities.</h1>
+          <p class="lead">One technology platform. A growing portfolio of ingredient alternatives for the crops climate change puts at risk.</p>
         </div>
-        <!-- Figures: keep identical to deck + data room (one source of truth) -->
-        <div class="facts">
+        <div class="media bleed breathe" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="auto" poster="assets/img/poster-hero.jpg">
+            <source src="assets/img/hero.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Figures: keep identical to deck + data room (one source of truth) -->
+      <div class="band">
+        <div class="wrap facts">
           <div class="fact reveal"><b data-count="15000" data-suffix="+ t">15,000+ t</b><span>Annual production capacity</span></div>
           <div class="fact reveal"><b data-count="230" data-suffix="+">230+</b><span>Products in retail</span></div>
           <div class="fact reveal"><b data-count="12">12</b><span>Countries</span></div>
@@ -101,11 +101,13 @@
     </section>
 
     <!-- 02 · WHY NOW — Warum jetzt? -->
-    <section class="screen why" id="why-now">
-      <div class="wrap">
-        <p class="eyebrow reveal">Why now</p>
-        <h2 class="reveal">The world's most loved ingredients grow in fewer places, under more pressure.</h2>
+    <section class="screen why tone-forest" id="why-now">
+      <div class="wrap fill">
         <div class="why-grid">
+          <div class="head reveal">
+            <p class="eyebrow">Why now</p>
+            <h2>The world's most loved ingredients grow in fewer places, under more pressure.</h2>
+          </div>
           <div class="media breathe reveal" aria-hidden="true">
             <video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-cocoa-grove.jpg">
               <source src="assets/img/cocoa-grove.mp4" type="video/mp4">
@@ -113,15 +115,18 @@
           </div>
           <div class="drivers">
             <div class="driver reveal">
+              <span class="no">01</span>
               <h3>Climate</h3>
               <!-- TODO: add verified key figure + linked source once cleared -->
               <p>Suitable growing regions are shrinking as temperatures rise and rainfall shifts.</p>
             </div>
             <div class="driver reveal">
+              <span class="no">02</span>
               <h3>Volatility</h3>
               <p>Price shocks will return. Supply independence lasts.</p>
             </div>
             <div class="driver reveal">
+              <span class="no">03</span>
               <h3>Regulation</h3>
               <p>EUDR is mandatory. Scope&nbsp;3 targets are due.</p>
             </div>
@@ -130,10 +135,10 @@
       </div>
     </section>
 
-    <!-- 03 · TECHNOLOGY — Was macht euch schwer kopierbar? -->
-    <section class="screen tech" id="technology">
-      <div class="wrap tech-grid">
-        <div class="reveal">
+    <!-- 03 · TECHNOLOGY — Was macht euch schwer kopierbar? Layers stack from the ground up. -->
+    <section class="screen tech tone-sage" id="technology">
+      <div class="wrap fill tech-grid">
+        <div class="tech-copy reveal">
           <p class="eyebrow">Technology</p>
           <h2>One platform.<br>Built in layers.</h2>
           <p class="lead">A scalable fermentation platform turns locally available raw materials into ingredients that perform like the originals.</p>
@@ -144,17 +149,17 @@
           </div>
           <a class="link" href="technology.html">Explore our technology</a>
         </div>
-        <div class="layers reveal">
-          <div class="layer"><b><small>01</small>Resilient raw materials</b><span>Local, climate-stable</span></div>
-          <div class="layer"><b><small>02</small>Process technology</b><span>Proprietary platform</span></div>
-          <div class="layer"><b><small>03</small>Plug &amp; play applications</b><span>Confectionery, bakery, drinks …</span></div>
+        <div class="layers reveal" aria-label="Platform layers">
+          <div class="layer l3"><span class="no">03</span><b>Plug &amp; play applications</b><span class="sub">Confectionery, bakery, drinks …</span></div>
+          <div class="layer l2"><span class="no">02</span><b>Process technology</b><span class="sub">Proprietary platform</span></div>
+          <div class="layer l1"><span class="no">01</span><b>Resilient raw materials</b><span class="sub">Local, climate-stable</span></div>
         </div>
       </div>
     </section>
 
     <!-- 04 · PORTFOLIO — Was kommt als Nächstes? (crops, not food shots) -->
-    <section class="screen portfolio" id="portfolio">
-      <div class="wrap">
+    <section class="screen portfolio tone-sand" id="portfolio">
+      <div class="wrap fill">
         <div class="sec-top reveal">
           <div>
             <p class="eyebrow">Portfolio</p>
@@ -164,26 +169,22 @@
         </div>
         <div class="cards">
           <a class="card reveal" href="product-cocoa-booster.html">
-            <span class="tag solid">In market</span>
-            <div class="media"><img src="assets/img/land-hands.jpg" alt="Ripe cocoa pods held in two hands" loading="lazy" /></div>
+            <div class="media"><img src="assets/img/land-hands.jpg" alt="Ripe cocoa pods held in two hands" loading="lazy" /><span class="tag solid">In market</span></div>
             <h3>Cocoa alternatives</h3>
             <p>Cocoa-free solutions, available as powder alternatives.</p>
           </a>
           <a class="card reveal" href="product-coffee.html">
-            <span class="tag dev">In development</span>
-            <div class="media"><img src="assets/img/land-harvest.jpg" alt="Hands harvesting ripe coffee cherries" loading="lazy" /></div>
+            <div class="media"><img src="assets/img/land-harvest.jpg" alt="Hands harvesting ripe coffee cherries" loading="lazy" /><span class="tag dev">In development</span></div>
             <h3>Coffee alternatives</h3>
             <p>Coffee taste and function, from resilient local raw materials.</p>
           </a>
           <a class="card reveal" href="product-choviva.html">
-            <span class="tag solid">In market</span>
-            <div class="media"><img src="assets/img/grape-seeds-hand.jpg" alt="Seeds resting in an open hand" loading="lazy" /></div>
+            <div class="media"><img src="assets/img/grape-seeds-hand.jpg" alt="Seeds resting in an open hand" loading="lazy" /><span class="tag solid">In market</span></div>
             <h3>Cocoa-free chocolate alternatives</h3>
             <p>Also available in fluid form.</p>
           </a>
-          <a class="card is-next reveal" href="portfolio.html">
-            <span class="tag next">Next</span>
-            <div class="media"><img src="assets/img/mist.jpg" alt="Mist over a wide stretch of rainforest" loading="lazy" /></div>
+          <a class="card is-next reveal" href="solutions.html">
+            <div class="media"><img src="assets/img/mist.jpg" alt="Mist over a wide stretch of rainforest" loading="lazy" /><span class="tag next">Next</span></div>
             <h3>Further fragile commodities</h3>
             <p>Vanilla, citrus, meat and more.</p>
           </a>
@@ -191,10 +192,10 @@
       </div>
     </section>
 
-    <!-- 05 · SCALE — Wie groß seid ihr schon? -->
-    <section class="screen scale" id="scale">
-      <div class="wrap scale-grid">
-        <div>
+    <!-- 05 · SCALE — Wie groß seid ihr schon? Full-bleed image right. -->
+    <section class="screen scale tone-stone" id="scale">
+      <div class="split">
+        <div class="split-copy">
           <p class="eyebrow reveal">Scale</p>
           <h2 class="reveal">Industrial scale, today.</h2>
           <div class="big-facts">
@@ -204,7 +205,7 @@
             <div class="fact reveal"><b data-count="40" data-suffix="+">40+</b><span>Trade partners</span></div>
           </div>
         </div>
-        <div class="media breathe reveal" aria-hidden="true">
+        <div class="media bleed breathe" aria-hidden="true">
           <video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-sunflower.jpg">
             <source src="assets/img/sunflower.mp4" type="video/mp4">
           </video>
@@ -214,8 +215,9 @@
 
     <!-- 06 · IMPACT — Welche Wirkung ist belegt? -->
     <section class="screen impact" id="impact">
+      <div class="impact-bg" aria-hidden="true"></div>
       <div class="impact-glow" aria-hidden="true"></div>
-      <div class="wrap">
+      <div class="wrap fill">
         <p class="eyebrow">Impact</p>
         <div class="impact-grid">
           <div class="reveal">
@@ -236,37 +238,40 @@
     </section>
 
     <!-- 07 · COMPANY — Wer führt das? -->
-    <section class="screen company" id="company">
-      <div class="wrap">
+    <section class="screen company tone-stone" id="company">
+      <div class="wrap fill">
         <div class="sec-top reveal">
-          <h2>The company behind the platform.</h2>
+          <div>
+            <p class="eyebrow">Company</p>
+            <h2>The company behind the platform.</h2>
+          </div>
           <a class="link" href="press.html">Newsroom</a>
         </div>
         <div class="cards">
-          <div class="card reveal">
+          <a class="card reveal" href="people.html">
             <div class="media"><img src="assets/img/team-sara.jpg" alt="Dr. Sara Marquart, Co-Founder &amp; CTO" loading="lazy" /></div>
             <h3>Leadership</h3>
             <p>Founders, management, board.</p>
-            <a class="link" href="people.html">Meet the team</a>
-          </div>
-          <div class="card reveal">
+            <span class="link">Meet the team</span>
+          </a>
+          <a class="card reveal" href="company-global-footprint.html">
             <div class="media"><img src="assets/img/bluehour.jpg" alt="Still mountain lake at blue hour" loading="lazy" /></div>
             <h3>Global footprint</h3>
             <p>Where we make and where we sell.</p>
-            <a class="link" href="company-global-footprint.html">Our footprint</a>
-          </div>
-          <div class="card reveal">
+            <span class="link">Our footprint</span>
+          </a>
+          <a class="card reveal" href="careers.html">
             <div class="media"><img src="assets/img/codev.jpg" alt="Two scientists working together in the lab" loading="lazy" /></div>
             <h3>Careers</h3>
             <p>Build the backbone with us.</p>
-            <a class="link" href="careers.html">Open positions</a>
-          </div>
-          <div class="card reveal">
+            <span class="link">Open positions</span>
+          </a>
+          <a class="card reveal" href="investors.html">
             <div class="media"><img src="assets/img/sustainability.jpg" alt="Hands holding soil with a young seedling" loading="lazy" /></div>
             <h3>Investors</h3>
             <p>A platform for resilient food systems.</p>
-            <a class="link" href="investors.html">Investor relations</a>
-          </div>
+            <span class="link">Investor relations</span>
+          </a>
         </div>
       </div>
     </section>
