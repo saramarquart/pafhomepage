@@ -110,12 +110,13 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 .nav-links a:hover { color: var(--ink); }
 .nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:-2px; height:1.5px; background: var(--purple); transition: right .25s ease; }
 .nav-links a:hover::after { right: 0; }
-.nav-cta { margin-left: 6px; }
-.lang-switch { display:flex; align-items:center; gap:5px; font-size:.78rem; font-weight:600; letter-spacing:.02em; margin-left:4px; }
-.lang-switch .lang-current { color: var(--ink); }
-.lang-switch .lang-sep { color: var(--muted); opacity:.5; }
-.lang-switch .lang-option { color: var(--muted); opacity:.55; cursor:default; }
-@media (max-width:720px){ .lang-switch { display:none; } }
+.nav-cta { margin-left: 6px; white-space: nowrap; flex-shrink: 0; }
+/* EN/DE toggle — same colour + type as the other menu items in every nav state */
+.lang-switch { display:flex; align-items:center; gap:6px; color: var(--ink-2); font-size:.76rem; font-weight:500; letter-spacing:.15em; white-space:nowrap; margin-left:4px; }
+.lang-switch .lang-current { color: inherit; }
+.lang-switch .lang-sep { color: inherit; opacity:.45; }
+.lang-switch .lang-option { color: inherit; opacity:.6; cursor:default; }
+@media (max-width: 980px){ .lang-switch { display:none; } }
 .nav-toggle { display: none; margin-left: auto; background: none; border: 1px solid var(--line-2); border-radius: 12px; width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { content:""; display:block; width:18px; height:1.6px; background: var(--ink); transition: .25s; }
 .nav-toggle span::before { transform: translateY(-6px); } .nav-toggle span::after { transform: translateY(4.4px); }
@@ -294,8 +295,8 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
   .cred { grid-template-columns: 1fr; }
   .challenge .wrap { grid-template-columns: 1fr; }
 }
-@media (max-width: 720px) {
-  body { font-size: 16px; }
+/* nav switches to the hamburger drawer on phones AND tablets (<=980px) */
+@media (max-width: 980px) {
   .nav-links { display:none; position:absolute; top:72px; left:0; right:0; flex-direction:column; gap:0;
     background: var(--paper); border-bottom:1px solid var(--line); padding: 8px var(--gutter) 18px; }
   .nav.open .nav-links { display:flex; }
@@ -303,6 +304,9 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
   .nav .nav-cta { display:none; }
   .nav.open .nav-cta { display:inline-flex; margin: 12px 0 0; }
   .nav-toggle { display:inline-flex; }
+}
+@media (max-width: 720px) {
+  body { font-size: 16px; }
   .platforms, .two-up, .grid-cards, .stats, .apps { grid-template-columns: 1fr; }
   .apps { grid-template-columns: repeat(2,1fr); }
   .hero-meta { gap: 24px; }
@@ -450,7 +454,7 @@ body { background:
 .challenge, .engine { background: #FBF9F5; }
 
 /* ---- Mobile: drawer needs solid bg + dark text (nav is white-on-hero otherwise) ---- */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav-in { height: 64px; }
   .nav-links { top: 64px; background: var(--paper); }
   .nav.open { background: rgba(249,246,241,.98); backdrop-filter: blur(20px); }
@@ -634,7 +638,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 .nav-toggle { border-color: var(--line-2); }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { background: var(--ink); }
 .nav.scrolled { background: rgba(255,255,255,.93); box-shadow: 0 12px 40px -30px rgba(0,0,0,.35); }
-@media (max-width:720px){ .nav-links { background: #fff; } }
+@media (max-width: 980px){ .nav-links { background: #fff; } }
 
 /* HERO — bright split: white, dark text, image beside */
 .hero { position: relative; color: var(--ink); background: #fff; min-height: auto; overflow: hidden;
@@ -711,7 +715,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 @media (max-height: 760px) { .hero:not(.hero-video) { min-height: auto; } }
 
 /* dropdowns on mobile → tap-to-expand accordion */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav-item { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
   .nav-links .nav-top { display: flex; justify-content: space-between; width: 100%; padding: 15px 0;
     font-size: 1.05rem; border-bottom: none; }
@@ -958,7 +962,7 @@ body.home .nav.open .brand-mark { filter: none; }
 .nav-links > *:nth-child(3) { animation-delay: .38s; }
 .nav-links > *:nth-child(4) { animation-delay: .48s; }
 @keyframes navFlyIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
-@media (max-width: 720px) { .nav-links > * { animation: none; } }         /* drawer: no fly-in */
+@media (max-width: 980px) { .nav-links > * { animation: none; } }         /* drawer: no fly-in */
 @media (prefers-reduced-motion: reduce) { .brand, .nav-links > * { animation: none; } }
 
 /* Subpages with a dark image hero get the landing's transparent-over-hero nav */
@@ -967,9 +971,8 @@ body.dark-hero .nav:not(.scrolled) .brand-name { color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-top { color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-item .nav-top::after { border-color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-cta.btn { color: #fff; border-color: rgba(255,255,255,.5); }
-body.dark-hero .nav:not(.scrolled) .lang-switch .lang-current { color: #fff; }
-body.dark-hero .nav:not(.scrolled) .lang-switch .lang-sep,
-body.dark-hero .nav:not(.scrolled) .lang-switch .lang-option { color: rgba(255,255,255,.6); }
+body.home .nav:not(.scrolled) .lang-switch,
+body.dark-hero .nav:not(.scrolled) .lang-switch { color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-cta.btn:hover { background: #fff; color: var(--ink); border-color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-toggle { border-color: rgba(255,255,255,.5); }
 body.dark-hero .nav:not(.scrolled) .nav-toggle span,
@@ -1051,7 +1054,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .dd-label { display:block; padding:9px 14px 3px; font-size:.62rem; font-weight:700;
   letter-spacing:.18em; text-transform:uppercase; color:var(--muted); pointer-events:none; }
 .dd .dd-label ~ .dd-label { margin-top:6px; border-top:1px solid var(--line); padding-top:12px; }
-@media (max-width:720px){ .dd-label { padding-left:8px; } }
+@media (max-width: 980px){ .dd-label { padding-left:8px; } }
 
 /* Solutions mega-menu — two columns side by side, Ofi-style column headers */
 .dd-mega { min-width: 520px; display:grid; grid-template-columns:repeat(2,1fr); gap:8px 48px; padding:6px 8px; }
@@ -1061,7 +1064,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .dd-col a { display:block; padding:9px 4px; font-size:.98rem; font-weight:400; color:var(--ink-2); border-radius:8px; }
 .dd-col a:hover { background:#F4F4F2; color:var(--ink); }
 @media (max-width:900px){ .dd-mega { min-width:0; } }
-@media (max-width:720px){
+@media (max-width: 980px){
   .dd-mega { grid-template-columns:1fr; gap:0; padding:0; }
   .dd-col-head { margin:14px 8px 6px; }
   .dd-col a { padding-left:8px; }
@@ -1183,7 +1186,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
    white nav-text rules could leak into the open drawer, hiding the menu items.
    This forces a solid panel + dark text for the open drawer on every page.
    ========================================================================== */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav.open { background: #ffffff !important; backdrop-filter: blur(20px) saturate(1.1); border-bottom-color: var(--line) !important; }
   .nav.open .nav-links { background: #ffffff !important; height: auto !important; max-height: calc(100dvh - 56px); overflow-y: auto; padding-bottom: 18px; }
   .nav.open .nav-links a,
@@ -1243,7 +1246,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
    (0,1,0), so an OPEN dropdown kept its desktop centering transform and slid
    off-screen to the LEFT on phones. Force the accordion fully in-flow + full width.
    ========================================================================== */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav .dd,
   .nav-item.open .dd,
   .nav-item:hover .dd {
@@ -1393,4 +1396,16 @@ hr { border: 0; height: 1px; background: var(--line); margin: clamp(32px, 5vw, 6
   .card:hover .card-media img.pm, .insight:hover .insight-media,
   .rel-card:hover .rc-media, .prod-split .prod-figure:hover img,
   .gallery figure:hover img { transform: none; }
+}
+
+/* Nav on small laptops (981–1240px): tighten spacing so the menu, EN/DE and
+   "Partner with us" stay on one line. Below 981px the hamburger drawer takes over. */
+@media (min-width: 981px) and (max-width: 1240px) {
+  .nav-in { gap: 24px; }
+  .nav-links { gap: 20px; }
+  .nav .nav-cta.btn { padding: 10px 16px; letter-spacing: .12em; }
+}
+@media (min-width: 981px) and (max-width: 1100px) {
+  .nav-links { gap: 14px; }
+  .nav-links a, .lang-switch { letter-spacing: .1em; }
 }

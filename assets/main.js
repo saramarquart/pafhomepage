@@ -15,7 +15,7 @@
     // mobile: tapping a top-level item expands its dropdown instead of navigating
     nav.querySelectorAll(".nav-top").forEach(function (t) {
       t.addEventListener("click", function (e) {
-        if (window.innerWidth <= 720) { e.preventDefault(); t.parentNode.classList.toggle("open"); }
+        if (window.innerWidth <= 980) { e.preventDefault(); t.parentNode.classList.toggle("open"); }
       });
     });
     // close the mobile drawer when an actual destination link is tapped
