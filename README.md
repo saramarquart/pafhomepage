@@ -1,4 +1,4 @@
-# Planet A Foods — homepage
+# Planet A Foods — Homepage
 
 A complete, self-contained marketing site for **www.planet-a-foods.com**, repositioning Planet A Foods from a chocolate-alternative brand into a **sustainable ingredient powerhouse**.
 

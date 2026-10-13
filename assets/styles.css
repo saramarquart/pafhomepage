@@ -110,12 +110,13 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 .nav-links a:hover { color: var(--ink); }
 .nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:-2px; height:1.5px; background: var(--purple); transition: right .25s ease; }
 .nav-links a:hover::after { right: 0; }
-.nav-cta { margin-left: 6px; }
-.lang-switch { display:flex; align-items:center; gap:5px; font-size:.78rem; font-weight:600; letter-spacing:.02em; margin-left:4px; }
-.lang-switch .lang-current { color: var(--ink); }
-.lang-switch .lang-sep { color: var(--muted); opacity:.5; }
-.lang-switch .lang-option { color: var(--muted); opacity:.55; cursor:default; }
-@media (max-width:720px){ .lang-switch { display:none; } }
+.nav-cta { margin-left: 6px; white-space: nowrap; flex-shrink: 0; }
+/* EN/DE toggle — same colour + type as the other menu items in every nav state */
+.lang-switch { display:flex; align-items:center; gap:6px; color: var(--ink-2); font-size:.76rem; font-weight:500; letter-spacing:.15em; white-space:nowrap; margin-left:4px; }
+.lang-switch .lang-current { color: inherit; }
+.lang-switch .lang-sep { color: inherit; opacity:.45; }
+.lang-switch .lang-option { color: inherit; opacity:.6; cursor:default; }
+@media (max-width: 980px){ .lang-switch { display:none; } }
 .nav-toggle { display: none; margin-left: auto; background: none; border: 1px solid var(--line-2); border-radius: 12px; width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { content:""; display:block; width:18px; height:1.6px; background: var(--ink); transition: .25s; }
 .nav-toggle span::before { transform: translateY(-6px); } .nav-toggle span::after { transform: translateY(4.4px); }
@@ -294,8 +295,8 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
   .cred { grid-template-columns: 1fr; }
   .challenge .wrap { grid-template-columns: 1fr; }
 }
-@media (max-width: 720px) {
-  body { font-size: 16px; }
+/* nav switches to the hamburger drawer on phones AND tablets (<=980px) */
+@media (max-width: 980px) {
   .nav-links { display:none; position:absolute; top:72px; left:0; right:0; flex-direction:column; gap:0;
     background: var(--paper); border-bottom:1px solid var(--line); padding: 8px var(--gutter) 18px; }
   .nav.open .nav-links { display:flex; }
@@ -303,6 +304,9 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
   .nav .nav-cta { display:none; }
   .nav.open .nav-cta { display:inline-flex; margin: 12px 0 0; }
   .nav-toggle { display:inline-flex; }
+}
+@media (max-width: 720px) {
+  body { font-size: 16px; }
   .platforms, .two-up, .grid-cards, .stats, .apps { grid-template-columns: 1fr; }
   .apps { grid-template-columns: repeat(2,1fr); }
   .hero-meta { gap: 24px; }
@@ -450,7 +454,7 @@ body { background:
 .challenge, .engine { background: #FBF9F5; }
 
 /* ---- Mobile: drawer needs solid bg + dark text (nav is white-on-hero otherwise) ---- */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav-in { height: 64px; }
   .nav-links { top: 64px; background: var(--paper); }
   .nav.open { background: rgba(249,246,241,.98); backdrop-filter: blur(20px); }
@@ -634,7 +638,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 .nav-toggle { border-color: var(--line-2); }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { background: var(--ink); }
 .nav.scrolled { background: rgba(255,255,255,.93); box-shadow: 0 12px 40px -30px rgba(0,0,0,.35); }
-@media (max-width:720px){ .nav-links { background: #fff; } }
+@media (max-width: 980px){ .nav-links { background: #fff; } }
 
 /* HERO — bright split: white, dark text, image beside */
 .hero { position: relative; color: var(--ink); background: #fff; min-height: auto; overflow: hidden;
@@ -711,7 +715,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 @media (max-height: 760px) { .hero:not(.hero-video) { min-height: auto; } }
 
 /* dropdowns on mobile → tap-to-expand accordion */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav-item { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
   .nav-links .nav-top { display: flex; justify-content: space-between; width: 100%; padding: 15px 0;
     font-size: 1.05rem; border-bottom: none; }
@@ -958,7 +962,7 @@ body.home .nav.open .brand-mark { filter: none; }
 .nav-links > *:nth-child(3) { animation-delay: .38s; }
 .nav-links > *:nth-child(4) { animation-delay: .48s; }
 @keyframes navFlyIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
-@media (max-width: 720px) { .nav-links > * { animation: none; } }         /* drawer: no fly-in */
+@media (max-width: 980px) { .nav-links > * { animation: none; } }         /* drawer: no fly-in */
 @media (prefers-reduced-motion: reduce) { .brand, .nav-links > * { animation: none; } }
 
 /* Subpages with a dark image hero get the landing's transparent-over-hero nav */
@@ -967,9 +971,8 @@ body.dark-hero .nav:not(.scrolled) .brand-name { color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-top { color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-item .nav-top::after { border-color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-cta.btn { color: #fff; border-color: rgba(255,255,255,.5); }
-body.dark-hero .nav:not(.scrolled) .lang-switch .lang-current { color: #fff; }
-body.dark-hero .nav:not(.scrolled) .lang-switch .lang-sep,
-body.dark-hero .nav:not(.scrolled) .lang-switch .lang-option { color: rgba(255,255,255,.6); }
+body.home .nav:not(.scrolled) .lang-switch,
+body.dark-hero .nav:not(.scrolled) .lang-switch { color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-cta.btn:hover { background: #fff; color: var(--ink); border-color: #fff; }
 body.dark-hero .nav:not(.scrolled) .nav-toggle { border-color: rgba(255,255,255,.5); }
 body.dark-hero .nav:not(.scrolled) .nav-toggle span,
@@ -1051,7 +1054,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .dd-label { display:block; padding:9px 14px 3px; font-size:.62rem; font-weight:700;
   letter-spacing:.18em; text-transform:uppercase; color:var(--muted); pointer-events:none; }
 .dd .dd-label ~ .dd-label { margin-top:6px; border-top:1px solid var(--line); padding-top:12px; }
-@media (max-width:720px){ .dd-label { padding-left:8px; } }
+@media (max-width: 980px){ .dd-label { padding-left:8px; } }
 
 /* Solutions mega-menu — two columns side by side, Ofi-style column headers */
 .dd-mega { min-width: 520px; display:grid; grid-template-columns:repeat(2,1fr); gap:8px 48px; padding:6px 8px; }
@@ -1061,7 +1064,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .dd-col a { display:block; padding:9px 4px; font-size:.98rem; font-weight:400; color:var(--ink-2); border-radius:8px; }
 .dd-col a:hover { background:#F4F4F2; color:var(--ink); }
 @media (max-width:900px){ .dd-mega { min-width:0; } }
-@media (max-width:720px){
+@media (max-width: 980px){
   .dd-mega { grid-template-columns:1fr; gap:0; padding:0; }
   .dd-col-head { margin:14px 8px 6px; }
   .dd-col a { padding-left:8px; }
@@ -1183,7 +1186,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
    white nav-text rules could leak into the open drawer, hiding the menu items.
    This forces a solid panel + dark text for the open drawer on every page.
    ========================================================================== */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav.open { background: #ffffff !important; backdrop-filter: blur(20px) saturate(1.1); border-bottom-color: var(--line) !important; }
   .nav.open .nav-links { background: #ffffff !important; height: auto !important; max-height: calc(100dvh - 56px); overflow-y: auto; padding-bottom: 18px; }
   .nav.open .nav-links a,
@@ -1243,7 +1246,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
    (0,1,0), so an OPEN dropdown kept its desktop centering transform and slid
    off-screen to the LEFT on phones. Force the accordion fully in-flow + full width.
    ========================================================================== */
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .nav .dd,
   .nav-item.open .dd,
   .nav-item:hover .dd {
@@ -1272,4 +1275,137 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 body.home .nav:not(.scrolled)::before,
 body.dark-hero .nav:not(.scrolled)::before {
   background: linear-gradient(to bottom, rgba(8,10,6,.55), rgba(8,10,6,.18) 62%, transparent) !important;
+}
+
+/* ============================================================================
+   PREMIUM POLISH (v30) — the craft layer. The design already resolves to
+   white ground + a single olive accent (#5E7038) + Archivo/Inter. This is the
+   final authoritative pass: a warm elevation system, a deliberate type scale,
+   one shared easing curve, tactile image framing, and finishing details. It
+   only elevates the existing vocabulary — no renamed classes, no new layout.
+   ========================================================================== */
+
+:root {
+  /* One deliberate easing curve for everything that moves (calm, confident). */
+  --ease: cubic-bezier(.22, .61, .28, 1);
+
+  /* WARM elevation system — shadows tinted toward espresso (not neutral gray),
+     layered (ambient + key) so cards feel lit rather than outlined. Low alpha,
+     large soft blur = expensive, not "CSS-y". */
+  --e-1:
+    0 1px 1px rgba(36, 26, 16, .04),
+    0 6px 14px -8px rgba(36, 26, 16, .10);
+  --e-2:
+    0 1px 2px rgba(36, 26, 16, .05),
+    0 10px 26px -14px rgba(36, 26, 16, .16),
+    0 30px 60px -40px rgba(36, 26, 16, .14);
+  --e-3:
+    0 2px 4px rgba(36, 26, 16, .06),
+    0 18px 42px -22px rgba(36, 26, 16, .22),
+    0 46px 92px -52px rgba(36, 26, 16, .24);
+  /* re-point the legacy tokens so every prior use inherits the warmer grade */
+  --shadow: var(--e-3);
+  --shadow-sm: var(--e-2);
+}
+
+/* --- 1 · TYPOGRAPHY — a deliberate scale, balanced wrapping, honed measure --- */
+h1, h2, h3, h4 { text-wrap: balance; }
+.hero h1, .hero-min-title, .page-hero h1, .cin-title, .prod-hero h1 { text-wrap: balance; }
+/* leads and editorial paragraphs wrap for even rag, not orphans */
+.lead, .statement-lead, .prose p, .measure p, .founder-quote p, blockquote { text-wrap: pretty; }
+/* Lead: a touch more line-height + a hair more weight so it reads as considered
+   sub-head copy, not thin body text. */
+.lead { line-height: 1.5; font-weight: 340; letter-spacing: .002em; }
+/* Body measure discipline — long prose never runs past a comfortable line. */
+.prose, .measure { max-width: 66ch; }
+p { max-width: 74ch; }
+.hero p, .page-hero p, .cta-band p, .videobg p, .dark p, .pullquote p,
+.card p, .variant .v-desc, .step p, .insight-body p, .rel-card p,
+.crop span, .app-d, .footer p, .stat span, .form p { max-width: none; }
+/* Eyebrow: slightly finer tracking rhythm, optical baseline lift */
+.eyebrow { font-size: .72rem; letter-spacing: .24em; }
+/* Section heads: honor the accent-line eyebrow, then a confident gap to the H2.
+   (Pages set this inline inconsistently — normalize the default.) */
+.sec-head .eyebrow + h2 { margin-top: 18px; }
+
+/* --- 2 · ELEVATION applied — tactile cards that lift on the shared curve --- */
+.card, .app, .variant, .partner-cell, .insight, .rel-card, .feature.on-dark,
+.gallery figure {
+  box-shadow: var(--e-1);
+  transition: transform .42s var(--ease), box-shadow .42s var(--ease), border-color .42s var(--ease);
+}
+.card:hover { transform: translateY(-8px); box-shadow: var(--e-3); border-color: var(--line-2); }
+.app:hover { transform: translateY(-5px); box-shadow: var(--e-2); border-color: var(--line-2); }
+.variant:hover, .partner-cell:hover, .gallery figure:hover { transform: translateY(-5px); box-shadow: var(--e-2); }
+.insight:hover, .rel-card:hover { box-shadow: var(--e-3); }
+.form { box-shadow: var(--e-2); }
+/* the person photo already lifts on grayscale→colour; deepen its grounding */
+.person .photo { box-shadow: var(--e-3); }
+
+/* --- 3 · IMAGERY — zoom-within-frame. The photo scales, the frame clips it,
+   so hover feels like the image breathing, never the card jumping. --- */
+.card-media, .rel-card .rc-media, .insight-media, .prod-split .prod-figure,
+.gallery figure { overflow: hidden; }
+.card-media img.pm, .insight-media, .rc-media, .prod-split .prod-figure img,
+.gallery img {
+  transition: transform .7s var(--ease), filter .7s var(--ease);
+  will-change: transform;
+}
+.card:hover .card-media img.pm,
+.insight:hover .insight-media,
+.rel-card:hover .rc-media,
+.prod-split .prod-figure:hover img,
+.gallery figure:hover img { transform: scale(1.045); }
+/* split media zoom lives inside its clipped grid cell (parallax sets its own
+   transform inline, so only nudge the scale via a wrapper-safe filter shift) */
+.split-media { transition: filter .7s var(--ease); }
+.split-grid:hover .split-media { filter: saturate(1.06) contrast(1.03) brightness(1.02); }
+
+/* --- 4 · BUTTONS — confident weight, refined hover, crisper arrow --- */
+.btn { letter-spacing: .01em; transition: transform .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+.btn-primary:hover { box-shadow: var(--e-2); }
+.btn-ghost:hover { box-shadow: var(--e-1); }
+.arrow::after { transition: transform .3s var(--ease); }
+.arrow:hover::after { transform: translateX(5px); }
+
+/* --- 5 · LINKS & NAV — the underline reveal glides on the shared curve --- */
+.nav-links a::after { transition: right .3s var(--ease); }
+.engine-link, .prod-link { position: relative; }
+.engine-link::after, .prod-link::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -3px;
+  height: 1.5px; background: currentColor; transition: right .3s var(--ease);
+}
+.engine-link:hover::after, .prod-link:hover::after { right: 0; }
+
+/* --- 6 · FINISHING — selection, marker, rules, tap feedback --- */
+::selection { background: rgba(94, 112, 56, .18); color: var(--ink); }
+hr { border: 0; height: 1px; background: var(--line); margin: clamp(32px, 5vw, 64px) 0; }
+.prose ul, .prose ol { padding-left: 1.15em; }
+.prose li { margin-bottom: .4em; }
+.prose ul li::marker { color: #5E7038; }
+/* buttons/cards settle on tap (mobile) instead of sticking in hover state */
+.btn:active { transform: translateY(0) scale(.985); }
+.card:active, .app:active, .variant:active { transform: translateY(-2px); }
+/* keep imagery from ever looking stretched if a source ratio is odd */
+.hero-figure, .split-media, .scale-band .bg, .page-hero .bg, .cinematic .bg,
+.card-media, .rc-media, .insight-media { background-repeat: no-repeat; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover, .app:hover, .variant:hover, .partner-cell:hover,
+  .gallery figure:hover { transform: none; }
+  .card:hover .card-media img.pm, .insight:hover .insight-media,
+  .rel-card:hover .rc-media, .prod-split .prod-figure:hover img,
+  .gallery figure:hover img { transform: none; }
+}
+
+/* Nav on small laptops (981–1240px): tighten spacing so the menu, EN/DE and
+   "Partner with us" stay on one line. Below 981px the hamburger drawer takes over. */
+@media (min-width: 981px) and (max-width: 1240px) {
+  .nav-in { gap: 24px; }
+  .nav-links { gap: 20px; }
+  .nav .nav-cta.btn { padding: 10px 16px; letter-spacing: .12em; }
+}
+@media (min-width: 981px) and (max-width: 1100px) {
+  .nav-links { gap: 14px; }
+  .nav-links a, .lang-switch { letter-spacing: .1em; }
 }
