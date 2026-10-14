@@ -1,10 +1,41 @@
 /* ============================================================================
    Careers page — scoped to careers.html. Builds on home.css (Relaunch 2026
-   designer system: DM Sans · brand purple #2E1193 · lilac · light grey ·
-   pills, rounded image tiles, the striped ring mark) and reuses its
+   layout system: pills, rounded image tiles, the striped ring mark) with the
+   colours and font re-pointed to the Brand Guideline (see tokens below), and reuses its
    .hero, .pill, .btn, .tag, .fact, .arrow-btn, .center-head, nav + footer.
    Nothing here is global.
    ========================================================================== */
+
+/* ---------- Brand tokens: ONLY colours from Brand Guideline V1.0 (Apr 2025) + Main/Support colours sheet.
+   Overrides home.css's own values on this page; no other colours are used.
+   Warm Violet / Blue Digital #320F99 · Blue Print #332D84 · Brand Green #10C167 · Slate Grey #2D2D2D
+   Neutral Darkest #111111 · Neutral Dark #444444 · Neutral #666666 · Neutral lighter #CCCCCC
+   Background Color #F3F3F3 · White #FFFFFF · Light Blue #B0DCE0 ---------- */
+:root {
+  --purple:    #320F99;
+  --purple-2:  #332D84;
+  --purple-dk: #332D84;
+  --lilac:     #F3F3F3;
+  --mint:      #B0DCE0;
+  --grey:      #F3F3F3;
+  --ink:       #2D2D2D;
+  --ink-2:     #444444;
+  --muted:     #666666;
+  --line:      #CCCCCC;
+  --green:     #10C167;
+  --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+/* Typography per guideline weights: Bold for headlines, Semi Bold for subheads/UI, Regular for body */
+h1, h2 { font-weight: 700; }
+h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
+.fact b { font-weight: 700; }
+/* home.css literals that fall outside the palette, re-pointed for this page */
+.cr-hero.hero { background: #111111; }
+.cr-hero .hero-shade { background:
+  linear-gradient(0deg, rgba(17,17,17,.78) 0%, rgba(17,17,17,.35) 45%, rgba(17,17,17,.25) 100%),
+  linear-gradient(90deg, rgba(17,17,17,.45), rgba(17,17,17,0) 60%); }
+.nav-pill, .nav-toggle { box-shadow: 0 10px 30px -18px rgba(17,17,17,.5); }
+
 
 /* current page in the nav pill */
 .nav-pill a[aria-current="page"] { background: var(--lilac); color: var(--purple); }
@@ -41,7 +72,7 @@
 .cr-hero .hero-stage img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%;
   animation: push 7s linear both; }
 .cr-hero .hero-foot { margin-top: 0; }
-.cr-hero h1 { max-width: 14ch; }
+.cr-hero h1 { max-width: 17ch; text-wrap: balance; }
 
 /* ---------- 2 · VISION ---------- */
 .cr-vision h2 { margin-bottom: 8px; }
@@ -72,7 +103,7 @@
 /* ---------- 5 · KEY FACTS (home.css .fact for number + label) ---------- */
 .cr-facts { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff; }
 .cr-facts-rings { position: absolute; z-index: -1; right: -12vw; top: 50%; width: min(78vw, 1150px);
-  opacity: .55; filter: brightness(2.1) saturate(1.15); pointer-events: none; transform: translateY(-50%);
+  opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
   animation: spin 160s linear infinite; }
 .cr-facts .lead { color: rgba(255,255,255,.86); }
 .cr-fact { align-items: flex-start; text-align: left; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
@@ -81,7 +112,7 @@
 .cr-fact .cr-icon { background: rgba(255,255,255,.14); color: #fff; }
 .cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.2); width: 100%; }
 .cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); }
-.cr-fact .fact span { color: var(--lilac); font-weight: 500; }
+.cr-fact .fact span { color: var(--green); font-weight: 600; }
 .cr-fact p { margin: 0; color: rgba(255,255,255,.82); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
@@ -106,27 +137,28 @@
   margin-top: 20px; min-height: clamp(340px, 36vw, 520px); display: flex; align-items: flex-end; color: #fff; }
 .cr-banner img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .cr-banner::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(90deg, rgba(46,17,147,.86) 0%, rgba(46,17,147,.5) 36%, rgba(46,17,147,0) 70%),
-              linear-gradient(0deg, rgba(14,11,26,.45) 0%, rgba(14,11,26,0) 45%); }
+  background: linear-gradient(90deg, rgba(50,15,153,.86) 0%, rgba(50,15,153,.5) 36%, rgba(50,15,153,0) 70%),
+              linear-gradient(0deg, rgba(17,17,17,.45) 0%, rgba(17,17,17,0) 45%); }
 .cr-banner-copy { padding: clamp(26px, 4vw, 52px); max-width: 52ch; }
 .cr-banner h3 { margin-bottom: 10px; }
 .cr-banner p { color: rgba(255,255,255,.9); }
 
 /* ---------- 7 · HOW TO JOIN — soft lilac ground, stepper (desktop) ---------- */
-.cr-join { background: color-mix(in srgb, var(--lilac) 45%, #fff); }
+.cr-join { background: var(--grey); }
 .cr-join .cr-seg { background: #fff; }
 .cr-join .cr-step-panel { background: #fff; }
 .cr-join .cr-tip { background: var(--grey); }
-.cr-join .cr-steps::before { background: rgba(46,17,147,.18); }
+.cr-join .cr-step-icon { background: #fff; }
+.cr-join .cr-steps::before { background: var(--line); }
 .cr-steps { --steps: 5; list-style: none; margin: 0; padding: 0; position: relative;
   display: grid; grid-template-columns: repeat(var(--steps), 1fr); row-gap: clamp(32px, 4vw, 48px); }
-.cr-steps::before { content: ""; position: absolute; top: 28px; height: 1.5px; background: var(--lilac);
+.cr-steps::before { content: ""; position: absolute; top: 28px; height: 1.5px; background: var(--line);
   left: calc(50% / var(--steps)); right: calc(50% / var(--steps)); }
 .cr-step { display: contents; }
 .cr-step-btn { grid-row: 1; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 14px;
   padding: 0 6px; border: 0; background: none; cursor: pointer; color: var(--muted); }
 .cr-step-icon { width: 56px; height: 56px; border-radius: 50%; background: #fff; color: var(--purple);
-  box-shadow: inset 0 0 0 1.5px var(--lilac); display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 0 0 1.5px var(--line); display: flex; align-items: center; justify-content: center;
   transition: background .3s ease, box-shadow .3s ease, color .3s ease; }
 .cr-step-label { font-size: .95rem; font-weight: 500; line-height: 1.3; text-align: center; transition: color .3s ease; }
 .cr-step-btn:hover .cr-step-icon { box-shadow: inset 0 0 0 1.5px var(--purple); }
@@ -154,12 +186,11 @@
 /* ---------- 8 · FINAL CTA — brand purple panel with the ring mark ---------- */
 .cr-cta { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r); background: var(--purple); color: #fff;
   min-height: clamp(440px, 38vw, 580px); display: flex; align-items: center; }
-.cr-cta-rings { position: absolute; z-index: -1; left: -14%; bottom: -60%; width: min(70vw, 900px); opacity: .22;
-  filter: brightness(2.1) saturate(1.15); pointer-events: none; }
+.cr-cta-rings { position: absolute; z-index: -1; left: -14%; bottom: -60%; width: min(70vw, 900px); opacity: .1; filter: brightness(0) invert(1); pointer-events: none; }
 .cr-cta-media { position: absolute; top: 0; right: 0; bottom: 0; width: 55%; }
 .cr-cta-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
 .cr-cta-media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg, var(--purple) 0%, rgba(46,17,147,.35) 18%, rgba(46,17,147,0) 45%); }
+  background: linear-gradient(90deg, var(--purple) 0%, rgba(50,15,153,.35) 18%, rgba(50,15,153,0) 45%); }
 .cr-cta-copy { position: relative; width: 48%; padding: clamp(32px, 5vw, 80px); }
 .cr-cta h2 { margin: 26px 0 18px; max-width: 16ch; }
 .cr-cta p { color: rgba(255,255,255,.88); max-width: 46ch; margin-bottom: 30px; }
@@ -187,7 +218,7 @@
   .cr-step-panel { grid-template-columns: 1fr; }
   .cr-cta { display: block; min-height: 0; }
   .cr-cta-media { position: relative; width: 100%; aspect-ratio: 16 / 10; }
-  .cr-cta-media::after { background: linear-gradient(0deg, var(--purple) 0%, rgba(46,17,147,0) 35%); }
+  .cr-cta-media::after { background: linear-gradient(0deg, var(--purple) 0%, rgba(50,15,153,0) 35%); }
   .cr-cta-copy { width: auto; padding-top: 8px; }
   .cr-facts-rings { right: -45vw; width: 130vw; }
   .cr-cta-rings { left: auto; right: -40%; bottom: -30%; width: 120vw; }
@@ -197,7 +228,7 @@
   .cr-hero .hero-actions, .cr-hero .btn, .cr-cta .btn { width: 100%; }
   .cr-carousel { --cr-size: 70vw; --cr-gap: 14px; }
   .cr-banner { min-height: 400px; }
-  .cr-banner::after { background: linear-gradient(0deg, rgba(46,17,147,.9) 0%, rgba(46,17,147,.5) 45%, rgba(46,17,147,0) 75%); }
+  .cr-banner::after { background: linear-gradient(0deg, rgba(50,15,153,.9) 0%, rgba(50,15,153,.5) 45%, rgba(50,15,153,0) 75%); }
   .cr-seg [role="tab"] { padding: 10px 16px; }
 
   /* stepper → vertical accordion */
@@ -214,3 +245,9 @@
   .cr-step-nav .btn { width: 100%; }
   .cr-step-nav .btn-text { justify-content: center; }
 }
+
+/* intern-specific note above the 2-step process */
+.cr-note { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto clamp(28px, 3.5vw, 44px);
+  color: var(--ink-2); text-align: center; }
+.cr-note .cr-ico { color: var(--purple); width: 22px; height: 22px; }
+.cr-note b { color: var(--ink); font-weight: 600; }
