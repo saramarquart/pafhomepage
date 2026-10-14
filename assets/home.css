@@ -98,11 +98,24 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* ============================ 01 HERO ============================ */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; color: #fff; overflow: hidden; background: #1a1210; display: flex; align-items: flex-end; }
 .hero-stage, .reel { position: absolute; inset: 0; }
-.reel { opacity: 0; transition: opacity 1.6s ease; }
-.reel.on { opacity: 1; }
-.reel video, .reel img { width: 100%; height: 100%; object-fit: cover; }
-.reel.on video, .reel.on img { animation: push 7s linear both; }   /* slow push-in per shot */
-@keyframes push { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero-stage { z-index: 0; isolation: isolate; }   /* keep the shots' z-order inside the stage, under shade + copy */
+/* shots: the incoming one wipes in over the outgoing one ("was"), which holds underneath */
+.reel { visibility: hidden; z-index: 0; }
+.reel.was { visibility: visible; z-index: 1; }
+.reel.on { visibility: visible; z-index: 2; animation: wipe 1.5s cubic-bezier(.77,0,.18,1) both; }
+@keyframes wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+.reel video, .reel img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+/* camera moves — same animation keeps running while the shot is "was", so no snap mid-wipe */
+.reel.on video, .reel.was video, .reel.on img, .reel.was img { animation: push 7s cubic-bezier(.25,.6,.35,1) both; }
+.reel.move-rise.on img, .reel.move-rise.was img { animation-name: rise; }
+.reel.move-pan.on img,  .reel.move-pan.was img  { animation-name: pan; }
+.reel.move-in.on img,   .reel.move-in.was img   { animation-name: zoom; }
+.reel.move-turn.on img, .reel.move-turn.was img { animation-name: turn; }
+@keyframes push { from { transform: scale(1.14) translate3d(2%, 0, 0); } to { transform: scale(1); } }
+@keyframes rise { from { transform: scale(1.14) translate3d(0, 4%, 0); } to { transform: scale(1.06) translate3d(0, -2%, 0); } }
+@keyframes pan  { from { transform: scale(1.14) translate3d(5%, 0, 0); } to { transform: scale(1.1) translate3d(-4%, 0, 0); } }
+@keyframes zoom { from { transform: scale(1.02); } to { transform: scale(1.16) translate3d(-1%, 1%, 0); } }
+@keyframes turn { from { transform: scale(1.22) rotate(-3deg); } to { transform: scale(1.08) rotate(0deg); } }
 .hero-shade { position: absolute; inset: 0; background:
   linear-gradient(0deg, rgba(14,8,6,.78) 0%, rgba(14,8,6,.35) 45%, rgba(14,8,6,.25) 100%),
   linear-gradient(90deg, rgba(14,8,6,.45), transparent 60%); }
@@ -283,7 +296,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .reel.on video, .reel.on img, .drift img, .impact-rings { animation: none; }
+  .reel, .reel video, .reel img { animation: none !important; }
+  .drift img, .impact-rings { animation: none; }
   .reel-index li.on::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
 }

@@ -6,15 +6,17 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function play(v) { if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
 
-  /* ---- Hero: ingredient reel (cocoa → citrus → vanilla → hazelnut → meat) ---- */
+  /* ---- Hero: ingredient reel (cocoa → citrus → coffee → hazelnut → cocoa butter → vanilla) ---- */
   var reels = [].slice.call(document.querySelectorAll(".hero .reel"));
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
-  var current = 0, timer = null, HOLD = 5200;
+  var current = -1, timer = null, HOLD = 5200;
   function show(i) {
+    var prev = current;
     reels.forEach(function (r, k) {
-      var on = k === i, v = r.querySelector("video");
+      var on = k === i, was = k === prev && k !== i, v = r.querySelector("video");
       r.classList.toggle("on", on);
-      if (v) { if (on) { try { v.currentTime = 0; } catch (e) {} play(v); } else { v.pause(); } }
+      r.classList.toggle("was", was);   // outgoing shot stays underneath while the next one wipes in
+      if (v) { if (on) { try { v.currentTime = 0; } catch (e) {} play(v); } else if (!was) { v.pause(); } }
     });
     marks.forEach(function (m, k) { m.classList.toggle("on", k === i); });
     current = i;
