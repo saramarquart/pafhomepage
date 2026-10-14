@@ -112,13 +112,13 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
   animation: spin 160s linear infinite; }
 .cr-facts .lead { color: rgba(255,255,255,.86); }
-.cr-fact { align-items: flex-start; text-align: left; background: #fff; color: var(--ink); transition: transform .5s var(--ease); }
+.cr-fact { align-items: flex-start; text-align: left; background: var(--mint); color: var(--ink); transition: transform .5s var(--ease); }
 .cr-fact:hover { transform: translateY(-4px); }
-.cr-fact .cr-icon { background: var(--grey); color: var(--purple); }
-.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); width: 100%; }
+.cr-fact .cr-icon { background: #fff; color: var(--purple); }
+.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(50,15,153,.25); width: 100%; }
 .cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); color: var(--purple); }
 .cr-fact .fact span { color: var(--ink); font-weight: 600; }
-.cr-fact p { margin: 0; color: var(--ink-2); }
+.cr-fact p { margin: 0; color: var(--ink); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
 .cr-seg-wrap { display: flex; justify-content: center; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -131,14 +131,12 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-seg [role="tab"] .cr-ico { width: 18px; height: 18px; }
 
 /* ---------- 6 · PERKS — office intro, then the perks ---------- */
-.cr-office { margin-bottom: clamp(24px, 3vw, 36px); }
-.cr-office-site { padding: clamp(6px, 1vw, 12px) clamp(0px, 2vw, 24px) 0 0; }
+.cr-office { margin-bottom: clamp(28px, 3.5vw, 44px); text-align: center; }
+.cr-office-site { max-width: 640px; margin-inline: auto; }
 .cr-office-kicker { display: inline-flex; align-items: center; gap: 8px; color: var(--purple); font-weight: 600; font-size: .92rem; }
 .cr-office-kicker .cr-ico { width: 18px; height: 18px; }
 .cr-office-site h3 { margin: 12px 0 10px; font-size: clamp(1.4rem, 2vw, 1.9rem); }
-.cr-office-site > p:not([class]) { color: var(--ink-2); max-width: 62ch; }
-.cr-office-policy { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--purple); color: var(--ink-2); max-width: 62ch; }
-.cr-office-policy b { color: var(--purple); font-weight: 600; }
+.cr-office-site > p:not([class]) { color: var(--ink-2); max-width: 56ch; margin-inline: auto; }
 .cr-perk { flex-direction: row; align-items: flex-start; gap: 18px; padding: clamp(20px, 1.8vw, 26px); }
 .cr-perk .cr-icon { width: 46px; height: 46px; background: #fff; }
 .cr-perk .cr-icon .cr-ico { width: 21px; height: 21px; }
