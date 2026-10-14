@@ -112,14 +112,13 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
   animation: spin 160s linear infinite; }
 .cr-facts .lead { color: rgba(255,255,255,.86); }
-.cr-fact { align-items: flex-start; text-align: left; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background .35s ease, transform .5s var(--ease); }
-.cr-fact:hover { background: rgba(255,255,255,.15); transform: translateY(-4px); }
-.cr-fact .cr-icon { background: rgba(255,255,255,.14); color: #fff; }
-.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.2); width: 100%; }
-.cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); }
-.cr-fact .fact span { color: var(--green); font-weight: 600; }
-.cr-fact p { margin: 0; color: rgba(255,255,255,.82); }
+.cr-fact { align-items: flex-start; text-align: left; background: #fff; color: var(--ink); transition: transform .5s var(--ease); }
+.cr-fact:hover { transform: translateY(-4px); }
+.cr-fact .cr-icon { background: var(--grey); color: var(--purple); }
+.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); width: 100%; }
+.cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); color: var(--purple); }
+.cr-fact .fact span { color: var(--ink); font-weight: 600; }
+.cr-fact p { margin: 0; color: var(--ink-2); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
 .cr-seg-wrap { display: flex; justify-content: center; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -132,17 +131,14 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-seg [role="tab"] .cr-ico { width: 18px; height: 18px; }
 
 /* ---------- 6 · PERKS — office intro, then the perks ---------- */
-.cr-office { display: grid; grid-template-columns: 1fr 1fr; gap: 20px clamp(24px, 4vw, 64px); margin-bottom: clamp(24px, 3vw, 36px); }
+.cr-office { margin-bottom: clamp(24px, 3vw, 36px); }
 .cr-office-site { padding: clamp(6px, 1vw, 12px) clamp(0px, 2vw, 24px) 0 0; }
 .cr-office-kicker { display: inline-flex; align-items: center; gap: 8px; color: var(--purple); font-weight: 600; font-size: .92rem; }
 .cr-office-kicker .cr-ico { width: 18px; height: 18px; }
 .cr-office-site h3 { margin: 12px 0 10px; font-size: clamp(1.4rem, 2vw, 1.9rem); }
-.cr-office-site p:last-child { color: var(--ink-2); max-width: 46ch; }
-.cr-office-policy { display: flex; gap: 16px; align-items: flex-start; align-self: end;
-  border-left: 3px solid var(--purple); padding: 4px 0 4px 20px; }
-.cr-office-policy .cr-icon { width: 44px; height: 44px; background: var(--grey); color: var(--purple); }
-.cr-office-policy h4 { margin: 2px 0 6px; font-size: clamp(1.05rem, 1.3vw, 1.2rem); font-weight: 600; color: var(--ink); }
-.cr-office-policy p { color: var(--ink-2); font-size: .96rem; line-height: 1.55; }
+.cr-office-site > p:not([class]) { color: var(--ink-2); max-width: 62ch; }
+.cr-office-policy { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--purple); color: var(--ink-2); max-width: 62ch; }
+.cr-office-policy b { color: var(--purple); font-weight: 600; }
 .cr-perk { flex-direction: row; align-items: flex-start; gap: 18px; padding: clamp(20px, 1.8vw, 26px); }
 .cr-perk .cr-icon { width: 46px; height: 46px; background: #fff; }
 .cr-perk .cr-icon .cr-ico { width: 21px; height: 21px; }
@@ -231,7 +227,6 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   .cr-grid-4, .cr-grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 820px) {
-  .cr-office { grid-template-columns: 1fr; }
   .cr-split-head { grid-template-columns: 1fr; align-items: start; }
   .cr-step-panel { grid-template-columns: 1fr; }
   .cr-cta { display: block; min-height: 0; }
