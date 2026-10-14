@@ -52,7 +52,9 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff;
   padding-top: clamp(72px, 8vw, 120px); }
 .cr-work  { background: #fff; }
-.cr-perks { background: #fff; }
+.cr-perks { position: relative; z-index: 1; margin-top: -40px; border-radius: 32px 32px 0 0; background: #fff;
+  padding-top: clamp(72px, 8vw, 120px); box-shadow: 0 -24px 48px -32px rgba(17,17,17,.45); }
+.cr-facts { padding-bottom: calc(clamp(56px, 7vw, 104px) + 40px); }
 .cr-join  { background: linear-gradient(180deg, #fff 0, var(--grey) 260px, var(--grey) calc(100% - 260px), #fff 100%); }
 .cr-final { background: linear-gradient(180deg, #fff 0%, #fff 45%, var(--grey) 100%); padding-bottom: clamp(64px, 8vw, 120px); }
 
@@ -112,13 +114,13 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
   animation: spin 160s linear infinite; }
 .cr-facts .lead { color: rgba(255,255,255,.86); }
-.cr-fact { align-items: flex-start; text-align: left; background: var(--mint); color: var(--ink); transition: transform .5s var(--ease); }
+.cr-fact { align-items: flex-start; text-align: left; background: #fff; color: var(--ink); transition: transform .5s var(--ease); }
 .cr-fact:hover { transform: translateY(-4px); }
-.cr-fact .cr-icon { background: #fff; color: var(--purple); }
-.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(50,15,153,.25); width: 100%; }
+.cr-fact .cr-icon { background: var(--grey); color: var(--purple); }
+.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); width: 100%; }
 .cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); color: var(--purple); }
 .cr-fact .fact span { color: var(--ink); font-weight: 600; }
-.cr-fact p { margin: 0; color: var(--ink); }
+.cr-fact p { margin: 0; color: var(--ink-2); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
 .cr-seg-wrap { display: flex; justify-content: center; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -235,7 +237,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   .cr-facts-rings { right: -45vw; width: 130vw; }
 }
 @media (max-width: 640px) {
-  .cr-vision { margin-top: -24px; border-radius: 24px 24px 0 0; }
+  .cr-vision, .cr-perks { margin-top: -24px; border-radius: 24px 24px 0 0; }
   .cr-grid-4, .cr-grid-3, .cr-grid-2 { grid-template-columns: 1fr; }
   .cr-hero .hero-actions, .cr-hero .btn, .cr-cta .btn { width: 100%; }
   .cr-carousel { --cr-size: 70vw; --cr-gap: 14px; }
@@ -278,9 +280,17 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
     .cr-fact:nth-child(2) { animation-range: entry 6% cover 34%; }
     .cr-fact:nth-child(3) { animation-range: entry 12% cover 38%; }
     .cr-fact:nth-child(4) { animation-range: entry 18% cover 42%; }
-    @keyframes crRise { from { transform: translateY(60px); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes crRise { from { transform: translateY(60px); } to { transform: none; } }
     /* the closing panel opens up as it comes into view */
     .cr-cta { animation: crOpen linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
     @keyframes crOpen { from { transform: scale(.92); border-radius: 32px; } to { transform: none; } }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* the perks sheet rises a little faster than the page as it covers the violet */
+    .cr-perks { animation: crSheet linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    @keyframes crSheet { from { transform: translateY(60px); } to { transform: none; } }
   }
 }
