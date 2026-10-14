@@ -10,7 +10,7 @@ var KEY_FACTS = [
   { icon: "map-pin", number: "2",   label: "Locations",     text: "Our headquarters in Munich & own production in Pilsen." },
   { icon: "users",   number: "70+", label: "Team members",  text: "More than 70 people building the future of food together." },
   { icon: "scale",   number: "44%", label: "Women",         text: "We're proud of the balance we've built, and we keep working on it." },
-  { icon: "globe",   number: "18",  label: "Nationalities", text: "Different backgrounds and perspectives, on one shared mission." }
+  { icon: "globe",   number: "18",  label: "Nationalities", text: "Different backgrounds and perspectives, on one shared mission. Our company language is English." }
 ];
 
 (function () {
