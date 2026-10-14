@@ -131,6 +131,54 @@ var KEY_FACTS = [
     requestAnimationFrame(frame);
   });
 
+  /* Reading guidance — keeps it obvious there is more below:
+     an "Up next" connector at the end of each chapter, a chapter rail (desktop)
+     and a floating apply button between hero and final CTA. */
+  var chapters = $$("[data-chapter]");
+  chapters.forEach(function (sec, i) {
+    var next = chapters[i + 1];
+    if (!next) return;
+    var a = document.createElement("a");
+    a.className = "cr-next";
+    a.href = "#" + next.id;
+    a.innerHTML = '<span class="cr-next-line" aria-hidden="true"></span><span class="cr-next-label">Up next · ' +
+      esc(next.getAttribute("data-chapter")) + ' <span aria-hidden="true">↓</span></span>';
+    sec.appendChild(a);
+  });
+
+  var rail = document.querySelector("[data-rail]");
+  if (rail && chapters.length) {
+    rail.innerHTML = '<span class="cr-rail-fill" aria-hidden="true"></span>' + chapters.map(function (sec) {
+      return '<a href="#' + sec.id + '"><span class="cr-rail-dot" aria-hidden="true"></span><span class="cr-rail-label">' +
+        esc(sec.getAttribute("data-chapter")) + "</span></a>";
+    }).join("");
+    rail.hidden = false;
+  }
+  var links = rail ? $$("a", rail) : [];
+  var fill = rail && rail.querySelector(".cr-rail-fill");
+  var floatBtn = document.querySelector("[data-float]");
+  var hero = document.querySelector(".cr-hero");
+  var final = document.querySelector(".cr-final");
+  var ticking = false;
+  function guide() {
+    ticking = false;
+    var vh = window.innerHeight, cur = -1;
+    chapters.forEach(function (sec, i) { if (sec.getBoundingClientRect().top < vh * 0.45) cur = i; });
+    links.forEach(function (a, i) {
+      a.classList.toggle("is-done", i < cur);
+      if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+    if (fill) fill.style.transform = "scaleY(" + (cur < 0 ? 0 : cur / Math.max(1, chapters.length - 1)) + ")";
+    var pastHero = hero ? hero.getBoundingClientRect().bottom < vh * 0.4 : true;
+    var atEnd = final ? final.getBoundingClientRect().top < vh * 0.85 : false;
+    if (rail) rail.classList.toggle("is-on", pastHero);
+    if (floatBtn) floatBtn.classList.toggle("is-on", pastHero && !atEnd);
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(guide); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  guide();
+
   /* Location tabs (WAI-ARIA tabs, automatic activation) */
   $$("[data-tabs]").forEach(function (list) {
     var tabs = $$('[role="tab"]', list);

@@ -286,3 +286,66 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
     @keyframes crOpen { from { transform: scale(.92); border-radius: 32px; } to { transform: none; } }
   }
 }
+
+/* ---------- READING GUIDANCE — invites the next scroll, all the way to "apply" ---------- */
+/* hero cue */
+.cr-scroll-cue { position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px; color: #fff; font-size: .82rem; font-weight: 500; letter-spacing: .06em; }
+.cr-scroll-cue::after { content: ""; width: 1.5px; height: 44px; background: linear-gradient(#fff, rgba(255,255,255,0));
+  transform-origin: top; animation: crCue 2.2s var(--ease) infinite; }
+@keyframes crCue { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* "Up next" connector at the end of each chapter: a line that draws in, then the next title */
+.cr-sec { position: relative; }
+.cr-next { display: flex; flex-direction: column; align-items: center; gap: 12px; width: max-content; margin: clamp(48px, 6vw, 80px) auto 0;
+  color: var(--purple); font-weight: 600; font-size: .95rem; }
+.cr-facts .cr-next { color: #fff; }
+.cr-next-line { width: 1.5px; height: 64px; background: currentColor; opacity: .5; transform-origin: top; }
+.cr-next-label { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px;
+  box-shadow: inset 0 0 0 1.5px currentColor; transition: background .3s ease, color .3s ease; }
+.cr-next-label span { display: inline-block; animation: crNudge 1.8s var(--ease) infinite; }
+@keyframes crNudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+.cr-next:hover .cr-next-label { background: var(--purple); color: #fff; }
+.cr-facts .cr-next:hover .cr-next-label { background: #fff; color: var(--purple); }
+.cr-next:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 999px; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cr-next-line { animation: crDraw linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    @keyframes crDraw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    .cr-next-label { animation: crIn linear both; animation-timeline: view(); animation-range: entry 30% cover 50%; }
+    @keyframes crIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  }
+}
+
+/* chapter rail (desktop): where you are and how much is left */
+.cr-rail { position: fixed; z-index: 90; right: 22px; top: 50%; transform: translate(12px, -50%); opacity: 0; pointer-events: none;
+  display: grid; gap: 14px; padding: 16px 12px; border-radius: 999px; background: #fff;
+  box-shadow: 0 10px 30px -18px rgba(17,17,17,.5); transition: opacity .4s ease, transform .4s var(--ease); }
+.cr-rail.is-on { opacity: 1; transform: translate(0, -50%); pointer-events: auto; }
+.cr-rail::before, .cr-rail-fill { content: ""; position: absolute; left: 50%; top: 22px; bottom: 22px; width: 1.5px; margin-left: -.75px; background: var(--line); }
+.cr-rail-fill { background: var(--purple); transform: scaleY(0); transform-origin: top; transition: transform .5s var(--ease); }
+.cr-rail a { position: relative; z-index: 1; display: block; width: 12px; height: 12px; }
+.cr-rail-dot { display: block; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1.5px var(--line);
+  transition: background .3s ease, box-shadow .3s ease, transform .3s var(--ease); }
+.cr-rail a.is-done .cr-rail-dot { background: var(--purple); box-shadow: none; }
+.cr-rail a[aria-current] .cr-rail-dot { background: var(--purple); box-shadow: 0 0 0 4px #fff, 0 0 0 5.5px var(--purple); transform: scale(1.1); }
+.cr-rail-label { position: absolute; right: 26px; top: 50%; transform: translate(6px, -50%); white-space: nowrap;
+  padding: 5px 12px; border-radius: 999px; background: var(--purple); color: #fff; font-size: .82rem; font-weight: 600;
+  opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s var(--ease); }
+.cr-rail a:hover .cr-rail-label, .cr-rail a:focus-visible .cr-rail-label { opacity: 1; transform: translate(0, -50%); }
+.cr-rail a:focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; border-radius: 50%; }
+
+/* floating apply button */
+.cr-float { position: fixed; z-index: 95; right: 22px; bottom: 22px; box-shadow: 0 14px 34px -14px rgba(17,17,17,.55);
+  opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity .35s ease, transform .35s var(--ease), background .3s ease; }
+.cr-float.is-on { opacity: 1; transform: none; pointer-events: auto; }
+
+@media (max-width: 1100px) { .cr-rail { display: none; } }
+@media (max-width: 640px) {
+  .cr-float { left: var(--gutter); right: var(--gutter); bottom: 14px; justify-content: center; }
+  .cr-next-line { height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cr-scroll-cue::after, .cr-next-label span { animation: none; }
+  .cr-rail, .cr-float, .cr-rail-fill { transition: none; }
+}
