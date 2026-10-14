@@ -96,7 +96,7 @@
   <main>
 
     <!-- 01 · HERO — ingredient film: cocoa, citrus, vanilla, hazelnut, meat -->
-    <section class="hero" id="top" data-tone="dark">
+    <section class="hero" id="top">
       <div class="hero-stage" aria-hidden="true">
         <div class="reel on" data-label="Cocoa"><video muted playsinline preload="auto" poster="assets/img/poster-cocoa-grove.jpg"><source src="assets/img/cocoa-grove.mp4" type="video/mp4"></video></div>
         <div class="reel" data-label="Citrus"><video muted playsinline preload="metadata" poster="assets/img/poster-citrus.jpg"><source src="assets/img/citrus.mp4" type="video/mp4"></video></div>
@@ -113,7 +113,7 @@
       <div class="wrap hero-copy">
         <h1 class="reveal">A backbone for the world’s most fragile commodities.</h1>
         <div class="hero-foot reveal">
-          <p>We supply a growing portfolio of food ingredient alternatives for the crops climate change puts at risk. One technology platform.</p>
+          <p>We supply a growing portfolio of food ingredient alternatives for climate-threatened and highly regulated raw materials. One technology platform.</p>
           <div class="hero-actions">
             <a class="btn-text" href="#numbers">Tell me more <span aria-hidden="true">↓</span></a>
             <a class="btn btn-white" href="#portfolio">Our ingredient portfolio <span aria-hidden="true">↗</span></a>
@@ -124,7 +124,7 @@
 
     <!-- 02 · NUMBERS + WHY NOW — Warum jetzt? -->
     <!-- Figures: keep identical to deck + data room (one source of truth) -->
-    <section class="numbers" id="numbers" data-tone="light">
+    <section class="numbers" id="numbers">
       <div class="wrap facts">
         <div class="fact reveal"><b data-count="15000" data-suffix="+ t">15,000+ t</b><span>Annual production capacity</span></div>
         <div class="fact reveal"><b data-count="230" data-suffix="+">230+</b><span>Products in retail</span></div>
@@ -133,7 +133,7 @@
       </div>
     </section>
 
-    <section class="screen why" id="why-now" data-tone="dark">
+    <section class="screen why" id="why-now">
       <div class="wrap why-grid">
         <div class="why-head reveal">
           <span class="pill pill-light">Why now?</span>
@@ -159,19 +159,19 @@
           <button class="driver" role="tab" aria-selected="false" data-key="regulation">
             <span class="no">03</span>
             <h3>Regulation</h3>
-            <p>EUDR is mandatory. Scope&nbsp;3 targets are due.</p>
+            <p>EUDR is mandatory, Scope&nbsp;3 targets are due, and rules on sugar and synthetic colours keep tightening.</p>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- 03 · TECHNOLOGY — designer layout: three layer cards, facts row, CTA -->
-    <section class="screen tech" id="technology" data-tone="light">
+    <!-- 03 · TECHNOLOGY — four layers: raw materials, process, supply chain, applications -->
+    <section class="screen tech" id="technology">
       <div class="wrap">
         <div class="sec-head reveal">
           <div>
             <h2>One platform – built in layers.</h2>
-            <p class="lead">A scalable fermentation platform turns locally available raw materials into ingredients that perform like the originals.</p>
+            <p class="lead">A scalable fermentation platform turns locally available raw materials into ingredients that perform like the originals – on a supply chain built to stay resilient.</p>
           </div>
           <span class="pill">Technology</span>
         </div>
@@ -189,8 +189,14 @@
             <p>Proprietary platform.</p>
           </article>
           <article class="tile reveal">
-            <div class="tile-media drift"><img src="assets/img/sol-codev.jpg" alt="" loading="lazy"></div>
+            <div class="tile-media drift"><img src="assets/img/grape-seeds-hand.jpg" alt="" loading="lazy"></div>
             <span class="badge">03</span>
+            <h3>Resilient supply chain</h3>
+            <p>Regional sourcing, independent of tropical harvests.</p>
+          </article>
+          <article class="tile reveal">
+            <div class="tile-media drift"><img src="assets/img/sol-codev.jpg" alt="" loading="lazy"></div>
+            <span class="badge">04</span>
             <h3>Plug &amp; play applications</h3>
             <p>Confectionery, bakery, drinks …</p>
           </article>
@@ -204,44 +210,49 @@
       </div>
     </section>
 
-    <!-- 04 · PORTFOLIO — designer carousel with arrows -->
-    <section class="screen portfolio" id="portfolio" data-tone="light">
+    <!-- 04 · PLATFORM PORTFOLIO — two groups: climate-threatened vs highly regulated materials -->
+    <section class="screen portfolio" id="portfolio">
       <div class="wrap">
         <div class="center-head reveal">
           <span class="pill">Portfolio</span>
           <h2>One platform.<br>A growing portfolio.</h2>
+          <div class="groups" role="tablist" aria-label="Portfolio groups">
+            <button class="group on" role="tab" aria-selected="true" data-group="climate">Climate-threatened materials</button>
+            <button class="group" role="tab" aria-selected="false" data-group="regulated">Highly regulated materials</button>
+          </div>
+          <p class="group-note" data-note="climate">Crops under pressure from climate change, deforestation rules and volatile supply.</p>
+          <p class="group-note" data-note="regulated" hidden>Ingredients facing tighter rules – from sugar levies to bans on synthetic colours.</p>
         </div>
         <div class="carousel reveal">
           <div class="track" tabindex="0" aria-label="Ingredient portfolio">
-            <a class="slide" href="product-cocoa-booster.html">
-              <span class="tag">In market</span>
-              <div class="tile"><div class="tile-media"><img src="assets/img/prod-cocoa.jpg" alt="Cocoa-free powder alternative in a bowl" loading="lazy"></div>
-                <h3>Cocoa alternatives</h3><p>Cocoa-free solutions, available as powder alternatives.</p></div>
+            <a class="slide" data-group="climate" href="product-cocoa-booster.html">
+              <div class="tile"><div class="tile-media"><img src="assets/img/cb-palette.jpg" alt="Cocoa powder in four shades" loading="lazy"></div>
+                <h3>Cocoa booster</h3><p>Extends cocoa – same taste and colour, less exposure.</p></div>
             </a>
-            <a class="slide" href="product-coffee.html">
-              <span class="tag tag-soft">Rolling out</span>
-              <div class="tile"><div class="tile-media"><img src="assets/img/prod-coffee.jpg" alt="Coffee alternative in a cup" loading="lazy"></div>
-                <h3>Coffee alternatives</h3><p>Coffee taste and function from resilient local raw materials.</p></div>
-            </a>
-            <a class="slide" href="product-choviva.html">
-              <span class="tag">In market</span>
+            <a class="slide" data-group="climate" href="product-choviva.html">
               <div class="tile"><div class="tile-media"><img src="assets/img/prod-choviva.jpg" alt="ChoViva, cocoa-free chocolate alternative" loading="lazy"></div>
-                <h3>Cocoa-free chocolate alternatives</h3><p>Also available in fluid form.</p></div>
+                <h3>Chocolate alternative</h3><p>ChoViva – cocoa-free, also available in fluid form.</p></div>
             </a>
-            <a class="slide" href="product-hazelnut.html">
-              <span class="tag tag-soft">In development</span>
-              <div class="tile"><div class="tile-media"><img src="assets/img/prod-hazelnut.jpg" alt="Hazelnut alternative spread in a jar" loading="lazy"></div>
-                <h3>Hazelnut alternatives</h3><p>Nutty depth for spreads and fillings.</p></div>
+            <a class="slide" data-group="climate" href="product-butter.html">
+              <div class="tile"><div class="tile-media"><img src="assets/img/prod-butter.jpg" alt="Blocks of speciality fat" loading="lazy"></div>
+                <h3>Speciality fats</h3><p>Cocoa-butter functionality without tropical supply.</p></div>
             </a>
-            <a class="slide" href="product-vanilla.html">
-              <span class="tag tag-soft">In development</span>
-              <div class="tile"><div class="tile-media"><img src="assets/img/prod-vanilla.jpg" alt="Vanilla pods on a plate" loading="lazy"></div>
-                <h3>Vanilla alternatives</h3><p>The most-loved flavour, made steady.</p></div>
+            <a class="slide" data-group="climate" href="product-coffee.html">
+              <div class="tile"><div class="tile-media"><img src="assets/img/prod-coffeeb.jpg" alt="Roasted beans and ground coffee alternative" loading="lazy"></div>
+                <h3>Coffee</h3><p>Coffee taste and function from resilient local raw materials.</p></div>
             </a>
-            <a class="slide" href="solutions.html">
-              <span class="tag tag-line">Next</span>
-              <div class="tile is-next"><div class="tile-media"><img src="assets/img/nature-hero.jpg" alt="Misty forest canopy" loading="lazy"></div>
-                <h3>Further fragile commodities</h3><p>Citrus, meat and more.</p></div>
+            <a class="slide" data-group="climate" href="product-hazelnut.html">
+              <div class="tile"><div class="tile-media"><img src="assets/img/prod-hazelnut.jpg" alt="Nut spread in a jar with hazelnuts" loading="lazy"></div>
+                <h3>Nuts</h3><p>Nutty depth for spreads, fillings and pralines.</p></div>
+            </a>
+            <a class="slide" data-group="regulated" href="solutions.html" hidden>
+              <div class="tile"><div class="tile-media"><img src="assets/img/app-sweets.jpg" alt="Assorted confectionery on a plate" loading="lazy"></div>
+                <h3>Sugar reduction</h3><p>Less sugar, same sweet experience.</p></div>
+            </a>
+            <a class="slide" data-group="regulated" href="solutions.html" hidden>
+              <!-- TODO: replace swatch tile with a photo once available -->
+              <div class="tile swatch"><div class="tile-media"><span></span><span></span><span></span><span></span><span></span></div>
+                <h3>Colour alternatives</h3><p>Natural colour, without synthetic dyes.</p></div>
             </a>
           </div>
           <div class="arrows">
@@ -252,25 +263,8 @@
       </div>
     </section>
 
-    <!-- 05 · SCALE — Wie groß seid ihr schon? -->
-    <section class="screen scale" id="scale" data-tone="light">
-      <div class="wrap scale-grid">
-        <div>
-          <span class="pill reveal">Scale</span>
-          <h2 class="reveal">Industrial scale, today.</h2>
-          <div class="big-facts">
-            <div class="fact reveal"><b data-count="15000" data-suffix="+ t">15,000+ t</b><span>Annual production capacity</span></div>
-            <div class="fact reveal"><b data-count="230" data-suffix="+">230+</b><span>Products in retail</span></div>
-            <div class="fact reveal"><b data-count="12">12</b><span>Countries</span></div>
-            <div class="fact reveal"><b data-count="40" data-suffix="+">40+</b><span>Trade partners</span></div>
-          </div>
-        </div>
-        <div class="tile-media scale-media reveal drift"><img src="assets/img/scale.jpg" alt="" loading="lazy"></div>
-      </div>
-    </section>
-
-    <!-- 06 · IMPACT — brand purple with the striped ring mark -->
-    <section class="screen impact" id="impact" data-tone="dark">
+    <!-- 05 · IMPACT (CO₂ story) — right after the platform, dark with rotating ring mark -->
+    <section class="screen impact" id="impact">
       <img class="impact-rings" src="assets/img/rings.png" alt="" aria-hidden="true">
       <div class="wrap impact-grid">
         <div class="reveal">
@@ -288,8 +282,67 @@
       </div>
     </section>
 
-    <!-- 07 · COMPANY — Wer führt das? -->
-    <section class="screen company" id="company" data-tone="light">
+    <!-- 06 · BENEFITS — what every ingredient on the platform has to deliver -->
+    <section class="screen benefits" id="benefits">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div>
+            <h2>Built to win on every line.</h2>
+            <p class="lead">What every ingredient on our platform has to deliver – before it reaches your production.</p>
+          </div>
+          <span class="pill">Benefits</span>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit big reveal">
+            <span class="b-no">01</span>
+            <h3>Functionality</h3>
+            <ul class="b-list">
+              <li><b>Taste</b><span>Matches the original in flavour and mouthfeel.</span></li>
+              <li><b>Sustainability</b><span>A measurably lower carbon footprint than the conventional ingredient.</span></li>
+              <!-- TODO: health wording needs regulatory clearance (EU health claims) -->
+              <li><b>Nutrition</b><span>Better nutritional profiles, e.g. reduced sugar.</span></li>
+              <li><b>Value</b><span>More functionality for the cost than comparable solutions.</span></li>
+            </ul>
+          </article>
+          <article class="benefit reveal">
+            <span class="b-no">02</span>
+            <h3>Seamless integration</h3>
+            <p>Natural ingredients that fit your existing recipes and lines – no retooling, no risk to your brand.</p>
+          </article>
+          <article class="benefit reveal">
+            <span class="b-no">03</span>
+            <h3>Stable prices</h3>
+            <!-- TODO: confirm pricing commitment is cleared for publication -->
+            <p>Prices that hold for years, independent of volume. No hedging, predictable P&amp;Ls.</p>
+          </article>
+          <article class="benefit reveal">
+            <span class="b-no">04</span>
+            <h3>Scalability</h3>
+            <p>Proven in industrial settings – from supply chain to process.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · SCALE — Wie groß seid ihr schon? -->
+    <section class="screen scale" id="scale">
+      <div class="wrap scale-grid">
+        <div>
+          <span class="pill reveal">Scale</span>
+          <h2 class="reveal">Industrial scale, today.</h2>
+          <div class="big-facts">
+            <div class="fact reveal"><b data-count="15000" data-suffix="+ t">15,000+ t</b><span>Annual production capacity</span></div>
+            <div class="fact reveal"><b data-count="230" data-suffix="+">230+</b><span>Products in retail</span></div>
+            <div class="fact reveal"><b data-count="12">12</b><span>Countries</span></div>
+            <div class="fact reveal"><b data-count="40" data-suffix="+">40+</b><span>Trade partners</span></div>
+          </div>
+        </div>
+        <div class="tile-media scale-media reveal drift"><img src="assets/img/scale.jpg" alt="" loading="lazy"></div>
+      </div>
+    </section>
+
+    <!-- 08 · COMPANY — Wer führt das? -->
+    <section class="screen company" id="company">
       <div class="wrap">
         <div class="sec-head reveal">
           <h2>The company behind the platform.</h2>
@@ -306,9 +359,15 @@
 
   </main>
 
-  <!-- 08 · FOOTER — designer: light grey, soft ring mark, purple logo -->
-  <footer class="footer" data-tone="light">
-    <img class="footer-rings" src="assets/img/rings.png" alt="" aria-hidden="true">
+  <!-- 09 · FOOTER — designer: light grey, large "A" mark, purple logo -->
+  <footer class="footer">
+    <svg class="footer-a" viewBox="0 0 57 60" aria-hidden="true">
+      <defs><linearGradient id="a-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F1EFF7"/><stop offset="1" stop-color="#DCD6EF"/></linearGradient></defs>
+      <g transform="translate(0,-17)" fill="url(#a-grad)">
+        <path d="M21.5177 74.6373C16.503 74.6373 11.7879 72.6873 8.24155 69.1476C4.69514 65.6079 2.74268 60.9 2.74268 55.8937C2.74268 50.8873 4.69594 46.1802 8.24155 42.6397C11.7872 39.0992 16.503 37.15 21.5177 37.15C26.5324 37.15 31.2474 39.1 34.7938 42.6397C38.3402 46.1802 40.2927 50.8873 40.2927 55.8937C40.2927 60.9 38.3395 65.6071 34.7938 69.1476C31.2474 72.6881 26.5324 74.6373 21.5177 74.6373ZM21.5177 45.2444C15.6364 45.2444 10.8515 50.0214 10.8515 55.8929C10.8515 61.7643 15.6364 66.5413 21.5177 66.5413C27.399 66.5413 32.1839 61.7643 32.1839 55.8929C32.1839 50.0214 27.399 45.2444 21.5177 45.2444Z"/>
+        <path d="M43.2 38.4349C46.5357 44.4056 47.2249 51.3937 45.1413 58.1103C43.0632 64.8079 38.4818 70.4405 32.2269 74.0016H44.8368C45.3957 73.3992 45.9355 72.7778 46.4546 72.1357C49.2831 68.6341 51.3867 64.7024 52.7055 60.4492C54.03 56.1794 54.499 51.7992 54.0983 47.4302C53.6818 42.8905 52.3422 38.5683 50.1163 34.5833C47.8903 30.5984 44.9108 27.1897 41.261 24.45C37.7488 21.8143 33.7691 19.9103 29.4341 18.7921C25.1166 17.6778 20.6607 17.3984 16.1898 17.9611C14.2476 18.2056 12.3389 18.6056 10.4723 19.1571L7.16995 29.0405C13.4805 25.619 20.6695 24.696 27.4522 26.446C34.2716 28.2056 39.8642 32.4627 43.2 38.4341V38.4349Z"/>
+      </g>
+    </svg>
     <div class="wrap footer-in">
       <div class="footer-links">
         <div><h4>Platform</h4><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a><a href="sustainability-impact.html">Impact</a></div>
@@ -324,6 +383,6 @@
   </footer>
 
   <script src="assets/main.js?v=31"></script>
-  <script src="assets/home.js?v=1"></script>
+  <script src="assets/home.js?v=2"></script>
 </body>
 </html>
