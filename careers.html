@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=31" />
-  <link rel="stylesheet" href="assets/careers.css?v=1" />
-  <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w" imagesizes="(max-width: 1200px) 100vw, 1200px" />
+  <link rel="stylesheet" href="assets/careers.css?v=2" />
+  <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
   <meta property="og:type" content="website" />
@@ -82,7 +82,7 @@
 ]
   </script>
 </head>
-<body class="careers">
+<body class="careers dark-hero">
   <!-- Icon sprite (Lucide, ISC licence) — referenced via <use href="#i-…"> -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
@@ -102,6 +102,8 @@
     <symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
     <symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect x="6" y="10" width="12" height="12"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></symbol>
+    <symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
     <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
     <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
   </svg>
@@ -159,17 +161,13 @@
   <main>
     <!-- 1 · HERO -->
     <section class="cr-hero" aria-labelledby="cr-hero-title">
-      <div class="wrap">
-        <div class="cr-hero-card">
-          <img src="assets/img/careers/careers-hero-team-summer.jpg"
-               srcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w"
-               sizes="(max-width: 1200px) 100vw, 1200px" width="2000" height="1500" fetchpriority="high"
-               alt="The Planet A Foods team at a summer get-together in the park" />
-          <div class="cr-hero-in">
-            <h1 id="cr-hero-title">Revolutionise the food industry with us</h1>
-            <a class="btn btn-white arrow" href="#" data-open-positions>View our open positions</a>
-          </div>
-        </div>
+      <img src="assets/img/careers/careers-hero-team-summer.jpg"
+           srcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w"
+           sizes="100vw" width="2000" height="1500" fetchpriority="high"
+           alt="The Planet A Foods team at a summer get-together in the park" />
+      <div class="wrap cr-hero-in">
+        <h1 id="cr-hero-title">Revolutionise the food industry with us</h1>
+        <a class="btn btn-white arrow" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions>View our open positions</a>
       </div>
     </section>
 
@@ -322,6 +320,14 @@
           <p class="lead">Click through to see what to expect along the way.</p>
         </div>
 
+        <div class="cr-seg-wrap">
+          <div class="cr-seg" role="tablist" aria-label="Hiring process" data-tabs>
+            <button type="button" role="tab" id="cr-tab-fulltime" aria-selected="true" aria-controls="cr-panel-fulltime" tabindex="0"><svg class="cr-ico" aria-hidden="true"><use href="#i-briefcase"/></svg>Full-time roles</button>
+            <button type="button" role="tab" id="cr-tab-intern" aria-selected="false" aria-controls="cr-panel-intern" tabindex="-1"><svg class="cr-ico" aria-hidden="true"><use href="#i-graduation-cap"/></svg>Internships</button>
+          </div>
+        </div>
+
+        <div class="cr-tabpanel" role="tabpanel" id="cr-panel-fulltime" aria-labelledby="cr-tab-fulltime">
         <ol class="cr-steps" data-stepper>
           <li class="cr-step">
             <button type="button" class="cr-step-btn" id="cr-step-1" aria-controls="cr-step-1-panel" aria-expanded="true" aria-current="step">
@@ -423,12 +429,60 @@
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>Let your references know they may hear from us.</p></div>
                 <div class="cr-step-nav">
                   <button type="button" class="btn btn-ghost" data-step-prev>Previous</button>
-                  <a class="btn btn-primary arrow" href="#" data-open-positions data-step-next>View our open positions</a>
+                  <a class="btn btn-primary arrow" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions data-step-next>View our open positions</a>
                 </div>
               </div>
             </div>
           </li>
         </ol>
+        </div>
+
+        <div class="cr-tabpanel" role="tabpanel" id="cr-panel-intern" aria-labelledby="cr-tab-intern" hidden>
+        <ol class="cr-steps" data-stepper style="--steps:2">
+          <li class="cr-step">
+            <button type="button" class="cr-step-btn" id="cr-istep-1" aria-controls="cr-istep-1-panel" aria-expanded="true" aria-current="step">
+              <span class="cr-step-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-message-square-text"/></svg></span>
+              <span class="cr-step-label">Role fit conversation</span>
+            </button>
+            <div class="cr-step-panel" id="cr-istep-1-panel" role="region" aria-labelledby="cr-istep-1">
+              <div class="cr-step-main">
+                <p class="eyebrow">Step 01 of 2</p>
+                <h3>Role fit conversation</h3>
+                <span class="tag tag-alt">Video call</span>
+                <p>A deeper conversation with your future team lead about the role, your experience and how you like to work.</p>
+              </div>
+              <div class="cr-step-side">
+                <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>Bring an example of work you're proud of, and your questions about the team.</p></div>
+                <div class="cr-step-nav">
+                  <button type="button" class="btn btn-ghost" data-step-prev disabled>Previous</button>
+                  <button type="button" class="btn btn-primary arrow" data-step-next>Next step</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="cr-step">
+            <button type="button" class="cr-step-btn" id="cr-istep-2" aria-controls="cr-istep-2-panel" aria-expanded="false">
+              <span class="cr-step-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-lightbulb"/></svg></span>
+              <span class="cr-step-label">Technical session</span>
+            </button>
+            <div class="cr-step-panel" id="cr-istep-2-panel" role="region" aria-labelledby="cr-istep-2" hidden>
+              <div class="cr-step-main">
+                <p class="eyebrow">Step 02 of 2</p>
+                <h3>Technical session</h3>
+                <span class="tag tag-alt">Case or task</span>
+                <p>Depending on the role, a practical task or case discussion that shows how you approach the challenges we work on.</p>
+              </div>
+              <div class="cr-step-side">
+                <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>There's rarely one right answer. We want to see how you think.</p></div>
+                <div class="cr-step-nav">
+                  <button type="button" class="btn btn-ghost" data-step-prev>Previous</button>
+                  <a class="btn btn-primary arrow" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions data-step-next>View our open positions</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+        </div>
       </div>
     </section>
 
@@ -443,7 +497,7 @@
             <p class="eyebrow eyebrow-light">Join us</p>
             <h2 id="cr-final-title">Ready to shape the future of food?</h2>
             <p>If you want real ownership, tangible impact and a team that builds big things together, we'd love to hear from you. All our open roles are in one place.</p>
-            <a class="btn btn-white arrow" href="#" data-open-positions>View our open positions</a>
+            <a class="btn btn-white arrow" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions>View our open positions</a>
           </div>
         </div>
       </div>
@@ -465,7 +519,7 @@
     </div>
   </footer>
   <!-- careers.js first: it renders the key-fact cards that main.js then reveals + counts up -->
-  <script src="assets/careers.js?v=1"></script>
+  <script src="assets/careers.js?v=2"></script>
   <script src="assets/main.js?v=31"></script>
 </body>
 </html>

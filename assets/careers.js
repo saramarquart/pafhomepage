@@ -2,8 +2,8 @@
    Loaded before main.js so the rendered key-fact cards pick up main.js's
    reveal + count-up. No dependencies; respects prefers-reduced-motion. */
 
-// TODO: link to job board
-var OPEN_POSITIONS_URL = "#";
+// Job board (Personio) — every "View our open positions" button links here.
+var OPEN_POSITIONS_URL = "https://planetafoods.jobs.personio.de/?language=en";
 
 /* Key facts — edit the figures here (plain strings; a leading number counts up). */
 var KEY_FACTS = [
@@ -20,7 +20,10 @@ var KEY_FACTS = [
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   /* "View our open positions" buttons */
-  $$("[data-open-positions]").forEach(function (a) { a.setAttribute("href", OPEN_POSITIONS_URL); });
+  $$("[data-open-positions]").forEach(function (a) {
+    a.setAttribute("href", OPEN_POSITIONS_URL);
+    if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener"; }
+  });
 
   /* Key facts */
   var factsEl = document.querySelector("[data-key-facts]");
