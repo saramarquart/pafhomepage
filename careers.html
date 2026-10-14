@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/home.css?v=5" />
-  <link rel="stylesheet" href="assets/careers.css?v=3" />
+  <link rel="stylesheet" href="assets/careers.css?v=4" />
   <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
@@ -120,6 +120,7 @@
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
     <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></symbol>
     <symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
     <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
     <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
   </svg>
@@ -164,14 +165,14 @@
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">Our vision</span>
-          <h2 id="cr-vision-title">We don't follow the norm.<br /><mark class="cr-hl">We set a new standard.</mark></h2>
+          <h2 id="cr-vision-title">We don't follow the norm.<br /><span class="cr-hl">We set a new standard.</span></h2>
           <p class="lead">At Planet A Foods, we build high-quality, future-proof ingredient alternatives. Our solutions are made for mass-market products and help producers build supply chains that can withstand the upcoming climate challenges.</p>
+          <ul class="cr-points">
+            <li><svg class="cr-ico" aria-hidden="true"><use href="#i-check"/></svg>Resilient supply chains</li>
+            <li><svg class="cr-ico" aria-hidden="true"><use href="#i-check"/></svg>Built for mass market</li>
+            <li><svg class="cr-ico" aria-hidden="true"><use href="#i-check"/></svg>Quality at scale</li>
+          </ul>
           <p class="cr-strong">If you want to change an entire industry with us, this is where you belong.</p>
-          <div class="cr-pills">
-            <span>Resilient supply chains</span>
-            <span>Built for mass market</span>
-            <span>Quality at scale</span>
-          </div>
         </div>
       </div>
     </section>
@@ -233,10 +234,11 @@
     </section>
 
     <!-- 5 · KEY FACTS (cards rendered from KEY_FACTS in assets/careers.js) -->
-    <section class="cr-sec cr-facts" data-tone="light" aria-labelledby="cr-facts-title">
+    <section class="cr-sec cr-facts" data-tone="dark" aria-labelledby="cr-facts-title">
+      <img class="cr-facts-rings" src="assets/img/rings.png" alt="" aria-hidden="true">
       <div class="wrap">
         <div class="center-head cr-center reveal">
-          <span class="pill">Key facts</span>
+          <span class="pill pill-light">Key facts</span>
           <h2 id="cr-facts-title">Planet A Foods at a glance</h2>
           <p class="lead">Founded in 2021, we make sustainable alternatives to commodity food ingredients. Our first product, ChoViva, is a cocoa-free chocolate alternative made from sunflower seeds, and it's already in more than 230 products across 10 countries.</p>
         </div>
