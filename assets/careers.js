@@ -31,10 +31,10 @@ var KEY_FACTS = [
     factsEl.innerHTML = KEY_FACTS.map(function (f) {
       var m = /^(\d+)(\D*)$/.exec(f.number);
       var count = m ? ' data-count="' + m[1] + '"' + (m[2] ? ' data-suffix="' + esc(m[2]) + '"' : "") : "";
-      return '<div class="feature cr-card cr-fact reveal">' +
+      return '<div class="cr-card cr-fact reveal">' +
         '<span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-' + esc(f.icon) + '"/></svg></span>' +
-        '<b class="cr-num"' + count + ">" + esc(f.number) + "</b>" +
-        "<h3>" + esc(f.label) + "</h3><p>" + esc(f.text) + "</p></div>";
+        '<div class="fact"><b' + count + ">" + esc(f.number) + "</b><span>" + esc(f.label) + "</span></div>" +
+        "<p>" + esc(f.text) + "</p></div>";
     }).join("");
   }
 
