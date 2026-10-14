@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/home.css?v=5" />
-  <link rel="stylesheet" href="assets/careers.css?v=11" />
+  <link rel="stylesheet" href="assets/careers.css?v=10" />
   <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
@@ -152,7 +152,6 @@
              alt="The Planet A Foods team at a summer get-together in the park" />
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
-      <a class="cr-scroll-cue" href="#vision">Scroll to discover</a>
       <div class="wrap hero-copy">
         <div class="hero-foot">
           <h1 id="cr-hero-title" class="reveal">Revolutionise the food industry with us</h1>
@@ -162,7 +161,7 @@
     </section>
 
     <!-- 2 · OUR VISION -->
-    <section id="vision" data-chapter="Our vision" class="cr-sec cr-vision" data-tone="light" aria-labelledby="cr-vision-title">
+    <section class="cr-sec cr-vision" data-tone="light" aria-labelledby="cr-vision-title">
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">Our vision</span>
@@ -174,7 +173,7 @@
     </section>
 
     <!-- 3 + 4 · PHOTO CAROUSEL + WORK AT PLANET A FOODS -->
-    <section id="life" data-chapter="Life & values" class="cr-sec cr-work" data-tone="light" aria-labelledby="cr-work-title">
+    <section class="cr-sec cr-work" data-tone="light" aria-labelledby="cr-work-title">
       <div class="cr-carousel" data-carousel role="region" aria-roledescription="carousel" aria-label="Life at Planet A Foods">
         <div class="cr-viewport" data-carousel-viewport>
           <ul class="cr-track" data-carousel-track>
@@ -230,7 +229,7 @@
     </section>
 
     <!-- 5 · KEY FACTS (cards rendered from KEY_FACTS in assets/careers.js) -->
-    <section id="facts" data-chapter="Key facts" class="cr-sec cr-facts" data-tone="dark" aria-labelledby="cr-facts-title">
+    <section class="cr-sec cr-facts" data-tone="dark" aria-labelledby="cr-facts-title">
       <img class="cr-facts-rings" src="assets/img/rings.png" alt="" aria-hidden="true">
       <div class="wrap">
         <div class="center-head cr-center reveal">
@@ -243,7 +242,7 @@
     </section>
 
     <!-- 6 · PERKS & BENEFITS -->
-    <section id="perks" data-chapter="Perks & benefits" class="cr-sec cr-perks" data-tone="light" aria-labelledby="cr-perks-title">
+    <section class="cr-sec cr-perks" data-tone="light" aria-labelledby="cr-perks-title">
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">What we offer</span>
@@ -308,7 +307,7 @@
     </section>
 
     <!-- 7 · HOW TO JOIN — full-time / internship switch; stepper on desktop, accordion on mobile -->
-    <section id="join" data-chapter="How to join" class="cr-sec cr-join" data-tone="light" aria-labelledby="cr-join-title">
+    <section class="cr-sec cr-join" data-tone="light" aria-labelledby="cr-join-title">
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">How to join</span>
@@ -483,7 +482,7 @@
     </section>
 
     <!-- 8 · FINAL CTA -->
-    <section id="apply" data-chapter="Apply" class="cr-sec cr-final" data-tone="light" aria-labelledby="cr-final-title">
+    <section class="cr-sec cr-final" data-tone="light" aria-labelledby="cr-final-title">
       <div class="wrap">
         <div class="cr-cta">
           <img class="cr-cta-rings" src="assets/img/rings.png" alt="" aria-hidden="true">
@@ -518,12 +517,9 @@
     </div>
   </footer>
 
-  <nav class="cr-rail" aria-label="On this page" data-rail hidden></nav>
-  <a class="btn cr-float" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions data-float>View our open positions <span aria-hidden="true">↗</span></a>
-
   <!-- careers.js first: it renders the key-fact cards that main.js then reveals + counts up;
        home.js supplies the shared nav tone (white logo over dark sections, purple over light). -->
-  <script src="assets/careers.js?v=5"></script>
+  <script src="assets/careers.js?v=4"></script>
   <script src="assets/main.js?v=31"></script>
   <script src="assets/home.js?v=1"></script>
 </body>
