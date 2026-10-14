@@ -51,9 +51,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
    and the final section dissolves into the grey footer. ---------- */
 .cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff;
   padding-top: clamp(72px, 8vw, 120px); }
-.cr-work  { background: linear-gradient(180deg, #fff 0%, #fff 55%, var(--grey) 100%); }
-.cr-facts { background: var(--grey); }
-.cr-perks { background: linear-gradient(180deg, var(--grey) 0, #fff 320px); }
+.cr-work  { background: #fff; }
+.cr-perks { background: #fff; }
 .cr-join  { background: linear-gradient(180deg, #fff 0, var(--grey) 260px, var(--grey) calc(100% - 260px), #fff 100%); }
 .cr-final { background: linear-gradient(180deg, #fff 0%, #fff 45%, var(--grey) 100%); padding-bottom: clamp(64px, 8vw, 120px); }
 
@@ -108,25 +107,19 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-split-head .lead { margin: 0; }
 
 /* ---------- 5 · KEY FACTS (home.css .fact for number + label) ---------- */
-.cr-fact { align-items: flex-start; text-align: left; color: var(--ink); transition: transform .5s var(--ease); }
-.cr-fact:hover { transform: translateY(-6px); }
-.cr-fact .cr-icon { background: rgba(255,255,255,.4); color: var(--ink); }
-.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(45,45,45,.2); width: 100%; }
+.cr-facts { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff; }
+.cr-facts-rings { position: absolute; z-index: -1; right: -12vw; top: 50%; width: min(78vw, 1150px);
+  opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
+  animation: spin 160s linear infinite; }
+.cr-facts .lead { color: rgba(255,255,255,.86); }
+.cr-fact { align-items: flex-start; text-align: left; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background .35s ease, transform .5s var(--ease); }
+.cr-fact:hover { background: rgba(255,255,255,.15); transform: translateY(-4px); }
+.cr-fact .cr-icon { background: rgba(255,255,255,.14); color: #fff; }
+.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.2); width: 100%; }
 .cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); }
-.cr-fact .fact span { color: var(--ink); font-weight: 600; }
-.cr-fact p { margin: 0; color: var(--ink-2); }
-/* one brand colour per fact: Warm Violet · Brand Green · Light Blue · White */
-.cr-fact:nth-child(1) { background: var(--purple); color: #fff; }
-.cr-fact:nth-child(1) .cr-icon { background: rgba(255,255,255,.14); color: #fff; }
-.cr-fact:nth-child(1) .fact { border-color: rgba(255,255,255,.25); }
-.cr-fact:nth-child(1) .fact span { color: var(--green); }
-.cr-fact:nth-child(1) p { color: rgba(255,255,255,.85); }
-.cr-fact:nth-child(2) { background: var(--green); }
-.cr-fact:nth-child(2) p { color: var(--ink); }
-.cr-fact:nth-child(3) { background: var(--mint); }
-.cr-fact:nth-child(4) { background: #fff; }
-.cr-fact:nth-child(4) .cr-icon { background: var(--grey); color: var(--purple); }
-.cr-fact:nth-child(4) .fact span { color: var(--purple); }
+.cr-fact .fact span { color: var(--green); font-weight: 600; }
+.cr-fact p { margin: 0; color: rgba(255,255,255,.82); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
 .cr-seg-wrap { display: flex; justify-content: center; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -228,7 +221,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]) { animation: crFade .45s var(--ease); }
 @keyframes crFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-    .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
+    .cr-facts-rings { animation: none; }
+  .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
   .cr-step-icon, .cr-step-label, .cr-seg [role="tab"] { transition: none; }
 }
 
@@ -245,6 +239,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   .cr-cta-media::after { background: linear-gradient(0deg, var(--purple) 0%, rgba(50,15,153,0) 35%); }
   .cr-cta-copy { width: auto; padding-top: 8px; }
     .cr-cta-rings { left: auto; right: -40%; bottom: -30%; width: 120vw; }
+  .cr-facts-rings { right: -45vw; width: 130vw; }
 }
 @media (max-width: 640px) {
   .cr-vision { margin-top: -24px; border-radius: 24px 24px 0 0; }
