@@ -54,12 +54,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-work  { background: linear-gradient(180deg, #fff 0%, #fff 55%, var(--grey) 100%); }
 .cr-facts { background: var(--grey); }
 .cr-perks { background: linear-gradient(180deg, var(--grey) 0, #fff 320px); }
-/* the closing violet band: "How to join" + "Join us" form one sheet that slides over the perks
-   and ends with rounded corners onto the grey footer */
-body.careers { background: var(--grey); }
-.cr-join  { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0;
-  background: var(--purple); color: #fff; padding-top: clamp(80px, 9vw, 128px); }
-.cr-final { background: var(--purple); border-radius: 0 0 32px 32px; padding-top: clamp(24px, 3vw, 48px); padding-bottom: clamp(72px, 8vw, 120px); }
+.cr-join  { background: linear-gradient(180deg, #fff 0, var(--grey) 260px, var(--grey) calc(100% - 260px), #fff 100%); }
+.cr-final { background: linear-gradient(180deg, #fff 0%, #fff 45%, var(--grey) 100%); padding-bottom: clamp(64px, 8vw, 120px); }
 
 /* centred heads (home.css .center-head) */
 .cr-center { max-width: 900px; margin-inline: auto; }
@@ -172,23 +168,11 @@ body.careers { background: var(--grey); }
 .cr-banner p { color: rgba(255,255,255,.9); }
 
 /* ---------- 7 · HOW TO JOIN — soft lilac ground, stepper (desktop) ---------- */
-/* stepper inverted for the violet ground; the detail panel stays white */
-.cr-join .lead { color: rgba(255,255,255,.86); }
-.cr-join .cr-seg { background: rgba(255,255,255,.12); }
-.cr-join .cr-seg [role="tab"] { color: #fff; }
-.cr-join .cr-seg [role="tab"][aria-selected="true"] { background: #fff; color: var(--purple); }
-.cr-join .cr-steps::before { background: rgba(255,255,255,.3); }
-.cr-join .cr-step-btn { color: rgba(255,255,255,.72); }
-.cr-join .cr-step-icon { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.45); }
-.cr-join .cr-step-btn:hover .cr-step-icon { box-shadow: inset 0 0 0 1.5px #fff; }
-.cr-join .cr-step-btn:hover .cr-step-label { color: #fff; }
-.cr-join .cr-step-btn[aria-current="step"] .cr-step-icon { background: #fff; color: var(--purple); box-shadow: none; }
-.cr-join .cr-step-btn[aria-current="step"] .cr-step-label { color: #fff; }
-.cr-join .cr-step-panel { background: #fff; color: var(--ink); }
+.cr-join .cr-seg { background: #fff; }
+.cr-join .cr-step-panel { background: #fff; }
 .cr-join .cr-tip { background: var(--grey); }
-.cr-join .cr-note { color: rgba(255,255,255,.86); }
-.cr-join .cr-note b, .cr-join .cr-note .cr-ico { color: #fff; }
-.cr-join .cr-seg [role="tab"]:focus-visible, .cr-join .cr-step-btn:focus-visible { outline-color: #fff; }
+.cr-join .cr-step-icon { background: #fff; }
+.cr-join .cr-steps::before { background: var(--line); }
 .cr-steps { --steps: 5; list-style: none; margin: 0; padding: 0; position: relative;
   display: grid; grid-template-columns: repeat(var(--steps), 1fr); row-gap: clamp(32px, 4vw, 48px); }
 .cr-steps::before { content: ""; position: absolute; top: 28px; height: 1.5px; background: var(--line);
@@ -223,7 +207,7 @@ body.careers { background: var(--grey); }
 .cr-step-nav .btn-text[disabled] span { transform: none; }
 
 /* ---------- 8 · FINAL CTA — brand purple panel with the ring mark ---------- */
-.cr-cta { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r); background: transparent; color: #fff;
+.cr-cta { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r); background: var(--purple); color: #fff;
   min-height: clamp(480px, 46vw, 680px); display: flex; align-items: center; }
 .cr-cta-rings { position: absolute; z-index: -1; left: -14%; bottom: -60%; width: min(70vw, 900px); opacity: .1; filter: brightness(0) invert(1); pointer-events: none; }
 .cr-cta-media { position: absolute; top: 0; right: 0; bottom: 0; width: 64%; overflow: hidden;
@@ -263,8 +247,7 @@ body.careers { background: var(--grey); }
     .cr-cta-rings { left: auto; right: -40%; bottom: -30%; width: 120vw; }
 }
 @media (max-width: 640px) {
-  .cr-vision, .cr-join { margin-top: -24px; border-radius: 24px 24px 0 0; }
-  .cr-final { border-radius: 0 0 24px 24px; }
+  .cr-vision { margin-top: -24px; border-radius: 24px 24px 0 0; }
   .cr-grid-4, .cr-grid-3, .cr-grid-2 { grid-template-columns: 1fr; }
   .cr-hero .hero-actions, .cr-hero .btn, .cr-cta .btn { width: 100%; }
   .cr-carousel { --cr-size: 70vw; --cr-gap: 14px; }
