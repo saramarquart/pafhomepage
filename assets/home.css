@@ -108,12 +108,12 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* camera moves — same animation keeps running while the shot is "was", so no snap mid-wipe */
 .reel.on video, .reel.was video, .reel.on img, .reel.was img { animation: push 7s cubic-bezier(.25,.6,.35,1) both; }
 .reel.move-rise.on img, .reel.move-rise.was img { animation-name: rise; }
-.reel.move-pan.on img,  .reel.move-pan.was img  { animation-name: pan; }
+.reel.move-pan.on img,  .reel.move-pan.was img  { animation-name: pan; animation-timing-function: linear; }   /* steady glide: even textures need constant motion to read as moving */
 .reel.move-in.on img,   .reel.move-in.was img   { animation-name: zoom; }
 .reel.move-turn.on img, .reel.move-turn.was img { animation-name: turn; }
 @keyframes push { from { transform: scale(1.14) translate3d(2%, 0, 0); } to { transform: scale(1); } }
 @keyframes rise { from { transform: scale(1.14) translate3d(0, 4%, 0); } to { transform: scale(1.06) translate3d(0, -2%, 0); } }
-@keyframes pan  { from { transform: scale(1.14) translate3d(5%, 0, 0); } to { transform: scale(1.1) translate3d(-4%, 0, 0); } }
+@keyframes pan  { from { transform: scale(1.26) translate3d(9%, 2%, 0); } to { transform: scale(1.14) translate3d(-5%, -1%, 0); } }   /* translate stays inside the scale margin, so no edge shows */
 @keyframes zoom { from { transform: scale(1.02); } to { transform: scale(1.16) translate3d(-1%, 1%, 0); } }
 @keyframes turn { from { transform: scale(1.22) rotate(-3deg); } to { transform: scale(1.08) rotate(0deg); } }
 .hero-shade { position: absolute; inset: 0; background:
