@@ -1,17 +1,21 @@
 /* ============================================================================
    Planet A Foods — homepage (Relaunch 2026), designer system v1
-   DM Sans · brand purple #2E1193 · light grey #F7F7F9 · pills, rounded image
+   Rethink Sans · brand purple #320F99 · light green #82C7AE · sky #B0DCE0 · light grey #F7F7F9 · pills, rounded image
    tiles with overlay copy, the striped ring mark. Each section is sized for
    one 16:9 desktop screen; phones fall back to a natural flow.
    Scoped to this page only; sub-pages keep using styles.css.
    ========================================================================== */
 
 :root {
-  --purple:    #2E1193;
-  --purple-2:  #472DA0;
-  --purple-dk: #1E0A66;
-  --lilac:     #E6E2F3;
-  --mint:      #BFDDE0;   /* "rolling out" tag */
+  --purple:    #320F99;   /* brand purple */
+  --purple-2:  #4A2BB0;
+  --purple-dk: #1F0866;
+  --green:     #82C7AE;   /* brand light green */
+  --green-lt:  #D5EEE5;
+  --sky:       #B0DCE0;   /* brand sky */
+  --sky-lt:    #E2F2F3;
+  --lilac:     var(--sky-lt);   /* hover tint */
+  --mint:      var(--sky);
   --grey:      #F7F7F9;
   --white:     #FFFFFF;
   --ink:       #0E0B1A;
@@ -21,7 +25,7 @@
   --maxw: 1600px;
   --gutter: clamp(20px, 4vw, 70px);
   --r: 8px;
-  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --ease: cubic-bezier(.16, .84, .3, 1);
 }
 
@@ -76,21 +80,31 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .fact span { display: block; margin-top: 10px; font-size: .92rem; color: var(--purple); }
 
 /* ============================ NAV ============================ */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 100; pointer-events: none; display: flex; align-items: flex-start; justify-content: space-between; padding: 22px var(--gutter) 0; }
-.nav > * { pointer-events: auto; }
-.brand { color: #fff; transition: color .4s ease; display: block; }
-.brand .logo { width: 58px; height: auto; aspect-ratio: 57 / 95; display: block; }
-.nav[data-on="light"] .brand { color: var(--purple); }
-.nav-pill {
-  display: flex; align-items: center; gap: 4px; margin-top: 26px;
-  background: #fff; border-radius: 6px; padding: 5px 6px 5px 10px;
-  box-shadow: 0 10px 30px -18px rgba(14, 11, 26, .5);
+/* Top of page: transparent over the hero film, white logo.
+   Once you scroll: a slim white bar with a small purple logo. It slides away
+   while you read downwards and comes back as soon as you scroll up. */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100; height: 96px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--gutter);
+  transition: transform .45s var(--ease), background .35s ease, height .35s var(--ease), box-shadow .35s ease;
 }
+.nav.scrolled { height: 68px; background: rgba(255,255,255,.94); backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 rgba(14,11,26,.08); }
+.nav.away { transform: translateY(-100%); }
+.brand { color: #fff; transition: color .35s ease; display: block; }
+.brand .logo { width: 40px; height: auto; aspect-ratio: 57 / 95; display: block; transition: width .35s var(--ease); }
+.nav.scrolled .brand { color: var(--purple); }
+.nav.scrolled .brand .logo { width: 30px; }
+.nav-pill {
+  display: flex; align-items: center; gap: 4px;
+  background: #fff; border-radius: 6px; padding: 5px 6px 5px 10px;
+  box-shadow: 0 10px 30px -18px rgba(14, 11, 26, .5); transition: box-shadow .35s ease, background .35s ease;
+}
+.nav.scrolled .nav-pill { box-shadow: none; background: transparent; }
 .nav-pill a { font-size: .93rem; font-weight: 500; padding: 6px 10px; border-radius: 4px; transition: background .25s ease, color .25s ease; }
 .nav-pill a:hover { background: var(--lilac); color: var(--purple); }
 .lang { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 30px; border: 0; background: none; border-radius: 4px; cursor: pointer; }
 .lang:hover { background: var(--lilac); color: var(--purple); }
-.nav-toggle { display: none; width: 46px; height: 46px; margin-top: 20px; border: 0; border-radius: 6px; background: #fff; cursor: pointer; align-items: center; justify-content: center; box-shadow: 0 10px 30px -18px rgba(14,11,26,.5); }
+.nav-toggle { display: none; width: 46px; height: 46px; border: 0; border-radius: 6px; background: #fff; cursor: pointer; align-items: center; justify-content: center; box-shadow: 0 10px 30px -18px rgba(14,11,26,.5); }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { content: ""; display: block; width: 18px; height: 1.6px; background: var(--ink); }
 .nav-toggle span::before { transform: translateY(-6px); }
 .nav-toggle span::after { transform: translateY(4.4px); }
@@ -98,31 +112,11 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* ============================ 01 HERO ============================ */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; color: #fff; overflow: hidden; background: #1a1210; display: flex; align-items: flex-end; }
 .hero-stage, .reel { position: absolute; inset: 0; }
-.hero-stage { z-index: 0; isolation: isolate; }   /* keep the shots' z-order inside the stage, under shade + copy */
-/* shots: the incoming one reveals over the outgoing one ("was"), which holds underneath.
-   home.js rotates the reveal (data-fx) so consecutive cuts never look the same. */
-.reel { visibility: hidden; z-index: 0; }
-.reel.was { visibility: visible; z-index: 1; }
-.reel.on { visibility: visible; z-index: 2; animation: wipe 1.5s cubic-bezier(.77,0,.18,1) both; }
-.reel.on[data-fx="dissolve"] { animation: dissolve 1.8s cubic-bezier(.4,0,.2,1) both; }
-.reel.on[data-fx="rise"]     { animation: rise-in 1.5s cubic-bezier(.77,0,.18,1) both; }
-.reel.on[data-fx="diagonal"] { animation: diagonal 1.6s cubic-bezier(.77,0,.18,1) both; }
-@keyframes wipe     { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
-@keyframes dissolve { from { opacity: 0; } to { opacity: 1; } }
-@keyframes rise-in  { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes diagonal { from { clip-path: polygon(0 0, 0 0, -30% 100%, -30% 100%); } to { clip-path: polygon(0 0, 130% 0, 100% 100%, -30% 100%); } }
-.reel video, .reel img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
-/* camera moves — same animation keeps running while the shot is "was", so no snap mid-wipe */
-.reel.on video, .reel.was video, .reel.on img, .reel.was img { animation: push 7s cubic-bezier(.25,.6,.35,1) both; }
-.reel.move-rise.on img, .reel.move-rise.was img { animation-name: rise; }
-.reel.move-pan.on img,  .reel.move-pan.was img  { animation-name: pan; animation-timing-function: linear; }   /* steady glide: even textures need constant motion to read as moving */
-.reel.move-in.on img,   .reel.move-in.was img   { animation-name: zoom; }
-.reel.move-turn.on img, .reel.move-turn.was img { animation-name: turn; }
-@keyframes push { from { transform: scale(1.14) translate3d(2%, 0, 0); } to { transform: scale(1); } }
-@keyframes rise { from { transform: scale(1.14) translate3d(0, 4%, 0); } to { transform: scale(1.06) translate3d(0, -2%, 0); } }
-@keyframes pan  { from { transform: scale(1.26) translate3d(9%, 2%, 0); } to { transform: scale(1.14) translate3d(-5%, -1%, 0); } }   /* translate stays inside the scale margin, so no edge shows */
-@keyframes zoom { from { transform: scale(1.02); } to { transform: scale(1.16) translate3d(-1%, 1%, 0); } }
-@keyframes turn { from { transform: scale(1.22) rotate(-3deg); } to { transform: scale(1.08) rotate(0deg); } }
+.reel { opacity: 0; transition: opacity 1.6s ease; }
+.reel.on { opacity: 1; }
+.reel video, .reel img { width: 100%; height: 100%; object-fit: cover; }
+.reel.on video, .reel.on img { animation: push 7s linear both; }   /* slow push-in per shot */
+@keyframes push { from { transform: scale(1.08); } to { transform: scale(1); } }
 .hero-shade { position: absolute; inset: 0; background:
   linear-gradient(0deg, rgba(14,8,6,.78) 0%, rgba(14,8,6,.35) 45%, rgba(14,8,6,.25) 100%),
   linear-gradient(90deg, rgba(14,8,6,.45), transparent 60%); }
@@ -131,17 +125,11 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .hero-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: clamp(24px, 4vh, 48px); }
 .hero-foot p { color: #fff; font-weight: 500; font-size: clamp(1rem, 1.15vw, 1.2rem); max-width: 44ch; }
 .hero-actions { display: flex; align-items: center; gap: 32px; flex: 0 0 auto; }
-.reel-index { position: absolute; z-index: 2; right: var(--gutter); top: 50%; transform: translateY(-50%); list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; text-align: right; }
+.reel-index { position: absolute; z-index: 1; right: var(--gutter); top: 50%; transform: translateY(-50%); list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; text-align: right; }
 .reel-index li { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); position: relative; padding-right: 34px; transition: color .6s ease; }
+.reel-index li::after { content: ""; position: absolute; right: 0; top: 50%; width: 22px; height: 1.5px; background: rgba(255,255,255,.3); }
 .reel-index li.on { color: #fff; }
-.reel-index a { color: inherit; text-decoration: none; }
-.reel-index a:hover, .reel-index a:focus-visible { color: #fff; }
-/* the stripe is a button: name → product page, stripe → show that shot in the film */
-.reel-go { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 38px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; }
-.reel-go::after { content: ""; position: absolute; right: 8px; top: 50%; width: 22px; height: 1.5px; background: rgba(255,255,255,.3); transition: background .3s ease, transform .3s ease; }
-.reel-go:hover::after, .reel-go:focus-visible::after { background: rgba(255,255,255,.9); transform: scaleY(1.6); }
-.reel-go:focus-visible { outline: 1.5px solid #fff; outline-offset: 2px; border-radius: 4px; }
-.reel-index li.on .reel-go::before { content: ""; position: absolute; right: 8px; top: 50%; height: 1.5px; width: 22px; background: #fff; transform-origin: left; animation: tick 5.2s linear both; z-index: 1; }
+.reel-index li.on::before { content: ""; position: absolute; right: 0; top: 50%; height: 1.5px; width: 22px; background: #fff; transform-origin: left; animation: tick 5.2s linear both; z-index: 1; }
 @keyframes tick { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* ============================ 02 NUMBERS + WHY NOW ============================ */
@@ -215,22 +203,63 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .scale-media { position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 4 / 3; }
 .scale-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* ============================ 06 IMPACT ============================ */
-.impact { background: #0B0420; color: #fff; overflow: hidden; }
-.impact-rings { position: absolute; right: -8vw; top: 50%; width: min(70vw, 1100px); transform: translateY(-50%); pointer-events: none; filter: brightness(2.1) saturate(1.15); animation: spin 140s linear infinite; }
-@keyframes spin { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
-.impact::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, #0B0420 30%, rgba(11,4,32,.35) 55%, rgba(11,4,32,0) 75%); }
-.impact .wrap { position: relative; z-index: 2; }
+/* ============================ 05 SUSTAINABILITY — forest film ============================ */
+.impact { --g-ink: #fff; --g-ink-2: rgba(255,255,255,.82); --g-acc: var(--green); --g-base: rgba(255,255,255,.45);
+  background: #0E2A1E; color: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+/* the still is animated like slow aerial footage: drifting pan + gentle zoom */
+.impact-film { position: absolute; inset: -6%; z-index: 0; overflow: hidden; }
+.impact-film img { width: 100%; height: 100%; object-fit: cover; animation: flyover 38s ease-in-out infinite alternate; will-change: transform; }
+@keyframes flyover {
+  0%   { transform: scale(1.08) translate3d(-2%, 1.5%, 0) rotate(-.6deg); }
+  50%  { transform: scale(1.16) translate3d(1.5%, -1%, 0) rotate(.3deg); }
+  100% { transform: scale(1.1) translate3d(3%, -2.5%, 0) rotate(.8deg); }
+}
+.impact-shade { position: absolute; inset: 0; z-index: 0; background:
+  linear-gradient(90deg, rgba(8,30,20,.88) 0%, rgba(8,30,20,.62) 42%, rgba(8,30,20,.25) 75%, rgba(8,30,20,.35) 100%),
+  linear-gradient(0deg, rgba(8,30,20,.7), transparent 40%); }
+.impact .wrap { position: relative; z-index: 1; }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
-.impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 11rem); margin-top: 28px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.impact-num small { font-size: .55em; letter-spacing: -.02em; }
-.impact-sub { font-size: clamp(1.15rem, 1.7vw, 1.6rem); font-weight: 500; margin: 16px 0 28px; }
-.impact-note { font-size: .8rem; color: rgba(255,255,255,.7); margin-top: 22px; max-width: 58ch; }
-.impact-side { display: grid; gap: 14px; justify-items: start; }
-.impact-card { width: 100%; padding: 24px 26px; border-radius: var(--r); background: rgba(46,17,147,.45); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.16); transition: background .35s ease, transform .5s var(--ease); }
-.impact-card:hover { background: rgba(255,255,255,.18); transform: translateX(-4px); }
-.impact-card p { color: rgba(255,255,255,.82); margin-top: 6px; }
-.impact .btn-text { margin-top: 10px; }
+.pill-green { background: var(--green); color: #0D2B22; }
+.impact-head { margin-top: 22px; color: #fff; }
+.impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 10rem); margin-top: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; color: #fff; }
+.impact-num small { font-size: .5em; letter-spacing: -.02em; }
+.impact-sub { font-size: clamp(1rem, 1.3vw, 1.25rem); font-weight: 500; margin-top: 12px; color: #fff; max-width: 44ch; }
+.impact-sub sup, .sources sup { font-size: .65em; }
+.src-ref { color: var(--green); text-decoration: none; margin-left: 2px; }
+.src-ref:hover { text-decoration: underline; }
+.impact-pure { margin-top: 16px; font-size: .95rem; color: var(--sky); font-weight: 500; }
+/* comparison bars: thin, rounded data-end, values in text colour */
+.co2 { margin: 28px 0 0; max-width: 580px; display: grid; gap: 12px; }
+.co2 figcaption { font-size: .82rem; color: var(--g-ink-2); margin-bottom: 2px; }
+.co2-row { display: grid; grid-template-columns: 230px 1fr 52px; align-items: center; gap: 14px; font-size: .95rem; color: #fff; }
+.co2-row b { font-weight: 600; }
+.co2-track { position: relative; height: 14px; }
+.co2-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 0 4px 4px 0; transition: width 1.6s var(--ease) .3s; }
+.co2-bar.base { background: var(--g-base); }
+.co2-bar.ours { background: var(--green); }
+.reveal.in .co2-bar { width: var(--w); }
+.co2-val { text-align: right; font-variant-numeric: tabular-nums; }
+.impact-side { display: grid; gap: 14px; }
+.impact-card { padding: 24px 26px; border-radius: var(--r); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(14px) saturate(1.2); transition: background .35s ease, transform .5s var(--ease); }
+.impact-card:hover { background: rgba(255,255,255,.18); transform: translateY(-4px); }
+.ic-no { display: inline-block; padding: 3px 12px; border-radius: 999px; background: var(--sky); color: #0D2B22; font-weight: 600; font-size: .85rem; }
+.impact-card:nth-child(2) .ic-no { background: var(--green); }
+.impact-card h3 { margin-top: 14px; color: #fff; }
+.impact-card p { color: var(--g-ink-2); margin-top: 6px; }
+.impact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 10px; }
+.btn-mint { background: var(--green); color: #0D2B22; }
+.btn-mint:hover { background: var(--sky); }
+.impact .btn-text:hover span { transform: translate(3px, -3px); }
+/* sources: collapsed by default, full wording on demand */
+.sources { margin-top: clamp(28px, 5vh, 56px); border-top: 1px solid rgba(255,255,255,.2); color: var(--g-ink-2); font-size: .88rem; }
+.sources summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 16px 0 4px; color: #fff; font-weight: 500; }
+.sources summary::-webkit-details-marker { display: none; }
+.sources summary::before { content: "+"; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.14); transition: transform .35s var(--ease); }
+.sources[open] summary::before { transform: rotate(45deg); }
+.src-hint { color: var(--g-ink-2); font-weight: 400; }
+.sources-body { display: grid; gap: 8px; max-width: 92ch; padding: 10px 0 4px 38px; }
+.sources-body a { color: var(--green); }
+.sources-body a:hover { color: var(--sky); }
 
 /* ============================ 07 COMPANY ============================ */
 .company .tile { aspect-ratio: 3 / 4; }
@@ -239,7 +268,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 
 /* ============================ 08 FOOTER ============================ */
 .footer { position: relative; overflow: hidden; background: var(--grey); color: var(--ink); padding: clamp(64px, 10vh, 120px) 0 36px; }
-.footer-rings { position: absolute; right: -6vw; top: -10%; width: min(75vw, 1150px); opacity: .1; filter: saturate(.4); pointer-events: none; }
+.footer-a { position: absolute; right: -4vw; bottom: -14%; width: min(62vw, 980px); height: auto; pointer-events: none; }
 .footer-in { position: relative; display: grid; gap: 64px; }
 .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 760px; }
 .footer h4 { margin: 0 0 14px; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); }
@@ -251,13 +280,48 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .footer-legal { font-size: .82rem; color: var(--muted); }
 .footer-legal a:hover { color: var(--purple); }
 
-.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--purple); z-index: 200; }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--sky) 60%, var(--green)); z-index: 200; }
+
+/* ============================ PORTFOLIO GROUPS ============================ */
+.groups { display: inline-flex; gap: 6px; padding: 5px; margin-top: 30px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px rgba(46,17,147,.14); }
+.group { border: 0; background: none; padding: 9px 18px; border-radius: 999px; font-weight: 500; font-size: .95rem; color: var(--purple); cursor: pointer; transition: background .3s ease, color .3s ease; }
+.group:hover { background: var(--lilac); }
+.group.on { background: var(--purple); color: #fff; }
+.group-note { margin: 16px auto 0; max-width: 52ch; color: var(--ink-2); }
+.slide[hidden] { display: none; }
+/* colour alternatives: a swatch tile in natural colour bands until a photo exists */
+.swatch .tile-media { display: flex; transform: skewX(-12deg) scale(1.3); }
+.swatch .tile-media span { flex: 1; transition: flex .8s var(--ease); }
+.swatch .tile-media span:nth-child(1) { background: #8E2C2A; }
+.swatch .tile-media span:nth-child(2) { background: #C8642B; }
+.swatch .tile-media span:nth-child(3) { background: #E1B23C; }
+.swatch .tile-media span:nth-child(4) { background: #6F8A3A; }
+.swatch .tile-media span:nth-child(5) { background: #3E5F8A; }
+.slide:hover .swatch .tile-media span:nth-child(odd) { flex: 1.6; }
+
+/* ============================ BENEFITS ============================ */
+.benefits { background: var(--grey); }
+.benefit-grid { display: grid; gap: 20px; }
+.benefit { position: relative; padding: 30px 30px 32px; border-radius: var(--r); background: #fff; box-shadow: 0 1px 0 rgba(14,11,26,.04); transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .35s ease, color .35s ease; }
+.benefit:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -30px rgba(46,17,147,.45); }
+.b-no { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 30px; padding: 0 12px; border-radius: 999px; background: var(--lilac); color: var(--purple); font-weight: 600; font-size: .95rem; }
+.benefit h3 { margin: 22px 0 12px; }
+.benefit p { color: var(--ink-2); max-width: 34ch; }
+.benefit.big { background: var(--purple); color: #fff; }
+.benefit.big .b-no { background: #fff; }
+.b-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; }
+.b-list li { display: grid; gap: 4px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.2); }
+.b-list b { font-weight: 500; font-size: 1.15rem; }
+.b-list span { color: rgba(255,255,255,.8); font-size: .98rem; }
 
 /* ============================ TABLET ============================ */
 @media (min-width: 700px) {
   .facts { grid-template-columns: repeat(4, auto); justify-content: center; column-gap: clamp(40px, 6vw, 110px); }
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .tiles.four { grid-template-columns: repeat(2, 1fr); }
+  .tiles.layers { grid-template-columns: repeat(2, 1fr); }
+  .benefit-grid { grid-template-columns: 1fr 1fr; }
+  .benefit.big { grid-column: 1 / -1; }
   .track { grid-auto-columns: calc((100% - 20px) / 2); }
   .footer-links { grid-template-columns: repeat(3, 1fr); }
 }
@@ -269,15 +333,24 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .why-head { grid-column: 1; grid-row: 1; }
   .drivers { grid-column: 1; grid-row: 2; align-self: end; }
   .why-media { grid-column: 2; grid-row: 1 / 3; aspect-ratio: auto; height: min(68vh, 44vw); }
-  .tiles.layers .tile { aspect-ratio: auto; height: min(36vh, 22vw); }
+  .tiles.layers { grid-template-columns: repeat(4, 1fr); }
+  .tiles.layers .tile { aspect-ratio: auto; height: min(38vh, 20vw); }
+  .tiles.layers .tile h3 { font-size: min(1.6vw, 2.9vh); right: 70px; }
   .tech-foot { grid-template-columns: auto auto auto 1fr minmax(320px, 30%); }
   .tech-foot .btn-block { grid-column: 5; }
   .track { grid-auto-columns: calc((100% - 40px) / 3); }
-  .slide .tile { aspect-ratio: auto; height: min(40vh, 21vw); }
+  .slide .tile { aspect-ratio: auto; height: min(36vh, 20vw); }
+  .portfolio .center-head { margin-bottom: 4vh; }
+  .portfolio .center-head h2 { margin-top: 3vh; }
+  .groups { margin-top: 3.4vh; }
   .scale-grid { grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 6vw, 120px); }
   .scale-media { aspect-ratio: auto; height: min(66vh, 40vw); }
   .impact-grid { grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 6vw, 120px); }
   .tiles.four { grid-template-columns: repeat(4, 1fr); }
+  .benefit-grid { grid-template-columns: 1.35fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .benefit.big { grid-row: 1 / 3; grid-column: 1; }
+  .benefit-grid .benefit:nth-child(4) { grid-column: 2 / 4; }
+  .b-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
   .company .tile { aspect-ratio: auto; height: min(56vh, 30vw); }
   .footer-in { grid-template-columns: 1fr 1.2fr; align-items: end; min-height: min(70vh, 640px); }
   .footer-base { grid-row: 1; align-self: end; }
@@ -287,14 +360,15 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 
 /* ============================ MOBILE NAV ============================ */
 @media (max-width: 999px) {
-  .nav { padding-top: 16px; }
-  .brand .logo { width: 44px; }
+  .nav { height: 80px; }
+  .brand .logo { width: 34px; }
   .nav-toggle { display: inline-flex; }
   .nav-pill {
-    position: fixed; top: 84px; left: var(--gutter); right: var(--gutter); margin: 0;
+    position: fixed; top: calc(100% + 6px); left: var(--gutter); right: var(--gutter); margin: 0; background: #fff; box-shadow: 0 18px 40px -20px rgba(14,11,26,.45);
     flex-direction: column; align-items: stretch; padding: 10px;
     opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .3s ease, transform .3s ease;
   }
+  .nav.scrolled .nav-pill { background: #fff; box-shadow: 0 18px 40px -20px rgba(14,11,26,.45); }
   .nav.open .nav-pill { opacity: 1; pointer-events: auto; transform: none; }
   .nav-pill a { font-size: 1.05rem; padding: 12px; }
   .reel-index { display: none; }
@@ -302,6 +376,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .hero-actions { flex-wrap: wrap; gap: 18px 28px; }
 }
 @media (max-width: 560px) {
+  .co2-row { grid-template-columns: 1fr 46px; row-gap: 6px; }
+  .co2-label { grid-column: 1 / -1; }
   .tech-foot { grid-template-columns: 1fr 1fr; }
   .sec-head { flex-direction: column; }
 }
@@ -309,8 +385,81 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .reel, .reel video, .reel img { animation: none !important; }
-  .drift img, .impact-rings { animation: none; }
-  .reel-index li.on .reel-go::before { animation: none; transform: none; }
+  .reel.on video, .reel.on img, .drift img, .impact-film img { animation: none; }
+  .co2-bar { transition: none; width: var(--w); }
+  .reel-index li.on::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
 }
+
+/* ============================ BRAND COLOUR ELEMENTS ============================
+   Purple carries, light green + sky accent. The "A" mark (ring + arc of the
+   logo) recurs as a quiet graphic element; small colour codes repeat 1-2-3. */
+.screen, .numbers, .footer { position: relative; }
+.deco-a { position: absolute; pointer-events: none; z-index: 0; width: 40vw; aspect-ratio: 57 / 60; height: auto; }
+.wrap { position: relative; z-index: 1; }
+.d-numbers { color: var(--sky-lt); width: min(30vw, 460px); left: -8vw; top: -30%; transform: rotate(-18deg); }
+.d-portfolio { color: var(--sky); opacity: .55; width: min(42vw, 680px); right: -12vw; top: -16%; transform: rotate(14deg); }
+
+/* colour codes: 01 green · 02 sky · 03 white/lilac · 04 green */
+.fact b { position: relative; }
+.numbers .fact, .big-facts .fact, .tech-foot .fact { padding-top: 18px; position: relative; }
+.numbers .fact::before, .big-facts .fact::before, .tech-foot .fact::before { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 6px; border-radius: 999px; background: var(--green); transform-origin: left; transition: width .6s var(--ease); }
+.numbers .fact:nth-child(2)::before, .big-facts .fact:nth-child(2)::before, .tech-foot .fact:nth-child(2)::before { background: var(--sky); }
+.numbers .fact:nth-child(3)::before, .big-facts .fact:nth-child(3)::before, .tech-foot .fact:nth-child(3)::before { background: var(--purple); }
+.numbers .fact:hover::before, .big-facts .fact:hover::before, .tech-foot .fact:hover::before { width: 64px; }
+
+.layers .tile:nth-child(1) .badge, .company .tile:nth-child(1) .badge { background: var(--green); color: var(--ink); }
+.layers .tile:nth-child(2) .badge, .company .tile:nth-child(2) .badge { background: var(--sky); color: var(--ink); }
+.layers .tile:nth-child(3) .badge, .company .tile:nth-child(3) .badge { background: #fff; color: var(--purple); }
+.layers .tile:nth-child(4) .badge, .company .tile:nth-child(4) .badge { background: var(--green); color: var(--ink); }
+/* a colour line grows along each technology layer on hover */
+.layers .tile::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; z-index: 2; transition: width .7s var(--ease); background: var(--green); }
+.layers .tile:nth-child(2)::before { background: var(--sky); }
+.layers .tile:nth-child(3)::before { background: #fff; }
+.layers .tile:hover::before { width: 100%; }
+
+/* Why now: light-green numbering + active marker */
+.why .driver .no { color: var(--green); }
+.driver { position: relative; }
+.driver::before { content: ""; position: absolute; left: -18px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: var(--green); transform: scaleY(0); transition: transform .5s var(--ease); }
+.driver.on::before { transform: scaleY(1); }
+.why-media { box-shadow: 18px 18px 0 0 var(--green); }
+.pill-light { background: var(--sky); color: var(--purple); }
+
+/* Portfolio on a sky wash */
+.portfolio { background: linear-gradient(180deg, var(--grey) 0%, var(--sky-lt) 100%); overflow: hidden; }
+.groups { box-shadow: inset 0 0 0 1px rgba(50,15,153,.16); }
+.group.on { background: var(--purple); }
+.slide .tile { box-shadow: 0 0 0 0 var(--sky); transition: box-shadow .5s var(--ease); }
+.slide:hover .tile { box-shadow: 0 0 0 4px var(--sky); }
+
+/* Benefits: each card picks up its colour on hover */
+.benefits { overflow: hidden; }
+.benefit-grid .benefit:nth-child(2) .b-no { background: var(--green); color: var(--ink); }
+.benefit-grid .benefit:nth-child(3) .b-no { background: var(--sky); color: var(--ink); }
+.benefit-grid .benefit:nth-child(4) .b-no { background: var(--green-lt); color: var(--ink); }
+.benefit-grid .benefit:nth-child(2):hover { background: var(--green-lt); }
+.benefit-grid .benefit:nth-child(3):hover { background: var(--sky-lt); }
+.benefit-grid .benefit:nth-child(4):hover { background: #EEF6F2; }
+.benefit.big { overflow: hidden; }
+.benefit.big > :not(.deco-a) { position: relative; z-index: 1; }
+.b-list li { border-top-color: rgba(176,220,224,.35); }
+.b-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 10px; vertical-align: middle; }
+.b-list li:nth-child(2) b::before { background: var(--sky); }
+.b-list li:nth-child(3) b::before { background: #fff; }
+
+/* Scale: image sits on an offset sky block */
+.scale { overflow: hidden; }
+.scale-media { overflow: visible; }
+.scale-media img { border-radius: var(--r); }
+.scale-media::before { content: ""; position: absolute; inset: 0; transform: translate(-18px, 18px); border-radius: var(--r); background: var(--sky); z-index: -1; }
+.scale-media { isolation: isolate; }
+
+/* Hero ticker + nav hover in brand accents */
+.reel-index li.on::before { background: var(--green); }
+.nav-pill a:hover, .lang:hover { background: var(--sky-lt); color: var(--purple); }
+
+/* Footer "A" in sky → light green */
+.footer-a { opacity: .9; }
+
+@media (max-width: 999px) { .why-media { box-shadow: 10px 10px 0 0 var(--green); } .driver::before { left: -10px; } .scale-media::before { transform: translate(-10px, 10px); } }
