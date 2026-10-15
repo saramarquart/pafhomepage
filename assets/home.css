@@ -106,14 +106,10 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .reel.on { visibility: visible; z-index: 2; animation: wipe 1.5s cubic-bezier(.77,0,.18,1) both; }
 .reel.on[data-fx="dissolve"] { animation: dissolve 1.8s cubic-bezier(.4,0,.2,1) both; }
 .reel.on[data-fx="rise"]     { animation: rise-in 1.5s cubic-bezier(.77,0,.18,1) both; }
-.reel.on[data-fx="iris"]     { animation: iris 1.7s cubic-bezier(.65,0,.25,1) both; }
-.reel.on[data-fx="split"]    { animation: split 1.5s cubic-bezier(.77,0,.18,1) both; }
 .reel.on[data-fx="diagonal"] { animation: diagonal 1.6s cubic-bezier(.77,0,.18,1) both; }
 @keyframes wipe     { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
 @keyframes dissolve { from { opacity: 0; } to { opacity: 1; } }
 @keyframes rise-in  { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes iris     { from { clip-path: circle(0% at 50% 50%); } to { clip-path: circle(75% at 50% 50%); } }
-@keyframes split    { from { clip-path: inset(0 50% 0 50%); } to { clip-path: inset(0 0 0 0); } }
 @keyframes diagonal { from { clip-path: polygon(0 0, 0 0, -30% 100%, -30% 100%); } to { clip-path: polygon(0 0, 130% 0, 100% 100%, -30% 100%); } }
 .reel video, .reel img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 /* camera moves — same animation keeps running while the shot is "was", so no snap mid-wipe */

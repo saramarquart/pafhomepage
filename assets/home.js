@@ -11,7 +11,7 @@
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
   var current = -1, timer = null, HOLD = 5200;
   // reveal styles, rotated cut by cut (styled in home.css via data-fx)
-  var FX = ["wipe", "dissolve", "rise", "iris", "split", "diagonal"], cut = 0;
+  var FX = ["wipe", "dissolve", "rise", "diagonal"], cut = 0;
   function show(i) {
     var prev = current;
     reels.forEach(function (r, k) {
