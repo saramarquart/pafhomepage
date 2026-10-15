@@ -1,17 +1,21 @@
 /* ============================================================================
    Planet A Foods — homepage (Relaunch 2026), designer system v1
-   DM Sans · brand purple #2E1193 · light grey #F7F7F9 · pills, rounded image
+   DM Sans · brand purple #320F99 · light green #82C7AE · sky #B0DCE0 · light grey #F7F7F9 · pills, rounded image
    tiles with overlay copy, the striped ring mark. Each section is sized for
    one 16:9 desktop screen; phones fall back to a natural flow.
    Scoped to this page only; sub-pages keep using styles.css.
    ========================================================================== */
 
 :root {
-  --purple:    #2E1193;
-  --purple-2:  #472DA0;
-  --purple-dk: #1E0A66;
-  --lilac:     #E6E2F3;
-  --mint:      #BFDDE0;   /* "rolling out" tag */
+  --purple:    #320F99;   /* brand purple */
+  --purple-2:  #4A2BB0;
+  --purple-dk: #1F0866;
+  --green:     #82C7AE;   /* brand light green */
+  --green-lt:  #D5EEE5;
+  --sky:       #B0DCE0;   /* brand sky */
+  --sky-lt:    #E2F2F3;
+  --lilac:     var(--sky-lt);   /* hover tint */
+  --mint:      var(--sky);
   --grey:      #F7F7F9;
   --white:     #FFFFFF;
   --ink:       #0E0B1A;
@@ -206,6 +210,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .impact-a { position: absolute; right: -6vw; bottom: -18%; width: min(56vw, 900px); height: auto; color: #A9DBC8; opacity: .9; pointer-events: none; animation: sway 30s ease-in-out infinite alternate; transform-origin: 40% 60%; }
 @keyframes sway { from { transform: rotate(-6deg) translateY(0); } to { transform: rotate(6deg) translateY(-3%); } }
 .impact .wrap { position: relative; z-index: 1; }
+.impact { --g-acc: var(--purple); }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
 .pill-green { background: var(--g-acc); color: #fff; }
 .impact-head { margin-top: 22px; color: var(--g-ink); }
@@ -256,7 +261,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .footer-legal { font-size: .82rem; color: var(--muted); }
 .footer-legal a:hover { color: var(--purple); }
 
-.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--purple); z-index: 200; }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--sky) 60%, var(--green)); z-index: 200; }
 
 /* ============================ PORTFOLIO GROUPS ============================ */
 .groups { display: inline-flex; gap: 6px; padding: 5px; margin-top: 30px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px rgba(46,17,147,.14); }
@@ -366,3 +371,81 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .reel-index li.on::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
 }
+
+/* ============================ BRAND COLOUR ELEMENTS ============================
+   Purple carries, light green + sky accent. The "A" mark (ring + arc of the
+   logo) recurs as a quiet graphic element; small colour codes repeat 1-2-3. */
+.screen, .numbers, .footer { position: relative; }
+.deco-a { position: absolute; pointer-events: none; z-index: 0; width: 40vw; aspect-ratio: 57 / 60; height: auto; }
+.wrap { position: relative; z-index: 1; }
+.d-numbers { color: var(--sky-lt); width: min(30vw, 460px); left: -8vw; top: -30%; transform: rotate(-18deg); }
+.d-why { color: var(--green); opacity: .16; width: min(44vw, 720px); left: -14vw; bottom: -26%; animation: sway 34s ease-in-out infinite alternate; }
+.d-portfolio { color: var(--sky); opacity: .55; width: min(42vw, 680px); right: -12vw; top: -16%; transform: rotate(14deg); }
+.d-benefits { color: var(--green-lt); width: min(34vw, 560px); left: -10vw; bottom: -20%; }
+.d-scale { color: var(--sky-lt); width: min(36vw, 600px); right: -6vw; bottom: -24%; }
+.d-big { color: var(--green); opacity: .22; width: 64%; right: -16%; bottom: -22%; }
+
+/* colour codes: 01 green · 02 sky · 03 white/lilac · 04 green */
+.fact b { position: relative; }
+.numbers .fact, .big-facts .fact, .tech-foot .fact { padding-top: 18px; position: relative; }
+.numbers .fact::before, .big-facts .fact::before, .tech-foot .fact::before { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 6px; border-radius: 999px; background: var(--green); transform-origin: left; transition: width .6s var(--ease); }
+.numbers .fact:nth-child(2)::before, .big-facts .fact:nth-child(2)::before, .tech-foot .fact:nth-child(2)::before { background: var(--sky); }
+.numbers .fact:nth-child(3)::before, .big-facts .fact:nth-child(3)::before, .tech-foot .fact:nth-child(3)::before { background: var(--purple); }
+.numbers .fact:hover::before, .big-facts .fact:hover::before, .tech-foot .fact:hover::before { width: 64px; }
+
+.layers .tile:nth-child(1) .badge, .company .tile:nth-child(1) .badge { background: var(--green); color: var(--ink); }
+.layers .tile:nth-child(2) .badge, .company .tile:nth-child(2) .badge { background: var(--sky); color: var(--ink); }
+.layers .tile:nth-child(3) .badge, .company .tile:nth-child(3) .badge { background: #fff; color: var(--purple); }
+.layers .tile:nth-child(4) .badge, .company .tile:nth-child(4) .badge { background: var(--green); color: var(--ink); }
+/* a colour line grows along each technology layer on hover */
+.layers .tile::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; z-index: 2; transition: width .7s var(--ease); background: var(--green); }
+.layers .tile:nth-child(2)::before { background: var(--sky); }
+.layers .tile:nth-child(3)::before { background: #fff; }
+.layers .tile:hover::before { width: 100%; }
+
+/* Why now: light-green numbering + active marker */
+.why .driver .no { color: var(--green); }
+.driver { position: relative; }
+.driver::before { content: ""; position: absolute; left: -18px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: var(--green); transform: scaleY(0); transition: transform .5s var(--ease); }
+.driver.on::before { transform: scaleY(1); }
+.why-media { box-shadow: 18px 18px 0 0 var(--green); }
+.pill-light { background: var(--sky); color: var(--purple); }
+
+/* Portfolio on a sky wash */
+.portfolio { background: linear-gradient(180deg, var(--grey) 0%, var(--sky-lt) 100%); overflow: hidden; }
+.groups { box-shadow: inset 0 0 0 1px rgba(50,15,153,.16); }
+.group.on { background: var(--purple); }
+.slide .tile { box-shadow: 0 0 0 0 var(--sky); transition: box-shadow .5s var(--ease); }
+.slide:hover .tile { box-shadow: 0 0 0 4px var(--sky); }
+
+/* Benefits: each card picks up its colour on hover */
+.benefits { overflow: hidden; }
+.benefit-grid .benefit:nth-child(2) .b-no { background: var(--green); color: var(--ink); }
+.benefit-grid .benefit:nth-child(3) .b-no { background: var(--sky); color: var(--ink); }
+.benefit-grid .benefit:nth-child(4) .b-no { background: var(--green-lt); color: var(--ink); }
+.benefit-grid .benefit:nth-child(2):hover { background: var(--green-lt); }
+.benefit-grid .benefit:nth-child(3):hover { background: var(--sky-lt); }
+.benefit-grid .benefit:nth-child(4):hover { background: #EEF6F2; }
+.benefit.big { overflow: hidden; }
+.benefit.big > :not(.deco-a) { position: relative; z-index: 1; }
+.b-list li { border-top-color: rgba(176,220,224,.35); }
+.b-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 10px; vertical-align: middle; }
+.b-list li:nth-child(2) b::before { background: var(--sky); }
+.b-list li:nth-child(3) b::before { background: #fff; }
+
+/* Scale: image sits on an offset sky block */
+.scale { overflow: hidden; }
+.scale-media { overflow: visible; }
+.scale-media img { border-radius: var(--r); }
+.scale-media::before { content: ""; position: absolute; inset: 0; transform: translate(-18px, 18px); border-radius: var(--r); background: var(--sky); z-index: -1; }
+.scale-media { isolation: isolate; }
+
+/* Hero ticker + nav hover in brand accents */
+.reel-index li.on::before { background: var(--green); }
+.nav-pill a:hover, .lang:hover { background: var(--sky-lt); color: var(--purple); }
+
+/* Footer "A" in sky → light green */
+.footer-a { opacity: .9; }
+
+@media (prefers-reduced-motion: reduce) { .d-why { animation: none; } }
+@media (max-width: 999px) { .why-media { box-shadow: 10px 10px 0 0 var(--green); } .driver::before { left: -10px; } .scale-media::before { transform: translate(-10px, 10px); } }
