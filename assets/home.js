@@ -1,12 +1,12 @@
 /* Planet A Foods — homepage interactions (index.html only).
-   Ingredient reel, nav tone, Why-now drivers, portfolio carousel.
+   Ingredient reel, smart nav, Why-now drivers, portfolio carousel.
    No dependencies; respects prefers-reduced-motion. */
 (function () {
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function play(v) { if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
 
-  /* ---- Hero: ingredient reel (cocoa → citrus → vanilla → hazelnut → meat) ---- */
+  /* ---- Hero: ingredient reel (cocoa → coffee → citrus → vanilla → hazelnut → sugar → meat) ---- */
   var reels = [].slice.call(document.querySelectorAll(".hero .reel"));
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
   var current = 0, timer = null, HOLD = 5200;
@@ -37,18 +37,24 @@
     }
   }
 
-  /* ---- Nav: logo is white over dark sections, brand purple over light ones ---- */
+  /* ---- Nav: transparent at the top; slim white bar once scrolled.
+     Hides while reading downwards, returns on any upward scroll. ---- */
   var nav = document.querySelector(".nav");
-  var toned = [].slice.call(document.querySelectorAll("[data-tone]"));
-  function tone() {
-    var y = 60, t = "dark";
-    for (var i = 0; i < toned.length; i++) {
-      var r = toned[i].getBoundingClientRect();
-      if (r.top <= y && r.bottom > y) { t = toned[i].getAttribute("data-tone"); break; }
-    }
-    nav.setAttribute("data-on", t);
+  var lastY = window.pageYOffset || 0;
+  function onNav() {
+    var y = window.pageYOffset || 0;
+    nav.classList.toggle("scrolled", y > 40);
+    var down = y > lastY + 4, up = y < lastY - 4;
+    if (nav.classList.contains("open")) { nav.classList.remove("away"); }
+    else if (down && y > 320) { nav.classList.add("away"); }
+    else if (up || y <= 320) { nav.classList.remove("away"); }
+    if (down || up) lastY = y;
   }
-  if (nav) { tone(); window.addEventListener("scroll", tone, { passive: true }); window.addEventListener("resize", tone); }
+  if (nav) {
+    onNav();
+    window.addEventListener("scroll", onNav, { passive: true });
+    nav.addEventListener("focusin", function () { nav.classList.remove("away"); });
+  }
 
   /* ---- Why now: hover / focus / click a driver to open it and swap the image ---- */
   var drivers = [].slice.call(document.querySelectorAll(".driver"));
@@ -63,6 +69,38 @@
     d.addEventListener("focus", function () { activate(d); });
     d.addEventListener("click", function () { activate(d); });
   });
+
+  /* ---- Sustainability: count the CO₂ figure up once (one decimal) ---- */
+  document.querySelectorAll("[data-tick]").forEach(function (el) {
+    var target = parseFloat(el.getAttribute("data-tick"));
+    function set(v) { el.textContent = "\u2212" + v.toFixed(1); }
+    if (reduce || !("IntersectionObserver" in window)) { set(target); return; }
+    set(0);
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      var t0 = null;
+      (function step(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 1800, 1);
+        set(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    }, { threshold: 0.4 });
+    io.observe(el);
+  });
+
+  /* ---- Portfolio groups: climate-threatened vs highly regulated ---- */
+  var groups = [].slice.call(document.querySelectorAll(".group"));
+  function pickGroup(btn) {
+    var g = btn.getAttribute("data-group");
+    groups.forEach(function (b) { var on = b === btn; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+    document.querySelectorAll(".carousel .slide").forEach(function (s) { s.hidden = s.getAttribute("data-group") !== g; });
+    document.querySelectorAll(".group-note").forEach(function (n) { n.hidden = n.getAttribute("data-note") !== g; });
+    var t = document.querySelector(".carousel .track");
+    if (t) { t.scrollLeft = 0; t.dispatchEvent(new Event("scroll")); }
+  }
+  groups.forEach(function (b) { b.addEventListener("click", function () { pickGroup(b); }); });
 
   /* ---- Portfolio carousel arrows ---- */
   var track = document.querySelector(".carousel .track");
