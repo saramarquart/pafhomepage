@@ -1,6 +1,8 @@
-/* Planet A Foods — homepage portfolio carousel: slides one card every few seconds.
-   Pauses on hover / focus / touch, while off-screen or in a background tab,
-   and never runs with prefers-reduced-motion. The arrows keep working (handled in home.js). */
+/* Planet A Foods — homepage portfolio carousel: a very slow, constant glide from left to right.
+   A hidden copy of the cards sits before the real ones so the row loops seamlessly; it starts on
+   Cocoa Booster, which then travels across the whole row (in view the longest).
+   Starts 3 s after the carousel comes into view. Pauses on hover / focus / touch, while off-screen
+   or in a background tab, and never runs with prefers-reduced-motion. Arrows keep working (home.js). */
 (function () {
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -8,34 +10,73 @@
   var track = carousel && carousel.querySelector(".track");
   if (reduce || !track) return;
 
-  var INTERVAL = 3800, timer = null, hovering = false, visible = false, touchHold = null;
+  var SPEED = 22;          // px per second — slow on purpose
+  var START_DELAY = 3000;  // ms after the carousel comes into view
 
-  function step() {
-    var slide = track.querySelector(".slide");
-    return slide ? slide.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : 400;
-  }
-  function advance() {
-    if (hovering || !visible || document.hidden) return;
-    var max = track.scrollWidth - track.clientWidth - 2;
-    if (track.scrollLeft >= max) track.scrollTo({ left: 0, behavior: "smooth" });   // back to the start after the last card
-    else track.scrollBy({ left: step(), behavior: "smooth" });
-  }
-  function start() { stop(); timer = setInterval(advance, INTERVAL); }
-  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  // 1. hidden copy of all cards in front of the real ones (not focusable, not announced)
+  var originals = [].slice.call(track.querySelectorAll(".slide"));
+  var clones = originals.map(function (s) {
+    var c = s.cloneNode(true);
+    c.setAttribute("aria-hidden", "true");
+    c.setAttribute("tabindex", "-1");
+    c.querySelectorAll("a, button, video").forEach(function (el) { el.setAttribute("tabindex", "-1"); });
+    return c;
+  });
+  clones.forEach(function (c) { track.insertBefore(c, originals[0]); });
 
-  carousel.addEventListener("mouseenter", function () { hovering = true; });
-  carousel.addEventListener("mouseleave", function () { hovering = false; start(); });
-  carousel.addEventListener("focusin", function () { hovering = true; });
-  carousel.addEventListener("focusout", function () { hovering = false; start(); });
-  // touch: hold off while swiping, resume a little after
-  track.addEventListener("touchstart", function () { hovering = true; clearTimeout(touchHold); }, { passive: true });
-  track.addEventListener("touchend", function () { touchHold = setTimeout(function () { hovering = false; start(); }, 4000); }, { passive: true });
-  // an arrow click restarts the countdown so the next auto-slide doesn't come straight after
-  carousel.querySelectorAll(".arrow-btn").forEach(function (b) { b.addEventListener("click", start); });
+  // copied videos aren't known to main.js — play them while on screen
+  var cloneVids = [].slice.call(track.querySelectorAll('.slide[aria-hidden="true"] video'));
+  if ("IntersectionObserver" in window && cloneVids.length) {
+    var vo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.pause(); } });
+    }, { threshold: 0.15 });
+    cloneVids.forEach(function (v) { vo.observe(v); });
+  }
+
+  // 2. free gliding: no snapping, start with the real Cocoa Booster at the left edge
+  track.style.scrollSnapType = "none";
+  track.style.scrollBehavior = "auto";
+  function setWidth() { return originals[0].offsetLeft - clones[0].offsetLeft; }
+  var pos = setWidth();
+  track.scrollLeft = pos;
+
+  // 3. the glide itself
+  var running = false, paused = false, raf = null, last = 0, delay = null, resumeHold = null;
+  function frame(t) {
+    if (!running) return;
+    if (!last) last = t;
+    var dt = Math.min(t - last, 64) / 1000; last = t;
+    if (!paused && !document.hidden) {
+      pos -= SPEED * dt;                       // content moves left → right
+      var w = setWidth();
+      if (pos <= 0) pos += w;                  // seamless wrap into the copy
+      track.scrollLeft = pos;
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  function run() { if (running) return; running = true; last = 0; pos = track.scrollLeft; raf = requestAnimationFrame(frame); }
+  function halt() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+  function startAfterDelay() { clearTimeout(delay); delay = setTimeout(run, START_DELAY); }
+
+  function pause() { paused = true; clearTimeout(resumeHold); }
+  function resume(after) {
+    clearTimeout(resumeHold);
+    resumeHold = setTimeout(function () { pos = track.scrollLeft; last = 0; paused = false; }, after || 0);
+  }
+  carousel.addEventListener("mouseenter", pause);
+  carousel.addEventListener("mouseleave", function () { resume(600); });
+  carousel.addEventListener("focusin", pause);
+  carousel.addEventListener("focusout", function () { resume(600); });
+  track.addEventListener("touchstart", pause, { passive: true });
+  track.addEventListener("touchend", function () { resume(3000); }, { passive: true });
+  // after an arrow click, carry on from wherever the arrow scrolled to
+  carousel.querySelectorAll(".arrow-btn").forEach(function (b) {
+    b.addEventListener("click", function () { pause(); resume(1200); });
+  });
 
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (es) {
-      es.forEach(function (e) { visible = e.isIntersecting; if (visible) start(); else stop(); });
+      es.forEach(function (e) { if (e.isIntersecting) startAfterDelay(); else { clearTimeout(delay); halt(); } });
     }, { threshold: 0.3 }).observe(carousel);
-  } else { visible = true; start(); }
+  } else { startAfterDelay(); }
 })();
