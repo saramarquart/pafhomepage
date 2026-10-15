@@ -221,7 +221,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
 .pill-green { background: var(--green); color: #0D2B22; }
 .impact-head { margin-top: 22px; color: #fff; }
-.impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 10rem); margin-top: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--green); }
+.impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 10rem); margin-top: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; color: #fff; }
 .impact-num small { font-size: .5em; letter-spacing: -.02em; }
 .impact-sub { font-size: clamp(1rem, 1.3vw, 1.25rem); font-weight: 500; margin-top: 12px; color: #fff; max-width: 44ch; }
 .impact-sub sup, .sources sup { font-size: .65em; }
