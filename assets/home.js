@@ -22,11 +22,14 @@
     current = i;
   }
   function next() { show((current + 1) % reels.length); }
-  // hovering / focusing a solution name jumps the film to that shot (the link itself opens its page)
+  // clicking a stripe shows that shot (the name next to it links to its page)
   marks.forEach(function (m, k) {
-    function jump() { if (k !== current) show(k); if (timer) { clearInterval(timer); timer = setInterval(next, HOLD); } }
-    m.addEventListener("mouseenter", jump);
-    m.addEventListener("focusin", jump);
+    var go = m.querySelector(".reel-go");
+    if (!go) return;
+    go.addEventListener("click", function () {
+      show(k);
+      if (timer) { clearInterval(timer); timer = setInterval(next, HOLD); }
+    });
   });
   if (reels.length) {
     show(0);

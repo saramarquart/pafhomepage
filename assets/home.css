@@ -126,11 +126,15 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .hero-actions { display: flex; align-items: center; gap: 32px; flex: 0 0 auto; }
 .reel-index { position: absolute; z-index: 2; right: var(--gutter); top: 50%; transform: translateY(-50%); list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; text-align: right; }
 .reel-index li { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); position: relative; padding-right: 34px; transition: color .6s ease; }
-.reel-index li::after { content: ""; position: absolute; right: 0; top: 50%; width: 22px; height: 1.5px; background: rgba(255,255,255,.3); }
 .reel-index li.on { color: #fff; }
 .reel-index a { color: inherit; text-decoration: none; }
 .reel-index a:hover, .reel-index a:focus-visible { color: #fff; }
-.reel-index li.on::before { content: ""; position: absolute; right: 0; top: 50%; height: 1.5px; width: 22px; background: #fff; transform-origin: left; animation: tick 5.2s linear both; z-index: 1; }
+/* the stripe is a button: name → product page, stripe → show that shot in the film */
+.reel-go { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 38px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; }
+.reel-go::after { content: ""; position: absolute; right: 8px; top: 50%; width: 22px; height: 1.5px; background: rgba(255,255,255,.3); transition: background .3s ease, transform .3s ease; }
+.reel-go:hover::after, .reel-go:focus-visible::after { background: rgba(255,255,255,.9); transform: scaleY(1.6); }
+.reel-go:focus-visible { outline: 1.5px solid #fff; outline-offset: 2px; border-radius: 4px; }
+.reel-index li.on .reel-go::before { content: ""; position: absolute; right: 8px; top: 50%; height: 1.5px; width: 22px; background: #fff; transform-origin: left; animation: tick 5.2s linear both; z-index: 1; }
 @keyframes tick { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* ============================ 02 NUMBERS + WHY NOW ============================ */
@@ -300,6 +304,6 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .reveal { opacity: 1; transform: none; transition: none; }
   .reel, .reel video, .reel img { animation: none !important; }
   .drift img, .impact-rings { animation: none; }
-  .reel-index li.on::before { animation: none; transform: none; }
+  .reel-index li.on .reel-go::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
 }
