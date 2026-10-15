@@ -199,22 +199,42 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .scale-media { position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 4 / 3; }
 .scale-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* ============================ 06 IMPACT ============================ */
-.impact { background: #0B0420; color: #fff; overflow: hidden; }
-.impact-rings { position: absolute; right: -8vw; top: 50%; width: min(70vw, 1100px); transform: translateY(-50%); pointer-events: none; filter: brightness(2.1) saturate(1.15); animation: spin 140s linear infinite; }
-@keyframes spin { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
-.impact::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, #0B0420 30%, rgba(11,4,32,.35) 55%, rgba(11,4,32,0) 75%); }
-.impact .wrap { position: relative; z-index: 2; }
+/* ============================ 05 SUSTAINABILITY (light green) ============================ */
+.impact { --g-bg: #E2EBCB; --g-bg-2: #D3E0B2; --g-ink: #1F2A12; --g-ink-2: #46522F; --g-deep: #3E4E1F; --g-acc: #5E7038; --g-base: #9AA57F;
+  background: radial-gradient(120% 90% at 85% 20%, var(--g-bg-2), var(--g-bg) 60%); color: var(--g-ink); overflow: hidden; }
+.impact-a { position: absolute; right: -6vw; bottom: -18%; width: min(56vw, 900px); height: auto; color: #C9D8A2; opacity: .75; pointer-events: none; animation: sway 30s ease-in-out infinite alternate; transform-origin: 40% 60%; }
+@keyframes sway { from { transform: rotate(-6deg) translateY(0); } to { transform: rotate(6deg) translateY(-3%); } }
+.impact .wrap { position: relative; z-index: 1; }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
-.impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 11rem); margin-top: 28px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.impact-num small { font-size: .55em; letter-spacing: -.02em; }
-.impact-sub { font-size: clamp(1.15rem, 1.7vw, 1.6rem); font-weight: 500; margin: 16px 0 28px; }
-.impact-note { font-size: .8rem; color: rgba(255,255,255,.7); margin-top: 22px; max-width: 58ch; }
-.impact-side { display: grid; gap: 14px; justify-items: start; }
-.impact-card { width: 100%; padding: 24px 26px; border-radius: var(--r); background: rgba(46,17,147,.45); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.16); transition: background .35s ease, transform .5s var(--ease); }
-.impact-card:hover { background: rgba(255,255,255,.18); transform: translateX(-4px); }
-.impact-card p { color: rgba(255,255,255,.82); margin-top: 6px; }
-.impact .btn-text { margin-top: 10px; }
+.pill-green { background: var(--g-acc); color: #fff; }
+.impact-head { margin-top: 22px; color: var(--g-ink); }
+.impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 10rem); margin-top: 18px; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--g-deep); }
+.impact-num small { font-size: .5em; letter-spacing: -.02em; }
+.impact-sub { font-size: clamp(1.1rem, 1.5vw, 1.4rem); font-weight: 500; margin: 12px 0 0; color: var(--g-ink); }
+.impact-note { font-size: .8rem; color: var(--g-ink-2); margin-top: 16px; max-width: 60ch; }
+/* comparison bars: thin, rounded ends, values in ink (not series colour) */
+.co2 { margin: 30px 0 0; max-width: 560px; display: grid; gap: 12px; }
+.co2 figcaption { font-size: .82rem; color: var(--g-ink-2); margin-bottom: 2px; }
+.co2-row { display: grid; grid-template-columns: 230px 1fr 46px; align-items: center; gap: 14px; font-size: .95rem; color: var(--g-ink); }
+.co2-row b { font-weight: 600; }
+.co2-track { position: relative; height: 14px; }
+.co2-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 0 4px 4px 0; transition: width 1.6s var(--ease) .3s; }
+.co2-bar.base { background: var(--g-base); }
+.co2-bar.ours { background: var(--g-acc); }
+.reveal.in .co2-bar { width: var(--w); }
+.co2-row:hover .co2-bar { filter: brightness(1.1); }
+.co2-val { text-align: right; font-variant-numeric: tabular-nums; }
+.impact-side { display: grid; gap: 14px; }
+.impact-card { padding: 24px 26px; border-radius: var(--r); background: rgba(255,255,255,.72); backdrop-filter: blur(8px); transition: background .35s ease, transform .5s var(--ease), box-shadow .5s var(--ease); }
+.impact-card:hover { background: #fff; transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(62,78,31,.5); }
+.ic-no { display: inline-block; padding: 3px 12px; border-radius: 999px; background: #EEF3E0; color: var(--g-deep); font-weight: 600; font-size: .85rem; }
+.impact-card h3 { margin-top: 14px; color: var(--g-ink); }
+.impact-card p { color: var(--g-ink-2); margin-top: 6px; }
+.impact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 10px; }
+.btn-green { background: var(--g-acc); color: #fff; }
+.btn-green:hover { background: var(--g-deep); }
+.btn-text.dark-green { color: var(--g-deep); }
+.btn-text.dark-green:hover span { transform: translate(3px, -3px); }
 
 /* ============================ 07 COMPANY ============================ */
 .company .tile { aspect-ratio: 3 / 4; }
@@ -331,6 +351,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .hero-actions { flex-wrap: wrap; gap: 18px 28px; }
 }
 @media (max-width: 560px) {
+  .co2-row { grid-template-columns: 1fr 46px; row-gap: 6px; }
+  .co2-label { grid-column: 1 / -1; }
   .tech-foot { grid-template-columns: 1fr 1fr; }
   .sec-head { flex-direction: column; }
 }
@@ -338,7 +360,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .reel.on video, .reel.on img, .drift img, .impact-rings { animation: none; }
+  .reel.on video, .reel.on img, .drift img, .impact-a { animation: none; }
+  .co2-bar { transition: none; width: var(--w); }
   .reel-index li.on::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
 }

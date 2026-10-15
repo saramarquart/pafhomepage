@@ -70,6 +70,26 @@
     d.addEventListener("click", function () { activate(d); });
   });
 
+  /* ---- Sustainability: count the CO₂ figure up once (one decimal) ---- */
+  document.querySelectorAll("[data-tick]").forEach(function (el) {
+    var target = parseFloat(el.getAttribute("data-tick"));
+    function set(v) { el.textContent = "\u2212" + v.toFixed(1); }
+    if (reduce || !("IntersectionObserver" in window)) { set(target); return; }
+    set(0);
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      var t0 = null;
+      (function step(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 1800, 1);
+        set(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    }, { threshold: 0.4 });
+    io.observe(el);
+  });
+
   /* ---- Portfolio groups: climate-threatened vs highly regulated ---- */
   var groups = [].slice.call(document.querySelectorAll(".group"));
   function pickGroup(btn) {
