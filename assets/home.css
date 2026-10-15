@@ -1,6 +1,6 @@
 /* ============================================================================
    Planet A Foods — homepage (Relaunch 2026), designer system v1
-   DM Sans · brand purple #320F99 · light green #82C7AE · sky #B0DCE0 · light grey #F7F7F9 · pills, rounded image
+   Rethink Sans · brand purple #320F99 · light green #82C7AE · sky #B0DCE0 · light grey #F7F7F9 · pills, rounded image
    tiles with overlay copy, the striped ring mark. Each section is sized for
    one 16:9 desktop screen; phones fall back to a natural flow.
    Scoped to this page only; sub-pages keep using styles.css.
@@ -25,7 +25,7 @@
   --maxw: 1600px;
   --gutter: clamp(20px, 4vw, 70px);
   --r: 8px;
-  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --ease: cubic-bezier(.16, .84, .3, 1);
 }
 
