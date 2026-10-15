@@ -6,7 +6,7 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function play(v) { if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
 
-  /* ---- Hero: ingredient reel (cocoa → citrus → coffee → hazelnut → cocoa butter → vanilla) ---- */
+  /* ---- Hero: ingredient reel (cocoa → citrus → coffee → hazelnut → vanilla → cocoa booster → cocoa butter) ---- */
   var reels = [].slice.call(document.querySelectorAll(".hero .reel"));
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
   var current = -1, timer = null, HOLD = 5200;
