@@ -200,9 +200,10 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .scale-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 /* ============================ 05 SUSTAINABILITY (light green) ============================ */
-.impact { --g-bg: #E2EBCB; --g-bg-2: #D3E0B2; --g-ink: #1F2A12; --g-ink-2: #46522F; --g-deep: #3E4E1F; --g-acc: #5E7038; --g-base: #9AA57F;
-  background: radial-gradient(120% 90% at 85% 20%, var(--g-bg-2), var(--g-bg) 60%); color: var(--g-ink); overflow: hidden; }
-.impact-a { position: absolute; right: -6vw; bottom: -18%; width: min(56vw, 900px); height: auto; color: #C9D8A2; opacity: .75; pointer-events: none; animation: sway 30s ease-in-out infinite alternate; transform-origin: 40% 60%; }
+.impact { /* brand Light Green #82C7AE as the ground, brand purple as the accent */
+  --g-bg: #82C7AE; --g-bg-2: #A4D8C5; --g-ink: #0D2B22; --g-ink-2: #1D4537; --g-deep: #0D2B22; --g-acc: var(--purple); --g-base: rgba(13,43,34,.32);
+  background: radial-gradient(120% 90% at 85% 15%, var(--g-bg-2), var(--g-bg) 62%); color: var(--g-ink); overflow: hidden; }
+.impact-a { position: absolute; right: -6vw; bottom: -18%; width: min(56vw, 900px); height: auto; color: #A9DBC8; opacity: .9; pointer-events: none; animation: sway 30s ease-in-out infinite alternate; transform-origin: 40% 60%; }
 @keyframes sway { from { transform: rotate(-6deg) translateY(0); } to { transform: rotate(6deg) translateY(-3%); } }
 .impact .wrap { position: relative; z-index: 1; }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
@@ -226,14 +227,14 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .co2-val { text-align: right; font-variant-numeric: tabular-nums; }
 .impact-side { display: grid; gap: 14px; }
 .impact-card { padding: 24px 26px; border-radius: var(--r); background: rgba(255,255,255,.72); backdrop-filter: blur(8px); transition: background .35s ease, transform .5s var(--ease), box-shadow .5s var(--ease); }
-.impact-card:hover { background: #fff; transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(62,78,31,.5); }
-.ic-no { display: inline-block; padding: 3px 12px; border-radius: 999px; background: #EEF3E0; color: var(--g-deep); font-weight: 600; font-size: .85rem; }
+.impact-card:hover { background: #fff; transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(13,43,34,.5); }
+.ic-no { display: inline-block; padding: 3px 12px; border-radius: 999px; background: #DDF0E8; color: var(--g-deep); font-weight: 600; font-size: .85rem; }
 .impact-card h3 { margin-top: 14px; color: var(--g-ink); }
 .impact-card p { color: var(--g-ink-2); margin-top: 6px; }
 .impact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 10px; }
 .btn-green { background: var(--g-acc); color: #fff; }
-.btn-green:hover { background: var(--g-deep); }
-.btn-text.dark-green { color: var(--g-deep); }
+.btn-green:hover { background: var(--purple-2); }
+.btn-text.dark-green { color: var(--g-ink); }
 .btn-text.dark-green:hover span { transform: translate(3px, -3px); }
 
 /* ============================ 07 COMPANY ============================ */
