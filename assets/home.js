@@ -22,6 +22,12 @@
     current = i;
   }
   function next() { show((current + 1) % reels.length); }
+  // hovering / focusing a solution name jumps the film to that shot (the link itself opens its page)
+  marks.forEach(function (m, k) {
+    function jump() { if (k !== current) show(k); if (timer) { clearInterval(timer); timer = setInterval(next, HOLD); } }
+    m.addEventListener("mouseenter", jump);
+    m.addEventListener("focusin", jump);
+  });
   if (reels.length) {
     show(0);
     if (!reduce) {
