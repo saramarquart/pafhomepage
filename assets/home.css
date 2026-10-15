@@ -379,11 +379,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .deco-a { position: absolute; pointer-events: none; z-index: 0; width: 40vw; aspect-ratio: 57 / 60; height: auto; }
 .wrap { position: relative; z-index: 1; }
 .d-numbers { color: var(--sky-lt); width: min(30vw, 460px); left: -8vw; top: -30%; transform: rotate(-18deg); }
-.d-why { color: var(--green); opacity: .16; width: min(44vw, 720px); left: -14vw; bottom: -26%; animation: sway 34s ease-in-out infinite alternate; }
 .d-portfolio { color: var(--sky); opacity: .55; width: min(42vw, 680px); right: -12vw; top: -16%; transform: rotate(14deg); }
-.d-benefits { color: var(--green-lt); width: min(34vw, 560px); left: -10vw; bottom: -20%; }
-.d-scale { color: var(--sky-lt); width: min(36vw, 600px); right: -6vw; bottom: -24%; }
-.d-big { color: var(--green); opacity: .22; width: 64%; right: -16%; bottom: -22%; }
 
 /* colour codes: 01 green · 02 sky · 03 white/lilac · 04 green */
 .fact b { position: relative; }
@@ -447,5 +443,4 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* Footer "A" in sky → light green */
 .footer-a { opacity: .9; }
 
-@media (prefers-reduced-motion: reduce) { .d-why { animation: none; } }
 @media (max-width: 999px) { .why-media { box-shadow: 10px 10px 0 0 var(--green); } .driver::before { left: -10px; } .scale-media::before { transform: translate(-10px, 10px); } }
