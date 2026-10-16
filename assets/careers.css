@@ -123,17 +123,22 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-split-head .lead { margin: 0; }
 
 /* ---------- 5 · KEY FACTS (home.css .fact for number + label) ---------- */
-.cr-facts { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff; }
-.cr-facts-rings { position: absolute; z-index: -1; right: -12vw; top: 50%; width: min(78vw, 1150px);
-  opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
-  animation: spin 160s linear infinite; }
-.cr-facts .lead { color: rgba(255,255,255,.86); }
-.cr-fact { align-items: flex-start; text-align: left; background: #fff; color: var(--ink); transition: transform .5s var(--ease); }
-.cr-fact:hover { transform: translateY(-4px); }
-.cr-fact .cr-icon { background: var(--mint); color: var(--purple); }
-.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); width: 100%; }
-.cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); color: var(--purple); }
-.cr-fact .fact span { color: var(--ink); font-weight: 600; }
+.cr-facts { position: relative; overflow: hidden; isolation: isolate; color: #fff;
+  /* softer violet: gentle gradient Warm Violet -> Blue Print with a faint sky glow */
+  background:
+    radial-gradient(60% 80% at 85% 10%, rgba(176,220,224,.22) 0%, rgba(176,220,224,0) 60%),
+    radial-gradient(50% 70% at 5% 100%, rgba(130,199,174,.16) 0%, rgba(130,199,174,0) 60%),
+    linear-gradient(160deg, #320F99 0%, #332D84 100%); }
+.cr-d-facts { color: #fff; opacity: .06; width: min(36vw, 560px); right: -8vw; top: -18%; transform: rotate(14deg); }
+.cr-facts .lead { color: rgba(255,255,255,.82); }
+.cr-fact { align-items: flex-start; text-align: left; color: var(--ink); border-radius: 14px;
+  background: rgba(255,255,255,.9); box-shadow: 0 20px 44px -28px rgba(17,17,17,.45); transition: transform .5s var(--ease), background .4s ease; }
+.cr-fact:hover { transform: translateY(-4px); background: #fff; }
+.cr-fact .cr-icon { background: var(--sky); color: var(--purple); }
+.cr-fact:nth-child(even) .cr-icon { background: var(--green); }
+.cr-fact .fact { margin: 24px 0 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(50,15,153,.12); width: 100%; }
+.cr-fact .fact b { font-size: clamp(2.6rem, 4vw, 4rem); color: var(--purple); font-weight: 600; }
+.cr-fact .fact span { color: var(--ink-2); font-weight: 600; }
 .cr-fact p { margin: 0; color: var(--ink-2); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
@@ -233,8 +238,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]) { animation: crFade .45s var(--ease); }
 @keyframes crFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-    .cr-facts-rings { animation: none; }
-  .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
+    .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
   .cr-step-icon, .cr-step-label, .cr-seg [role="tab"] { transition: none; }
 }
 
@@ -250,7 +254,6 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   .cr-cta-media::after { background: linear-gradient(0deg, var(--purple) 0%, rgba(50,15,153,0) 35%); }
   .cr-cta-copy { width: auto; padding-top: 8px; }
     .cr-cta-rings { left: auto; right: -40%; bottom: -30%; width: 120vw; }
-  .cr-facts-rings { right: -45vw; width: 130vw; }
 }
 @media (max-width: 640px) {
   .cr-vision, .cr-perks { margin-top: -24px; border-radius: 24px 24px 0 0; }
