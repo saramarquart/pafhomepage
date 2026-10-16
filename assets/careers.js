@@ -166,7 +166,6 @@ var KEY_FACTS = [
     function render() {
       var show = open || !mq.matches;
       root.style.setProperty("--active", active);   // drives the progress line
-      root.setAttribute("data-step", active);       // drives the per-step colour tint
       btns.forEach(function (b, i) { b.classList.toggle("is-done", i < active); });
       btns.forEach(function (b, i) {
         var on = i === active;

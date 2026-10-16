@@ -178,18 +178,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-banner p { color: rgba(255,255,255,.9); }
 
 /* ---------- 7 · HOW TO JOIN — soft sky-tinted ground, progress track, raised detail card ---------- */
-/* each step tints the section slightly (glow, card edge, tip box) so clicking through feels like moving on */
-@property --join-glow { syntax: "<color>"; inherits: true; initial-value: rgba(176,220,224,.55); }
-@property --join-edge { syntax: "<color>"; inherits: true; initial-value: #320F99; }
-@property --join-tip  { syntax: "<color>"; inherits: true; initial-value: rgba(176,220,224,.35); }
 .cr-join { position: relative; overflow: clip;
-  --join-glow: rgba(176,220,224,.55); --join-edge: var(--purple); --join-tip: rgba(176,220,224,.35);
-  background: radial-gradient(70% 60% at 50% 0%, var(--join-glow) 0%, rgba(255,255,255,0) 70%), var(--grey);
-  transition: --join-glow .9s ease, --join-edge .6s ease, --join-tip .6s ease; }
-.cr-join:has(.cr-tabpanel:not([hidden]) .cr-steps[data-step="1"]) { --join-glow: rgba(130,199,174,.45); --join-edge: #82C7AE; --join-tip: rgba(130,199,174,.28); }
-.cr-join:has(.cr-tabpanel:not([hidden]) .cr-steps[data-step="2"]) { --join-glow: rgba(50,15,153,.13);   --join-edge: #332D84; --join-tip: rgba(50,15,153,.08); }
-.cr-join:has(.cr-tabpanel:not([hidden]) .cr-steps[data-step="3"]) { --join-glow: rgba(176,220,224,.7);  --join-edge: #B0DCE0; --join-tip: rgba(176,220,224,.45); }
-.cr-join:has(.cr-tabpanel:not([hidden]) .cr-steps[data-step="4"]) { --join-glow: rgba(130,199,174,.6);  --join-edge: var(--purple); --join-tip: rgba(130,199,174,.35); }
+  background: radial-gradient(70% 60% at 50% 0%, rgba(176,220,224,.55) 0%, rgba(176,220,224,0) 70%), var(--grey); }
 .cr-d-join { color: var(--sky); opacity: .45; width: min(30vw, 440px); left: -9vw; bottom: -12%; transform: rotate(-16deg); }
 .cr-join .cr-seg { background: #fff; box-shadow: 0 10px 30px -20px rgba(50,15,153,.35); }
 .cr-steps { --steps: 5; --active: 0; list-style: none; margin: 0; padding: 0; position: relative;
@@ -216,14 +206,14 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-step-btn[aria-current="step"] .cr-step-label small { color: var(--purple); }
 
 .cr-step-panel { grid-row: 2; grid-column: 1 / -1; display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 4vw, 64px);
-  background: #fff; border-radius: 18px; padding: clamp(28px, 4vw, 56px); box-shadow: 0 30px 60px -40px rgba(50,15,153,.45); border-top: 4px solid var(--join-edge, var(--purple)); }
+  background: #fff; border-radius: 18px; padding: clamp(28px, 4vw, 56px); box-shadow: 0 30px 60px -40px rgba(50,15,153,.45); border-top: 4px solid var(--purple); }
 .cr-step-panel[hidden] { display: none; }
 .cr-step-no { font-size: .82rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--purple); }
 .cr-step-main h3 { margin: 14px 0 16px; font-size: clamp(1.5rem, 2.4vw, 2.2rem); }
 .cr-step-main .tag { margin-bottom: 18px; }
 .cr-step-main p:last-child { color: var(--ink-2); }
 .cr-step-side { display: flex; flex-direction: column; gap: 24px; }
-.cr-tip { background: var(--join-tip, rgba(176,220,224,.35)); border-radius: 14px; padding: 22px 24px; border-left: 4px solid var(--join-edge, var(--sky)); }
+.cr-tip { background: rgba(176,220,224,.35); border-radius: 14px; padding: 22px 24px; border-left: 4px solid var(--sky); }
 .cr-tip-label { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
 .cr-tip p:last-child { color: var(--ink); }
 .cr-step-nav { margin-top: auto; display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
@@ -255,7 +245,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 @keyframes crFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
     .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
-  .cr-step-icon, .cr-step-label, .cr-seg [role="tab"], .cr-join { transition: none; }
+  .cr-step-icon, .cr-step-label, .cr-seg [role="tab"] { transition: none; }
 }
 
 /* ============================ RESPONSIVE ============================ */
