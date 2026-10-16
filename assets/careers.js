@@ -74,7 +74,7 @@ var KEY_FACTS = [
         if (p >= 1) tween = null;
         render();
       } else if (!reduce && !hover && !focused && !drag && visible && ts >= resumeAt) {
-        offset += (SPEED + (window.crBoost || 0)) * dt;   // crBoost: optional scroll-linked speed-up
+        offset += SPEED * dt;
         render();
       }
       requestAnimationFrame(frame);
@@ -206,7 +206,7 @@ var KEY_FACTS = [
   });
 
   /* Story motion (see careers.css): wrap words for the headline / reading reveals, stagger cards,
-     and let the photo strip speed up with the scroll. Skipped with reduced motion. */
+     Skipped with reduced motion. */
   if (!reduce && window.CSS && CSS.supports("animation-timeline: view()")) {
     /* wrap every word of an element in <span class="sw"><i>word</i></span>, keeping inner markup (br, spans) */
     function splitWords(el) {
@@ -244,17 +244,9 @@ var KEY_FACTS = [
       var el = document.querySelector(sel); if (el) ink = ink.concat(splitWords(el));
     });
     ink.forEach(function (w, k) {
-      var a = 14 + (k / ink.length) * 34;
-      w.style.animationRange = "cover " + a.toFixed(1) + "% cover " + (a + 5).toFixed(1) + "%";
+      var a = 4 + (k / ink.length) * 14;   // quick: the whole text is dark before it reaches mid-screen
+      w.style.animationRange = "cover " + a.toFixed(1) + "% cover " + (a + 4).toFixed(1) + "%";
     });
 
-    var lastY = window.scrollY, lastT = performance.now();
-    window.crBoost = 0;
-    window.addEventListener("scroll", function () {
-      var now = performance.now(), v = Math.abs(window.scrollY - lastY) / Math.max(16, now - lastT) * 1000;
-      window.crBoost = Math.min(900, Math.max(window.crBoost, v * 0.6));
-      lastY = window.scrollY; lastT = now;
-    }, { passive: true });
-    (function decay() { window.crBoost *= 0.92; if (window.crBoost < 1) window.crBoost = 0; requestAnimationFrame(decay); })();
   }
 })();
