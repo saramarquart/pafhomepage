@@ -74,7 +74,7 @@ var KEY_FACTS = [
         if (p >= 1) tween = null;
         render();
       } else if (!reduce && !hover && !focused && !drag && visible && ts >= resumeAt) {
-        offset += SPEED * dt;
+        offset += (SPEED + (window.crBoost || 0)) * dt;   // crBoost: optional scroll-linked speed-up
         render();
       }
       requestAnimationFrame(frame);

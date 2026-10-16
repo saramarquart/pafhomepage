@@ -50,7 +50,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 /* ---------- FLOW: sections hand over to each other instead of stacking as blocks.
    Grounds fade white ↔ Background Color #F3F3F3, the vision sheet slides over the hero,
    and the final section dissolves into the grey footer. ---------- */
-.cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff; overflow: hidden;
+.cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff; overflow: clip;
   padding: clamp(64px, 7vw, 100px) 0 clamp(56px, 6vw, 88px); }
 .cr-work  { background: var(--grey); padding-top: clamp(56px, 6vw, 88px); }
 .cr-perks { position: relative; z-index: 1; margin-top: -40px; border-radius: 32px 32px 0 0; background: #fff;
@@ -101,7 +101,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-vision .center-head { margin-bottom: 0; }
 .cr-d-vision { color: var(--sky); opacity: .35; width: min(34vw, 520px); right: -10vw; top: -40%; transform: rotate(16deg); }
 .cr-d-perks  { color: var(--green); opacity: .22; width: min(30vw, 460px); left: -10vw; top: 6%; transform: rotate(-18deg); }
-.cr-perks { overflow: hidden; }
+.cr-perks { overflow: clip; }
 .cr-hl { color: var(--purple); }
 .cr-strong { font-weight: 600; color: var(--ink); margin-top: 22px; }
 
@@ -123,7 +123,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-split-head .lead { margin: 0; }
 
 /* ---------- 5 · KEY FACTS (home.css .fact for number + label) ---------- */
-.cr-facts { position: relative; overflow: hidden; isolation: isolate; color: #fff;
+.cr-facts { position: relative; overflow: clip; isolation: isolate; color: #fff;
   /* softer violet: gentle gradient Warm Violet -> Blue Print with a faint sky glow */
   background:
     radial-gradient(60% 80% at 85% 10%, rgba(176,220,224,.22) 0%, rgba(176,220,224,0) 60%),
@@ -178,7 +178,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-banner p { color: rgba(255,255,255,.9); }
 
 /* ---------- 7 · HOW TO JOIN — soft sky-tinted ground, progress track, raised detail card ---------- */
-.cr-join { position: relative; overflow: hidden;
+.cr-join { position: relative; overflow: clip;
   background: radial-gradient(70% 60% at 50% 0%, rgba(176,220,224,.55) 0%, rgba(176,220,224,0) 70%), var(--grey); }
 .cr-d-join { color: var(--sky); opacity: .45; width: min(30vw, 440px); left: -9vw; bottom: -12%; transform: rotate(-16deg); }
 .cr-join .cr-seg { background: #fff; box-shadow: 0 10px 30px -20px rgba(50,15,153,.35); }
