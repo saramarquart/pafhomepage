@@ -166,6 +166,7 @@ var KEY_FACTS = [
     function render() {
       var show = open || !mq.matches;
       root.style.setProperty("--active", active);   // drives the progress line
+      root.setAttribute("data-step", active);       // drives the per-step colour tint
       btns.forEach(function (b, i) { b.classList.toggle("is-done", i < active); });
       btns.forEach(function (b, i) {
         var on = i === active;
@@ -204,4 +205,57 @@ var KEY_FACTS = [
     if (mq.addEventListener) mq.addEventListener("change", render); else if (mq.addListener) mq.addListener(render);
     render();
   });
+
+  /* Story motion (see careers.css): wrap words for the headline / reading reveals, stagger cards,
+     and let the photo strip speed up with the scroll. Skipped with reduced motion. */
+  if (!reduce && window.CSS && CSS.supports("animation-timeline: view()")) {
+    /* wrap every word of an element in <span class="sw"><i>word</i></span>, keeping inner markup (br, spans) */
+    function splitWords(el) {
+      var words = [];
+      (function walk(node) {
+        [].slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            var parts = n.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+            parts.forEach(function (p) {
+              if (!p) return;
+              if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+              var s = document.createElement("span"), i = document.createElement("i");
+              s.className = "sw"; i.textContent = p; s.appendChild(i); frag.appendChild(s); words.push(i);
+            });
+            n.parentNode.replaceChild(frag, n);
+          } else if (n.nodeType === 1 && n.tagName !== "BR") { walk(n); }
+        });
+      })(el);
+      words.forEach(function (w, k) { w.style.setProperty("--i", k); });
+      return words;
+    }
+
+    /* stagger index for cards inside each grid / step list */
+    [".cr-grid-4", ".cr-grid-2", ".cr-steps"].forEach(function (sel) {
+      [].forEach.call(document.querySelectorAll(sel), function (g) {
+        [].forEach.call(g.querySelectorAll(".cr-value, .cr-fact, .cr-perk, .cr-step-btn"), function (c, k) { c.style.setProperty("--n", k); });
+      });
+    });
+
+    var h1 = document.querySelector(".cr-hero h1"); if (h1) splitWords(h1);
+    [].forEach.call(document.querySelectorAll(".cr-sec h2"), splitWords);
+    /* vision paragraph + closing line read themselves, spread over the scroll */
+    var ink = [];
+    [".cr-vision .lead", ".cr-vision .cr-strong"].forEach(function (sel) {
+      var el = document.querySelector(sel); if (el) ink = ink.concat(splitWords(el));
+    });
+    ink.forEach(function (w, k) {
+      var a = 14 + (k / ink.length) * 34;
+      w.style.animationRange = "cover " + a.toFixed(1) + "% cover " + (a + 5).toFixed(1) + "%";
+    });
+
+    var lastY = window.scrollY, lastT = performance.now();
+    window.crBoost = 0;
+    window.addEventListener("scroll", function () {
+      var now = performance.now(), v = Math.abs(window.scrollY - lastY) / Math.max(16, now - lastT) * 1000;
+      window.crBoost = Math.min(900, Math.max(window.crBoost, v * 0.6));
+      lastY = window.scrollY; lastT = now;
+    }, { passive: true });
+    (function decay() { window.crBoost *= 0.92; if (window.crBoost < 1) window.crBoost = 0; requestAnimationFrame(decay); })();
+  }
 })();
