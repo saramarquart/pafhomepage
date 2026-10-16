@@ -337,14 +337,21 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .group-note { margin: 16px auto 0; max-width: 52ch; color: var(--ink-2); }
 .slide[hidden] { display: none; }
 /* colour alternatives: a swatch tile in natural colour bands until a photo exists */
-.swatch .tile-media { display: flex; transform: skewX(-12deg) scale(1.3); }
-.swatch .tile-media span { flex: 1; transition: flex .8s var(--ease); }
-.swatch .tile-media span:nth-child(1) { background: #8E2C2A; }
-.swatch .tile-media span:nth-child(2) { background: #C8642B; }
-.swatch .tile-media span:nth-child(3) { background: #E1B23C; }
-.swatch .tile-media span:nth-child(4) { background: #6F8A3A; }
-.swatch .tile-media span:nth-child(5) { background: #3E5F8A; }
-.slide:hover .swatch .tile-media span:nth-child(odd) { flex: 1.6; }
+/* Colour alternatives: soft clouds of natural food colours drifting into each other */
+.pigments .tile-media { background: #FBF7EF; overflow: hidden; }
+.tile.pigments::after { background: linear-gradient(180deg, rgba(14,11,26,.38) 0%, rgba(14,11,26,0) 34%, rgba(14,11,26,0) 66%, rgba(14,11,26,.42) 100%); }
+.pigments .tile-media span { position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; filter: blur(26px); opacity: .92; animation: pigment 16s ease-in-out infinite alternate; }
+.pigments .tile-media span:nth-child(1) { background: #A3264B; left: -12%; top: -14%; }                          /* beetroot */
+.pigments .tile-media span:nth-child(2) { background: #E06A2C; left: 38%;  top: -20%; animation-delay: -4s; }    /* paprika */
+.pigments .tile-media span:nth-child(3) { background: #F2B526; left: 8%;   top: 34%;  animation-delay: -8s; }    /* turmeric */
+.pigments .tile-media span:nth-child(4) { background: #3E8E5A; left: 52%;  top: 40%;  animation-delay: -12s; }   /* spirulina */
+.pigments .tile-media span:nth-child(5) { background: #3D5BB5; left: 66%;  top: 2%;   width: 56%; animation-delay: -6s; }   /* butterfly pea */
+@keyframes pigment {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(14%, 10%, 0) scale(1.18); }
+  100% { transform: translate3d(-10%, 6%, 0) scale(.9); }
+}
+.slide:hover .pigments .tile-media span { animation-duration: 8s; }
 
 /* ============================ BENEFITS ============================ */
 .benefits { background: var(--grey); }
@@ -432,7 +439,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .reel.on, .reel.on video, .reel.on img, .reel.was video, .reel.was img, .drift img, .impact-film img { animation: none; }
+  .pigments .tile-media span, .reel.on, .reel.on video, .reel.on img, .reel.was video, .reel.was img, .drift img, .impact-film img { animation: none; }
   .co2-bar { transition: none; width: var(--w); }
   .reel-index li.on .reel-go::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
