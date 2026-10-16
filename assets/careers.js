@@ -238,6 +238,14 @@ var KEY_FACTS = [
 
     var h1 = document.querySelector(".cr-hero h1"); if (h1) splitWords(h1);
     [].forEach.call(document.querySelectorAll(".cr-sec h2"), splitWords);
+    /* section headlines rise in once, as soon as they are properly in view */
+    var heads = document.querySelectorAll(".cr-sec h2");
+    if ("IntersectionObserver" in window) {
+      var ho = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); ho.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      [].forEach.call(heads, function (h) { ho.observe(h); });
+    } else { [].forEach.call(heads, function (h) { h.classList.add("is-in"); }); }
     /* vision paragraph + closing line read themselves, spread over the scroll */
     var ink = [];
     [".cr-vision .lead", ".cr-vision .cr-strong"].forEach(function (sel) {

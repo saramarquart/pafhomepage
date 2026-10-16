@@ -81,10 +81,12 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-value::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; background: var(--green); transition: width .7s var(--ease); }
 .cr-value:nth-child(2)::before { background: var(--sky); }
 .cr-value:nth-child(3)::before { background: var(--purple); }
+.cr-value:nth-child(4)::before { background: #EEB650; }   /* Ronchi (Brand Guideline) */
 .cr-value:hover::before { width: 100%; }
 .cr-no { align-self: flex-start; margin-bottom: 18px; padding: 3px 12px; border-radius: 999px; font-weight: 600; font-size: .85rem; background: var(--green); color: var(--ink); }
 .cr-value:nth-child(2) .cr-no { background: var(--sky); }
 .cr-value:nth-child(3) .cr-no { background: var(--purple); color: #fff; }
+.cr-value:nth-child(4) .cr-no { background: #EEB650; color: var(--ink); }
 .cr-work .cr-card { background: #fff; box-shadow: inset 0 0 0 1px rgba(45,45,45,.1); }
 
 /* icon in a Light Blue circle */
@@ -135,7 +137,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-d-facts { color: #fff; opacity: .06; width: min(36vw, 560px); right: -8vw; top: -18%; transform: rotate(14deg); }
 .cr-facts .lead { color: rgba(255,255,255,.82); }
 .cr-fact { align-items: flex-start; text-align: left; color: var(--ink); border-radius: 14px;
-  background: rgba(255,255,255,.9); box-shadow: 0 20px 44px -28px rgba(17,17,17,.45); transition: transform .5s var(--ease), background .4s ease; }
+  background: #fff; box-shadow: 0 20px 44px -28px rgba(17,17,17,.45); transition: transform .5s var(--ease), background .4s ease; }
 .cr-fact:hover { transform: translateY(-4px); background: #fff; }
 .cr-fact .cr-icon { background: var(--sky); color: var(--purple); }
 .cr-fact:nth-child(even) .cr-icon { background: var(--green); }
@@ -338,8 +340,10 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   @keyframes dUp { from { transform: translateY(110%); } to { transform: none; } }
 
   /* section headlines rise in word by word as they scroll into view */
-  .cr-sec h2 .sw { overflow: clip; padding-bottom: .1em; margin-bottom: -.1em; vertical-align: top; view-timeline: --w block; }
-  .cr-sec h2 .sw > i { animation: dUp linear both; animation-timeline: --w; animation-range: entry calc(var(--i) * 4%) cover calc(22% + var(--i) * 4%); }
+  /* (played once when the headline is in view, not tied to the scroll position, so words are never left half-shown) */
+  .cr-sec h2 .sw { overflow: clip; padding-bottom: .1em; margin-bottom: -.1em; vertical-align: top; }
+  .cr-sec h2 .sw > i { transform: translateY(110%); transition: transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i) * 55ms); }
+  .cr-sec h2.is-in .sw > i { transform: none; }
 
   /* the vision paragraph reads itself: words turn from grey to ink as you scroll */
   .cr-vision .lead .sw > i, .cr-vision .cr-strong .sw > i { color: #CCCCCC; animation: dInk linear both; animation-timeline: view(); }
