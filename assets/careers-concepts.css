@@ -1,0 +1,157 @@
+/* ============================================================================
+   Careers — optimisation concepts to compare (temporary). ?concept=1|2|3|off
+   1 · Clarity  — information first: facts in the hero and right after the vision,
+                  values as an easy-to-scan list, Munich and Pilsen side by side.
+   2 · Gallery  — people first: bigger photos with captions, values as photo tiles,
+                  key facts over a team photo, faces beside the vision.
+   3 · Split    — radical: an editorial two-column story. A sticky photo panel on the
+                  left changes chapter by chapter while the content scrolls on the right.
+   All build on the current page (Story motion stays on). Desktop-specific layouts
+   fall back to the normal page on tablets and phones.
+   ========================================================================== */
+
+.cc-switch { position: fixed; z-index: 300; left: 16px; bottom: 16px; display: flex; flex-wrap: wrap; gap: 4px; padding: 5px;
+  border-radius: 24px; background: #fff; box-shadow: 0 12px 30px -14px rgba(17,17,17,.45); font-size: .85rem; max-width: calc(100vw - 32px); }
+.cc-switch span { padding: 7px 10px 7px 12px; color: var(--muted); font-weight: 600; }
+.cc-switch a { padding: 7px 14px; border-radius: 999px; color: var(--purple); font-weight: 600; }
+.cc-switch a[aria-current] { background: var(--purple); color: #fff; }
+
+/* ======================================================================= 1 · CLARITY */
+/* hero: concrete facts straight away + a second, lighter route to the process */
+.cc-herofacts { display: none; }
+.concept-1 .cc-herofacts { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.concept-1 .cc-herofacts li { padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.16); backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); color: #fff; font-weight: 500; font-size: .95rem; }
+.cc-hire { display: none; }
+.concept-1 .cc-hire { display: inline-flex; }
+.concept-1 .cr-hero .hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+/* order: facts come right after the vision, before the values */
+.concept-1 main { display: flex; flex-direction: column; }
+.concept-1 .cr-hero { order: 0; } .concept-1 .cr-vision { order: 1; } .concept-1 .cr-facts { order: 2; }
+.concept-1 .cr-work { order: 3; } .concept-1 .cr-perks { order: 4; } .concept-1 .cr-join { order: 5; } .concept-1 .cr-final { order: 6; }
+
+/* key facts as a compact band, not four tall cards */
+.concept-1 .cr-facts { padding: clamp(48px, 6vw, 80px) 0; }
+.concept-1 .cr-facts .center-head { margin-bottom: clamp(24px, 3vw, 40px); }
+.concept-1 .cr-facts .cr-grid-4 { gap: 0; }
+.concept-1 .cr-fact { background: transparent; box-shadow: none; border-radius: 0; color: #fff; padding: 8px clamp(16px, 2vw, 32px);
+  border-left: 1px solid rgba(255,255,255,.22); }
+.concept-1 .cr-fact:first-child { border-left: 0; }
+.concept-1 .cr-fact .cr-icon { display: none; }
+.concept-1 .cr-fact .fact { margin: 0 0 8px; padding: 0; border: 0; }
+.concept-1 .cr-fact .fact b { color: #fff; }
+.concept-1 .cr-fact .fact span { color: var(--green); }
+.concept-1 .cr-fact p { color: rgba(255,255,255,.8); font-size: .92rem; }
+.concept-1 .cr-fact:hover { transform: none; }
+.concept-1 .cr-perks { margin-top: 0; border-radius: 0; box-shadow: none; }
+
+/* values: a scannable numbered list instead of four equal boxes */
+.concept-1 .cr-work .cr-grid-4 { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+.concept-1 .cr-value { display: grid; grid-template-columns: 70px minmax(200px, 1fr) 2fr auto; align-items: center; gap: 0 clamp(16px, 3vw, 48px);
+  background: transparent; border-radius: 0; border-bottom: 1px solid var(--line); padding: clamp(20px, 2.4vw, 30px) 4px; }
+.concept-1 .cr-value:hover { transform: none; box-shadow: none; background: #fff; }
+.concept-1 .cr-value .cr-no { margin: 0; }
+.concept-1 .cr-value h3 { margin: 0; }
+.concept-1 .cr-value > p { margin: 0; }
+.concept-1 .cr-value > .tag { margin: 0; justify-self: end; }
+
+/* perks: Munich and Pilsen side by side (JS removes the tabs on wide screens) */
+@media (min-width: 1100px) {
+  .concept-1.cc-wide .cr-perks .cr-seg-wrap { display: none; }
+  .concept-1.cc-wide .cr-perks > .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(24px, 3vw, 48px); align-items: start; }
+  .concept-1.cc-wide .cr-perks .center-head { grid-column: 1 / -1; }
+  .concept-1.cc-wide .cr-perks .cr-grid-2 { grid-template-columns: 1fr; }
+  .concept-1.cc-wide .cr-perks .cr-office { text-align: left; }
+  .concept-1.cc-wide .cr-perks .cr-office-site { margin: 0; }
+  .concept-1.cc-wide .cr-perks .cr-office-site > p:not([class]) { margin-inline: 0; }
+  .concept-1.cc-wide .cr-perks .cr-banner { min-height: 300px; }
+}
+@media (max-width: 820px) {
+  .concept-1 .cr-value { grid-template-columns: 52px 1fr; grid-template-areas: "no title" "no text" "no tag"; row-gap: 8px; }
+  .concept-1 .cr-value .cr-no { grid-area: no; align-self: start; }
+  .concept-1 .cr-value h3 { grid-area: title; } .concept-1 .cr-value > p { grid-area: text; } .concept-1 .cr-value > .tag { grid-area: tag; justify-self: start; }
+  .concept-1 .cr-facts .cr-grid-4 { grid-template-columns: 1fr 1fr; row-gap: 24px; }
+  .concept-1 .cr-fact:nth-child(3) { border-left: 0; }
+}
+
+/* ======================================================================= 2 · GALLERY */
+/* faces beside the vision */
+.cc-face { display: none; }
+@media (min-width: 1100px) {
+  .concept-2 .cc-face { display: block; position: absolute; z-index: 0; width: clamp(160px, 15vw, 240px); aspect-ratio: 4 / 5; border-radius: 18px;
+    overflow: hidden; box-shadow: 0 24px 50px -28px rgba(17,17,17,.5); }
+  .concept-2 .cc-face img { width: 100%; height: 100%; object-fit: cover; }
+  .concept-2 .cc-face-l { left: clamp(24px, 5vw, 96px); top: 22%; rotate: -4deg; }
+  .concept-2 .cc-face-r { right: clamp(24px, 5vw, 96px); top: 38%; rotate: 5deg; }
+  .concept-2 .cr-d-vision { display: none; }
+}
+
+/* bigger photo strip with captions */
+.concept-2 .cr-carousel { --cr-size: clamp(260px, 30vw, 470px); }
+.concept-2 .cr-slide { position: relative; aspect-ratio: 4 / 5; }
+.cc-cap { display: none; }
+.concept-2 .cc-cap { display: block; position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px; color: #fff; font-size: .92rem; font-weight: 500;
+  background: linear-gradient(0deg, rgba(17,17,17,.7), rgba(17,17,17,0)); pointer-events: none; }
+
+/* values as photo tiles (homepage tile language) */
+.concept-2 .cr-value { min-height: 420px; color: #fff; background: #111; isolation: isolate; justify-content: flex-end; }
+.concept-2 .cr-value .cc-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.concept-2 .cr-value::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(17,17,17,.3) 0%, rgba(17,17,17,.62) 38%, rgba(17,17,17,.9) 100%); }
+.concept-2 .cr-value:hover .cc-bg { transform: scale(1.05); }
+.concept-2 .cr-value .cr-no { position: absolute; top: 22px; left: clamp(24px, 2.2vw, 34px); }
+.concept-2 .cr-value h3 { color: #fff; }
+.concept-2 .cr-value > p { color: rgba(255,255,255,.88); }
+.concept-2 .cr-value > .tag { margin-top: 6px; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.7); }
+.cc-bg { display: none; }
+.concept-2 .cc-bg { display: block; }
+
+/* key facts over a team photo */
+.concept-2 .cr-facts { background:
+  linear-gradient(160deg, rgba(50,15,153,.92) 0%, rgba(51,45,132,.86) 100%),
+  url("img/careers/careers-perks-pilsen-5-years.jpg") center 35% / cover no-repeat; }
+.concept-2 .cr-d-facts { display: none; }
+
+/* bigger celebration photo */
+.concept-2 .cr-banner { min-height: clamp(420px, 46vw, 640px); }
+
+/* ======================================================================= 3 · SPLIT (radical) */
+.cc-stage { display: none; }
+@media (min-width: 1100px) {
+  .concept-3 main > .cr-sec { padding-left: calc(42vw + 24px); }
+  .concept-3 main > .cr-sec > .wrap { max-width: none; padding-inline: clamp(24px, 3vw, 56px) var(--gutter); }
+  .concept-3 .deco-a { display: none; }
+  .concept-3 .cr-sec .center-head, .concept-3 .cr-sec .cr-center { text-align: left; margin-inline: 0; max-width: 62ch; }
+  .concept-3 .cr-sec .cr-center .lead, .concept-3 .cr-sec .center-head .lead { margin-inline: 0; }
+  .concept-3 .cr-seg-wrap, .concept-3 .cr-office { justify-content: flex-start; text-align: left; }
+  .concept-3 .cr-office-site { margin: 0; } .concept-3 .cr-office-site > p:not([class]) { margin-inline: 0; }
+  .concept-3 .cr-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .concept-3 .cr-split-head { grid-template-columns: 1fr; }
+  .concept-3 .cr-carousel { margin-left: 0; }
+  .concept-3 .cr-viewport { margin-left: clamp(24px, 3vw, 56px); }
+  .concept-3 .cr-steps { --steps: 5; }
+  .concept-3 .cr-step-label { font-size: .85rem; }
+  .concept-3 .cr-step-panel { grid-template-columns: 1fr; }
+  .concept-3 .cr-perks { margin-top: 0; border-radius: 0; box-shadow: none; }
+  .concept-3 .cr-vision { border-radius: 0; margin-top: 0; }
+  .concept-3 .cr-cta { min-height: 460px; }
+  .concept-3 .cr-cta-media { width: 50%; }
+  .concept-3 .cr-cta-copy { width: 56%; }
+
+  /* the sticky photo panel */
+  .concept-3 .cc-stage { display: block; position: fixed; z-index: 5; top: 84px; left: 16px; bottom: 16px; width: 42vw;
+    border-radius: 24px; overflow: hidden; background: #111; opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+  .concept-3 .cc-stage.is-on { opacity: 1; }
+  .concept-3 .cc-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06);
+    transition: opacity .9s ease, transform 6s var(--ease); }
+  .concept-3 .cc-stage img.is-on { opacity: 1; transform: scale(1); }
+  .concept-3 .cc-stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(17,17,17,.75) 0%, rgba(17,17,17,0) 45%); }
+  .concept-3 .cc-chapter { position: absolute; z-index: 1; left: 32px; right: 32px; bottom: 30px; color: #fff; }
+  .concept-3 .cc-chapter small { display: block; font-size: .85rem; font-weight: 600; letter-spacing: .14em; color: var(--green); margin-bottom: 8px; }
+  .concept-3 .cc-chapter b { display: block; font-size: clamp(1.8rem, 2.8vw, 2.8rem); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; }
+  .concept-3 .cc-dots { position: absolute; z-index: 1; top: 24px; left: 32px; display: flex; gap: 6px; }
+  .concept-3 .cc-dots i { width: 22px; height: 4px; border-radius: 999px; background: rgba(255,255,255,.35); transition: background .4s ease, width .4s ease; }
+  .concept-3 .cc-dots i.is-on { background: #fff; width: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .cc-stage img { transition: none !important; } }

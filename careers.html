@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/home.css?v=26" />
   <link rel="stylesheet" href="assets/careers.css?v=23" />
+  <!-- TEMP: optimisation concepts to compare (?concept=1|2|3|off) -->
+  <script>document.documentElement.classList.add("concept-" + (new URLSearchParams(location.search).get("concept") || "1"));</script>
+  <link rel="stylesheet" href="assets/careers-concepts.css?v=6" />
   <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
@@ -537,5 +540,6 @@
   <script src="assets/careers.js?v=10"></script>
   <script src="assets/main.js?v=31"></script>
   <script src="assets/home.js?v=1"></script>
+  <script src="assets/careers-concepts.js?v=6"></script>
 </body>
 </html>
