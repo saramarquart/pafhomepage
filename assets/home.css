@@ -129,10 +129,12 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* ============================ 01 HERO ============================ */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 600px; color: #fff; overflow: hidden; background: #1a1210; display: flex; align-items: flex-end; }
 .hero-stage, .reel { position: absolute; inset: 0; }
-.reel { opacity: 0; transition: opacity 1.6s ease; }
-.reel.on { opacity: 1; }
+.hero-stage { z-index: 0; isolation: isolate; }   /* keeps the reel layering below the shade and copy */
+.reel { opacity: 0; z-index: 0; transition: opacity 0s 2.4s; }   /* hidden only once the next shot has fully faded in */
+.reel.was { opacity: 1; z-index: 1; transition: none; }
+.reel.on { opacity: 1; z-index: 2; transition: opacity 2.2s cubic-bezier(.45,0,.25,1); }
 .reel video, .reel img { width: 100%; height: 100%; object-fit: cover; }
-.reel.on video, .reel.on img { animation: push 7s linear both; }   /* slow push-in per shot */
+.reel.on video, .reel.on img, .reel.was video, .reel.was img { animation: push 9s cubic-bezier(.3,.5,.4,1) both; }   /* slow push-in; keeps running while the shot fades out, so it never snaps */
 @keyframes push { from { transform: scale(1.08); } to { transform: scale(1); } }
 .hero-shade { position: absolute; inset: 0; background:
   linear-gradient(0deg, rgba(14,8,6,.78) 0%, rgba(14,8,6,.35) 45%, rgba(14,8,6,.25) 100%),
@@ -409,7 +411,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .reel.on video, .reel.on img, .drift img, .impact-film img { animation: none; }
+  .reel.on video, .reel.on img, .reel.was video, .reel.was img, .drift img, .impact-film img { animation: none; }
   .co2-bar { transition: none; width: var(--w); }
   .reel-index li.on .reel-go::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
