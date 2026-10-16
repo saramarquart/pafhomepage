@@ -51,7 +51,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
    Grounds fade white ↔ Background Color #F3F3F3, the vision sheet slides over the hero,
    and the final section dissolves into the grey footer. ---------- */
 .cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff; overflow: hidden;
-  padding: clamp(56px, 6vw, 88px) 0 clamp(40px, 4.5vw, 64px); }
+  padding: clamp(64px, 7vw, 100px) 0 clamp(56px, 6vw, 88px); }
 .cr-work  { background: var(--grey); padding-top: clamp(56px, 6vw, 88px); }
 .cr-perks { position: relative; z-index: 1; margin-top: -40px; border-radius: 32px 32px 0 0; background: #fff;
   padding-top: clamp(72px, 8vw, 120px); box-shadow: 0 -24px 48px -32px rgba(17,17,17,.45); }
@@ -97,10 +97,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-hero .hero-foot { margin-top: 0; }
 .cr-hero h1 { max-width: 17ch; text-wrap: balance; }
 
-/* ---------- 2 · VISION — headline left, copy right (homepage split), soft "A" mark behind ---------- */
-.cr-vision-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 96px); align-items: end; }
-.cr-vision h2 { margin-top: 26px; }
-.cr-vision .lead { margin: 0; max-width: 52ch; }
+/* ---------- 2 · VISION — centred, compact padding, soft "A" mark behind ---------- */
+.cr-vision .center-head { margin-bottom: 0; }
 .cr-d-vision { color: var(--sky); opacity: .35; width: min(34vw, 520px); right: -10vw; top: -40%; transform: rotate(16deg); }
 .cr-d-perks  { color: var(--green); opacity: .22; width: min(30vw, 460px); left: -10vw; top: 6%; transform: rotate(-18deg); }
 .cr-perks { overflow: hidden; }
@@ -317,4 +315,3 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-tabpanel .cr-banner { box-shadow: 18px 18px 0 0 var(--sky); margin-right: 18px; }
 #cr-panel-pilsen .cr-banner { box-shadow: 18px 18px 0 0 var(--green); }
 @media (max-width: 640px) { .cr-tabpanel .cr-banner { box-shadow: 10px 10px 0 0 var(--sky); margin-right: 10px; } #cr-panel-pilsen .cr-banner { box-shadow: 10px 10px 0 0 var(--green); } }
-@media (max-width: 820px) { .cr-vision-grid { grid-template-columns: 1fr; align-items: start; } }
