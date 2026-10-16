@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/home.css?v=15" />
-  <link rel="stylesheet" href="assets/subpage.css?v=1" />
+  <link rel="stylesheet" href="assets/subpage.css?v=2" />
   <link rel="canonical" href="https://test.planet-a-foods.com/product-cocoa-booster.html" />
   <meta property="og:title" content="Cocoa Booster – single-ingredient cocoa powder replacer | Planet A Foods" />
   <meta property="og:description" content="Replace part of your cocoa powder with one EU-sourced ingredient. Matched taste and colour, no process changes, more fibre." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://test.planet-a-foods.com/assets/img/cb-palette.jpg" />
+  <meta property="og:image" content="https://test.planet-a-foods.com/assets/img/cb-texture.jpg" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Solutions","item":"https://test.planet-a-foods.com/solutions.html"},
@@ -70,29 +70,28 @@
 
   <main class="sub">
 
-    <!-- 01 · HERO — powder key visual, calm motion with focus on Alkalized -->
+    <!-- 01 · HERO — full-bleed Cocoa Booster powder texture, slow drift -->
     <section class="cb-hero" id="top">
+      <picture class="cb-hero-bg" aria-hidden="true">
+        <source media="(max-width: 699px)" srcset="assets/img/cb-texture-portrait.jpg">
+        <img src="assets/img/cb-texture.jpg" alt="">
+      </picture>
+      <div class="cb-hero-shade" aria-hidden="true"></div>
       <div class="wrap">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="solutions.html">Solutions</a><span>›</span><a href="solutions.html#ingredients">Ingredients</a><span>›</span><b aria-current="page">Cocoa Booster</b></nav>
-        <div class="cb-hero-grid">
-          <div class="reveal">
-            <p class="kicker">Ingredient solution · Cocoa powder replacer</p>
-            <h1>Cocoa taste and colour.<br>Less cocoa dependency.</h1>
-            <p class="lead">Cocoa Booster is a single-ingredient replacer for cocoa powder. It matches the taste and colour of alkalized cocoa, runs in existing recipes without process changes – and adds fibre to the formulation.</p>
-            <div class="cb-actions">
-              <a class="btn" href="#contact">Request a sample <span aria-hidden="true">↗</span></a>
-              <a class="btn btn-outline" href="#downloads">Application guide <span aria-hidden="true">↓</span></a>
-            </div>
-            <ul class="btags" aria-label="Benefits">
-              <li>Supply chain security</li><li>Cost advantage</li>
-              <!-- Sustainability tag stays inactive until a substantiated claim exists (EmpCo) -->
-              <li class="off" title="Coming once the claim is substantiated">Sustainability</li>
-            </ul>
+        <div class="cb-hero-copy reveal">
+          <p class="kicker">Ingredient solution · Cocoa powder replacer</p>
+          <h1>Cocoa taste and colour.<br>Less cocoa dependency.</h1>
+          <p class="lead">Cocoa Booster is a single-ingredient replacer for cocoa powder. It matches the taste and colour of alkalized cocoa, runs in existing recipes without process changes – and adds fibre to the formulation.</p>
+          <div class="cb-actions">
+            <a class="btn btn-white" href="#contact">Request a sample <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost-light" href="#applications">See applications <span aria-hidden="true">↓</span></a>
           </div>
-          <figure class="cb-visual reveal">
-            <div class="powder"><img src="assets/img/cb-palette.jpg" alt="Cocoa Booster in three colour profiles: natural, alkalized and dark"></div>
-            <figcaption class="powder-legend"><span>Natural</span><b>Alkalized · available now</b><span>Dark</span></figcaption>
-          </figure>
+          <ul class="btags" aria-label="Benefits">
+            <li>Supply chain security</li><li>Cost advantage</li>
+            <!-- Sustainability tag stays inactive until a substantiated claim exists (EmpCo) -->
+            <li class="off" title="Coming once the claim is substantiated">Sustainability</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -197,15 +196,15 @@
           </div>
         </div>
         <div class="profiles">
-          <a class="profile reveal" href="#contact" data-prefill-profile="Natural"><div class="pf-img" style="--x:37%"><img src="assets/img/cb-palette.jpg" alt="Natural profile powder" loading="lazy"></div><h3>Natural</h3><span class="chip dev">In development</span></a>
-          <a class="profile is-live reveal" href="#contact" data-prefill-profile="Alkalized"><div class="pf-img" style="--x:62%"><img src="assets/img/cb-palette.jpg" alt="Alkalized profile powder" loading="lazy"></div><h3>Alkalized</h3><span class="chip live">Available now</span></a>
-          <a class="profile reveal" href="#contact" data-prefill-profile="Dark"><div class="pf-img" style="--x:92%"><img src="assets/img/cb-palette.jpg" alt="Dark profile powder" loading="lazy"></div><h3>Dark</h3><span class="chip dev">In development</span></a>
+          <a class="profile reveal" href="#contact" data-prefill-profile="Natural"><div class="pf-img"><img src="assets/img/cb-natural.jpg" alt="Cocoa Booster natural profile, light brown powder" loading="lazy"></div><h3>Natural</h3><span class="chip dev">In development</span></a>
+          <a class="profile is-live reveal" href="#contact" data-prefill-profile="Alkalized"><div class="pf-img"><img src="assets/img/cb-alkalized.jpg" alt="Cocoa Booster alkalized profile, red-brown powder" loading="lazy"></div><h3>Alkalized</h3><span class="chip live">Available now</span></a>
+          <a class="profile reveal" href="#contact" data-prefill-profile="Dark"><div class="pf-img"><img src="assets/img/cb-dark.jpg" alt="Cocoa Booster dark profile, dark brown powder" loading="lazy"></div><h3>Dark</h3><span class="chip dev">In development</span></a>
         </div>
       </div>
     </section>
 
     <!-- 07 · APPLICATIONS & DOSAGE — range bars = recommended share of cocoa powder replaced -->
-    <section class="cb-sec">
+    <section class="cb-sec" id="applications">
       <div class="wrap">
         <div class="cb-head row reveal">
           <div>
@@ -217,28 +216,28 @@
         </div>
         <div class="apps">
           <div class="app reveal" title="Cookies: 50–100%">
-            <span class="app-ic" aria-hidden="true">●</span><h3>Cookies</h3>
+            <svg class="mi mi-cookie" viewBox="0 0 48 48" aria-hidden="true"><circle class="m-base" cx="24" cy="24" r="17"/><circle class="m-chip c1" cx="18" cy="19" r="2.2"/><circle class="m-chip c2" cx="28" cy="16" r="2"/><circle class="m-chip c3" cx="30" cy="28" r="2.4"/><circle class="m-chip c4" cx="19" cy="30" r="2"/></svg><h3>Cookies</h3>
             <div class="app-mid"><span class="range"><i style="--a:50%;--b:100%"></i></span><p>Drop-in dough performance – no change to mixing time or baking temperature.</p></div>
             <b class="app-val">50–100%</b><a class="app-link" href="solution-baked-confectionery.html">Baked Confectionery →</a>
           </div>
           <div class="app reveal" title="Muffins: 40–100%">
-            <span class="app-ic" aria-hidden="true">●</span><h3>Muffins</h3>
+            <svg class="mi mi-muffin" viewBox="0 0 48 48" aria-hidden="true"><path class="m-cup" d="M12 26h24l-3 14H15z"/><path class="m-line" d="M20 26l1 14M28 26l-1 14"/><path class="m-top" d="M10 26c0-8 6-13 14-13s14 5 14 13z"/></svg><h3>Muffins</h3>
             <div class="app-mid"><span class="range"><i style="--a:40%;--b:100%"></i></span><p>Stable folding and consistent texture, batch after batch.</p></div>
             <b class="app-val">40–100%</b><a class="app-link" href="solution-baked-confectionery.html">Baked Confectionery →</a>
           </div>
           <div class="app reveal" title="Sponge cake: 50–90%">
-            <span class="app-ic" aria-hidden="true">●</span><h3>Sponge cake</h3>
+            <svg class="mi mi-sponge" viewBox="0 0 48 48" aria-hidden="true"><rect class="m-l l1" x="9" y="30" width="30" height="7" rx="2"/><rect class="m-l l2" x="9" y="22" width="30" height="7" rx="2"/><rect class="m-l l3" x="9" y="14" width="30" height="7" rx="2"/><path class="m-air" d="M16 10c0-2 2-3 2-5M24 10c0-2 2-3 2-5M32 10c0-2 2-3 2-5"/></svg><h3>Sponge cake</h3>
             <div class="app-mid"><span class="range"><i style="--a:50%;--b:90%"></i></span><p>A functional lift: supports egg-foam stabilisation in fat-free batters.</p></div>
             <b class="app-val">50–90%</b><a class="app-link" href="solution-baked-confectionery.html">Baked Confectionery →</a>
           </div>
           <!-- TODO: application category for pudding creams + fillings still open (Spreads or new "Fillings") -->
           <div class="app reveal" title="Pudding creams: 50–70%">
-            <span class="app-ic" aria-hidden="true">●</span><h3>Pudding creams</h3>
+            <svg class="mi mi-pudding" viewBox="0 0 48 48" aria-hidden="true"><path class="m-glass" d="M12 18h24l-3 20H15z"/><path class="m-cream" d="M13 24c4-3 7 3 11 0s7 3 11 0"/><path class="m-spoon" d="M30 6l-6 16"/><ellipse class="m-spoon-h" cx="31" cy="5" rx="2.5" ry="1.6"/></svg><h3>Pudding creams</h3>
             <div class="app-mid"><span class="range"><i style="--a:50%;--b:70%"></i></span><p>Processing, solubility and cooking behaviour stay in line with expectations.</p></div>
             <b class="app-val">50–70%</b><span class="app-link"></span>
           </div>
           <div class="app reveal" title="Fat-based cream fillings: 30–70%">
-            <span class="app-ic" aria-hidden="true">●</span><h3>Fat-based cream fillings</h3>
+            <svg class="mi mi-filling" viewBox="0 0 48 48" aria-hidden="true"><rect class="m-shell" x="8" y="28" width="32" height="8" rx="3"/><rect class="m-shell" x="8" y="12" width="32" height="8" rx="3"/><path class="m-swirl" d="M10 24c3-2 5 2 8 0s5 2 8 0 5 2 8 0 4 2 4 0"/></svg><h3>Fat-based cream fillings</h3>
             <div class="app-mid"><span class="range"><i style="--a:30%;--b:70%"></i></span><p>A 50:50 blend with cocoa powder matches colour and taste of the full-cocoa reference.</p></div>
             <b class="app-val">30–70%</b><span class="app-link"></span>
           </div>
@@ -259,7 +258,7 @@
           <article class="step reveal"><b>03</b><h3>Scale</h3><p>Benchmark against your 100% cocoa reference, then increase the Booster share step by step.</p></article>
           <article class="step check reveal"><h3>Sensory check</h3>
             <ul><li><b>Colour</b> matches across the tested range</li><li><b>Taste</b> cocoa character stays pronounced at 50–70%</li><li><b>Texture</b> no process reformulation needed</li></ul>
-            <a class="link-arrow" href="#downloads">Application guide <span aria-hidden="true">→</span></a></article>
+            <a class="link-arrow" href="#contact" data-prefill-req="Please send me the Cocoa Booster Application Guide.">Request the application guide <span aria-hidden="true">→</span></a></article>
         </div>
       </div>
     </section>
@@ -277,22 +276,6 @@
           <img src="assets/img/prod-choviva.jpg" alt="" loading="lazy">
           <span><small>Also from Planet A Foods</small><b>ChoViva</b>Cocoa-free chocolate alternative for coatings, fillings and inclusions.<em>View ingredient →</em></span>
         </a>
-      </div>
-    </section>
-
-    <!-- 10 · DOWNLOADS — Overview + Guide ungated; spec sheet on request (→ form)
-         TODO: upload final PDFs (fix "Great nutritions" typo, align cost / "100% natural" claims) and switch links to the files -->
-    <section class="cb-sec cb-downloads" id="downloads">
-      <div class="wrap">
-        <div class="cb-head reveal">
-          <span class="pill">Resources</span>
-          <h2>Technical documents</h2>
-        </div>
-        <div class="docs">
-          <a class="doc reveal" href="#contact" data-prefill-req="Please send me the Cocoa Booster Product Overview (PDF)."><span class="doc-ic">PDF</span><span><b>Product Overview</b><small>PDF · 1 page</small><em>Get the PDF →</em></span></a>
-          <a class="doc reveal" href="#contact" data-prefill-req="Please send me the Cocoa Booster Application Guide (PDF)."><span class="doc-ic">PDF</span><span><b>Application Guide</b><small>PDF · for R&amp;D teams</small><em>Get the PDF →</em></span></a>
-          <a class="doc dashed reveal" href="#contact" data-prefill-req="Please send me the spec sheet and nutritional data for Cocoa Booster."><span class="doc-ic">PDF</span><span><b>Spec sheet &amp; nutritional data</b><small>On request</small><em>Request →</em></span></a>
-        </div>
       </div>
     </section>
 
