@@ -231,6 +231,17 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .arrow-btn { width: 52px; height: 40px; border: 0; border-radius: 6px; background: var(--purple); color: #fff; font-size: 1.1rem; cursor: pointer; transition: background .25s ease, opacity .25s ease, transform .3s var(--ease); }
 .arrow-btn:hover:not(:disabled) { background: var(--purple-2); transform: translateY(-2px); }
 .arrow-btn:disabled { opacity: .35; cursor: default; }
+/* "there's more": counter between the arrows, count on each group tab, soft fade where cards continue */
+.arrows { align-items: center; }
+.carousel-count { min-width: 9ch; text-align: center; font-size: .92rem; font-weight: 500; color: var(--purple); font-variant-numeric: tabular-nums; }
+.carousel-count:empty { display: none; }
+.group-count { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px;
+  border-radius: 999px; font-size: .78rem; font-weight: 600; background: var(--lilac); color: var(--purple); }
+.group.on .group-count { background: #fff; }
+.carousel .track { --fl: 0px; --fr: 0px; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%); }
+.carousel.more-right .track { --fr: 72px; }
+.carousel.more-left .track { --fl: 72px; }
 
 /* ============================ 05 SCALE ============================ */
 .scale-grid { display: grid; gap: 40px; align-items: center; }
@@ -358,7 +369,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .tiles.layers { grid-template-columns: repeat(2, 1fr); }
   .benefit-grid { grid-template-columns: 1fr 1fr; }
   .benefit.big { grid-column: 1 / -1; }
-  .track { grid-auto-columns: calc((100% - 20px) / 2); }
+  .track { grid-auto-columns: calc((100% - 40px) / 2.3); }   /* next card peeks in */
   .footer-links { grid-template-columns: repeat(3, 1fr); }
 }
 
@@ -374,7 +385,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .tiles.layers .tile h3 { font-size: min(1.6vw, 2.9vh); right: 70px; }
   .tech-foot { grid-template-columns: auto auto auto 1fr minmax(320px, 30%); }
   .tech-foot .btn-block { grid-column: 5; }
-  .track { grid-auto-columns: calc((100% - 40px) / 3); }
+  .track { grid-auto-columns: calc((100% - 60px) / 3.3); }   /* 4th card peeks in: there is more */
   .slide .tile { aspect-ratio: auto; height: min(36vh, 20vw); }
   .portfolio .center-head { margin-bottom: 4vh; }
   .portfolio .center-head h2 { margin-top: 3vh; }

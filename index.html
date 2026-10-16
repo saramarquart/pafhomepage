@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/home.css?v=20" />
+  <link rel="stylesheet" href="assets/home.css?v=22" />
   <link rel="preload" as="image" href="assets/img/poster-cocoa-grove.jpg" />
   <meta property="og:title" content="Planet A Foods — A backbone for the world's most fragile commodities" />
   <meta property="og:description" content="One technology platform. A growing portfolio of ingredient alternatives for the crops climate change puts at risk." />
@@ -265,8 +265,8 @@
           <span class="pill">Portfolio</span>
           <h2>One platform.<br>A growing portfolio.</h2>
           <div class="groups" role="tablist" aria-label="Portfolio groups">
-            <button class="group on" role="tab" aria-selected="true" data-group="climate">Climate-threatened materials</button>
-            <button class="group" role="tab" aria-selected="false" data-group="regulated">Highly regulated materials</button>
+            <button class="group on" role="tab" aria-selected="true" data-group="climate">Climate-threatened materials <span class="group-count" data-count-for="climate"></span></button>
+            <button class="group" role="tab" aria-selected="false" data-group="regulated">Highly regulated materials <span class="group-count" data-count-for="regulated"></span></button>
           </div>
           <p class="group-note" data-note="climate">Crops under pressure from climate change, deforestation rules and volatile supply.</p>
           <p class="group-note" data-note="regulated" hidden>Ingredients facing tighter rules – from sugar levies to bans on synthetic colours.</p>
@@ -305,6 +305,7 @@
           </div>
           <div class="arrows">
             <button class="arrow-btn" data-dir="-1" aria-label="Previous">←</button>
+            <span class="carousel-count" aria-live="polite"></span>
             <button class="arrow-btn" data-dir="1" aria-label="Next">→</button>
           </div>
         </div>
@@ -430,6 +431,6 @@
   </footer>
 
   <script src="assets/main.js?v=32"></script>
-  <script src="assets/home.js?v=7"></script>
+  <script src="assets/home.js?v=9"></script>
 </body>
 </html>
