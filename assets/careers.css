@@ -22,7 +22,8 @@
   --ink-2:     #444444;
   --muted:     #666666;
   --line:      #CCCCCC;
-  --green:     #10C167;
+  --green:     #82C7AE;   /* light green from the colour sheet, as on the homepage */
+  --sky:       #B0DCE0;
   --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 /* Typography per guideline weights: Bold for headlines, Semi Bold for subheads/UI, Regular for body */
@@ -49,9 +50,9 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 /* ---------- FLOW: sections hand over to each other instead of stacking as blocks.
    Grounds fade white ↔ Background Color #F3F3F3, the vision sheet slides over the hero,
    and the final section dissolves into the grey footer. ---------- */
-.cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff;
-  padding-top: clamp(72px, 8vw, 120px); }
-.cr-work  { background: #fff; }
+.cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff; overflow: hidden;
+  padding: clamp(56px, 6vw, 88px) 0 clamp(40px, 4.5vw, 64px); }
+.cr-work  { background: var(--grey); padding-top: clamp(56px, 6vw, 88px); }
 .cr-perks { position: relative; z-index: 1; margin-top: -40px; border-radius: 32px 32px 0 0; background: #fff;
   padding-top: clamp(72px, 8vw, 120px); box-shadow: 0 -24px 48px -32px rgba(17,17,17,.45); }
 .cr-facts { padding-bottom: calc(clamp(56px, 7vw, 104px) + 40px); }
@@ -74,6 +75,16 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-card p { color: var(--ink-2); font-size: .98rem; line-height: 1.55; }
 .cr-card > p { margin-bottom: 26px; }
 .cr-card > .tag { margin: auto 0 0; align-self: flex-start; }
+/* values: white cards on the grey band, numbered colour codes as on the homepage, a line grows on hover */
+.cr-value { position: relative; overflow: hidden; background: #fff; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.cr-value:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -30px rgba(50,15,153,.35); }
+.cr-value::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; background: var(--green); transition: width .7s var(--ease); }
+.cr-value:nth-child(2)::before { background: var(--sky); }
+.cr-value:nth-child(3)::before { background: var(--purple); }
+.cr-value:hover::before { width: 100%; }
+.cr-no { align-self: flex-start; margin-bottom: 18px; padding: 3px 12px; border-radius: 999px; font-weight: 600; font-size: .85rem; background: var(--green); color: var(--ink); }
+.cr-value:nth-child(2) .cr-no { background: var(--sky); }
+.cr-value:nth-child(3) .cr-no { background: var(--purple); color: #fff; }
 .cr-work .cr-card { background: #fff; box-shadow: inset 0 0 0 1px rgba(45,45,45,.1); }
 
 /* icon in a Light Blue circle */
@@ -86,8 +97,13 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-hero .hero-foot { margin-top: 0; }
 .cr-hero h1 { max-width: 17ch; text-wrap: balance; }
 
-/* ---------- 2 · VISION ---------- */
-.cr-vision h2 { margin-bottom: 8px; }
+/* ---------- 2 · VISION — headline left, copy right (homepage split), soft "A" mark behind ---------- */
+.cr-vision-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 96px); align-items: end; }
+.cr-vision h2 { margin-top: 26px; }
+.cr-vision .lead { margin: 0; max-width: 52ch; }
+.cr-d-vision { color: var(--sky); opacity: .35; width: min(34vw, 520px); right: -10vw; top: -40%; transform: rotate(16deg); }
+.cr-d-perks  { color: var(--green); opacity: .22; width: min(30vw, 460px); left: -10vw; top: 6%; transform: rotate(-18deg); }
+.cr-perks { overflow: hidden; }
 .cr-hl { color: var(--purple); }
 .cr-strong { font-weight: 600; color: var(--ink); margin-top: 22px; }
 
@@ -140,12 +156,14 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-office-site h3 { margin: 12px 0 10px; font-size: clamp(1.4rem, 2vw, 1.9rem); }
 .cr-office-site > p:not([class]) { color: var(--ink-2); max-width: 56ch; margin-inline: auto; }
 .cr-perk { flex-direction: row; align-items: flex-start; gap: 18px; padding: clamp(20px, 1.8vw, 26px); }
-.cr-perk .cr-icon { width: 46px; height: 46px; background: var(--mint); }
+.cr-perk .cr-icon { width: 46px; height: 46px; background: var(--sky); }
+.cr-perk:nth-child(even) .cr-icon { background: var(--green); }
 .cr-perk .cr-icon .cr-ico { width: 21px; height: 21px; }
 .cr-perk h3 { font-size: clamp(1.05rem, 1.25vw, 1.22rem); margin: 2px 0 6px; }
 .cr-perk p { font-size: .94rem; }
 .cr-perk p { margin: 0; }
 
+.cr-banner-wrap { position: relative; margin-top: 20px; }
 .cr-banner { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r); background: var(--purple-dk);
   margin-top: 20px; min-height: clamp(340px, 36vw, 520px); display: flex; align-items: flex-end; color: #fff; }
 .cr-banner img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
@@ -294,3 +312,9 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
     @keyframes crSheet { from { transform: translateY(60px); } to { transform: none; } }
   }
 }
+
+/* homepage-style colour offset behind the celebration banner */
+.cr-tabpanel .cr-banner { box-shadow: 18px 18px 0 0 var(--sky); margin-right: 18px; }
+#cr-panel-pilsen .cr-banner { box-shadow: 18px 18px 0 0 var(--green); }
+@media (max-width: 640px) { .cr-tabpanel .cr-banner { box-shadow: 10px 10px 0 0 var(--sky); margin-right: 10px; } #cr-panel-pilsen .cr-banner { box-shadow: 10px 10px 0 0 var(--green); } }
+@media (max-width: 820px) { .cr-vision-grid { grid-template-columns: 1fr; align-items: start; } }
