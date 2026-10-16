@@ -165,6 +165,8 @@ var KEY_FACTS = [
 
     function render() {
       var show = open || !mq.matches;
+      root.style.setProperty("--active", active);   // drives the progress line
+      btns.forEach(function (b, i) { b.classList.toggle("is-done", i < active); });
       btns.forEach(function (b, i) {
         var on = i === active;
         if (on) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
