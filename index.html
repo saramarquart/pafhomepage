@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/home.css?v=15" />
+  <link rel="stylesheet" href="assets/home.css?v=15-nav" />
   <link rel="preload" as="image" href="assets/img/poster-cocoa-grove.jpg" />
   <meta property="og:title" content="Planet A Foods — A backbone for the world's most fragile commodities" />
   <meta property="og:description" content="One technology platform. A growing portfolio of ingredient alternatives for the crops climate change puts at risk." />
@@ -85,9 +85,43 @@
   <header class="nav" id="nav">
     <a class="brand" href="index.html" aria-label="Planet A Foods — home"><svg class="logo" viewBox="0 0 57 95"><use href="#paf-logo"/></svg></a>
     <nav class="nav-pill" aria-label="Primary">
-      <a href="solutions.html">Solutions</a>
+      <div class="nav-item">
+        <a href="solutions.html" aria-haspopup="true">Solutions</a>
+        <div class="nav-sub nav-sub-wide">
+          <div><span class="nav-sub-head">By application</span>
+            <a href="solution-baked-confectionery.html">Baked confectionery</a>
+            <a href="solution-panned-products.html">Panned products</a>
+            <a href="solution-beverages.html">Beverages</a>
+            <a href="solution-functional-food.html">Functional food</a>
+            <a href="solution-coatings.html">Coatings</a>
+            <a href="solution-spreads.html">Spreads</a>
+          </div>
+          <div><span class="nav-sub-head">By ingredient</span>
+            <a href="product-cocoa-booster.html">Cocoa booster</a>
+            <a href="product-hazelnut.html">Nuts alternative</a>
+            <a href="product-coffee.html">Coffee alternative</a>
+            <a href="product-choviva.html">Cocoa-free chocolate alternative</a>
+            <a href="product-butter.html">Speciality fats</a>
+          </div>
+        </div>
+      </div>
       <a href="technology.html">Technology</a>
-      <a href="mission.html">Company</a>
+      <div class="nav-item">
+        <a href="mission.html" aria-haspopup="true">Company</a>
+        <div class="nav-sub">
+          <div><span class="nav-sub-head">About</span>
+            <a href="mission.html">Purpose</a>
+            <a href="journey.html">Journey</a>
+            <a href="company-global-footprint.html">Global footprint</a>
+            <a href="sustainability-impact.html">Sustainability &amp; impact</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div><span class="nav-sub-head">People</span>
+            <a href="people.html">Leadership team</a>
+            <a href="company-people-culture.html">People &amp; culture</a>
+          </div>
+        </div>
+      </div>
       <a href="careers.html">Careers</a>
       <a href="investors.html">Investors</a>
       <a href="contact.html">Contact</a>
@@ -100,21 +134,26 @@
 
   <main>
 
-    <!-- 01 · HERO — ingredient film: cocoa, coffee, citrus, vanilla, hazelnut, sugar, meat -->
+    <!-- 01 · HERO — ingredient film: cocoa booster, nuts, coffee, cocoa-free chocolate, sugar reduction, speciality fats.
+         Each name links to its page; the stripe next to it shows that shot. -->
     <section class="hero" id="top">
       <div class="hero-stage" aria-hidden="true">
-        <div class="reel on" data-label="Cocoa"><video muted playsinline preload="auto" poster="assets/img/poster-cocoa-grove.jpg"><source src="assets/img/cocoa-grove.mp4" type="video/mp4"></video></div>
-        <div class="reel" data-label="Coffee"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
-        <div class="reel" data-label="Citrus"><video muted playsinline preload="metadata" poster="assets/img/poster-citrus.jpg"><source src="assets/img/citrus.mp4" type="video/mp4"></video></div>
-        <div class="reel still" data-label="Vanilla"><img src="assets/img/prod-vanilla.jpg" alt=""></div>
-        <div class="reel" data-label="Hazelnut"><video muted playsinline preload="metadata" poster="assets/img/poster-hazelnut-grove.jpg"><source src="assets/img/hazelnut-grove.mp4" type="video/mp4"></video></div>
-        <div class="reel" data-label="Sugar"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-sugar-fall.jpg"><source src="assets/img/hero-sugar-fall.mp4" type="video/mp4"></video></div>
-        <div class="reel" data-label="Meat"><video muted playsinline preload="metadata" poster="assets/img/poster-meat.jpg"><source src="assets/img/meat.mp4" type="video/mp4"></video></div>
+        <div class="reel still on" data-label="Cocoa booster"><img src="assets/img/hero-booster-powder.jpg" alt=""></div>
+        <div class="reel still" data-label="Nuts alternative"><img src="assets/img/hero-nuts-hq.jpg" alt=""></div>
+        <div class="reel" data-label="Coffee alternative"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
+        <div class="reel" data-label="Cocoa-free chocolate alternative"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-cocoa.jpg"><source src="assets/img/hero-cocoa.mp4" type="video/mp4"></video></div>
+        <div class="reel" data-label="Sugar reduction"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-sugar-fall.jpg"><source src="assets/img/hero-sugar-fall.mp4" type="video/mp4"></video></div>
+        <div class="reel still" data-label="Speciality fats"><img src="assets/img/prod-butter.jpg" alt=""></div>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
 
-      <ol class="reel-index" aria-hidden="true">
-        <li class="on">Cocoa</li><li>Coffee</li><li>Citrus</li><li>Vanilla</li><li>Hazelnut</li><li>Sugar</li><li>Meat</li>
+      <ol class="reel-index" aria-label="Our ingredient solutions">
+        <li class="on"><a href="product-cocoa-booster.html">Cocoa booster</a><button class="reel-go" type="button" aria-label="Show Cocoa booster"></button></li>
+        <li><a href="product-hazelnut.html">Nuts alternative</a><button class="reel-go" type="button" aria-label="Show Nuts alternative"></button></li>
+        <li><a href="product-coffee.html">Coffee alternative</a><button class="reel-go" type="button" aria-label="Show Coffee alternative"></button></li>
+        <li><a href="product-choviva.html">Cocoa-free chocolate alternative</a><button class="reel-go" type="button" aria-label="Show Cocoa-free chocolate alternative"></button></li>
+        <li><a href="solutions.html">Sugar reduction</a><button class="reel-go" type="button" aria-label="Show Sugar reduction"></button></li> <!-- TODO: link to a sugar-reduction page once it exists -->
+        <li><a href="product-butter.html">Speciality fats</a><button class="reel-go" type="button" aria-label="Show Speciality fats"></button></li>
       </ol>
 
       <div class="wrap hero-copy">
@@ -235,7 +274,7 @@
         <div class="carousel reveal">
           <div class="track" tabindex="0" aria-label="Ingredient portfolio">
             <a class="slide" data-group="climate" href="product-cocoa-booster.html">
-              <div class="tile"><div class="tile-media"><img src="assets/img/cb-palette.jpg" alt="Cocoa powder in four shades" loading="lazy"></div>
+              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-booster-powder.jpg" alt="Close-up of Cocoa booster powder" loading="lazy"></div>
                 <h3>Cocoa booster</h3><p>Extends cocoa – same taste and colour, less exposure.</p></div>
             </a>
             <a class="slide" data-group="climate" href="product-choviva.html">
@@ -391,6 +430,6 @@
   </footer>
 
   <script src="assets/main.js?v=32"></script>
-  <script src="assets/home.js?v=3"></script>
+  <script src="assets/home.js?v=4"></script>
 </body>
 </html>
