@@ -136,10 +136,12 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* four calm reveals, rotated by home.js (data-fx) so consecutive cuts differ */
 .reel.on[data-fx="wipe"] { animation: fx-wipe 1.6s cubic-bezier(.7,0,.2,1) both; }
 .reel.on[data-fx="rise"] { animation: fx-rise 1.6s cubic-bezier(.7,0,.2,1) both; }
+.reel.on[data-fx="drop"] { animation: fx-drop 1.6s cubic-bezier(.7,0,.2,1) both; }
 .reel.on[data-fx="zoom"] { animation: fx-zoom 2s cubic-bezier(.3,0,.2,1) both; }
 @keyframes fx-dissolve { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fx-wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
 @keyframes fx-rise { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes fx-drop { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes fx-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
 .reel video, .reel img { width: 100%; height: 100%; object-fit: cover; }
 .reel.on video, .reel.on img, .reel.was video, .reel.was img { animation: push 9s cubic-bezier(.3,.5,.4,1) both; }   /* slow push-in; keeps running while the shot fades out, so it never snaps */

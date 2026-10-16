@@ -16,7 +16,7 @@
     var prev = current;
     reels.forEach(function (r, k) {
       var on = k === i, was = k === prev, v = r.querySelector("video");
-      if (on) r.setAttribute("data-fx", FX[cut++ % FX.length]);
+      if (on) r.setAttribute("data-fx", r.getAttribute("data-in") || FX[cut++ % FX.length]);   // a shot can pin its own reveal (data-in)
       r.classList.toggle("on", on);
       r.classList.toggle("was", was);   // outgoing shot stays visible underneath while the next one fades in
       if (v) { if (on) { try { v.currentTime = 0; } catch (e) {} play(v); } else if (!was) { v.pause(); } }
