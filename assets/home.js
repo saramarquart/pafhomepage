@@ -10,11 +10,13 @@
   var reels = [].slice.call(document.querySelectorAll(".hero .reel"));
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
   var current = 0, timer = null, HOLD = 5200;
+  var FX = ["wipe", "dissolve", "rise", "zoom"], cut = 0;   // reveal styles, rotated cut by cut
   function show(i) {
     if (i === current) return;
     var prev = current;
     reels.forEach(function (r, k) {
       var on = k === i, was = k === prev, v = r.querySelector("video");
+      if (on) r.setAttribute("data-fx", FX[cut++ % FX.length]);
       r.classList.toggle("on", on);
       r.classList.toggle("was", was);   // outgoing shot stays visible underneath while the next one fades in
       if (v) { if (on) { try { v.currentTime = 0; } catch (e) {} play(v); } else if (!was) { v.pause(); } }

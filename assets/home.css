@@ -132,7 +132,15 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .hero-stage { z-index: 0; isolation: isolate; }   /* keeps the reel layering below the shade and copy */
 .reel { opacity: 0; z-index: 0; transition: opacity 0s 2.4s; }   /* hidden only once the next shot has fully faded in */
 .reel.was { opacity: 1; z-index: 1; transition: none; }
-.reel.on { opacity: 1; z-index: 2; transition: opacity 2.2s cubic-bezier(.45,0,.25,1); }
+.reel.on { opacity: 1; z-index: 2; transition: none; animation: fx-dissolve 2s cubic-bezier(.45,0,.25,1) both; }
+/* four calm reveals, rotated by home.js (data-fx) so consecutive cuts differ */
+.reel.on[data-fx="wipe"] { animation: fx-wipe 1.6s cubic-bezier(.7,0,.2,1) both; }
+.reel.on[data-fx="rise"] { animation: fx-rise 1.6s cubic-bezier(.7,0,.2,1) both; }
+.reel.on[data-fx="zoom"] { animation: fx-zoom 2s cubic-bezier(.3,0,.2,1) both; }
+@keyframes fx-dissolve { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fx-wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes fx-rise { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes fx-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
 .reel video, .reel img { width: 100%; height: 100%; object-fit: cover; }
 .reel.on video, .reel.on img, .reel.was video, .reel.was img { animation: push 9s cubic-bezier(.3,.5,.4,1) both; }   /* slow push-in; keeps running while the shot fades out, so it never snaps */
 @keyframes push { from { transform: scale(1.08); } to { transform: scale(1); } }
@@ -411,7 +419,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .reel.on video, .reel.on img, .reel.was video, .reel.was img, .drift img, .impact-film img { animation: none; }
+  .reel.on, .reel.on video, .reel.on img, .reel.was video, .reel.was img, .drift img, .impact-film img { animation: none; }
   .co2-bar { transition: none; width: var(--w); }
   .reel-index li.on .reel-go::before { animation: none; transform: none; }
   .scroll-progress { display: none; }
