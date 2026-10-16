@@ -6,20 +6,34 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function play(v) { if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
 
-  /* ---- Hero: ingredient reel (cocoa → coffee → citrus → vanilla → hazelnut → sugar → meat) ---- */
+  /* ---- Hero: ingredient reel (cocoa booster → coffee → nuts → cocoa-free chocolate → sugar reduction → speciality fats) ---- */
   var reels = [].slice.call(document.querySelectorAll(".hero .reel"));
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
   var current = 0, timer = null, HOLD = 5200;
+  var FX = ["wipe", "dissolve", "rise", "zoom"], cut = 0;   // reveal styles, rotated cut by cut
   function show(i) {
+    if (i === current) return;
+    var prev = current;
     reels.forEach(function (r, k) {
-      var on = k === i, v = r.querySelector("video");
+      var on = k === i, was = k === prev, v = r.querySelector("video");
+      if (on) r.setAttribute("data-fx", r.getAttribute("data-in") || FX[cut++ % FX.length]);   // a shot can pin its own reveal (data-in)
       r.classList.toggle("on", on);
-      if (v) { if (on) { try { v.currentTime = 0; } catch (e) {} play(v); } else { v.pause(); } }
+      r.classList.toggle("was", was);   // outgoing shot stays visible underneath while the next one fades in
+      if (v) { if (on) { try { v.currentTime = 0; } catch (e) {} play(v); } else if (!was) { v.pause(); } }
     });
     marks.forEach(function (m, k) { m.classList.toggle("on", k === i); });
     current = i;
   }
   function next() { show((current + 1) % reels.length); }
+  // the name links to its page; the stripe next to it shows that shot and restarts the timer
+  marks.forEach(function (m, k) {
+    var go = m.querySelector(".reel-go");
+    if (!go) return;
+    go.addEventListener("click", function () {
+      show(k);
+      if (timer) { clearInterval(timer); timer = setInterval(next, HOLD); }
+    });
+  });
   if (reels.length) {
     show(0);
     if (!reduce) {
@@ -112,6 +126,12 @@
       track.scrollBy({ left: step * parseInt(b.getAttribute("data-dir"), 10), behavior: reduce ? "auto" : "smooth" });
     });
   });
+  // show there is more: "1–3 of 5" counter, item count per group, fade on the side with more cards
+  var carousel = document.querySelector(".carousel");
+  var counter = document.querySelector(".carousel-count");
+  document.querySelectorAll("[data-count-for]").forEach(function (c) {
+    c.textContent = document.querySelectorAll('.carousel .slide[data-group="' + c.getAttribute("data-count-for") + '"]').length;
+  });
   function arrowState() {
     if (!track) return;
     var max = track.scrollWidth - track.clientWidth - 2;
@@ -119,6 +139,18 @@
       var d = parseInt(b.getAttribute("data-dir"), 10);
       b.disabled = d < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
     });
+    var slides = [].filter.call(track.querySelectorAll(".slide"), function (s) { return !s.hidden; });
+    if (!slides.length) return;
+    var gap = parseFloat(getComputedStyle(track).columnGap || 0);
+    var step = slides[0].getBoundingClientRect().width + gap;
+    var first = Math.round(track.scrollLeft / step);
+    var fit = Math.max(1, Math.floor((track.clientWidth + gap + 4) / step));
+    var last = Math.min(slides.length, first + fit);
+    if (counter) counter.textContent = slides.length <= fit ? "" : (fit === 1 ? (first + 1) : (first + 1) + "–" + last) + " of " + slides.length;
+    if (carousel) {
+      carousel.classList.toggle("more-right", track.scrollLeft < max);
+      carousel.classList.toggle("more-left", track.scrollLeft > 2);
+    }
   }
   if (track) { track.addEventListener("scroll", arrowState, { passive: true }); window.addEventListener("resize", arrowState); arrowState(); }
 })();
