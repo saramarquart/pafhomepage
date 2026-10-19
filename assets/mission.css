@@ -137,3 +137,8 @@ html:not(.ms-js) .ms-controls, html:not(.ms-js) .ms-nav { display: none; }
   .ms-figure-green::before { transform: translate(-10px, 10px); }
   .ms-hero .hero-actions .btn { width: 100%; }
 }
+
+/* no colour coding: neutral cards, type shown as text only */
+.ms-dot { display: none; }
+.ms-card { border-top: 0; }
+.ms-card.ms-next { border-top: 0; }
