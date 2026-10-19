@@ -1,0 +1,73 @@
+/* ============================================================================
+   Site navigation for the subpages — the same bar as the homepage (index.html /
+   home.css): logo left, white pill right, transparent over the hero, a slim
+   white bar once you scroll (hides while reading down, returns on scroll up).
+   Loaded after styles.css; everything is scoped to header.site-nav so the old
+   .nav rules in styles.css can't leak in.
+   ========================================================================== */
+header.nav.site-nav {
+  --sn-purple: #320F99; --sn-ink: #0E0B1A; --sn-ink-2: #3D3A4A; --sn-tint: #E2F2F3;
+  --sn-ease: cubic-bezier(.16, .84, .3, 1); --sn-gutter: clamp(20px, 4vw, 70px);
+  position: fixed; inset: 0 0 auto 0; z-index: 100; height: 96px; margin: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--sn-gutter);
+  background: transparent; backdrop-filter: none; border: 0; box-shadow: none;
+  font-family: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing: normal;
+  transition: transform .45s var(--sn-ease), background .35s ease, height .35s var(--sn-ease), box-shadow .35s ease;
+}
+header.nav.site-nav::before { display: none !important; }
+header.nav.site-nav.scrolled { height: 68px; background: rgba(255,255,255,.94); backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 rgba(14,11,26,.08); }
+header.nav.site-nav.away { transform: translateY(-100%); }
+
+header.site-nav .brand { display: block; color: #fff; gap: 0; animation: none; transition: color .35s ease; }
+header.site-nav .brand .logo { width: 40px; height: auto; aspect-ratio: 57 / 95; display: block; transition: width .35s var(--sn-ease); }
+header.site-nav.scrolled .brand, header.site-nav.on-light .brand, header.site-nav.open .brand { color: var(--sn-purple); }
+header.site-nav.scrolled .brand .logo { width: 30px; }
+
+header.site-nav .nav-pill {
+  display: flex; align-items: center; gap: 4px; margin: 0;
+  background: #fff; border-radius: 6px; padding: 5px 6px 5px 10px;
+  box-shadow: 0 10px 30px -18px rgba(14, 11, 26, .5); transition: box-shadow .35s ease, background .35s ease;
+}
+header.site-nav.scrolled .nav-pill { box-shadow: none; background: transparent; }
+header.site-nav .nav-pill a { position: static; display: inline-block; font-size: .93rem; font-weight: 500; letter-spacing: normal; text-transform: none;
+  color: var(--sn-ink); padding: 6px 10px; border: 0; border-radius: 4px; animation: none; transition: background .25s ease, color .25s ease; }
+header.site-nav .nav-pill a::after { content: none; }
+header.site-nav .nav-pill a:hover, header.site-nav .nav-pill a[aria-current="page"] { background: var(--sn-tint); color: var(--sn-purple); }
+
+/* Solutions dropdown */
+header.site-nav .nav-item { position: relative; display: flex; height: auto; width: auto; border: 0; }
+header.site-nav .nav-item > a::after { content: ""; display: inline-block; position: static; width: 5px; height: 5px; margin: 0 0 3px 7px; background: none;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); opacity: .6; transition: transform .25s ease; }
+header.site-nav .nav-item:hover > a::after, header.site-nav .nav-item:focus-within > a::after { transform: translateY(2px) rotate(225deg); }
+header.site-nav .nav-sub { position: absolute; top: 100%; left: -6px; z-index: 5; padding-top: 12px;
+  display: flex; gap: 28px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease, visibility 0s .2s; }
+header.site-nav .nav-sub::before { content: ""; position: absolute; inset: 12px 0 0; z-index: -1; background: #fff; border-radius: 8px; box-shadow: 0 18px 40px -18px rgba(14,11,26,.45); }
+header.site-nav .nav-sub > div { display: flex; flex-direction: column; min-width: 190px; padding: 14px 8px 10px; }
+header.site-nav .nav-sub-head { padding: 0 10px 6px; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sn-purple); }
+header.site-nav .nav-sub a { white-space: nowrap; }
+header.site-nav .nav-item:hover .nav-sub, header.site-nav .nav-item:focus-within .nav-sub { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .2s ease, visibility 0s; }
+
+header.site-nav .nav-toggle { display: none; width: 46px; height: 46px; margin: 0; border: 0; border-radius: 6px; background: #fff; cursor: pointer;
+  align-items: center; justify-content: center; box-shadow: 0 10px 30px -18px rgba(14,11,26,.5); }
+header.site-nav .nav-toggle span, header.site-nav .nav-toggle span::before, header.site-nav .nav-toggle span::after { content: ""; display: block; width: 18px; height: 1.6px; background: var(--sn-ink) !important; }
+header.site-nav .nav-toggle span::before { transform: translateY(-6px); }
+header.site-nav .nav-toggle span::after { transform: translateY(4.4px); }
+header.site-nav :focus-visible { outline: 2px solid var(--sn-purple); outline-offset: 2px; }
+
+/* phones + tablets: menu button opens the pill as a drawer (same as the homepage) */
+@media (max-width: 999px) {
+  header.nav.site-nav { height: 80px; }
+  header.nav.site-nav.open { background: rgba(255,255,255,.98) !important; backdrop-filter: blur(14px); }
+  header.site-nav .brand .logo { width: 34px; }
+  header.site-nav .nav-toggle { display: inline-flex; }
+  header.site-nav .nav-pill {
+    position: fixed; top: 86px; left: var(--sn-gutter); right: var(--sn-gutter); height: auto; background: #fff !important;
+    box-shadow: 0 18px 40px -20px rgba(14,11,26,.45) !important; flex-direction: column; align-items: stretch; padding: 10px;
+    opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .3s ease, transform .3s ease;
+  }
+  header.site-nav.scrolled .nav-pill { top: 74px; }
+  header.site-nav.open .nav-pill { opacity: 1; pointer-events: auto; transform: none; }
+  header.site-nav .nav-pill a { font-size: 1.05rem; padding: 12px; color: var(--sn-ink) !important; }
+  header.site-nav .nav-sub, header.site-nav .nav-item > a::after { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) { header.nav.site-nav, header.site-nav .nav-sub, header.site-nav .nav-pill { transition: none; } }
