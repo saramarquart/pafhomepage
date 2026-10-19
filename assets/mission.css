@@ -46,6 +46,8 @@
 .ms-milestones .center-head { margin-bottom: clamp(36px, 5vw, 64px); }
 .ms-timeline { position: relative; max-width: 980px; margin: 0 auto; }
 .ms-year { display: grid; grid-template-columns: 160px 1fr; gap: clamp(20px, 3vw, 48px); }
+.ms-year + .ms-year .ms-y { margin-top: 40px; }   /* keeps a stuck year label clear of the next one */
+.ms-year + .ms-year .ms-list { padding-top: 40px; }
 .ms-y { position: sticky; top: 110px; align-self: start; margin: 0; padding-top: 10px;
   font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -.03em; color: var(--purple); line-height: 1; }
 .ms-list { list-style: none; margin: 0; padding: 0 0 clamp(28px, 4vw, 48px) 34px; border-left: 2px solid var(--sky); position: relative; }
@@ -105,3 +107,11 @@
   .ms-figure-green::before { transform: translate(-10px, 10px); }
   .ms-hero .hero-actions .btn { width: 100%; }
 }
+
+/* latest milestone (upcoming launch) highlighted */
+.ms-next::before { background: var(--green); box-shadow: 0 0 0 5px rgba(130,199,174,.35); }
+.ms-year .ms-next .ms-date { background: var(--purple); color: #fff; }
+.ms-next p { font-weight: 600; }
+.ms-link { display: inline-flex; gap: 8px; margin-top: 10px; color: var(--purple); font-weight: 600; }
+.ms-link span { transition: transform .35s var(--ease); }
+.ms-link:hover span { transform: translate(3px, -3px); }
