@@ -335,6 +335,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .group { border: 0; background: none; padding: 9px 18px; border-radius: 999px; font-weight: 500; font-size: .95rem; color: var(--purple); cursor: pointer; transition: background .3s ease, color .3s ease; }
 .group:hover { background: var(--lilac); }
 .group.on { background: var(--purple); color: #fff; }
+span.group { cursor: default; }   /* single group: a label, not a tab */
 .group-note { margin: 16px auto 0; max-width: 52ch; color: var(--ink-2); }
 .slide[hidden] { display: none; }
 /* colour alternatives: a swatch tile in natural colour bands until a photo exists */
