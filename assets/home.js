@@ -129,7 +129,7 @@
       rollTrack.appendChild(copy);
     });
     roll.classList.add("is-roll");
-    var SECS_PER_SET = cards.length * 4;   // ~4 s per card
+    var SECS_PER_SET = cards.length * 4.6;   // ~4.6 s per card
     var period = 0, pos = 0, last = 0, visible = false, hover = false, busyUntil = 0, held = false;
     function measure() { period = rollTrack.children[cards.length].offsetLeft - rollTrack.children[0].offsetLeft; }
     function wrap(x) { return x <= 0 ? x + period : x > period ? x - period : x; }
