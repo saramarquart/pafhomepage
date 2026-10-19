@@ -396,3 +396,12 @@
 }
 @media (max-width: 699px) { .why-mark { width: 120vw; right: -40vw; top: -160px; } }
 
+/* applications intro: a clear note card that also explains the bars below */
+.apps-note { display: inline-flex; align-items: center; gap: 16px; margin-top: 22px; padding: 14px 20px 14px 16px; max-width: 760px;
+  border-radius: 14px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(10px);
+  font-size: clamp(1rem, 1.2vw, 1.15rem); line-height: 1.45; color: rgba(255,255,255,.88); }
+.apps-note b { color: #fff; font-weight: 600; }
+.apps-note-bar { flex: 0 0 64px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.2); position: relative; overflow: hidden; }
+.apps-note-bar i { position: absolute; left: 30%; width: 50%; top: 0; bottom: 0; border-radius: 999px; background: var(--green); }
+@media (max-width: 560px) { .apps-note { align-items: flex-start; } .apps-note-bar { margin-top: 8px; flex-basis: 44px; } }
+
