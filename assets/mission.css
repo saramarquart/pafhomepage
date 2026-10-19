@@ -10,6 +10,7 @@
 /* ---------- hero (home.css .hero / .hero-shade / .hero-copy) ---------- */
 .ms-hero .hero-stage img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; animation: push 9s cubic-bezier(.3,.5,.4,1) both; }
 .ms-hero h1 { max-width: 14ch; }
+.ms-hero .hero-foot { margin-top: 12px; }   /* subline sits close to the headline */
 .ms-hero .hero-foot p { font-size: clamp(1.1rem, 1.5vw, 1.35rem); }
 
 /* ---------- split sections (copy + portrait photo on a colour offset) ---------- */
@@ -41,28 +42,60 @@
 /* ---------- journey ---------- */
 .ms-journey { background: var(--grey); }
 
-/* ---------- milestones: year rail + timeline that fills as you read ---------- */
+/* ---------- milestones: year tabs + swipeable cards, colour-coded by type ---------- */
 .ms-milestones { background: #fff; }
-.ms-milestones .center-head { margin-bottom: clamp(36px, 5vw, 64px); }
-.ms-timeline { position: relative; max-width: 980px; margin: 0 auto; }
-.ms-year { display: grid; grid-template-columns: 160px 1fr; gap: clamp(20px, 3vw, 48px); }
-.ms-year + .ms-year .ms-y { margin-top: 40px; }   /* keeps a stuck year label clear of the next one */
-.ms-year + .ms-year .ms-list { padding-top: 40px; }
-.ms-y { position: sticky; top: 110px; align-self: start; margin: 0; padding-top: 10px;
-  font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 600; letter-spacing: -.03em; color: var(--purple); line-height: 1; }
-.ms-list { list-style: none; margin: 0; padding: 0 0 clamp(28px, 4vw, 48px) 34px; border-left: 2px solid var(--sky); position: relative; }
-.ms-year:last-child .ms-list { padding-bottom: 0; }
-.ms-item { position: relative; padding: 12px 0 18px; }
-.ms-item::before { content: ""; position: absolute; left: -42px; top: 18px; width: 14px; height: 14px; border-radius: 50%;
-  background: #fff; box-shadow: inset 0 0 0 3px var(--purple); transition: background .4s ease; }
-.ms-item:hover::before { background: var(--purple); }
-.ms-date { display: inline-block; padding: 3px 12px; border-radius: 999px; background: var(--sky-lt); color: var(--purple); font-weight: 600; font-size: .85rem; }
-.ms-item p { margin: 10px 0 0; font-size: clamp(1.05rem, 1.35vw, 1.25rem); color: var(--ink); max-width: 54ch; }
-.ms-photo { margin: 18px 0 6px; width: min(100%, 420px); aspect-ratio: 16 / 10; border-radius: var(--r); overflow: hidden; }
-.ms-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
-.ms-item:hover .ms-photo img { transform: scale(1.04); }
-.ms-year:nth-child(even) .ms-list { border-left-color: var(--green); }
-.ms-year:nth-child(even) .ms-date { background: var(--green-lt); }
+.ms-milestones .center-head { margin-bottom: clamp(28px, 4vw, 48px); }
+.ms-milestones .center-head .lead { margin: 18px auto 0; }
+.ms-tl { --c-company: #B0DCE0; --c-product: #82C7AE; --c-market: #E2F2F3; --c-partners: #320F99; --c-funding: #EEB650; --c-awards: #FF5F4A; }
+.ms-controls { display: grid; justify-items: center; gap: 16px; margin-bottom: clamp(24px, 3vw, 36px); }
+.ms-years { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 5px; border-radius: 999px; background: var(--grey); }
+.ms-years [role="tab"] { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 20px; border: 0; border-radius: 999px;
+  background: none; cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--ink-2); transition: background .3s ease, color .3s ease, opacity .3s ease; }
+.ms-years [role="tab"]:hover { color: var(--purple); }
+.ms-years [role="tab"][aria-selected="true"] { background: var(--purple); color: #fff; }
+.ms-years [role="tab"].is-empty { opacity: .35; }
+.ms-tab-n { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px;
+  font-size: .75rem; background: #fff; color: var(--purple); }
+.ms-years [aria-selected="true"] .ms-tab-n { background: rgba(255,255,255,.2); color: #fff; }
+.ms-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.ms-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 999px; border: 1.5px solid #CCCCCC;
+  background: #fff; cursor: pointer; font-weight: 500; font-size: .9rem; color: var(--ink-2); transition: border-color .25s ease, background .25s ease, color .25s ease; }
+.ms-chip:hover { border-color: var(--purple); }
+.ms-chip.is-on { border-color: var(--purple); background: var(--purple); color: #fff; }
+.ms-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: 0 0 auto; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+.ms-c-company { --c: var(--c-company); } .ms-c-product { --c: var(--c-product); } .ms-c-market { --c: var(--c-market); }
+.ms-c-partners { --c: var(--c-partners); } .ms-c-funding { --c: var(--c-funding); } .ms-c-awards { --c: var(--c-awards); }
+
+.ms-panel { outline: none; }
+.ms-panel-y { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.ms-track { list-style: none; margin: 0; padding: 4px 4px 18px; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 40px) / 3.2);
+  gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.ms-track::-webkit-scrollbar { display: none; }
+.ms-card { scroll-snap-align: start; display: flex; flex-direction: column; gap: 14px; min-height: 230px; padding: 24px; border-radius: var(--r);
+  background: var(--grey); border-top: 6px solid var(--c); transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+.ms-card:hover { transform: translateY(-5px); box-shadow: 0 22px 44px -28px rgba(50,15,153,.45); }
+.ms-card[hidden] { display: none; }
+.ms-card-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ms-date { display: inline-block; padding: 3px 12px; border-radius: 999px; background: #fff; color: var(--purple); font-weight: 600; font-size: .85rem; }
+.ms-type { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.ms-card p { margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.4; color: var(--ink); }
+.ms-card.ms-next { background: var(--purple); border-top-color: var(--c-product); }
+.ms-card.ms-next p, .ms-card.ms-next .ms-type { color: #fff; font-weight: 600; }
+.ms-card.ms-next .ms-date { background: var(--c-product); color: var(--ink); }
+.ms-link { display: inline-flex; gap: 8px; margin-top: auto; color: var(--purple); font-weight: 600; }
+.ms-card.ms-next .ms-link { color: #fff; }
+.ms-link span { transition: transform .35s var(--ease); }
+.ms-link:hover span { transform: translate(3px, -3px); }
+.ms-empty { margin: 8px 0 0; text-align: center; color: var(--muted); }
+.ms-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 8px; }
+.ms-progress { width: min(260px, 40vw); height: 4px; border-radius: 999px; background: var(--grey); overflow: hidden; }
+.ms-progress span { display: block; height: 100%; width: 30%; border-radius: inherit; background: var(--purple); transition: margin-left .3s var(--ease), width .3s var(--ease); }
+.ms-panel:not([hidden]) { animation: msIn .45s var(--ease); }
+@keyframes msIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+/* without JavaScript: every year is shown, stacked */
+html:not(.ms-js) .ms-panel[hidden] { display: block; }
+html:not(.ms-js) .ms-panel-y { position: static; width: auto; height: auto; clip: auto; margin: 28px 0 12px; color: var(--purple); }
+html:not(.ms-js) .ms-controls, html:not(.ms-js) .ms-nav { display: none; }
 
 /* ---------- partner CTA (careers "Join us" panel) ---------- */
 .ms-final { padding-top: 0; background: #fff; }
@@ -81,14 +114,12 @@
   @media (prefers-reduced-motion: no-preference) {
     .ms-figure img { animation: msRise linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
     @keyframes msRise { from { transform: translateY(40px) scale(.97); } to { transform: none; } }
-    .ms-list::after { content: ""; position: absolute; left: -2px; top: 0; width: 2px; height: 100%; background: var(--purple);
-      transform-origin: top; animation: msFill linear both; animation-timeline: view(); animation-range: entry 30% cover 60%; }
-    @keyframes msFill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
   }
 }
-@media (prefers-reduced-motion: reduce) { .ms-hero .hero-stage img { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .ms-hero .hero-stage img, .ms-panel:not([hidden]) { animation: none; } .ms-card, .ms-progress span { transition: none; } }
 
 /* ---------- responsive ---------- */
+@media (max-width: 1000px) { .ms-track { grid-auto-columns: calc((100% - 20px) / 2.2); } }
 @media (max-width: 900px) {
   .ms-split, .ms-split-rev { grid-template-columns: 1fr; }
   .ms-split-rev .ms-figure { order: 2; }
@@ -99,19 +130,10 @@
   .ms-cta-copy { width: auto; padding-top: 8px; }
 }
 @media (max-width: 640px) {
-  .ms-year { grid-template-columns: 1fr; gap: 8px; }
-  .ms-y { position: static; padding: 0 0 6px; font-size: 2rem; }
-  .ms-list { padding-left: 26px; }
-  .ms-item::before { left: -34px; }
+  .ms-track { grid-auto-columns: 82%; gap: 14px; }
+  .ms-years [role="tab"] { padding: 8px 12px; font-size: .95rem; }
+  .ms-tab-n { display: none; }
   .ms-figure::before { transform: translate(10px, 10px); }
   .ms-figure-green::before { transform: translate(-10px, 10px); }
   .ms-hero .hero-actions .btn { width: 100%; }
 }
-
-/* latest milestone (upcoming launch) highlighted */
-.ms-next::before { background: var(--green); box-shadow: 0 0 0 5px rgba(130,199,174,.35); }
-.ms-year .ms-next .ms-date { background: var(--purple); color: #fff; }
-.ms-next p { font-weight: 600; }
-.ms-link { display: inline-flex; gap: 8px; margin-top: 10px; color: var(--purple); font-weight: 600; }
-.ms-link span { transition: transform .35s var(--ease); }
-.ms-link:hover span { transform: translate(3px, -3px); }
