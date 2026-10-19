@@ -91,7 +91,7 @@
   }
 
   // stagger index for cards; scroll motion replaces the simple reveal on these
-  [".pillars .pillar", ".why2 .why-card", ".profiles .profile", ".steps .step", ".apps .app"].forEach(function (sel) {
+  [".pillars .pillar", ".why2 .why-card", ".profiles .profile", ".steps .step"].forEach(function (sel) {
     [].forEach.call(document.querySelectorAll(sel), function (c, k) {
       c.style.setProperty("--n", k);
       c.classList.add("in");

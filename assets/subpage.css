@@ -372,7 +372,7 @@
   @keyframes dDoor { from { clip-path: inset(0 30% 0 30% round 32px); } to { clip-path: inset(0 0 0 0 round 32px 32px 0 0); } }
 
   /* cards follow each other in */
-  .story .pillar, .story .why-card, .story .profile, .story .step, .story .app {
+  .story .pillar, .story .why-card, .story .profile, .story .step {
     animation: dCard linear both; animation-timeline: view(); animation-range: entry calc(var(--n, 0) * 6%) cover calc(28% + var(--n, 0) * 6%); }
   @keyframes dCard { from { transform: translateY(50px); opacity: .25; } to { transform: none; opacity: 1; } }
   .story .pillar { animation-range: entry 0% cover 26%; }   /* the five benefits arrive together, never offset */
