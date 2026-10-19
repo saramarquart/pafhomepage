@@ -352,7 +352,10 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   /* photos wipe up into their frames */
   .cr-slide { animation: dWipe linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
   @keyframes dWipe { from { clip-path: inset(100% 0 0 0 round 8px); } to { clip-path: inset(0 0 0 0 round 8px); } }
-  .cr-banner, .cr-cta-media { animation: dWipe linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+  .cr-cta-media { animation: dWipe linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+  /* celebration photo opens from the top edge downwards, so there is never an empty gap above it */
+  .cr-banner { animation: dDrop linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+  @keyframes dDrop { from { clip-path: inset(0 0 100% 0 round 8px); } to { clip-path: inset(0 -40px -40px 0 round 8px); } }
 
   /* perks open up from a narrow strip (kept from B) */
   .cr-perks { animation: dDoor linear both; animation-timeline: view(); animation-range: entry 0% entry 65%; }
