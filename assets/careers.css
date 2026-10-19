@@ -237,6 +237,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-cta-media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, var(--purple) 0%, rgba(50,15,153,.55) 12%, rgba(50,15,153,.12) 32%, rgba(50,15,153,0) 50%); }
 .cr-cta-copy { position: relative; width: 42%; padding: clamp(32px, 5vw, 80px); }
+/* kununu employer rating, bottom-left of the Join us panel */
+.cr-kununu { display: block; width: 150px; height: auto; margin-top: clamp(28px, 3.5vw, 44px); border-radius: 10px; box-shadow: 0 12px 28px -16px rgba(17,17,17,.6); }
 .cr-cta h2 { margin: 26px 0 18px; max-width: 16ch; }
 .cr-cta p { color: rgba(255,255,255,.88); max-width: 46ch; margin-bottom: 30px; }
 
