@@ -116,83 +116,12 @@
   }
   groups.forEach(function (b) { b.addEventListener("click", function () { pickGroup(b); }); });
 
-  /* ---- Portfolio: endless slow roll, left to right, that you can still scroll yourself ----
-     A second copy of the cards follows the first; the track scrolls on its own and jumps back by exactly one set
-     at the edge, so it never ends. Swiping, dragging, the arrows or hovering take over; the roll resumes after a pause. */
-  var roll = document.querySelector(".carousel");
-  var rollTrack = roll && roll.querySelector(".track");
-  if (rollTrack && !reduce && "IntersectionObserver" in window) {
-    var cards = [].slice.call(rollTrack.querySelectorAll(".slide"));
-    cards.forEach(function (s) {
-      var copy = s.cloneNode(true);
-      copy.setAttribute("aria-hidden", "true"); copy.setAttribute("tabindex", "-1");   // clickable, but skipped by screen readers and Tab
-      rollTrack.appendChild(copy);
-    });
-    roll.classList.add("is-roll");
-    var SECS_PER_SET = cards.length * 4.6;   // ~4.6 s per card
-    var period = 0, pos = 0, last = 0, visible = false, hover = false, busyUntil = 0, held = false;
-    function measure() { period = rollTrack.children[cards.length].offsetLeft - rollTrack.children[0].offsetLeft; }
-    function wrap(x) { return x <= 0 ? x + period : x > period ? x - period : x; }
-    // start with the Cocoa booster (second copy) at the left edge, so it first crosses the whole screen
-    measure();
-    var lead = rollTrack.children[cards.length + cards.indexOf(rollTrack.querySelector(".is-lead"))];
-    pos = wrap(lead.offsetLeft - rollTrack.children[0].offsetLeft - 20);
-    rollTrack.scrollLeft = pos;
-    function takeOver(ms) { busyUntil = performance.now() + (ms || 2500); }
-    function tick(now) {
-      var dt = Math.min(64, now - (last || now)); last = now;
-      if (visible && !hover && now > busyUntil && period) {
-        if (Math.abs(rollTrack.scrollLeft - pos) > 2) pos = rollTrack.scrollLeft;   // pick up where the visitor left it
-        pos = wrap(pos - period / SECS_PER_SET * dt / 1000);                        // content drifts left to right
-        rollTrack.scrollLeft = pos;
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    // the visitor scrolls: keep it endless at the edges once they let go
-    rollTrack.addEventListener("scroll", function () {
-      if (performance.now() > busyUntil) return;
-      var x = rollTrack.scrollLeft, max = rollTrack.scrollWidth - rollTrack.clientWidth;
-      if (x < 2 || x > max - 2) { rollTrack.scrollLeft = wrap(x); pos = rollTrack.scrollLeft; }
-    }, { passive: true });
-    ["wheel", "touchstart", "touchmove"].forEach(function (t) { rollTrack.addEventListener(t, function () { takeOver(); }, { passive: true }); });
-    roll.addEventListener("mouseenter", function () { hover = true; });
-    roll.addEventListener("mouseleave", function () { hover = false; });
-    roll.addEventListener("focusin", function () { takeOver(6000); });
-    // drag with the mouse; a drag doesn't count as a click on the card
-    var drag = null, dragged = false;
-    rollTrack.addEventListener("dragstart", function (e) { e.preventDefault(); });
-    rollTrack.addEventListener("pointerdown", function (e) {
-      if (e.pointerType !== "mouse" || e.button !== 0) return;
-      drag = { x: e.clientX, left: rollTrack.scrollLeft }; dragged = false;
-    });
-    window.addEventListener("pointermove", function (e) {
-      if (!drag) return;
-      var dx = e.clientX - drag.x;
-      if (Math.abs(dx) > 5) { dragged = true; roll.classList.add("is-dragging"); }
-      if (dragged) { takeOver(); rollTrack.scrollLeft = drag.left - dx; }
-    });
-    window.addEventListener("pointerup", function () { drag = null; roll.classList.remove("is-dragging"); });
-    rollTrack.addEventListener("click", function (e) { if (dragged) { e.preventDefault(); dragged = false; } }, true);
-    window.addEventListener("resize", function () { measure(); pos = wrap(rollTrack.scrollLeft); });
-    new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        visible = e.isIntersecting;
-        if (visible && !held) { held = true; takeOver(1200); }   // a beat while the cards fade in
-        [].forEach.call(rollTrack.querySelectorAll("[aria-hidden] .media-vid"), function (v) {   // the copies' videos (main.js handles the originals)
-          if (visible) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
-        });
-      });
-    }, { threshold: 0.6 }).observe(roll);
-  }
-
   /* ---- Portfolio carousel arrows ---- */
   var track = document.querySelector(".carousel .track");
   document.querySelectorAll(".arrow-btn").forEach(function (b) {
     b.addEventListener("click", function () {
       if (!track) return;
-      var slide = track.querySelector(".slide:not(.is-lead)");
-      if (roll && roll.classList.contains("is-roll")) { busyUntil = performance.now() + 2500; }
+      var slide = track.querySelector(".slide");
       var step = slide ? slide.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : 400;
       track.scrollBy({ left: step * parseInt(b.getAttribute("data-dir"), 10), behavior: reduce ? "auto" : "smooth" });
     });
@@ -201,10 +130,10 @@
   var carousel = document.querySelector(".carousel");
   var counter = document.querySelector(".carousel-count");
   document.querySelectorAll("[data-count-for]").forEach(function (c) {
-    c.textContent = document.querySelectorAll('.carousel .slide[data-group="' + c.getAttribute("data-count-for") + '"]:not([aria-hidden])').length;
+    c.textContent = document.querySelectorAll('.carousel .slide[data-group="' + c.getAttribute("data-count-for") + '"]').length;
   });
   function arrowState() {
-    if (!track || carousel.classList.contains("is-roll")) return;   // endless: the arrows never run out
+    if (!track) return;
     var max = track.scrollWidth - track.clientWidth - 2;
     document.querySelectorAll(".arrow-btn").forEach(function (b) {
       var d = parseInt(b.getAttribute("data-dir"), 10);

@@ -474,23 +474,6 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .slide .tile { box-shadow: 0 0 0 0 var(--gold); transition: box-shadow .5s var(--ease); }
 .slide:hover .tile { box-shadow: 0 0 0 4px var(--gold); }
 
-/* Portfolio as an endless, slow roll from left to right (home.js duplicates the cards, adds .is-roll and scrolls the track).
-   Full-bleed; you can still swipe, drag or use the arrows. Without JS or with reduced motion: the plain swipe carousel. */
-.carousel.is-roll { container-type: inline-size; margin-inline: calc(50% - 50vw); }
-.carousel.is-roll .track { display: flex; gap: 20px; scroll-snap-type: none; padding-block: 6px; margin-block: -6px; -webkit-mask-image: none; mask-image: none; cursor: grab; }
-.carousel.is-roll.is-dragging .track { cursor: grabbing; user-select: none; }
-.carousel.is-roll .carousel-count { display: none; }
-.carousel.is-roll .slide { flex: 0 0 72cqw; }
-.carousel.is-roll .slide .tile { aspect-ratio: auto; height: 56cqw; }
-@media (min-width: 700px) {
-  .carousel.is-roll .slide { flex-basis: calc((100cqw - 40px) / 2.6); }
-  .carousel.is-roll .slide .tile { height: calc((100cqw - 40px) / 2.6 * .75); }
-}
-@media (min-width: 1000px) {
-  .carousel.is-roll .slide { flex-basis: calc((100cqw - 80px) / 3.8); }
-  .carousel.is-roll .slide .tile { height: min(36vh, 20vw); }
-}
-
 /* Benefits: each card picks up its colour on hover */
 .benefits { overflow: hidden; }
 .benefit-grid .benefit:nth-child(2) .b-no { background: var(--green); color: var(--ink); }
