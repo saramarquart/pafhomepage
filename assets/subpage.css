@@ -405,3 +405,30 @@
 .apps-note-bar i { position: absolute; left: 30%; width: 50%; top: 0; bottom: 0; border-radius: 999px; background: var(--green); }
 @media (max-width: 560px) { .apps-note { align-items: flex-start; } .apps-note-bar { margin-top: 8px; flex-basis: 44px; } }
 
+/* ---------- light hero with one cocoa-powder pile ---------- */
+.cb-hero-light { background: radial-gradient(70% 90% at 72% 60%, #FFFFFF 0%, #F4F1EC 55%, var(--sky-lt) 100%); color: var(--ink); align-items: center; min-height: min(88vh, 860px); }
+.cb-hero-light .crumbs { color: var(--muted); }
+.cb-hero-light .crumbs a:hover, .cb-hero-light .crumbs b { color: var(--ink); }
+.cb-hero-light .kicker { color: var(--purple); }
+.cb-hero-light h1 { color: var(--ink); }
+.cb-hero-light .lead { color: var(--ink-2); }
+.cb-hero-light .btn-white { background: var(--purple); color: #fff; }
+.cb-hero-light .btn-white:hover { background: var(--purple-2); }
+.cb-hero-light .scroll-cue { color: var(--purple); }
+.cb-hero-light .scroll-cue i { background: rgba(50,15,153,.2); }
+.cb-hero-light .scroll-cue i::after { background: var(--purple); }
+.cb-hero-light .cb-hero-copy { max-width: 620px; }
+.subpage .nav:not(.scrolled) .brand { color: var(--purple); }
+/* the pile: white of the cut-out melts into the ground (multiply); rises in, then breathes */
+.cb-pile { position: absolute; z-index: 0; right: 2vw; top: 52%; width: min(52vw, 900px); aspect-ratio: 1 / 1; translate: 0 -46%; pointer-events: none; mix-blend-mode: multiply; }   /* blend the whole layer, so the cut-out white melts into the hero ground */
+.cb-pile img { width: 100%; height: 100%; object-fit: contain; animation: pileIn 1.6s cubic-bezier(.2,.7,.2,1) both, pileBreathe 9s ease-in-out 1.6s infinite alternate; }
+@keyframes pileIn { from { opacity: 0; transform: translateY(40px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes pileBreathe { from { transform: scale(1); } to { transform: scale(1.04) translateY(-6px); } }
+.cb-pile::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: 20%; height: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(60,30,15,.18), transparent); z-index: -1; }
+@media (max-width: 899px) {
+  .cb-hero-light { flex-direction: column; align-items: stretch; min-height: 0; padding-top: 110px; padding-bottom: 70px; }
+  .cb-pile { order: 2; }
+  .cb-pile { position: relative; right: auto; top: auto; translate: none; width: 100%; max-width: 520px; margin: -10px auto 0; }
+}
+@media (prefers-reduced-motion: reduce) { .cb-pile img { animation: none; } }
+
