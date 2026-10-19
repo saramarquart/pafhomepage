@@ -129,14 +129,14 @@
       rollTrack.appendChild(copy);
     });
     roll.classList.add("is-roll");
-    var SECS_PER_SET = cards.length * 6.5;   // ~6.5 s per card
+    var SECS_PER_SET = cards.length * 4;   // ~4 s per card
     var period = 0, pos = 0, last = 0, visible = false, hover = false, busyUntil = 0, held = false;
     function measure() { period = rollTrack.children[cards.length].offsetLeft - rollTrack.children[0].offsetLeft; }
     function wrap(x) { return x <= 0 ? x + period : x > period ? x - period : x; }
-    // start with the Cocoa booster (the wider lead card, second copy) in the middle of the screen
+    // start with the Cocoa booster (second copy) at the left edge, so it first crosses the whole screen
     measure();
     var lead = rollTrack.children[cards.length + cards.indexOf(rollTrack.querySelector(".is-lead"))];
-    pos = wrap(lead.offsetLeft - rollTrack.children[0].offsetLeft - (rollTrack.clientWidth - lead.offsetWidth) / 2);
+    pos = wrap(lead.offsetLeft - rollTrack.children[0].offsetLeft - 20);
     rollTrack.scrollLeft = pos;
     function takeOver(ms) { busyUntil = performance.now() + (ms || 2500); }
     function tick(now) {
@@ -178,12 +178,12 @@
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         visible = e.isIntersecting;
-        if (visible && !held) { held = true; takeOver(3500); }   // hold the booster in the centre for a moment first
+        if (visible && !held) { held = true; takeOver(1200); }   // a beat while the cards fade in
         [].forEach.call(rollTrack.querySelectorAll("[aria-hidden] .media-vid"), function (v) {   // the copies' videos (main.js handles the originals)
           if (visible) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
         });
       });
-    }, { threshold: 0.35 }).observe(roll);
+    }, { threshold: 0.6 }).observe(roll);
   }
 
   /* ---- Portfolio carousel arrows ---- */
