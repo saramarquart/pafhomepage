@@ -42,60 +42,59 @@
 /* ---------- journey ---------- */
 .ms-journey { background: var(--grey); }
 
-/* ---------- milestones: year tabs + swipeable cards, colour-coded by type ---------- */
-.ms-milestones { background: #fff; }
-.ms-milestones .center-head { margin-bottom: clamp(28px, 4vw, 48px); }
-.ms-milestones .center-head .lead { margin: 18px auto 0; }
-.ms-tl { --c-company: #B0DCE0; --c-product: #82C7AE; --c-market: #E2F2F3; --c-partners: #320F99; --c-funding: #EEB650; --c-awards: #FF5F4A; }
-.ms-controls { display: grid; justify-items: center; gap: 16px; margin-bottom: clamp(24px, 3vw, 36px); }
-.ms-years { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 5px; border-radius: 999px; background: var(--grey); }
-.ms-years [role="tab"] { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 20px; border: 0; border-radius: 999px;
-  background: none; cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--ink-2); transition: background .3s ease, color .3s ease, opacity .3s ease; }
-.ms-years [role="tab"]:hover { color: var(--purple); }
-.ms-years [role="tab"][aria-selected="true"] { background: var(--purple); color: #fff; }
-.ms-years [role="tab"].is-empty { opacity: .35; }
-.ms-tab-n { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px;
-  font-size: .75rem; background: #fff; color: var(--purple); }
-.ms-years [aria-selected="true"] .ms-tab-n { background: rgba(255,255,255,.2); color: #fff; }
-.ms-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-.ms-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 999px; border: 1.5px solid #CCCCCC;
-  background: #fff; cursor: pointer; font-weight: 500; font-size: .9rem; color: var(--ink-2); transition: border-color .25s ease, background .25s ease, color .25s ease; }
-.ms-chip:hover { border-color: var(--purple); }
-.ms-chip.is-on { border-color: var(--purple); background: var(--purple); color: #fff; }
-.ms-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: 0 0 auto; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
-.ms-c-company { --c: var(--c-company); } .ms-c-product { --c: var(--c-product); } .ms-c-market { --c: var(--c-market); }
-.ms-c-partners { --c: var(--c-partners); } .ms-c-funding { --c: var(--c-funding); } .ms-c-awards { --c: var(--c-awards); }
+/* ---------- our story: chronological chapters, one per year ---------- */
+.ms-story { background: #fff; overflow-x: clip; }
+.ms-story .center-head { margin-bottom: clamp(24px, 3vw, 36px); }
+.ms-story .center-head .lead { margin: 18px auto 0; }
 
-.ms-panel { outline: none; }
-.ms-panel-y { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.ms-track { list-style: none; margin: 0; padding: 4px 4px 18px; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 40px) / 3.2);
-  gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
-.ms-track::-webkit-scrollbar { display: none; }
-.ms-card { scroll-snap-align: start; display: flex; flex-direction: column; gap: 14px; min-height: 230px; padding: 24px; border-radius: var(--r);
-  background: var(--grey); border-top: 6px solid var(--c); transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
-.ms-card:hover { transform: translateY(-5px); box-shadow: 0 22px 44px -28px rgba(50,15,153,.45); }
-.ms-card[hidden] { display: none; }
-.ms-card-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-.ms-date { display: inline-block; padding: 3px 12px; border-radius: 999px; background: #fff; color: var(--purple); font-weight: 600; font-size: .85rem; }
-.ms-type { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
-.ms-card p { margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.4; color: var(--ink); }
-.ms-card.ms-next { background: var(--purple); border-top-color: var(--c-product); }
-.ms-card.ms-next p, .ms-card.ms-next .ms-type { color: #fff; font-weight: 600; }
-.ms-card.ms-next .ms-date { background: var(--c-product); color: var(--ink); }
-.ms-link { display: inline-flex; gap: 8px; margin-top: auto; color: var(--purple); font-weight: 600; }
-.ms-card.ms-next .ms-link { color: #fff; }
+/* chapter bar: stays at the top while you read, shows where you are */
+.ms-rail { position: sticky; top: 80px; z-index: 5; display: flex; justify-content: center; gap: 4px; width: max-content; max-width: 100%;
+  margin: 0 auto clamp(40px, 5vw, 72px); padding: 5px; border-radius: 999px; background: rgba(243,243,243,.92); backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px -22px rgba(14,11,26,.5); overflow: hidden; }
+.ms-rail a { position: relative; z-index: 1; padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: .95rem; color: var(--ink-2); transition: color .3s ease; }
+.ms-rail a:hover { color: var(--purple); }
+.ms-rail a.is-on { color: #fff; }
+.ms-rail-fill { position: absolute; z-index: 0; top: 5px; bottom: 5px; left: 0; width: 0; border-radius: 999px; background: var(--purple);
+  transition: transform .45s var(--ease), width .45s var(--ease); }
+
+.ms-chs { list-style: none; margin: 0; padding: 0; }
+.ms-ch { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 96px); align-items: start;
+  padding: clamp(40px, 5vw, 72px) 0; border-top: 1px solid #ECECEC; scroll-margin-top: 150px; }
+.ms-ch:first-child { border-top: 0; padding-top: 0; }
+.ms-ch-head { position: sticky; top: 160px; }
+.ms-ch-year { display: block; margin-bottom: 8px; font-size: clamp(4.5rem, 9vw, 8.5rem); font-weight: 700; line-height: .9; letter-spacing: -.05em;
+  color: transparent; -webkit-text-stroke: 2px var(--purple); opacity: .9; }
+.ms-ch:nth-child(even) .ms-ch-year { -webkit-text-stroke-color: var(--green); }
+.ms-ch-no { display: block; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ms-ch-head h3 { margin: 10px 0 12px; font-size: clamp(1.6rem, 2.4vw, 2.3rem); line-height: 1.1; color: var(--ink); }
+.ms-ch-head p { margin: 0; max-width: 42ch; font-size: clamp(1.02rem, 1.25vw, 1.15rem); color: var(--ink-2); }
+
+/* the year's events on a line */
+.ms-evs { list-style: none; margin: 0; padding: 6px 0 0 30px; border-left: 2px solid var(--sky); }
+.ms-ch:nth-child(even) .ms-evs { border-left-color: var(--green); }
+.ms-ev { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: baseline; padding: 14px 0; }
+.ms-ev + .ms-ev { border-top: 1px solid #F0F0F0; }
+.ms-ev::before { content: ""; position: absolute; left: -38px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: #fff;
+  box-shadow: inset 0 0 0 3px var(--purple); }
+.ms-q { display: inline-flex; justify-content: center; padding: 3px 0; border-radius: 999px; background: var(--grey); color: var(--purple); font-weight: 700; font-size: .85rem; }
+.ms-ev p { margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.45; color: var(--ink); }
+.ms-ev-next { margin-top: 10px; padding: 22px 22px 22px 18px; border-radius: var(--r); background: var(--purple); }
+.ms-ev-next::before { background: var(--green); box-shadow: 0 0 0 5px rgba(130,199,174,.35); top: 30px; }
+.ms-ev-next .ms-q { background: var(--green); color: var(--ink); }
+.ms-ev-next p { color: #fff; font-weight: 600; }
+.ms-ev + .ms-ev-next { border-top: 0; }
+.ms-link { display: flex; gap: 8px; margin-top: 10px; color: #fff; font-weight: 600; font-size: 1rem; }
 .ms-link span { transition: transform .35s var(--ease); }
 .ms-link:hover span { transform: translate(3px, -3px); }
-.ms-empty { margin: 8px 0 0; text-align: center; color: var(--muted); }
-.ms-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 8px; }
-.ms-progress { width: min(260px, 40vw); height: 4px; border-radius: 999px; background: var(--grey); overflow: hidden; }
-.ms-progress span { display: block; height: 100%; width: 30%; border-radius: inherit; background: var(--purple); transition: margin-left .3s var(--ease), width .3s var(--ease); }
-.ms-panel:not([hidden]) { animation: msIn .45s var(--ease); }
-@keyframes msIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
-/* without JavaScript: every year is shown, stacked */
-html:not(.ms-js) .ms-panel[hidden] { display: block; }
-html:not(.ms-js) .ms-panel-y { position: static; width: auto; height: auto; clip: auto; margin: 28px 0 12px; color: var(--purple); }
-html:not(.ms-js) .ms-controls, html:not(.ms-js) .ms-nav { display: none; }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ms-ev { animation: msEv linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
+    @keyframes msEv { from { opacity: .15; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+    .ms-ch-year { animation: msYear linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+    @keyframes msYear { from { opacity: 0; transform: translateY(40px); } to { opacity: .9; transform: none; } }
+  }
+}
 
 /* ---------- partner CTA (careers "Join us" panel) ---------- */
 .ms-final { padding-top: 0; background: #fff; }
@@ -116,10 +115,10 @@ html:not(.ms-js) .ms-controls, html:not(.ms-js) .ms-nav { display: none; }
     @keyframes msRise { from { transform: translateY(40px) scale(.97); } to { transform: none; } }
   }
 }
-@media (prefers-reduced-motion: reduce) { .ms-hero .hero-stage img, .ms-panel:not([hidden]) { animation: none; } .ms-card, .ms-progress span { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ms-hero .hero-stage img { animation: none; } .ms-rail-fill { transition: none; } }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1000px) { .ms-track { grid-auto-columns: calc((100% - 20px) / 2.2); } }
+@media (max-width: 1000px) { .ms-ch { grid-template-columns: 1fr; gap: 20px; } .ms-ch-head { position: static; } .ms-ch-year { font-size: clamp(3.5rem, 12vw, 5rem); } }
 @media (max-width: 900px) {
   .ms-split, .ms-split-rev { grid-template-columns: 1fr; }
   .ms-split-rev .ms-figure { order: 2; }
@@ -130,15 +129,13 @@ html:not(.ms-js) .ms-controls, html:not(.ms-js) .ms-nav { display: none; }
   .ms-cta-copy { width: auto; padding-top: 8px; }
 }
 @media (max-width: 640px) {
-  .ms-track { grid-auto-columns: 82%; gap: 14px; }
-  .ms-years [role="tab"] { padding: 8px 12px; font-size: .95rem; }
-  .ms-tab-n { display: none; }
+  .ms-rail { top: 72px; }
+  .ms-rail a { padding: 7px 9px; font-size: .82rem; }
+  .ms-ev { grid-template-columns: 1fr; gap: 6px; }
+  .ms-q { justify-self: start; padding: 2px 10px; }
+  .ms-evs { padding-left: 24px; }
+  .ms-ev::before { left: -32px; }
   .ms-figure::before { transform: translate(10px, 10px); }
   .ms-figure-green::before { transform: translate(-10px, 10px); }
   .ms-hero .hero-actions .btn { width: 100%; }
 }
-
-/* no colour coding: neutral cards, type shown as text only */
-.ms-dot { display: none; }
-.ms-card { border-top: 0; }
-.ms-card.ms-next { border-top: 0; }
