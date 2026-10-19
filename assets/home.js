@@ -116,8 +116,9 @@
   }
   groups.forEach(function (b) { b.addEventListener("click", function () { pickGroup(b); }); });
 
-  /* ---- Portfolio: endless slow roll, left to right ----
-     A second, hidden copy of the cards follows the first; the track moves by exactly one set and starts over. */
+  /* ---- Portfolio: endless slow roll, left to right, that you can still scroll yourself ----
+     A second copy of the cards follows the first; the track scrolls on its own and jumps back by exactly one set
+     at the edge, so it never ends. Swiping, dragging, the arrows or hovering take over; the roll resumes after a pause. */
   var roll = document.querySelector(".carousel");
   var rollTrack = roll && roll.querySelector(".track");
   if (rollTrack && !reduce && "IntersectionObserver" in window) {
@@ -127,25 +128,59 @@
       copy.setAttribute("aria-hidden", "true"); copy.setAttribute("tabindex", "-1");   // clickable, but skipped by screen readers and Tab
       rollTrack.appendChild(copy);
     });
-    var dur = cards.length * 6.5;   // ~6.5 s per card
-    rollTrack.style.setProperty("--roll-dur", dur + "s");
     roll.classList.add("is-roll");
-    // start with the Cocoa booster (the wider lead card) in the middle of the screen and hold it there before rolling on
+    var SECS_PER_SET = cards.length * 6.5;   // ~6.5 s per card
+    var period = 0, pos = 0, last = 0, visible = false, hover = false, busyUntil = 0, held = false;
+    function measure() { period = rollTrack.children[cards.length].offsetLeft - rollTrack.children[0].offsetLeft; }
+    function wrap(x) { return x <= 0 ? x + period : x > period ? x - period : x; }
+    // start with the Cocoa booster (the wider lead card, second copy) in the middle of the screen
+    measure();
     var lead = rollTrack.children[cards.length + cards.indexOf(rollTrack.querySelector(".is-lead"))];
-    function centreLead() {
-      var period = rollTrack.children[cards.length].offsetLeft - rollTrack.children[0].offsetLeft;
-      var start = (roll.clientWidth - lead.offsetWidth) / 2 - (lead.offsetLeft - rollTrack.children[0].offsetLeft - period);   // how far into the roll the lead sits centred
-      rollTrack.style.animationDelay = -(((start % period) + period) % period) / period * dur + "s";
+    pos = wrap(lead.offsetLeft - rollTrack.children[0].offsetLeft - (rollTrack.clientWidth - lead.offsetWidth) / 2);
+    rollTrack.scrollLeft = pos;
+    function takeOver(ms) { busyUntil = performance.now() + (ms || 2500); }
+    function tick(now) {
+      var dt = Math.min(64, now - (last || now)); last = now;
+      if (visible && !hover && now > busyUntil && period) {
+        if (Math.abs(rollTrack.scrollLeft - pos) > 2) pos = rollTrack.scrollLeft;   // pick up where the visitor left it
+        pos = wrap(pos - period / SECS_PER_SET * dt / 1000);                        // content drifts left to right
+        rollTrack.scrollLeft = pos;
+      }
+      requestAnimationFrame(tick);
     }
-    centreLead();
-    rollTrack.style.animationPlayState = "paused";
-    var held = false;
+    requestAnimationFrame(tick);
+    // the visitor scrolls: keep it endless at the edges once they let go
+    rollTrack.addEventListener("scroll", function () {
+      if (performance.now() > busyUntil) return;
+      var x = rollTrack.scrollLeft, max = rollTrack.scrollWidth - rollTrack.clientWidth;
+      if (x < 2 || x > max - 2) { rollTrack.scrollLeft = wrap(x); pos = rollTrack.scrollLeft; }
+    }, { passive: true });
+    ["wheel", "touchstart", "touchmove"].forEach(function (t) { rollTrack.addEventListener(t, function () { takeOver(); }, { passive: true }); });
+    roll.addEventListener("mouseenter", function () { hover = true; });
+    roll.addEventListener("mouseleave", function () { hover = false; });
+    roll.addEventListener("focusin", function () { takeOver(6000); });
+    // drag with the mouse; a drag doesn't count as a click on the card
+    var drag = null, dragged = false;
+    rollTrack.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    rollTrack.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      drag = { x: e.clientX, left: rollTrack.scrollLeft }; dragged = false;
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x;
+      if (Math.abs(dx) > 5) { dragged = true; roll.classList.add("is-dragging"); }
+      if (dragged) { takeOver(); rollTrack.scrollLeft = drag.left - dx; }
+    });
+    window.addEventListener("pointerup", function () { drag = null; roll.classList.remove("is-dragging"); });
+    rollTrack.addEventListener("click", function (e) { if (dragged) { e.preventDefault(); dragged = false; } }, true);
+    window.addEventListener("resize", function () { measure(); pos = wrap(rollTrack.scrollLeft); });
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        roll.classList.toggle("is-off", !e.isIntersecting);
-        if (e.isIntersecting && !held) { held = true; setTimeout(function () { rollTrack.style.animationPlayState = ""; }, 3500); }
+        visible = e.isIntersecting;
+        if (visible && !held) { held = true; takeOver(3500); }   // hold the booster in the centre for a moment first
         [].forEach.call(rollTrack.querySelectorAll("[aria-hidden] .media-vid"), function (v) {   // the copies' videos (main.js handles the originals)
-          if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+          if (visible) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
         });
       });
     }, { threshold: 0.35 }).observe(roll);
@@ -156,7 +191,8 @@
   document.querySelectorAll(".arrow-btn").forEach(function (b) {
     b.addEventListener("click", function () {
       if (!track) return;
-      var slide = track.querySelector(".slide");
+      var slide = track.querySelector(".slide:not(.is-lead)");
+      if (roll && roll.classList.contains("is-roll")) { busyUntil = performance.now() + 2500; }
       var step = slide ? slide.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : 400;
       track.scrollBy({ left: step * parseInt(b.getAttribute("data-dir"), 10), behavior: reduce ? "auto" : "smooth" });
     });
@@ -168,7 +204,7 @@
     c.textContent = document.querySelectorAll('.carousel .slide[data-group="' + c.getAttribute("data-count-for") + '"]:not([aria-hidden])').length;
   });
   function arrowState() {
-    if (!track) return;
+    if (!track || carousel.classList.contains("is-roll")) return;   // endless: the arrows never run out
     var max = track.scrollWidth - track.clientWidth - 2;
     document.querySelectorAll(".arrow-btn").forEach(function (b) {
       var d = parseInt(b.getAttribute("data-dir"), 10);
