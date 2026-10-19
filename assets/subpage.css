@@ -157,7 +157,7 @@
 .apps-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31,8,102,.88) 0%, rgba(31,8,102,.72) 50%, rgba(31,8,102,.55) 100%); }
 .cb-apps .wrap { position: relative; z-index: 1; }
 .cb-apps .lead, .cb-apps .scale-key { color: rgba(255,255,255,.8); }
-.cb-apps .pill { background: var(--green); color: #0D2B22; }
+.cb-apps .pill { background: var(--gold); color: var(--purple-dk); }
 .cb-apps .apps { border-top-color: rgba(255,255,255,.2); }
 .cb-apps .app { border-bottom-color: rgba(255,255,255,.2); border-radius: 6px; }
 .cb-apps .app:hover { background: linear-gradient(90deg, rgba(238,182,80,.16), transparent 75%); }
@@ -477,4 +477,14 @@
   .cb-full-shade { background: linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.86) 45%, rgba(255,255,255,.2) 75%, rgba(255,255,255,0) 100%); }
   .cb-hero-light { min-height: 92svh; justify-content: flex-start; }
 }
+
+/* Ronchi gold #EEB650 as the accent for selected buttons and pills */
+.pill-gold { background: #EEB650; color: var(--purple-dk); }
+.btn-gold, .cb-hero-light .btn-gold { background: #EEB650; color: var(--purple-dk); }
+.btn-gold:hover, .cb-hero-light .btn-gold:hover { background: #F3C670; color: var(--purple-dk); }
+.cb-apps .range i { background: #EEB650; }
+.apps-note-bar i { background: #EEB650; }
+.sform .btn { background: #EEB650; color: var(--purple-dk); }
+.sform .btn:hover { background: #F3C670; }
+.step.check .link-arrow { color: #EEB650; }
 
