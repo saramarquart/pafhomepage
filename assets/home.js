@@ -116,6 +116,29 @@
   }
   groups.forEach(function (b) { b.addEventListener("click", function () { pickGroup(b); }); });
 
+  /* ---- Portfolio: endless slow roll, left to right ----
+     A second, hidden copy of the cards follows the first; the track moves by exactly one set and starts over. */
+  var roll = document.querySelector(".carousel");
+  var rollTrack = roll && roll.querySelector(".track");
+  if (rollTrack && !reduce && "IntersectionObserver" in window) {
+    var cards = [].slice.call(rollTrack.querySelectorAll(".slide"));
+    cards.forEach(function (s) {
+      var copy = s.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true"); copy.setAttribute("tabindex", "-1"); copy.inert = true;
+      rollTrack.appendChild(copy);
+    });
+    rollTrack.style.setProperty("--roll-dur", cards.length * 9 + "s");   // ~9 s per card: slow
+    roll.classList.add("is-roll");
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        roll.classList.toggle("is-off", !e.isIntersecting);
+        [].forEach.call(rollTrack.querySelectorAll("[aria-hidden] .media-vid"), function (v) {   // the copies' videos (main.js handles the originals)
+          if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+        });
+      });
+    }).observe(roll);
+  }
+
   /* ---- Portfolio carousel arrows ---- */
   var track = document.querySelector(".carousel .track");
   document.querySelectorAll(".arrow-btn").forEach(function (b) {
@@ -130,7 +153,7 @@
   var carousel = document.querySelector(".carousel");
   var counter = document.querySelector(".carousel-count");
   document.querySelectorAll("[data-count-for]").forEach(function (c) {
-    c.textContent = document.querySelectorAll('.carousel .slide[data-group="' + c.getAttribute("data-count-for") + '"]').length;
+    c.textContent = document.querySelectorAll('.carousel .slide[data-group="' + c.getAttribute("data-count-for") + '"]:not([aria-hidden])').length;
   });
   function arrowState() {
     if (!track) return;
