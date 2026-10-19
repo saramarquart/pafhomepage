@@ -98,10 +98,9 @@
           </div>
           <div><span class="nav-sub-head">By ingredient</span>
             <a href="product-cocoa-booster.html">Cocoa booster</a>
-            <a href="product-coffee.html">Coffee alternative</a>
-            <a href="product-hazelnut.html">Nuts alternative</a>
-            <a href="product-choviva.html">Cocoa-free chocolate alternative</a>
-            <a href="solutions.html">Sugar reduction</a> <!-- TODO: link to a sugar-reduction page once it exists -->
+            <a href="product-coffee.html">Coffee solutions</a>
+            <a href="product-hazelnut.html">Nuts solutions</a>
+            <a href="product-choviva.html">Chocolate solutions</a>
             <a href="product-butter.html">Speciality fats</a>
           </div>
         </div>
@@ -116,25 +115,23 @@
 
   <main>
 
-    <!-- 01 · HERO — ingredient film: cocoa booster, coffee, nuts, cocoa-free chocolate, sugar reduction, speciality fats.
+    <!-- 01 · HERO — ingredient film: cocoa booster, coffee, nuts, chocolate, speciality fats.
          Each name links to its page; the stripe next to it shows that shot. -->
     <section class="hero" id="top">
       <div class="hero-stage" aria-hidden="true">
         <div class="reel still on" data-label="Cocoa booster"><img src="assets/img/hero-booster-powder.jpg?v=3" alt=""></div>
-        <div class="reel" data-label="Coffee alternative" data-in="drop"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
-        <div class="reel still" data-label="Nuts alternative"><img src="assets/img/hero-nuts-hq.jpg" alt=""></div>
-        <div class="reel" data-label="Cocoa-free chocolate alternative"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-cocoa.jpg"><source src="assets/img/hero-cocoa.mp4" type="video/mp4"></video></div>
-        <div class="reel" data-label="Sugar reduction"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-sugar-fall.jpg"><source src="assets/img/hero-sugar-fall.mp4" type="video/mp4"></video></div>
+        <div class="reel" data-label="Coffee solutions" data-in="drop"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
+        <div class="reel still" data-label="Nuts solutions"><img src="assets/img/hero-nuts-hq.jpg" alt=""></div>
+        <div class="reel" data-label="Chocolate solutions"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-cocoa.jpg"><source src="assets/img/hero-cocoa.mp4" type="video/mp4"></video></div>
         <div class="reel still" data-label="Speciality fats"><img src="assets/img/hero-fats.jpg" alt="" style="object-position:50% 55%"></div>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
 
       <ol class="reel-index" aria-label="Our ingredient solutions">
         <li class="on"><a href="product-cocoa-booster.html">Cocoa booster</a><button class="reel-go" type="button" aria-label="Show Cocoa booster"></button></li>
-        <li><a href="product-coffee.html">Coffee alternative</a><button class="reel-go" type="button" aria-label="Show Coffee alternative"></button></li>
-        <li><a href="product-hazelnut.html">Nuts alternative</a><button class="reel-go" type="button" aria-label="Show Nuts alternative"></button></li>
-        <li><a href="product-choviva.html">Cocoa-free chocolate alternative</a><button class="reel-go" type="button" aria-label="Show Cocoa-free chocolate alternative"></button></li>
-        <li><a href="solutions.html">Sugar reduction</a><button class="reel-go" type="button" aria-label="Show Sugar reduction"></button></li> <!-- TODO: link to a sugar-reduction page once it exists -->
+        <li><a href="product-coffee.html">Coffee solutions</a><button class="reel-go" type="button" aria-label="Show Coffee solutions"></button></li>
+        <li><a href="product-hazelnut.html">Nuts solutions</a><button class="reel-go" type="button" aria-label="Show Nuts solutions"></button></li>
+        <li><a href="product-choviva.html">Chocolate solutions</a><button class="reel-go" type="button" aria-label="Show Chocolate solutions"></button></li>
         <li><a href="product-butter.html">Speciality fats</a><button class="reel-go" type="button" aria-label="Show Speciality fats"></button></li>
       </ol>
 
@@ -194,7 +191,57 @@
       </div>
     </section>
 
-    <!-- 03 · TECHNOLOGY — four layers: raw materials, process, supply chain, applications -->
+    <!-- 03 · SUSTAINABILITY (CO₂ story) — full-bleed forest that slowly moves like footage; light green accents -->
+    <section class="screen impact" id="impact">
+      <div class="impact-film" aria-hidden="true"><img src="assets/img/forest-aerial.jpg" alt=""></div>
+      <div class="impact-shade" aria-hidden="true"></div>
+      <div class="wrap impact-grid">
+        <div class="impact-main reveal">
+          <span class="pill pill-green">Sustainability</span>
+          <h2 class="impact-head">Less carbon, by design.</h2>
+          <p class="impact-num"><span data-tick="73.6">−73.6</span><small>&thinsp;%</small></p>
+          <p class="impact-sub">CO₂e per kg – ChoViva Smooth vs. conventional milk chocolate<sup><a href="#co2-sources" class="src-ref">1</a></sup></p>
+
+          <!-- Absolute comparison, kg CO₂e per kg product -->
+          <figure class="co2" aria-label="Carbon footprint in kg CO₂e per kg: conventional milk chocolate 10.64, ChoViva Smooth 2.81.">
+            <figcaption>kg CO₂e per kg product</figcaption>
+            <div class="co2-row" title="Conventional milk chocolate (benchmark, DE): 10.64 kg CO₂e/kg">
+              <span class="co2-label">Conventional milk chocolate</span>
+              <span class="co2-track"><span class="co2-bar base" style="--w:100%"></span></span>
+              <span class="co2-val">10.64</span>
+            </div>
+            <div class="co2-row" title="ChoViva Smooth: 2.81 kg CO₂e/kg">
+              <span class="co2-label"><b>ChoViva Smooth</b></span>
+              <span class="co2-track"><span class="co2-bar ours" style="--w:26.4%"></span></span>
+              <span class="co2-val"><b>2.81</b></span>
+            </div>
+          </figure>
+          <p class="impact-pure">No offsets. The saving comes from the recipe itself.</p>
+        </div>
+
+        <div class="impact-side reveal">
+          <div class="impact-card"><span class="ic-no">Scope 3</span><h3>Reporting-ready data</h3><p>Supports our customers’ Scope&nbsp;3 climate targets.</p></div>
+          <div class="impact-card"><span class="ic-no">EUDR</span><h3>Less deforestation risk</h3><p>Regional raw materials instead of deforestation-risk commodities – less due diligence in your supply chain.</p></div>
+          <div class="impact-actions">
+            <a class="btn-text" href="product-choviva.html">ChoViva CO₂ footprint <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <details class="sources" id="co2-sources">
+          <summary><span>Sources</span><span class="src-hint">LCA by inoqo / Planet A · methodology</span></summary>
+          <div class="sources-body">
+            <p><sup>1</sup> LCA calculation by inoqo / Planet A Foods. Scope covered: agriculture and raw materials, processing, and transport to the factory.</p>
+            <p>ChoViva Smooth (2.81&nbsp;kg CO₂e/kg) is compared against an estimated benchmark value for conventional milk chocolate in Germany (10.64&nbsp;kg CO₂e/kg), based on a representative benchmark cluster (37% cocoa content).</p>
+            <p>The CO₂e saving is achieved purely physically through the recipe and does not include any carbon offset certificates.</p>
+            <p>More on the inoqo methodology: <a href="https://www.inoqo.com/research-methodology" target="_blank" rel="noopener">inoqo.com/research-methodology ↗</a></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 04 · TECHNOLOGY — four layers: raw materials, process, supply chain, applications -->
     <section class="screen tech" id="technology">
       <div class="wrap">
         <div class="sec-head reveal">
@@ -239,7 +286,7 @@
       </div>
     </section>
 
-    <!-- 04 · PLATFORM PORTFOLIO — two groups: climate-threatened vs highly regulated materials -->
+    <!-- 05 · PLATFORM PORTFOLIO — two groups: climate-threatened vs highly regulated materials -->
     <section class="screen portfolio" id="portfolio">
       <svg class="deco-a d-portfolio" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
@@ -290,56 +337,6 @@
             <button class="arrow-btn" data-dir="1" aria-label="Next">→</button>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- 05 · SUSTAINABILITY (CO₂ story) — full-bleed forest that slowly moves like footage; light green accents -->
-    <section class="screen impact" id="impact">
-      <div class="impact-film" aria-hidden="true"><img src="assets/img/forest-aerial.jpg" alt=""></div>
-      <div class="impact-shade" aria-hidden="true"></div>
-      <div class="wrap impact-grid">
-        <div class="impact-main reveal">
-          <span class="pill pill-green">Sustainability</span>
-          <h2 class="impact-head">Less carbon, by design.</h2>
-          <p class="impact-num"><span data-tick="73.6">−73.6</span><small>&thinsp;%</small></p>
-          <p class="impact-sub">CO₂e per kg – ChoViva Smooth vs. conventional milk chocolate<sup><a href="#co2-sources" class="src-ref">1</a></sup></p>
-
-          <!-- Absolute comparison, kg CO₂e per kg product -->
-          <figure class="co2" aria-label="Carbon footprint in kg CO₂e per kg: conventional milk chocolate 10.64, ChoViva Smooth 2.81.">
-            <figcaption>kg CO₂e per kg product</figcaption>
-            <div class="co2-row" title="Conventional milk chocolate (benchmark, DE): 10.64 kg CO₂e/kg">
-              <span class="co2-label">Conventional milk chocolate</span>
-              <span class="co2-track"><span class="co2-bar base" style="--w:100%"></span></span>
-              <span class="co2-val">10.64</span>
-            </div>
-            <div class="co2-row" title="ChoViva Smooth: 2.81 kg CO₂e/kg">
-              <span class="co2-label"><b>ChoViva Smooth</b></span>
-              <span class="co2-track"><span class="co2-bar ours" style="--w:26.4%"></span></span>
-              <span class="co2-val"><b>2.81</b></span>
-            </div>
-          </figure>
-          <p class="impact-pure">No offsets. The saving comes from the recipe itself.</p>
-        </div>
-
-        <div class="impact-side reveal">
-          <div class="impact-card"><span class="ic-no">Scope 3</span><h3>Reporting-ready data</h3><p>Supports our customers’ Scope&nbsp;3 climate targets.</p></div>
-          <div class="impact-card"><span class="ic-no">EUDR</span><h3>Less deforestation risk</h3><p>Regional raw materials instead of deforestation-risk commodities – less due diligence in your supply chain.</p></div>
-          <div class="impact-actions">
-            <a class="btn-text" href="product-choviva.html">ChoViva CO₂ footprint <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="wrap">
-        <details class="sources" id="co2-sources">
-          <summary><span>Sources</span><span class="src-hint">LCA by inoqo / Planet A · methodology</span></summary>
-          <div class="sources-body">
-            <p><sup>1</sup> LCA calculation by inoqo / Planet A Foods. Scope covered: agriculture and raw materials, processing, and transport to the factory.</p>
-            <p>ChoViva Smooth (2.81&nbsp;kg CO₂e/kg) is compared against an estimated benchmark value for conventional milk chocolate in Germany (10.64&nbsp;kg CO₂e/kg), based on a representative benchmark cluster (37% cocoa content).</p>
-            <p>The CO₂e saving is achieved purely physically through the recipe and does not include any carbon offset certificates.</p>
-            <p>More on the inoqo methodology: <a href="https://www.inoqo.com/research-methodology" target="_blank" rel="noopener">inoqo.com/research-methodology ↗</a></p>
-          </div>
-        </details>
       </div>
     </section>
 
