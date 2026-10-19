@@ -1409,3 +1409,12 @@ hr { border: 0; height: 1px; background: var(--line); margin: clamp(32px, 5vw, 6
   .nav-links { gap: 14px; }
   .nav-links a, .lang-switch { letter-spacing: .1em; }
 }
+
+/* ============================================================================
+   TYPE — Rethink Sans only (brand guideline), self-hosted via assets/fonts.css.
+   Replaces the earlier Archivo / Inter / Fraunces / Spectral stacks above.
+   ========================================================================== */
+:root {
+  --serif: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
