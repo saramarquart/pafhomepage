@@ -10,20 +10,20 @@
    Overrides home.css's own values on this page; no other colours are used.
    Warm Violet / Blue Digital #320F99 · Blue Print #332D84 · Brand Green #10C167 · Slate Grey #2D2D2D
    Neutral Darkest #111111 · Neutral Dark #444444 · Neutral #666666 · Neutral lighter #CCCCCC
-   Background Color #F3F3F3 · White #FFFFFF · Light Blue #B0DCE0 ---------- */
+   Background Color #F3F3F3 · White #FFFFFF · Ronchi #EEB650 ---------- */
 :root {
   --purple:    #320F99;
   --purple-2:  #332D84;
   --purple-dk: #332D84;
   --lilac:     #F3F3F3;
-  --mint:      #B0DCE0;
   --grey:      #F3F3F3;
   --ink:       #2D2D2D;
   --ink-2:     #444444;
   --muted:     #666666;
   --line:      #CCCCCC;
   --green:     #82C7AE;   /* light green from the colour sheet, as on the homepage */
-  --sky:       #B0DCE0;
+  --gold:      #EEB650;   /* Ronchi: the warm contrast to the purple */
+  --gold-lt:   #FBF0DA;
   --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 /* Typography per guideline weights: Bold for headlines, Semi Bold for subheads/UI, Regular for body */
@@ -79,19 +79,19 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-value { position: relative; overflow: hidden; background: #fff; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .cr-value:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -30px rgba(50,15,153,.35); }
 .cr-value::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; background: var(--green); transition: width .7s var(--ease); }
-.cr-value:nth-child(2)::before { background: var(--sky); }
+.cr-value:nth-child(2)::before { background: var(--gold); }
 .cr-value:nth-child(3)::before { background: var(--purple); }
-.cr-value:nth-child(4)::before { background: #EEB650; }   /* Ronchi (Brand Guideline) */
+.cr-value:nth-child(4)::before { background: var(--lilac-2); }
 .cr-value:hover::before { width: 100%; }
 .cr-no { align-self: flex-start; margin-bottom: 18px; padding: 3px 12px; border-radius: 999px; font-weight: 600; font-size: .85rem; background: var(--green); color: var(--ink); }
-.cr-value:nth-child(2) .cr-no { background: var(--sky); }
+.cr-value:nth-child(2) .cr-no { background: var(--gold); }
 .cr-value:nth-child(3) .cr-no { background: var(--purple); color: #fff; }
-.cr-value:nth-child(4) .cr-no { background: #EEB650; color: var(--ink); }
+.cr-value:nth-child(4) .cr-no { background: var(--lilac-2); color: var(--purple); }
 .cr-work .cr-card { background: #fff; box-shadow: inset 0 0 0 1px rgba(45,45,45,.1); }
 
-/* icon in a Light Blue circle */
+/* icon in a gold circle */
 .cr-icon { width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-  background: var(--mint); color: var(--purple); flex: 0 0 auto; }
+  background: var(--gold); color: var(--purple); flex: 0 0 auto; }
 
 /* ---------- 1 · HERO (home.css .hero / .hero-shade / .hero-copy / .hero-foot) ---------- */
 .cr-hero .hero-stage img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%;
@@ -101,8 +101,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
 /* ---------- 2 · VISION — centred, compact padding, soft "A" mark behind ---------- */
 .cr-vision .center-head { margin-bottom: 0; }
-.cr-d-vision { color: var(--sky); opacity: .35; width: min(34vw, 520px); right: -10vw; top: -40%; transform: rotate(16deg); }
-.cr-d-perks  { color: var(--green); opacity: .22; width: min(30vw, 460px); left: -10vw; top: 6%; transform: rotate(-18deg); }
+.cr-d-vision { color: var(--lilac-2); opacity: .7; width: min(34vw, 520px); right: -10vw; top: -40%; transform: rotate(16deg); }
+.cr-d-perks  { color: var(--lilac-2); opacity: .7; width: min(30vw, 460px); left: -10vw; top: 6%; transform: rotate(-18deg); }
 .cr-perks { overflow: clip; }
 .cr-hl { color: var(--purple); }
 .cr-strong { font-weight: 600; color: var(--ink); margin-top: 22px; }
@@ -131,7 +131,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-facts { position: relative; overflow: clip; isolation: isolate; color: #fff;
   /* softer violet: gentle gradient Warm Violet -> Blue Print with a faint sky glow */
   background:
-    radial-gradient(60% 80% at 85% 10%, rgba(176,220,224,.22) 0%, rgba(176,220,224,0) 60%),
+    radial-gradient(60% 80% at 85% 10%, rgba(220,214,243,.16) 0%, rgba(220,214,243,0) 60%),
     radial-gradient(50% 70% at 5% 100%, rgba(130,199,174,.16) 0%, rgba(130,199,174,0) 60%),
     linear-gradient(160deg, #320F99 0%, #332D84 100%); }
 .cr-d-facts { color: #fff; opacity: .06; width: min(36vw, 560px); right: -8vw; top: -18%; transform: rotate(14deg); }
@@ -139,7 +139,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-fact { align-items: flex-start; text-align: left; color: var(--ink); border-radius: 14px;
   background: #fff; box-shadow: 0 20px 44px -28px rgba(17,17,17,.45); transition: transform .5s var(--ease), background .4s ease; }
 .cr-fact:hover { transform: translateY(-4px); background: #fff; }
-.cr-fact .cr-icon { background: var(--sky); color: var(--purple); }
+.cr-fact .cr-icon { background: var(--gold); color: var(--purple); }
 .cr-fact:nth-child(even) .cr-icon { background: var(--green); }
 .cr-fact .fact { margin: 24px 0 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(50,15,153,.12); width: 100%; }
 .cr-fact .fact b { font-size: clamp(2.6rem, 4vw, 4rem); color: var(--purple); font-weight: 600; }
@@ -164,7 +164,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-office-site h3 { margin: 12px 0 10px; font-size: clamp(1.4rem, 2vw, 1.9rem); }
 .cr-office-site > p:not([class]) { color: var(--ink-2); max-width: 56ch; margin-inline: auto; }
 .cr-perk { flex-direction: row; align-items: flex-start; gap: 18px; padding: clamp(20px, 1.8vw, 26px); }
-.cr-perk .cr-icon { width: 46px; height: 46px; background: var(--sky); }
+.cr-perk .cr-icon { width: 46px; height: 46px; background: var(--gold); }
 .cr-perk:nth-child(even) .cr-icon { background: var(--green); }
 .cr-perk .cr-icon .cr-ico { width: 21px; height: 21px; }
 .cr-perk h3 { font-size: clamp(1.05rem, 1.25vw, 1.22rem); margin: 2px 0 6px; }
@@ -184,8 +184,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
 /* ---------- 7 · HOW TO JOIN — soft sky-tinted ground, progress track, raised detail card ---------- */
 .cr-join { position: relative; overflow: clip;
-  background: radial-gradient(70% 60% at 50% 0%, rgba(176,220,224,.55) 0%, rgba(176,220,224,0) 70%), var(--grey); }
-.cr-d-join { color: var(--sky); opacity: .45; width: min(30vw, 440px); left: -9vw; bottom: -12%; transform: rotate(-16deg); }
+  background: radial-gradient(70% 60% at 50% 0%, rgba(220,214,243,.7) 0%, rgba(220,214,243,0) 70%), var(--grey); }
+.cr-d-join { color: var(--lilac-2); opacity: .8; width: min(30vw, 440px); left: -9vw; bottom: -12%; transform: rotate(-16deg); }
 .cr-join .cr-seg { background: #fff; box-shadow: 0 10px 30px -20px rgba(50,15,153,.35); }
 .cr-steps { --steps: 5; --active: 0; list-style: none; margin: 0; padding: 0; position: relative;
   display: grid; grid-template-columns: repeat(var(--steps), 1fr); row-gap: clamp(32px, 4vw, 48px); }
@@ -218,7 +218,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-step-main .tag { margin-bottom: 18px; }
 .cr-step-main p:last-child { color: var(--ink-2); }
 .cr-step-side { display: flex; flex-direction: column; gap: 24px; }
-.cr-tip { background: rgba(176,220,224,.35); border-radius: 14px; padding: 22px 24px; border-left: 4px solid var(--sky); }
+.cr-tip { background: var(--gold-lt); border-radius: 14px; padding: 22px 24px; border-left: 4px solid var(--gold); }
 .cr-tip-label { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
 .cr-tip p:last-child { color: var(--ink); }
 .cr-step-nav { margin-top: auto; display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
@@ -328,9 +328,9 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 }
 
 /* homepage-style colour offset behind the celebration banner */
-.cr-tabpanel .cr-banner { box-shadow: 18px 18px 0 0 var(--sky); margin-right: 18px; }
+.cr-tabpanel .cr-banner { box-shadow: 18px 18px 0 0 var(--gold); margin-right: 18px; }
 #cr-panel-pilsen .cr-banner { box-shadow: 18px 18px 0 0 var(--green); }
-@media (max-width: 640px) { .cr-tabpanel .cr-banner { box-shadow: 10px 10px 0 0 var(--sky); margin-right: 10px; } #cr-panel-pilsen .cr-banner { box-shadow: 10px 10px 0 0 var(--green); } }
+@media (max-width: 640px) { .cr-tabpanel .cr-banner { box-shadow: 10px 10px 0 0 var(--gold); margin-right: 10px; } #cr-panel-pilsen .cr-banner { box-shadow: 10px 10px 0 0 var(--green); } }
 
 /* ---------- STORY MOTION — the page unfolds as you read: headlines rise in word by word,
    the vision paragraph reads itself from grey to ink, photos wipe in, perks open up, cards
