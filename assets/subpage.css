@@ -292,3 +292,62 @@
   .hb i, .range i { transition: none; }
   .reveal .hb i { width: var(--w); } .reveal .range i { width: calc(var(--b) - var(--a)); }
 }
+
+/* ---------- scroll cue in the hero: invites the first scroll ---------- */
+.scroll-cue { position: absolute; z-index: 2; left: 50%; bottom: 26px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; color: rgba(255,255,255,.85); font-size: .74rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.scroll-cue i { position: relative; width: 1.5px; height: 46px; background: rgba(255,255,255,.28); overflow: hidden; }
+.scroll-cue i::after { content: ""; position: absolute; left: 0; right: 0; top: -40%; height: 40%; background: #fff; animation: cue 1.8s cubic-bezier(.6,0,.3,1) infinite; }
+@keyframes cue { to { top: 100%; } }
+.scroll-cue:hover { color: #fff; }
+
+/* ---------- sections slide over each other (rounded tops) ---------- */
+.cb-pillars, .cb-quote, .cb-apps, .cb-contact { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; }
+.cb-pillars { padding-top: calc(clamp(52px, 7.5vh, 88px) + 12px); }
+
+/* ---------- footer: the "A" sits fully visible, overlapping into the section above ---------- */
+.subpage .footer { overflow: visible; position: relative; z-index: 2; }
+.subpage .footer-a { bottom: auto; top: -150px; right: var(--gutter); width: min(34vw, 500px); }
+.subpage .footer .wrap { position: relative; z-index: 1; }
+
+/* ---------- STORY MOTION (as on the careers page) ---------- */
+.sw { display: inline-block; }
+.sw > i { display: inline-block; font-style: normal; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+  /* hero headline rises in word by word on load */
+  .story .cb-hero h1 .sw { overflow: clip; padding-bottom: .1em; margin-bottom: -.1em; vertical-align: top; }
+  .story .cb-hero h1 .sw > i { animation: dUp .9s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * 70ms + 150ms); }
+  @keyframes dUp { from { transform: translateY(110%); } to { transform: none; } }
+  /* the hero texture drifts away a little as you scroll out */
+  .story .cb-hero .wrap { animation: heroOut linear both; animation-timeline: view(); animation-range: exit 0% exit 80%; }
+  @keyframes heroOut { to { transform: translateY(-60px); opacity: .2; } }
+
+  /* section headlines rise in word by word once in view */
+  .story .sub h2 .sw { overflow: clip; padding-bottom: .1em; margin-bottom: -.1em; vertical-align: top; }
+  .story .sub h2 .sw > i { transform: translateY(110%); transition: transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i) * 55ms); }
+  .story .sub h2.is-in .sw > i { transform: none; }
+
+  /* the quote reads itself: words brighten from soft violet to white */
+  .story .quote blockquote .sw > i { color: rgba(255,255,255,.28); animation: dInk linear both; animation-timeline: view(); }
+  @keyframes dInk { to { color: #fff; } }
+
+  /* images wipe up into their frames */
+  .story .why-vis, .story .pf-img, .story .also img, .story .person img { animation: dWipe linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+  @keyframes dWipe { from { clip-path: inset(100% 0 0 0 round 8px); } to { clip-path: inset(0 0 0 0 round 8px); } }
+  .story .person img { animation-name: dPop; }
+  @keyframes dPop { from { clip-path: circle(0 at 50% 50%); } to { clip-path: circle(60% at 50% 50%); } }
+
+  /* applications open up from a narrow strip */
+  .story .cb-apps { animation: dDoor linear both; animation-timeline: view(); animation-range: entry 0% entry 65%; }
+  @keyframes dDoor { from { clip-path: inset(0 30% 0 30% round 32px); } to { clip-path: inset(0 0 0 0 round 32px 32px 0 0); } }
+
+  /* cards follow each other in */
+  .story .pillar, .story .why-card, .story .profile, .story .step, .story .app {
+    animation: dCard linear both; animation-timeline: view(); animation-range: entry calc(var(--n, 0) * 6%) cover calc(28% + var(--n, 0) * 6%); }
+  @keyframes dCard { from { transform: translateY(50px); opacity: .25; } to { transform: none; opacity: 1; } }
+  .story .step:hover, .story .pillar:hover, .story .profile:hover { animation-play-state: paused; }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .scroll-cue i::after { animation: none; } }
+@media (max-width: 999px) { .cb-pillars, .cb-quote, .cb-apps, .cb-contact { margin-top: -22px; border-radius: 22px 22px 0 0; } .subpage .footer-a { top: -70px; width: min(46vw, 260px); } }
+

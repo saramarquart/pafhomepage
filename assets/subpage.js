@@ -38,3 +38,63 @@
     msg.textContent = "Your email client opens with the request pre-filled.";
   });
 })();
+
+/* Story motion (same language as the careers page): headlines rise in word by
+   word, the quote reads itself from soft to white as you scroll, images wipe
+   into their frames and cards follow each other in. Uses CSS scroll timelines;
+   skipped with reduced motion or where they are not supported. */
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !(window.CSS && CSS.supports("animation-timeline: view()"))) return;
+  document.documentElement.classList.add("story");
+
+  // wrap every word in <span class="sw"><i>word</i></span>, keeping inner markup (br, b, sup)
+  function splitWords(el) {
+    var words = [];
+    (function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var s = document.createElement("span"), i = document.createElement("i");
+            s.className = "sw"; i.textContent = p; s.appendChild(i); frag.appendChild(s); words.push(i);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== "BR") { walk(n); }
+      });
+    })(el);
+    words.forEach(function (w, k) { w.style.setProperty("--i", k); });
+    return words;
+  }
+
+  var h1 = document.querySelector(".cb-hero h1"); if (h1) splitWords(h1);
+  var heads = [].slice.call(document.querySelectorAll(".sub h2"));
+  heads.forEach(splitWords);
+  if ("IntersectionObserver" in window) {
+    var ho = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); ho.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    heads.forEach(function (h) { ho.observe(h); });
+  } else { heads.forEach(function (h) { h.classList.add("is-in"); }); }
+
+  // the quote reads itself, finished before it reaches mid-screen
+  var q = document.querySelector(".quote blockquote");
+  if (q) {
+    var ink = splitWords(q);
+    ink.forEach(function (w, k) {
+      var a = 6 + (k / ink.length) * 22;
+      w.style.animationRange = "cover " + a.toFixed(1) + "% cover " + (a + 5).toFixed(1) + "%";
+    });
+  }
+
+  // stagger index for cards; scroll motion replaces the simple reveal on these
+  [".pillars .pillar", ".why2 .why-card", ".profiles .profile", ".steps .step", ".apps .app"].forEach(function (sel) {
+    [].forEach.call(document.querySelectorAll(sel), function (c, k) {
+      c.style.setProperty("--n", k);
+      c.classList.add("in");
+    });
+  });
+})();

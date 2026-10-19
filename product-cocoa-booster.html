@@ -10,8 +10,8 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/home.css?v=15" />
-  <link rel="stylesheet" href="assets/subpage.css?v=3" />
+  <link rel="stylesheet" href="assets/home.css?v=25" />
+  <link rel="stylesheet" href="assets/subpage.css?v=4" />
   <link rel="canonical" href="https://test.planet-a-foods.com/product-cocoa-booster.html" />
   <meta property="og:title" content="Cocoa Booster – single-ingredient cocoa powder replacer | Planet A Foods" />
   <meta property="og:description" content="Replace part of your cocoa powder with one EU-sourced ingredient. Matched taste and colour, no process changes, more fibre." />
@@ -54,13 +54,47 @@
   <header class="nav" id="nav">
     <a class="brand" href="index.html" aria-label="Planet A Foods — home"><svg class="logo" viewBox="0 0 57 95"><use href="#paf-logo"/></svg></a>
     <nav class="nav-pill" aria-label="Primary">
-      <a href="solutions.html" class="is-active" aria-current="page">Solutions</a>
+      <div class="nav-item">
+        <a href="solutions.html" aria-haspopup="true" class="is-active">Solutions</a>
+        <div class="nav-sub nav-sub-wide">
+          <div><span class="nav-sub-head">By application</span>
+            <a href="solution-baked-confectionery.html">Baked confectionery</a>
+            <a href="solution-panned-products.html">Panned products</a>
+            <a href="solution-beverages.html">Beverages</a>
+            <a href="solution-functional-food.html">Functional food</a>
+            <a href="solution-coatings.html">Coatings</a>
+            <a href="solution-spreads.html">Spreads</a>
+          </div>
+          <div><span class="nav-sub-head">By ingredient</span>
+            <a href="product-cocoa-booster.html" aria-current="page">Cocoa booster</a>
+            <a href="product-coffee.html">Coffee alternative</a>
+            <a href="product-hazelnut.html">Nuts alternative</a>
+            <a href="product-choviva.html">Cocoa-free chocolate alternative</a>
+            <a href="product-butter.html">Speciality fats</a>
+          </div>
+        </div>
+      </div>
       <a href="technology.html">Technology</a>
-      <a href="mission.html">Company</a>
+      <div class="nav-item">
+        <a href="mission.html" aria-haspopup="true">Company</a>
+        <div class="nav-sub">
+          <div><span class="nav-sub-head">About</span>
+            <a href="mission.html">Purpose</a>
+            <a href="journey.html">Journey</a>
+            <a href="company-global-footprint.html">Global footprint</a>
+            <a href="sustainability-impact.html">Sustainability &amp; impact</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div><span class="nav-sub-head">People</span>
+            <a href="people.html">Leadership team</a>
+            <a href="company-people-culture.html">People &amp; culture</a>
+          </div>
+        </div>
+      </div>
       <a href="careers.html">Careers</a>
       <a href="investors.html">Investors</a>
       <a href="contact.html">Contact</a>
-      <button class="lang" type="button" title="Language: English (German version at launch)" aria-label="Language">
+      <button class="lang" type="button" title="Language: English (German version coming soon)" aria-label="Language">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3Z"/></svg>
       </button>
       <a class="nav-cta" href="#contact">Partner with us</a>
@@ -94,10 +128,11 @@
           </ul>
         </div>
       </div>
+      <a class="scroll-cue" href="#benefits" aria-label="Scroll to the benefits"><span>Scroll</span><i aria-hidden="true"></i></a>
     </section>
 
     <!-- 05 · BENEFITS — 5 pillars -->
-    <section class="cb-sec cb-pillars">
+    <section class="cb-sec cb-pillars" id="benefits">
       <div class="wrap">
         <div class="cb-head reveal">
           <span class="pill">Why Cocoa Booster</span>
@@ -162,8 +197,8 @@
           <p class="lead">Until now, alternatives have largely been limited to carob, malt or multi-component blends.</p>
         </div>
         <figure class="quote">
-          <blockquote>“When we spoke to R&amp;D teams, the message was consistent: they had tested alternatives, but blends changed the taste, the colour or the label. We set out to solve this with one ingredient that works in the recipe they already have – and adds fibre at the same time.”</blockquote>
-          <figcaption><img src="assets/img/team-sara.jpg" alt=""><span><b>Dr. Sara Marquart</b>Co-Founder &amp; CTO, Planet A Foods</span></figcaption>
+          <blockquote>“When we spoke to R&amp;D teams, the message was consistent: they had tested alternatives, but existing replacers either brought an off-taste, matched only the colour but not the taste, or came with added sugars and flavours. We set out to solve this with one ingredient that works in the recipe they already have – and adds fibre at the same time.”</blockquote>
+          <figcaption><img src="assets/img/team-sara.jpg" alt=""><span><b>Dr. Sara Marquart</b>Co-Founder &amp; Chief Technology Officer, Planet A Foods</span></figcaption>
         </figure>
       </div>
     </section>
@@ -330,6 +365,6 @@
 
   <script src="assets/main.js?v=32"></script>
   <script src="assets/home.js?v=3"></script>
-  <script src="assets/subpage.js?v=1"></script>
+  <script src="assets/subpage.js?v=2"></script>
 </body>
 </html>
