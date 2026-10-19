@@ -98,3 +98,33 @@
     });
   });
 })();
+
+/* Hero: same motion as the homepage reel — the shots cut every few seconds with
+   rotating reveals (dissolve, wipe, rise, drop, zoom) and a slow push-in.
+   Classes and keyframes come from home.css. Static with reduced motion. */
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reels = [].slice.call(document.querySelectorAll(".cb-stage .reel"));
+  if (reduce || reels.length < 2) return;
+  var FX = ["zoom", "wipe", "dissolve", "rise", "drop"], cut = 0, current = 0, timer = null, HOLD = 5200;
+  function show(i) {
+    var prev = current;
+    reels.forEach(function (r, k) {
+      var on = k === i;
+      if (on) r.setAttribute("data-fx", FX[cut++ % FX.length]);
+      r.classList.toggle("on", on);
+      r.classList.toggle("was", k === prev && k !== i);   // outgoing shot stays underneath while the next fades in
+    });
+    current = i;
+  }
+  function next() { show((current + 1) % reels.length); }
+  function start() { if (!timer) timer = setInterval(next, HOLD); }
+  function stop() { clearInterval(timer); timer = null; }
+  start();
+  var hero = document.querySelector(".cb-hero");
+  if (hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.05 }).observe(hero);
+  }
+  document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+})();

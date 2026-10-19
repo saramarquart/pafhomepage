@@ -27,9 +27,11 @@
 
 /* ---------- 01 hero: full-bleed powder texture ---------- */
 .cb-hero { position: relative; overflow: hidden; color: #fff; min-height: min(92vh, 900px); display: flex; align-items: flex-end; padding: 120px 0 clamp(64px, 10vh, 120px); background: #6E3A1E; }
-.cb-hero-bg, .cb-hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cb-hero-bg img { object-fit: cover; animation: powderDrift 30s ease-in-out infinite alternate; will-change: transform; }
-/* quiet motion: the texture drifts like a slow macro camera move */
+/* hero shots reuse the homepage reel classes (.reel / .on / .was / data-fx) from home.css */
+.cb-stage picture { position: absolute; inset: 0; display: block; }
+.cb-stage .reel[data-frame="mirror"] picture { transform: scaleX(-1); }
+.cb-stage .reel[data-frame="mirror"] img { object-position: 30% 40%; }
+.cb-stage .reel[data-frame="close"] picture { transform: scale(1.35); transform-origin: 68% 58%; }
 @keyframes powderDrift { from { transform: scale(1.06) translate3d(-1.5%, 0, 0); } to { transform: scale(1.16) translate3d(1.5%, -1.5%, 0); } }
 .cb-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(36,16,6,.78) 0%, rgba(36,16,6,.5) 45%, rgba(36,16,6,.1) 80%), linear-gradient(0deg, rgba(36,16,6,.45), transparent 45%); }
 .cb-hero .wrap { position: relative; z-index: 1; }
@@ -287,7 +289,7 @@
   .hb span { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cb-hero-bg img, .apps-bg img, .mi *, .cb-apps .app-mid p { animation: none !important; }
+  .cb-stage img, .apps-bg img, .mi *, .cb-apps .app-mid p { animation: none !important; }
   .cb-apps .app-mid p { color: rgba(255,255,255,.85); background: none; }
   .hb i, .range i { transition: none; }
   .reveal .hb i { width: var(--w); } .reveal .range i { width: calc(var(--b) - var(--a)); }

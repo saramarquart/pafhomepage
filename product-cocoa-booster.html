@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/home.css?v=25" />
-  <link rel="stylesheet" href="assets/subpage.css?v=4" />
+  <link rel="stylesheet" href="assets/subpage.css?v=5" />
   <link rel="canonical" href="https://test.planet-a-foods.com/product-cocoa-booster.html" />
   <meta property="og:title" content="Cocoa Booster – single-ingredient cocoa powder replacer | Planet A Foods" />
   <meta property="og:description" content="Replace part of your cocoa powder with one EU-sourced ingredient. Matched taste and colour, no process changes, more fibre." />
@@ -106,10 +106,22 @@
 
     <!-- 01 · HERO — full-bleed Cocoa Booster powder texture, slow drift -->
     <section class="cb-hero" id="top">
-      <picture class="cb-hero-bg" aria-hidden="true">
-        <source media="(max-width: 699px)" srcset="assets/img/cb-texture-portrait.jpg">
-        <img src="assets/img/cb-texture.jpg" alt="">
-      </picture>
+      <!-- Same motion as the homepage hero: shots cut with rotating reveals + slow push-in.
+           Three framings of the Cocoa Booster texture (wide, mirrored, close-up). -->
+      <div class="hero-stage cb-stage" aria-hidden="true">
+        <div class="reel on"><picture>
+          <source media="(max-width: 699px)" srcset="assets/img/cb-texture-portrait.jpg">
+          <img src="assets/img/cb-texture.jpg" alt="">
+        </picture></div>
+        <div class="reel" data-frame="mirror"><picture>
+          <source media="(max-width: 699px)" srcset="assets/img/cb-texture-portrait.jpg">
+          <img src="assets/img/cb-texture.jpg" alt="">
+        </picture></div>
+        <div class="reel" data-frame="close"><picture>
+          <source media="(max-width: 699px)" srcset="assets/img/cb-texture-portrait.jpg">
+          <img src="assets/img/cb-texture.jpg" alt="">
+        </picture></div>
+      </div>
       <div class="cb-hero-shade" aria-hidden="true"></div>
       <div class="wrap">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="solutions.html">Solutions</a><span>›</span><a href="solutions.html#ingredients">Ingredients</a><span>›</span><b aria-current="page">Cocoa Booster</b></nav>
@@ -365,6 +377,6 @@
 
   <script src="assets/main.js?v=32"></script>
   <script src="assets/home.js?v=3"></script>
-  <script src="assets/subpage.js?v=2"></script>
+  <script src="assets/subpage.js?v=3"></script>
 </body>
 </html>
