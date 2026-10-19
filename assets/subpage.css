@@ -381,3 +381,18 @@
 @media (prefers-reduced-motion: reduce) { .scroll-cue i::after { animation: none; } }
 @media (max-width: 999px) { .cb-pillars, .cb-quote, .cb-apps, .cb-contact { margin-top: -22px; border-radius: 22px 22px 0 0; } .subpage .footer-a { top: -90px; width: min(62vw, 360px); } }
 
+/* ---------- soft "A" watermark: sits behind Why now and reaches up into Benefits ----------
+   Benefits drops its own stacking layer so the mark can show on its background while all
+   content (.wrap, z-index 1) stays on top; the hero is isolated so nothing leaks over it. */
+.cb-hero { isolation: isolate; z-index: 0; }
+.cb-pillars { z-index: auto; }
+.why-mark { position: absolute; z-index: 0; pointer-events: none; color: #fff; opacity: .55;
+  width: min(68vw, 1040px); aspect-ratio: 57 / 60; height: auto; right: -6vw; top: max(-460px, -32vw); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .story .why-mark { animation: markDrift linear both; animation-timeline: view(); }
+    @keyframes markDrift { from { translate: 0 60px; rotate: -6deg; } to { translate: 0 -60px; rotate: 4deg; } }
+  }
+}
+@media (max-width: 699px) { .why-mark { width: 120vw; right: -40vw; top: -160px; } }
+
