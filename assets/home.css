@@ -348,11 +348,12 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .b-no { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 30px; padding: 0 12px; border-radius: 999px; background: var(--lilac); color: var(--purple); font-weight: 600; font-size: .95rem; }
 .benefit h3 { margin: 22px 0 12px; }
 .benefit p { color: var(--ink-2); max-width: 34ch; }
-.b-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 0; }   /* two related benefits inside one card */
-.b-list li { display: grid; gap: 4px; padding: 14px 0; border-top: 1px solid rgba(14,11,26,.1); }
-.b-list li:last-child { padding-bottom: 0; }
-.b-list b { font-weight: 500; font-size: 1.05rem; color: var(--ink); }
-.b-list span { color: var(--ink-2); font-size: .98rem; }
+.benefit.big { background: var(--purple); color: #fff; }
+.benefit.big .b-no { background: #fff; }
+.b-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; }
+.b-list li { display: grid; gap: 4px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.2); }
+.b-list b { font-weight: 500; font-size: 1.15rem; }
+.b-list span { color: rgba(255,255,255,.8); font-size: .98rem; }
 
 /* ============================ TABLET ============================ */
 @media (min-width: 700px) {
@@ -361,6 +362,8 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
   .tiles.four { grid-template-columns: repeat(2, 1fr); }
   .tiles.layers { grid-template-columns: repeat(2, 1fr); }
   .benefit-grid { grid-template-columns: 1fr 1fr; }
+  .benefit.big { grid-column: 1 / -1; }
+  .benefit-grid .benefit:nth-child(2) { grid-column: 1 / -1; }   /* Sustainability full width, the two paired cards side by side */
   .track { grid-auto-columns: calc((100% - 40px) / 2.3); }   /* next card peeks in */
   .footer-links { grid-template-columns: repeat(3, 1fr); }
 }
@@ -386,7 +389,9 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
   .scale-media { aspect-ratio: auto; height: min(66vh, 40vw); }
   .impact-grid { grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 6vw, 120px); }
   .tiles.four { grid-template-columns: repeat(4, 1fr); }
-  .benefit-grid { grid-template-columns: repeat(4, 1fr); }   /* four benefits, all on the same level */
+  .benefit-grid { grid-template-columns: 1.35fr 1fr 1fr; grid-template-rows: auto 1fr; }
+  .benefit.big { grid-row: 1 / 3; grid-column: 1; }
+  .benefit-grid .benefit:nth-child(2) { grid-column: 2 / 4; }   /* Sustainability across the top; the two paired cards below */
   .company .tile { aspect-ratio: auto; height: min(56vh, 30vw); }
   .footer-in { grid-template-columns: 1fr 1.2fr; align-items: end; min-height: min(70vh, 640px); }
   .footer-base { grid-row: 1; align-self: end; }
@@ -435,6 +440,8 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .wrap { position: relative; z-index: 1; }
 .d-numbers { color: var(--lilac); width: min(30vw, 460px); left: -8vw; top: -30%; transform: rotate(-18deg); }
 .d-portfolio { color: var(--lilac-2); opacity: .8; width: min(42vw, 680px); right: -12vw; top: -16%; transform: rotate(14deg); }
+.d-benefit { color: #fff; opacity: .07; width: 72%; right: -16%; bottom: -20%; transform: rotate(-12deg); transition: transform 1.2s var(--ease); }
+.benefit.big:hover .d-benefit { transform: rotate(-4deg) scale(1.04); }
 
 /* colour codes: 01 green · 02 sky · 03 white/lilac · 04 green */
 .fact b { position: relative; }
@@ -474,11 +481,23 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .benefit-grid .benefit:nth-child(2) .b-no { background: var(--green); color: var(--ink); }
 .benefit-grid .benefit:nth-child(3) .b-no { background: var(--gold); color: var(--ink); }
 .benefit-grid .benefit:nth-child(4) .b-no { background: var(--green-lt); color: var(--ink); }
-.benefit-grid .benefit:nth-child(1) .b-no { background: var(--purple); color: #fff; }
-.benefit-grid .benefit:nth-child(1):hover { background: var(--lilac); }
 .benefit-grid .benefit:nth-child(2):hover { background: var(--green-lt); }
 .benefit-grid .benefit:nth-child(3):hover { background: var(--gold-lt); }
 .benefit-grid .benefit:nth-child(4):hover { background: #EEF6F2; }
+.benefit.big { overflow: hidden; }
+.benefit.big > :not(.deco-a) { position: relative; z-index: 1; }
+.b-list li { border-top-color: rgba(238,182,80,.35); }
+.b-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 10px; vertical-align: middle; }
+.b-list li:nth-child(2) b::before { background: var(--gold); }
+.b-list li:nth-child(3) b::before { background: #fff; }
+/* the paired benefits inside the white cards */
+.benefit:not(.big) .b-list li { border-top-color: rgba(14,11,26,.1); padding: 12px 0; }
+.benefit:not(.big) .b-list li:last-child { padding-bottom: 0; }
+.benefit:not(.big) .b-list b { font-size: 1.05rem; color: var(--ink); }
+.benefit:not(.big) .b-list span { color: var(--ink-2); }
+.benefit.big .b-list li { padding: 22px 0; }
+.benefit.big .b-list b { font-size: 1.3rem; }
+.benefit.big .b-list span { font-size: 1.05rem; max-width: 36ch; }
 
 /* Scale: image sits on an offset gold block */
 .scale { overflow: hidden; }
