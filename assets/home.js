@@ -124,19 +124,31 @@
     var cards = [].slice.call(rollTrack.querySelectorAll(".slide"));
     cards.forEach(function (s) {
       var copy = s.cloneNode(true);
-      copy.setAttribute("aria-hidden", "true"); copy.setAttribute("tabindex", "-1"); copy.inert = true;
+      copy.setAttribute("aria-hidden", "true"); copy.setAttribute("tabindex", "-1");   // clickable, but skipped by screen readers and Tab
       rollTrack.appendChild(copy);
     });
-    rollTrack.style.setProperty("--roll-dur", cards.length * 9 + "s");   // ~9 s per card: slow
+    var dur = cards.length * 6.5;   // ~6.5 s per card
+    rollTrack.style.setProperty("--roll-dur", dur + "s");
     roll.classList.add("is-roll");
+    // start with the Cocoa booster (the wider lead card) in the middle of the screen and hold it there before rolling on
+    var lead = rollTrack.children[cards.length + cards.indexOf(rollTrack.querySelector(".is-lead"))];
+    function centreLead() {
+      var period = rollTrack.children[cards.length].offsetLeft - rollTrack.children[0].offsetLeft;
+      var start = (roll.clientWidth - lead.offsetWidth) / 2 - (lead.offsetLeft - rollTrack.children[0].offsetLeft - period);   // how far into the roll the lead sits centred
+      rollTrack.style.animationDelay = -(((start % period) + period) % period) / period * dur + "s";
+    }
+    centreLead();
+    rollTrack.style.animationPlayState = "paused";
+    var held = false;
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         roll.classList.toggle("is-off", !e.isIntersecting);
+        if (e.isIntersecting && !held) { held = true; setTimeout(function () { rollTrack.style.animationPlayState = ""; }, 3500); }
         [].forEach.call(rollTrack.querySelectorAll("[aria-hidden] .media-vid"), function (v) {   // the copies' videos (main.js handles the originals)
           if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
         });
       });
-    }).observe(roll);
+    }, { threshold: 0.35 }).observe(roll);
   }
 
   /* ---- Portfolio carousel arrows ---- */

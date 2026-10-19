@@ -479,12 +479,22 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .carousel.is-roll { container-type: inline-size; margin-inline: calc(50% - 50vw); }
 .carousel.is-roll .track { display: flex; gap: 20px; width: max-content; overflow: visible; scroll-snap-type: none; padding-block: 6px; margin-block: -6px;
   -webkit-mask-image: none; mask-image: none; animation: pfRoll var(--roll-dur, 45s) linear infinite; }
-.carousel.is-roll .slide { flex: 0 0 82cqw; }
+.carousel.is-roll .slide { flex: 0 0 72cqw; }
+.carousel.is-roll .slide .tile { aspect-ratio: auto; height: 56cqw; }   /* one height for all, so the wider lead card lines up */
+.carousel.is-roll .slide.is-lead { flex-basis: 86cqw; }                 /* Cocoa booster: the widest card, longest on screen */
 .carousel.is-roll:hover .track, .carousel.is-roll:focus-within .track, .carousel.is-roll.is-off .track { animation-play-state: paused; }
 .carousel.is-roll .arrows { display: none; }
 @keyframes pfRoll { from { transform: translateX(calc(-50% - 10px)); } to { transform: none; } }   /* half the track + half a gap = one full set */
-@media (min-width: 700px) { .carousel.is-roll .slide { flex-basis: calc((100cqw - 40px) / 2.6); } }
-@media (min-width: 1000px) { .carousel.is-roll .slide { flex-basis: calc((100cqw - 80px) / 3.8); } }
+@media (min-width: 700px) {
+  .carousel.is-roll .slide { flex-basis: calc((100cqw - 40px) / 2.6); }
+  .carousel.is-roll .slide .tile { height: calc((100cqw - 40px) / 2.6 * .75); }
+  .carousel.is-roll .slide.is-lead { flex-basis: calc((100cqw - 40px) / 2.6 * 1.45); }
+}
+@media (min-width: 1000px) {
+  .carousel.is-roll .slide { flex-basis: calc((100cqw - 80px) / 3.8); }
+  .carousel.is-roll .slide .tile { height: min(36vh, 20vw); }
+  .carousel.is-roll .slide.is-lead { flex-basis: calc((100cqw - 80px) / 3.8 * 1.6); }
+}
 
 /* Benefits: each card picks up its colour on hover */
 .benefits { overflow: hidden; }
