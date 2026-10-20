@@ -3,7 +3,7 @@
    Brand purple ground, white logo + claim, three link columns, legal row.
    Self-contained: own class names (.sf-*), own font stack, no page CSS needed.
    ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap");
+/* Rethink Sans comes from assets/fonts.css (self-hosted); no Google Fonts request (GDPR, CSP). */
 
 .site-footer {
   position: relative; overflow: hidden; isolation: isolate;

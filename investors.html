@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- Content Security Policy: keep identical to staticwebapp.config.json, see docs/security.md -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Investors — Planet A Foods</title>
@@ -19,7 +21,8 @@
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/field.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="assets/styles.css?v=35" />
+  <link rel="stylesheet" href="assets/consent.css?v=3">
+  <link rel="stylesheet" href="assets/styles.css?v=36" />
   <link rel="stylesheet" href="assets/site-nav.css?v=2" />
   <link rel="stylesheet" href="assets/footer.css?v=1" />
 </head>
@@ -137,10 +140,12 @@
           <div><h4>Connect</h4><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
-      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a></nav></div>
+      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a><a href="privacy-policy.html#cookies" data-cookie-settings>Cookie Settings</a></nav></div>
     </div>
   </footer>
   <script src="assets/main.js?v=33"></script>
   <script src="assets/site-nav.js?v=1"></script>
+  <script src="assets/consent-config.js?v=2"></script>
+  <script src="assets/consent.js?v=3"></script>
 </body>
 </html>

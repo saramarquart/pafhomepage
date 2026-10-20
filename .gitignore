@@ -3,3 +3,6 @@ assets/img/nature.png
 assets/paf-logo-black.png
 *.zip
 .DS_Store
+node_modules/
+tests/test-results/
+tests/playwright-report/
