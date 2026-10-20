@@ -10,19 +10,20 @@
    Overrides home.css's own values on this page; no other colours are used.
    Warm Violet / Blue Digital #320F99 · Blue Print #332D84 · Brand Green #10C167 · Slate Grey #2D2D2D
    Neutral Darkest #111111 · Neutral Dark #444444 · Neutral #666666 · Neutral lighter #CCCCCC
-   Background Color #F3F3F3 · White #FFFFFF · Light Blue #B0DCE0 ---------- */
+   Background Color #F3F3F3 · White #FFFFFF · Ronchi #EEB650 ---------- */
 :root {
   --purple:    #320F99;
   --purple-2:  #332D84;
   --purple-dk: #332D84;
   --lilac:     #F3F3F3;
-  --mint:      #B0DCE0;
   --grey:      #F3F3F3;
   --ink:       #2D2D2D;
   --ink-2:     #444444;
   --muted:     #666666;
   --line:      #CCCCCC;
-  --green:     #10C167;
+  --green:     #82C7AE;   /* light green from the colour sheet, as on the homepage */
+  --gold:      #EEB650;   /* Ronchi: the warm contrast to the purple */
+  --gold-lt:   #FBF0DA;
   --sans: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 /* Typography per guideline weights: Bold for headlines, Semi Bold for subheads/UI, Regular for body */
@@ -49,13 +50,13 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 /* ---------- FLOW: sections hand over to each other instead of stacking as blocks.
    Grounds fade white ↔ Background Color #F3F3F3, the vision sheet slides over the hero,
    and the final section dissolves into the grey footer. ---------- */
-.cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff;
-  padding-top: clamp(72px, 8vw, 120px); }
-.cr-work  { background: #fff; }
+.cr-vision { position: relative; z-index: 1; margin-top: -32px; border-radius: 32px 32px 0 0; background: #fff; overflow: clip;
+  padding: clamp(64px, 7vw, 100px) 0 clamp(56px, 6vw, 88px); }
+.cr-work  { background: var(--grey); padding-top: clamp(56px, 6vw, 88px); }
 .cr-perks { position: relative; z-index: 1; margin-top: -40px; border-radius: 32px 32px 0 0; background: #fff;
   padding-top: clamp(72px, 8vw, 120px); box-shadow: 0 -24px 48px -32px rgba(17,17,17,.45); }
 .cr-facts { padding-bottom: calc(clamp(56px, 7vw, 104px) + 40px); }
-.cr-join  { background: var(--mint); }   /* Light Blue band between the white perks and the violet CTA */
+
 .cr-final { background: linear-gradient(180deg, #fff 0%, #fff 45%, var(--grey) 100%); padding-bottom: clamp(64px, 8vw, 120px); }
 
 /* centred heads (home.css .center-head) */
@@ -74,11 +75,23 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-card p { color: var(--ink-2); font-size: .98rem; line-height: 1.55; }
 .cr-card > p { margin-bottom: 26px; }
 .cr-card > .tag { margin: auto 0 0; align-self: flex-start; }
+/* values: white cards on the grey band, numbered colour codes as on the homepage, a line grows on hover */
+.cr-value { position: relative; overflow: hidden; background: #fff; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.cr-value:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -30px rgba(50,15,153,.35); }
+.cr-value::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; background: var(--green); transition: width .7s var(--ease); }
+.cr-value:nth-child(2)::before { background: var(--gold); }
+.cr-value:nth-child(3)::before { background: var(--purple); }
+.cr-value:nth-child(4)::before { background: var(--lilac-2); }
+.cr-value:hover::before { width: 100%; }
+.cr-no { align-self: flex-start; margin-bottom: 18px; padding: 3px 12px; border-radius: 999px; font-weight: 600; font-size: .85rem; background: var(--green); color: var(--ink); }
+.cr-value:nth-child(2) .cr-no { background: var(--gold); }
+.cr-value:nth-child(3) .cr-no { background: var(--purple); color: #fff; }
+.cr-value:nth-child(4) .cr-no { background: var(--lilac-2); color: var(--purple); }
 .cr-work .cr-card { background: #fff; box-shadow: inset 0 0 0 1px rgba(45,45,45,.1); }
 
-/* icon in a Light Blue circle */
+/* icon in a gold circle */
 .cr-icon { width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-  background: var(--mint); color: var(--purple); flex: 0 0 auto; }
+  background: var(--gold); color: var(--purple); flex: 0 0 auto; }
 
 /* ---------- 1 · HERO (home.css .hero / .hero-shade / .hero-copy / .hero-foot) ---------- */
 .cr-hero .hero-stage img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%;
@@ -86,15 +99,21 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-hero .hero-foot { margin-top: 0; }
 .cr-hero h1 { max-width: 17ch; text-wrap: balance; }
 
-/* ---------- 2 · VISION ---------- */
-.cr-vision h2 { margin-bottom: 8px; }
+/* ---------- 2 · VISION — centred, compact padding, soft "A" mark behind ---------- */
+.cr-vision .center-head { margin-bottom: 0; }
+.cr-d-vision { color: var(--lilac-2); opacity: .7; width: min(34vw, 520px); right: -10vw; top: -40%; transform: rotate(16deg); }
+.cr-d-perks  { color: var(--lilac-2); opacity: .7; width: min(30vw, 460px); left: -10vw; top: 6%; transform: rotate(-18deg); }
+.cr-perks { overflow: clip; }
 .cr-hl { color: var(--purple); }
 .cr-strong { font-weight: 600; color: var(--ink); margin-top: 22px; }
+/* the vision's closing line: a little larger, kept on one line where it fits */
+.cr-vision .cr-strong { font-size: clamp(1.05rem, 1.5vw, 1.3rem); max-width: none; }
+@media (min-width: 760px) { .cr-vision .cr-strong { white-space: nowrap; } }
 
 /* ---------- 3 · CAROUSEL (left edge on the container, bleeds right) ---------- */
 .cr-carousel { --cr-size: clamp(220px, 22vw, 360px); --cr-gap: 20px; margin-bottom: clamp(64px, 8vw, 120px); }
 .cr-viewport { overflow: hidden; touch-action: pan-y; cursor: grab;
-  margin-left: max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter))); }
+  margin-left: 0; }   /* full bleed: the photo strip runs edge to edge on every screen size */
 .cr-viewport.is-dragging { cursor: grabbing; }
 .cr-track { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--cr-gap); will-change: transform; }
 .cr-slide { flex: 0 0 var(--cr-size); aspect-ratio: 1; border-radius: var(--r); overflow: hidden; background: var(--grey); }
@@ -109,17 +128,22 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-split-head .lead { margin: 0; }
 
 /* ---------- 5 · KEY FACTS (home.css .fact for number + label) ---------- */
-.cr-facts { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff; }
-.cr-facts-rings { position: absolute; z-index: -1; right: -12vw; top: 50%; width: min(78vw, 1150px);
-  opacity: .12; filter: brightness(0) invert(1); pointer-events: none; transform: translateY(-50%);
-  animation: spin 160s linear infinite; }
-.cr-facts .lead { color: rgba(255,255,255,.86); }
-.cr-fact { align-items: flex-start; text-align: left; background: #fff; color: var(--ink); transition: transform .5s var(--ease); }
-.cr-fact:hover { transform: translateY(-4px); }
-.cr-fact .cr-icon { background: var(--mint); color: var(--purple); }
-.cr-fact .fact { margin: 28px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); width: 100%; }
-.cr-fact .fact b { font-size: clamp(3rem, 4.6vw, 4.6rem); color: var(--purple); }
-.cr-fact .fact span { color: var(--ink); font-weight: 600; }
+.cr-facts { position: relative; overflow: clip; isolation: isolate; color: #fff;
+  /* softer violet: gentle gradient Warm Violet -> Blue Print with a faint sky glow */
+  background:
+    radial-gradient(60% 80% at 85% 10%, rgba(220,214,243,.16) 0%, rgba(220,214,243,0) 60%),
+    radial-gradient(50% 70% at 5% 100%, rgba(130,199,174,.16) 0%, rgba(130,199,174,0) 60%),
+    linear-gradient(160deg, #320F99 0%, #332D84 100%); }
+.cr-d-facts { color: #fff; opacity: .06; width: min(36vw, 560px); right: -8vw; top: -18%; transform: rotate(14deg); }
+.cr-facts .lead { color: rgba(255,255,255,.82); }
+.cr-fact { align-items: flex-start; text-align: left; color: var(--ink); border-radius: 14px;
+  background: #fff; box-shadow: 0 20px 44px -28px rgba(17,17,17,.45); transition: transform .5s var(--ease), background .4s ease; }
+.cr-fact:hover { transform: translateY(-4px); background: #fff; }
+.cr-fact .cr-icon { background: var(--gold); color: var(--purple); }
+.cr-fact:nth-child(even) .cr-icon { background: var(--green); }
+.cr-fact .fact { margin: 24px 0 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(50,15,153,.12); width: 100%; }
+.cr-fact .fact b { font-size: clamp(2.6rem, 4vw, 4rem); color: var(--purple); font-weight: 600; }
+.cr-fact .fact span { color: var(--ink-2); font-weight: 600; }
 .cr-fact p { margin: 0; color: var(--ink-2); }
 
 /* ---------- segmented switch (perks location + hiring process) ---------- */
@@ -140,12 +164,14 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-office-site h3 { margin: 12px 0 10px; font-size: clamp(1.4rem, 2vw, 1.9rem); }
 .cr-office-site > p:not([class]) { color: var(--ink-2); max-width: 56ch; margin-inline: auto; }
 .cr-perk { flex-direction: row; align-items: flex-start; gap: 18px; padding: clamp(20px, 1.8vw, 26px); }
-.cr-perk .cr-icon { width: 46px; height: 46px; background: var(--mint); }
+.cr-perk .cr-icon { width: 46px; height: 46px; background: var(--gold); }
+.cr-perk:nth-child(even) .cr-icon { background: var(--green); }
 .cr-perk .cr-icon .cr-ico { width: 21px; height: 21px; }
 .cr-perk h3 { font-size: clamp(1.05rem, 1.25vw, 1.22rem); margin: 2px 0 6px; }
 .cr-perk p { font-size: .94rem; }
 .cr-perk p { margin: 0; }
 
+.cr-banner-wrap { position: relative; margin-top: 20px; }
 .cr-banner { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r); background: var(--purple-dk);
   margin-top: 20px; min-height: clamp(340px, 36vw, 520px); display: flex; align-items: flex-end; color: #fff; }
 .cr-banner img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
@@ -156,37 +182,43 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-banner h3 { margin-bottom: 10px; }
 .cr-banner p { color: rgba(255,255,255,.9); }
 
-/* ---------- 7 · HOW TO JOIN — Light Blue ground, stepper (desktop) ---------- */
-.cr-join .cr-seg { background: #fff; }
-.cr-join .cr-step-panel { background: #fff; }
-.cr-join .cr-tip { background: var(--grey); }
-.cr-join .cr-step-icon { background: #fff; }
-.cr-join .cr-steps::before { background: var(--line); }
-.cr-steps { --steps: 5; list-style: none; margin: 0; padding: 0; position: relative;
+/* ---------- 7 · HOW TO JOIN — soft sky-tinted ground, progress track, raised detail card ---------- */
+.cr-join { position: relative; overflow: clip;
+  background: radial-gradient(70% 60% at 50% 0%, rgba(220,214,243,.7) 0%, rgba(220,214,243,0) 70%), var(--grey); }
+.cr-d-join { color: var(--lilac-2); opacity: .8; width: min(30vw, 440px); left: -9vw; bottom: -12%; transform: rotate(-16deg); }
+.cr-join .cr-seg { background: #fff; box-shadow: 0 10px 30px -20px rgba(50,15,153,.35); }
+.cr-steps { --steps: 5; --active: 0; list-style: none; margin: 0; padding: 0; position: relative;
   display: grid; grid-template-columns: repeat(var(--steps), 1fr); row-gap: clamp(32px, 4vw, 48px); }
-.cr-steps::before { content: ""; position: absolute; top: 28px; height: 1.5px; background: var(--line);
-  left: calc(50% / var(--steps)); right: calc(50% / var(--steps)); }
+/* track + violet progress that fills up to the active step */
+.cr-steps::before, .cr-steps::after { content: ""; position: absolute; top: 31px; height: 4px; border-radius: 999px;
+  left: calc(50% / var(--steps)); }
+.cr-steps::before { right: calc(50% / var(--steps)); background: rgba(50,15,153,.12); }
+.cr-steps::after { width: calc((100% - 100% / var(--steps)) * var(--active) / (var(--steps) - 1)); background: linear-gradient(90deg, var(--green), var(--purple));
+  transition: width .6s var(--ease); }
 .cr-step { display: contents; }
 .cr-step-btn { grid-row: 1; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 14px;
   padding: 0 6px; border: 0; background: none; cursor: pointer; color: var(--muted); }
-.cr-step-icon { width: 56px; height: 56px; border-radius: 50%; background: #fff; color: var(--purple);
-  box-shadow: inset 0 0 0 1.5px var(--line); display: flex; align-items: center; justify-content: center;
-  transition: background .3s ease, box-shadow .3s ease, color .3s ease; }
-.cr-step-label { font-size: .95rem; font-weight: 500; line-height: 1.3; text-align: center; transition: color .3s ease; }
-.cr-step-btn:hover .cr-step-icon { box-shadow: inset 0 0 0 1.5px var(--purple); }
-.cr-step-btn:hover .cr-step-label { color: var(--ink-2); }
-.cr-step-btn[aria-current="step"] .cr-step-icon { background: var(--purple); color: #fff; box-shadow: none; }
+.cr-step-icon { width: 66px; height: 66px; border-radius: 50%; background: #fff; color: var(--purple);
+  box-shadow: 0 10px 24px -14px rgba(50,15,153,.45); display: flex; align-items: center; justify-content: center;
+  transition: background .35s ease, box-shadow .35s ease, color .35s ease, transform .35s var(--ease); }
+.cr-step-label { display: grid; gap: 2px; font-size: .98rem; font-weight: 600; line-height: 1.3; text-align: center; color: var(--ink-2); transition: color .3s ease; }
+.cr-step-label small { font-size: .75rem; font-weight: 600; letter-spacing: .12em; color: var(--muted); }
+.cr-step-btn:hover .cr-step-icon { transform: translateY(-3px); }
+.cr-step-btn.is-done .cr-step-icon { background: var(--green); color: var(--ink); }
+.cr-step-btn[aria-current="step"] .cr-step-icon { background: var(--purple); color: #fff; transform: scale(1.06);
+  box-shadow: 0 0 0 8px rgba(50,15,153,.12), 0 14px 30px -12px rgba(50,15,153,.6); }
 .cr-step-btn[aria-current="step"] .cr-step-label { color: var(--purple); }
+.cr-step-btn[aria-current="step"] .cr-step-label small { color: var(--purple); }
 
 .cr-step-panel { grid-row: 2; grid-column: 1 / -1; display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 4vw, 64px);
-  background: var(--grey); border-radius: var(--r); padding: clamp(28px, 4vw, 56px); }
+  background: #fff; border-radius: 18px; padding: clamp(28px, 4vw, 56px); box-shadow: 0 30px 60px -40px rgba(50,15,153,.45); border-top: 4px solid var(--purple); }
 .cr-step-panel[hidden] { display: none; }
 .cr-step-no { font-size: .82rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--purple); }
 .cr-step-main h3 { margin: 14px 0 16px; font-size: clamp(1.5rem, 2.4vw, 2.2rem); }
 .cr-step-main .tag { margin-bottom: 18px; }
 .cr-step-main p:last-child { color: var(--ink-2); }
 .cr-step-side { display: flex; flex-direction: column; gap: 24px; }
-.cr-tip { background: #fff; border-radius: var(--r); padding: 22px 24px; }
+.cr-tip { background: var(--gold-lt); border-radius: 14px; padding: 22px 24px; border-left: 4px solid var(--gold); }
 .cr-tip-label { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
 .cr-tip p:last-child { color: var(--ink); }
 .cr-step-nav { margin-top: auto; display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
@@ -205,6 +237,12 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-cta-media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, var(--purple) 0%, rgba(50,15,153,.55) 12%, rgba(50,15,153,.12) 32%, rgba(50,15,153,0) 50%); }
 .cr-cta-copy { position: relative; width: 42%; padding: clamp(32px, 5vw, 80px); }
+/* kununu employer rating, bottom-left of the Join us panel */
+.cr-kununu { display: block; width: 150px; margin-top: clamp(28px, 3.5vw, 44px); border-radius: 10px; box-shadow: 0 12px 28px -16px rgba(17,17,17,.6);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.cr-kununu img { display: block; width: 100%; height: auto; }
+.cr-kununu:hover { transform: translateY(-3px); box-shadow: 0 18px 34px -16px rgba(17,17,17,.7); }
+.cr-kununu:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 .cr-cta h2 { margin: 26px 0 18px; max-width: 16ch; }
 .cr-cta p { color: rgba(255,255,255,.88); max-width: 46ch; margin-bottom: 30px; }
 
@@ -217,8 +255,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]) { animation: crFade .45s var(--ease); }
 @keyframes crFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-    .cr-facts-rings { animation: none; }
-  .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
+    .cr-tabpanel:not([hidden]), .cr-step-panel:not([hidden]), .cr-hero .hero-stage img { animation: none; }
   .cr-step-icon, .cr-step-label, .cr-seg [role="tab"] { transition: none; }
 }
 
@@ -234,7 +271,6 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
   .cr-cta-media::after { background: linear-gradient(0deg, var(--purple) 0%, rgba(50,15,153,0) 35%); }
   .cr-cta-copy { width: auto; padding-top: 8px; }
     .cr-cta-rings { left: auto; right: -40%; bottom: -30%; width: 120vw; }
-  .cr-facts-rings { right: -45vw; width: 130vw; }
 }
 @media (max-width: 640px) {
   .cr-vision, .cr-perks { margin-top: -24px; border-radius: 24px 24px 0 0; }
@@ -247,7 +283,9 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
   /* stepper → vertical accordion */
   .cr-steps { display: block; }
-  .cr-steps::before { top: 34px; bottom: 34px; left: 28px; right: auto; width: 1.5px; height: auto; }
+  .cr-steps::before { top: 38px; bottom: 38px; left: 31px; right: auto; width: 4px; height: auto; }
+  .cr-steps::after { display: none; }
+  .cr-step-label { display: flex; gap: 8px; align-items: baseline; }
   .cr-step { display: block; position: relative; padding: 6px 0; }
   .cr-step-btn { width: 100%; flex-direction: row; gap: 16px; padding: 0; text-align: left; }
   .cr-step-btn::after { content: ""; width: 8px; height: 8px; margin: 0 6px 0 auto; border-right: 1.6px solid currentColor;
@@ -275,12 +313,6 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
     /* photos move inside their frames */
     .cr-banner img, .cr-cta-media img { animation: crParallax linear both; animation-timeline: view(); }
     @keyframes crParallax { from { transform: translateY(-7%) scale(1.16); } to { transform: translateY(7%) scale(1.16); } }
-    /* fact cards rise in a stagger as the section arrives */
-    .cr-fact { animation: crRise linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
-    .cr-fact:nth-child(2) { animation-range: entry 6% cover 34%; }
-    .cr-fact:nth-child(3) { animation-range: entry 12% cover 38%; }
-    .cr-fact:nth-child(4) { animation-range: entry 18% cover 42%; }
-    @keyframes crRise { from { transform: translateY(60px); } to { transform: none; } }
     /* the closing panel opens up as it comes into view */
     .cr-cta { animation: crOpen linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
     @keyframes crOpen { from { transform: scale(.92); border-radius: 32px; } to { transform: none; } }
@@ -292,5 +324,54 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
     /* the perks sheet rises a little faster than the page as it covers the violet */
     .cr-perks { animation: crSheet linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
     @keyframes crSheet { from { transform: translateY(60px); } to { transform: none; } }
+  }
+}
+
+/* homepage-style colour offset behind the celebration banner */
+.cr-tabpanel .cr-banner { box-shadow: 18px 18px 0 0 var(--gold); margin-right: 18px; }
+#cr-panel-pilsen .cr-banner { box-shadow: 18px 18px 0 0 var(--green); }
+@media (max-width: 640px) { .cr-tabpanel .cr-banner { box-shadow: 10px 10px 0 0 var(--gold); margin-right: 10px; } #cr-panel-pilsen .cr-banner { box-shadow: 10px 10px 0 0 var(--green); } }
+
+/* ---------- STORY MOTION — the page unfolds as you read: headlines rise in word by word,
+   the vision paragraph reads itself from grey to ink, photos wipe in, perks open up, cards
+   follow each other in. Words are wrapped by careers.js (.sw > i). Nothing is pinned; every
+   reveal finishes before mid-screen. Static with reduced motion / without scroll timelines. ---------- */
+.sw { display: inline-block; }
+.sw > i { display: inline-block; font-style: normal; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+  /* hero headline rises in word by word on load */
+  .cr-hero h1 .sw { overflow: clip; padding-bottom: .1em; margin-bottom: -.1em; vertical-align: top; }
+  .cr-hero h1 .sw > i { animation: dUp .9s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * 70ms + 150ms); }
+  @keyframes dUp { from { transform: translateY(110%); } to { transform: none; } }
+
+  /* section headlines rise in word by word as they scroll into view */
+  /* (played once when the headline is in view, not tied to the scroll position, so words are never left half-shown) */
+  .cr-sec h2 .sw { overflow: clip; padding-bottom: .1em; margin-bottom: -.1em; vertical-align: top; }
+  .cr-sec h2 .sw > i { transform: translateY(110%); transition: transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i) * 55ms); }
+  .cr-sec h2.is-in .sw > i { transform: none; }
+
+  /* the vision paragraph reads itself: words turn from grey to ink as you scroll */
+  .cr-vision .lead .sw > i, .cr-vision .cr-strong .sw > i { color: #CCCCCC; animation: dInk linear both; animation-timeline: view(); }
+  @keyframes dInk { to { color: var(--ink); } }
+
+  /* photos wipe up into their frames */
+  .cr-slide { animation: dWipe linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+  @keyframes dWipe { from { clip-path: inset(100% 0 0 0 round 8px); } to { clip-path: inset(0 0 0 0 round 8px); } }
+  .cr-cta-media { animation: dWipe linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+  /* celebration photo opens from the top edge downwards, so there is never an empty gap above it */
+  .cr-banner { animation: dDrop linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+  @keyframes dDrop { from { clip-path: inset(0 0 100% 0 round 8px); } to { clip-path: inset(0 -40px -40px 0 round 8px); } }
+
+  /* perks open up from a narrow strip (kept from B) */
+  .cr-perks { animation: dDoor linear both; animation-timeline: view(); animation-range: entry 0% entry 65%; }
+  @keyframes dDoor { from { clip-path: inset(0 36% 0 36% round 32px); } to { clip-path: inset(0 0 0 0 round 32px 32px 0 0); } }
+
+  /* cards follow each other in */
+  .cr-value, .cr-fact, .cr-perk, .cr-step-btn {
+    animation: dCard linear both; animation-timeline: view(); animation-range: entry calc(var(--n, 0) * 6%) cover calc(28% + var(--n, 0) * 6%); }
+  .cr-fact { animation-range: entry 0% cover 28%; }   /* key facts arrive together */
+  @keyframes dCard { from { transform: translateY(50px); opacity: .25; } to { transform: none; opacity: 1; } }
+
   }
 }

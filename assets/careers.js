@@ -165,6 +165,8 @@ var KEY_FACTS = [
 
     function render() {
       var show = open || !mq.matches;
+      root.style.setProperty("--active", active);   // drives the progress line
+      btns.forEach(function (b, i) { b.classList.toggle("is-done", i < active); });
       btns.forEach(function (b, i) {
         var on = i === active;
         if (on) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
@@ -202,4 +204,57 @@ var KEY_FACTS = [
     if (mq.addEventListener) mq.addEventListener("change", render); else if (mq.addListener) mq.addListener(render);
     render();
   });
+
+  /* Story motion (see careers.css): wrap words for the headline / reading reveals, stagger cards,
+     Skipped with reduced motion. */
+  if (!reduce && window.CSS && CSS.supports("animation-timeline: view()")) {
+    /* wrap every word of an element in <span class="sw"><i>word</i></span>, keeping inner markup (br, spans) */
+    function splitWords(el) {
+      var words = [];
+      (function walk(node) {
+        [].slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            var parts = n.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+            parts.forEach(function (p) {
+              if (!p) return;
+              if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+              var s = document.createElement("span"), i = document.createElement("i");
+              s.className = "sw"; i.textContent = p; s.appendChild(i); frag.appendChild(s); words.push(i);
+            });
+            n.parentNode.replaceChild(frag, n);
+          } else if (n.nodeType === 1 && n.tagName !== "BR") { walk(n); }
+        });
+      })(el);
+      words.forEach(function (w, k) { w.style.setProperty("--i", k); });
+      return words;
+    }
+
+    /* stagger index for cards inside each grid / step list */
+    [".cr-grid-4", ".cr-grid-2", ".cr-steps"].forEach(function (sel) {
+      [].forEach.call(document.querySelectorAll(sel), function (g) {
+        [].forEach.call(g.querySelectorAll(".cr-value, .cr-fact, .cr-perk, .cr-step-btn"), function (c, k) { c.style.setProperty("--n", k); });
+      });
+    });
+
+    var h1 = document.querySelector(".cr-hero h1"); if (h1) splitWords(h1);
+    [].forEach.call(document.querySelectorAll(".cr-sec h2"), splitWords);
+    /* section headlines rise in once, as soon as they are properly in view */
+    var heads = document.querySelectorAll(".cr-sec h2");
+    if ("IntersectionObserver" in window) {
+      var ho = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); ho.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      [].forEach.call(heads, function (h) { ho.observe(h); });
+    } else { [].forEach.call(heads, function (h) { h.classList.add("is-in"); }); }
+    /* vision paragraph + closing line read themselves, spread over the scroll */
+    var ink = [];
+    [".cr-vision .lead", ".cr-vision .cr-strong"].forEach(function (sel) {
+      var el = document.querySelector(sel); if (el) ink = ink.concat(splitWords(el));
+    });
+    ink.forEach(function (w, k) {
+      var a = 4 + (k / ink.length) * 14;   // quick: the whole text is dark before it reaches mid-screen
+      w.style.animationRange = "cover " + a.toFixed(1) + "% cover " + (a + 4).toFixed(1) + "%";
+    });
+
+  }
 })();
