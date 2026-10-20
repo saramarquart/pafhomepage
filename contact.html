@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/consent.css?v=2">
   <link rel="stylesheet" href="assets/home.css?v=39" />
-  <link rel="stylesheet" href="assets/contact.css?v=2" />
+  <link rel="stylesheet" href="assets/contact.css?v=3" />
   <meta property="og:title" content="Contact – Planet A Foods" />
   <meta property="og:description" content="Request a sample or start a co-development conversation with Planet A Foods." />
   <meta property="og:type" content="website" />
@@ -165,23 +165,28 @@
   </header>
 
   <main>
-    <!-- 1 · HERO — photo with a dark shade, like the homepage and careers heroes -->
-    <section class="hero ct-hero" data-tone="dark" aria-labelledby="ct-title">
-      <div class="hero-stage"><img src="assets/img/lake.jpg" width="1344" height="768" fetchpriority="high" alt="" /></div>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="wrap hero-copy">
-        <span class="pill pill-light reveal">Partner with us</span>
-        <h1 id="ct-title" class="reveal">Let's secure your best‑loved ingredients.</h1>
-        <p class="ct-lead reveal">Request a sample, or start a co-development conversation. Tell us the application and the challenge — reliability, cost, supply — and we'll bring the right product and the technical detail to match.</p>
-      </div>
+    <!-- 1 · HEADER — brand banner "Built for resilience. Made for impact." built in code (sharp at every size) -->
+    <section class="ct-banner" data-tone="dark" aria-label="Built for resilience. Made for impact.">
+      <svg class="ct-ring ct-ring-1" aria-hidden="true"><use href="#paf-a"/></svg>
+      <svg class="ct-ring ct-ring-2" aria-hidden="true"><use href="#paf-a"/></svg>
+      <p class="ct-claim" aria-hidden="true">
+        <span class="ct-claim-line"><span class="ct-out">Built</span> <span class="ct-for">for</span></span>
+        <span class="ct-claim-big">resilience.</span>
+        <span class="ct-claim-line"><span class="ct-out">Made</span> <span class="ct-for">for</span></span>
+        <span class="ct-claim-big">impact.</span>
+      </p>
     </section>
 
     <!-- 2 · CONTACT — details on the left, enquiry form on the right (assets/contact.js composes the email) -->
-    <section class="ct-sec" data-tone="light" aria-labelledby="ct-team">
+    <section class="ct-sec" data-tone="light" aria-labelledby="ct-title">
       <svg class="deco-a ct-deco" aria-hidden="true"><use href="#paf-a"/></svg>
+      <div class="wrap ct-intro reveal">
+        <span class="pill">Partner with us</span>
+        <h1 id="ct-title">Let's secure your best‑loved ingredients.</h1>
+        <p class="ct-lead">Request a sample, or start a co-development conversation. Tell us the application and the challenge — reliability, cost, supply — and we'll bring the right product and the technical detail to match.</p>
+      </div>
       <div class="wrap ct-grid">
         <div class="ct-info reveal">
-          <span class="pill">Contact</span>
           <h2 id="ct-team">Talk to the team</h2>
           <ul class="ct-list">
             <li><span class="ct-icon"><svg class="ct-ico" aria-hidden="true"><use href="#i-mail"/></svg></span><div><b>General &amp; partnerships</b><a href="mailto:hello@forplaneta.com">hello@forplaneta.com</a></div></li>
