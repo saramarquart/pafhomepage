@@ -188,3 +188,8 @@ html:not(.ms-js) .ms-reveal { display: none; }
   .ms-ch .ms-reveal-n { display: none; }          /* the count returns once the year is open */
   .ms-ch .ms-reveal-label { flex: 1 1 auto; }
 }
+
+/* Our story: same ground as "How to join" on Careers — a soft lilac glow from the top over light grey, faint A mark */
+.ms-story { position: relative; overflow: clip;
+  background: radial-gradient(70% 60% at 50% 0%, rgba(220,214,243,.7) 0%, rgba(220,214,243,0) 70%), #F3F3F3; }
+.ms-d-story { color: var(--lilac-2); opacity: .8; width: min(30vw, 440px); left: -9vw; bottom: -6%; transform: rotate(-16deg); }
