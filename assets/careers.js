@@ -310,3 +310,39 @@ var KEY_FACTS = [
   if (window.ResizeObserver) { var ro = new ResizeObserver(centreAll); cards.forEach(function (c) { ro.observe(c); }); }
   else window.addEventListener("resize", centreAll);
 })();
+
+/* Benefits: only the title shows; hover, keyboard focus or a tap (touch screens) lifts it and reveals the text. */
+(function () {
+  "use strict";
+  var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  var perks = [].slice.call(document.querySelectorAll("[data-perk]"));
+  // while closed, the title sits in the middle of the space it shares with its text
+  function place(card) {
+    var p = card.querySelector(".cr-perk-txt p");
+    if (!p.offsetParent) return;   // hidden tab: measured when it is shown
+    var gap = parseFloat(getComputedStyle(p).marginTop) || 4;
+    card.style.setProperty("--perk-dy", ((p.offsetHeight + gap) / 2).toFixed(1) + "px");
+    card.classList.add("is-ready");
+  }
+  function placeAll() { perks.forEach(place); }
+  perks.forEach(function (card) {
+    var btn = card.querySelector(".cr-perk-btn");
+    var hover = false, focus = false, pinned = false;
+    function sync() {
+      var open = pinned || hover || focus;
+      card.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    card.addEventListener("click", function () { if (!canHover) { pinned = !pinned; sync(); } });
+    if (canHover) {
+      card.addEventListener("mouseenter", function () { hover = true; sync(); });
+      card.addEventListener("mouseleave", function () { hover = false; sync(); });
+    }
+    btn.addEventListener("focus", function () { focus = btn.matches(":focus-visible"); sync(); });
+    btn.addEventListener("blur", function () { focus = false; sync(); });
+  });
+  placeAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeAll);
+  if (window.ResizeObserver) { var ro = new ResizeObserver(placeAll); perks.forEach(function (c) { ro.observe(c); }); }
+  [].forEach.call(document.querySelectorAll('[role="tab"]'), function (t) { t.addEventListener("click", function () { setTimeout(placeAll, 0); }); });
+})();
