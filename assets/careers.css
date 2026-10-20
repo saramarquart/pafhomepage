@@ -484,3 +484,17 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h2 { font-weight: 600; }
 .cr-li:hover { transform: translateY(-3px); box-shadow: 0 18px 34px -16px rgba(17,17,17,.7); }
 .cr-li:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { .cr-li { transition: none; } }
+
+/* Benefits: like the values, only the title shows; hover, keyboard focus or a tap lifts it and reveals the text.
+   The text keeps its space (no jumping); careers.js measures how far the title sits lower while closed. */
+.cr-offer .cr-office-site h3 { margin-top: 0; }
+.cr-perk[data-perk] { align-items: center; cursor: pointer; }
+.cr-perk-btn { all: unset; cursor: pointer; font: inherit; color: inherit; text-wrap: balance; }
+.cr-perk-btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.cr-perk[data-perk] { position: relative; }
+.cr-perk[data-perk]:has(.cr-perk-btn:focus-visible) { outline: 3px solid var(--purple); outline-offset: 3px; }
+.cr-perk-txt h3 { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.cr-perk-txt p { transition: opacity .25s ease, transform .3s ease; }
+.cr-perk.is-ready:not(.is-open) .cr-perk-txt h3 { transform: translateY(var(--perk-dy, 0px)); }
+.cr-perk.is-ready:not(.is-open) .cr-perk-txt p { opacity: 0; transform: translateY(8px); }
+@media (prefers-reduced-motion: reduce) { .cr-perk-txt h3, .cr-perk-txt p { transition: none; } }
