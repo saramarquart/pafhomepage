@@ -1494,7 +1494,7 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.0
 .footer-a { position: absolute; right: -4vw; bottom: -14%; width: min(62vw, 980px); height: auto; pointer-events: none; opacity: .9; }
 .footer-in { position: relative; display: grid; gap: 64px; }
 .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 760px; }
-.footer h4 { margin: 0 0 14px; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); line-height: 1.4; }
+.footer h2 { margin: 0 0 14px; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); line-height: 1.4; }
 .footer-links a { display: block; padding: 4px 0; color: var(--ink-2); transition: color .25s ease; }
 .footer-links a:hover { color: var(--purple); }
 .footer-base { display: grid; gap: 22px; color: var(--purple); }
@@ -1512,3 +1512,18 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.0
 /* reading-progress bar, as on the homepage */
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--green) 70%, var(--gold)); z-index: 200; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .scroll-progress { display: none; } }
+
+/* skip link: first tab stop on every page, visible only when focused */
+.skip-link { position: fixed; left: 16px; top: -64px; z-index: 300; padding: 10px 16px; border-radius: 6px; background: var(--purple); color: #fff; font-weight: 500; transition: top .2s ease; }
+.skip-link:focus { top: 16px; }
+
+/* pause / play for the background clips (added by main.js; WCAG 2.2.2) */
+.vid-toggle { position: absolute; right: var(--gutter); bottom: 20px; z-index: 3; width: 38px; height: 38px; border: 0; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(14,11,26,.45); color: #fff; backdrop-filter: blur(6px); cursor: pointer; opacity: .75;
+  transition: opacity .25s ease, background .25s ease; }
+.vid-toggle:hover, .vid-toggle:focus-visible { opacity: 1; background: rgba(14,11,26,.7); }
+.vid-toggle::before { content: ""; box-sizing: border-box; width: 10px; height: 12px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.vid-toggle.paused::before { width: 0; height: 0; border: 0; border-left: 11px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
+
+/* links inside running text are underlined, not colour-only (WCAG 1.4.1) */
+.prose a, .measure a, main p:not(.breadcrumb) a:not([class]) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
