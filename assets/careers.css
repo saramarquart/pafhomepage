@@ -436,3 +436,35 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-value.is-open .cr-value-hint::after { transform: rotate(0deg); }
 @media (hover: hover) { .cr-value:hover .cr-value-hint::after, .cr-value:has(.cr-value-btn:focus-visible) .cr-value-hint::after { transform: rotate(0deg); } }
 @media (prefers-reduced-motion: reduce) { .cr-value-body, .cr-value-hint, .cr-value-hint::before, .cr-value-hint::after { transition: none; } }
+
+/* 5 · what we offer: photo text + purple fade on the right; compact enough to fit one desktop screen */
+.cr-banner { justify-content: flex-end; }
+.cr-banner::after {
+  background: linear-gradient(270deg, rgba(50,15,153,.88) 0%, rgba(50,15,153,.55) 38%, rgba(50,15,153,0) 72%),
+              linear-gradient(0deg, rgba(17,17,17,.45) 0%, rgba(17,17,17,0) 45%); }
+.cr-perks .lead { text-wrap: balance; }
+@media (max-width: 640px) {
+  .cr-banner::after { background: linear-gradient(0deg, rgba(50,15,153,.9) 0%, rgba(50,15,153,.5) 45%, rgba(50,15,153,0) 75%); }
+}
+@media (min-width: 1000px) {
+  .cr-perks { padding-top: clamp(48px, 4.6vw, 72px); padding-bottom: clamp(40px, 4vw, 64px); }
+  .cr-perks .center-head { margin-bottom: 16px; }
+  .cr-perks .center-head h2 { margin-top: 12px; }
+  .cr-perks .lead { max-width: none; margin-top: 10px; }        /* one line on desktop */
+  .cr-perks .cr-seg-wrap { margin-bottom: 20px; }
+  .cr-offer { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 20px; align-items: stretch; }
+  .cr-offer .cr-office { text-align: left; margin-bottom: 14px; }
+  .cr-offer .cr-office-site { max-width: none; margin: 0; }
+  .cr-offer .cr-office-site h3 { margin: 6px 0 4px; font-size: clamp(1.2rem, 1.5vw, 1.45rem); }
+  .cr-offer .cr-office-site > p:not([class]) { margin: 0; max-width: 60ch; font-size: .95rem; }
+  .cr-offer .cr-grid-2 { gap: 12px; }
+  .cr-offer .cr-perk { gap: 12px; padding: 14px 16px; }
+  .cr-offer .cr-perk .cr-icon { width: 36px; height: 36px; flex: none; }
+  .cr-offer .cr-perk .cr-icon .cr-ico { width: 18px; height: 18px; }
+  .cr-offer .cr-perk h3 { font-size: 1rem; margin: 0 0 4px; }
+  .cr-offer .cr-perk p { font-size: .87rem; line-height: 1.45; }
+  .cr-offer .cr-banner { margin-top: 0; min-height: 0; height: 100%; }
+  .cr-offer .cr-banner-copy { padding: clamp(22px, 2.2vw, 32px); max-width: 34ch; }
+  .cr-offer .cr-banner h3 { font-size: clamp(1.2rem, 1.5vw, 1.45rem); margin-bottom: 6px; }
+  .cr-offer .cr-banner p { font-size: .92rem; }
+}
