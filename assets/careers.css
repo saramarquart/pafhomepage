@@ -470,7 +470,7 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
 /* 7 · join us: LinkedIn as a quiet secondary link under the main button */
 .cr-li-link { display: block; width: fit-content; max-width: 100%; margin-top: 18px; color: #fff; font-weight: 500; font-size: .95rem;
-  text-decoration: underline; text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 4px; text-wrap: pretty; }
+  text-decoration: underline; text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 4px; text-wrap: balance; }
 .cr-li-link span { display: inline-block; transition: transform .3s ease; }
 .cr-li-link:hover { text-decoration-color: #fff; }
 .cr-li-link:hover span { transform: translate(2px, -2px); }
