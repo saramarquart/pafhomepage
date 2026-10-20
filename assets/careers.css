@@ -380,8 +380,10 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
    Careers feedback (Oct 2026)
    ===================================================================== */
 /* no single words left alone: balanced headings and subtitles, pretty body text */
-.careers h1, .careers h2, .careers h3, .careers .lead, .careers .cr-strong { text-wrap: balance; }
-.careers p { text-wrap: pretty; }
+.careers h1, .careers h2, .careers h3, .careers .cr-strong, .cr-perks .lead, .cr-join .lead { text-wrap: balance; }
+/* longer intro paragraphs: "pretty" keeps the last line from holding a single word (balance stops working beyond ~6 lines) */
+.careers p, .careers .lead { text-wrap: pretty; }
+.cr-perks .lead, .cr-join .lead { text-wrap: balance; }
 
 /* 1 · hero scroll cue */
 .cr-scroll { position: absolute; z-index: 2; left: 50%; bottom: clamp(12px, 2.6vh, 26px); transform: translateX(-50%);
@@ -477,3 +479,6 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 .cr-li-link:hover span { transform: translate(2px, -2px); }
 .cr-li-link:focus-visible { outline: 2px solid #fff; outline-offset: 4px; border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { .cr-li-link span { transition: none; } }
+
+/* the second sentence of the vision heading balances on its own (it follows a line break) */
+.cr-vision h2 .cr-hl { display: inline-block; text-wrap: balance; }
