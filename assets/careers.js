@@ -277,3 +277,27 @@ var KEY_FACTS = [
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 })();
+
+/* Values: hover, keyboard focus or a tap shows a value's description.
+   aria-expanded follows what is visible; on touch screens (no hover) a tap opens and closes it. */
+(function () {
+  "use strict";
+  var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  [].forEach.call(document.querySelectorAll("[data-value]"), function (card) {
+    var btn = card.querySelector(".cr-value-btn");
+    var hover = false, focus = false, pinned = false;
+    function sync() {
+      var open = pinned || hover || focus;
+      card.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    // touch screens: a tap opens, the next tap closes. With a mouse, hover already does the job.
+    btn.addEventListener("click", function () { if (!canHover) { pinned = !pinned; sync(); } });
+    if (canHover) {
+      card.addEventListener("mouseenter", function () { hover = true; sync(); });
+      card.addEventListener("mouseleave", function () { hover = false; sync(); });
+    }
+    btn.addEventListener("focus", function () { focus = btn.matches(":focus-visible"); sync(); });
+    btn.addEventListener("blur", function () { focus = false; sync(); });
+  });
+})();

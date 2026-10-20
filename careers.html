@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/consent.css?v=2">
   <link rel="stylesheet" href="assets/home.css?v=39" />
-  <link rel="stylesheet" href="assets/careers.css?v=31" />
+  <link rel="stylesheet" href="assets/careers.css?v=32" />
   <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
@@ -248,30 +248,39 @@
           </div>
           <p class="lead">We're scaling up and changing an entire industry at the same time. That means what you do here shows up in the business, in our products and in the way we work together.</p>
         </div>
-        <div class="cr-grid-4">
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">01</span>
-            <h3>Take ownership</h3>
-            <p>Your decisions have a direct, tangible effect on the business and its results, and you can point to the difference you made.</p>
-            <span class="tag tag-line">Value: Create Impact</span>
+        <!-- Values: title only; the description appears on hover / keyboard focus / tap (assets/careers.js). It always stays in the HTML. -->
+        <div class="cr-grid-4 cr-values">
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-1">Creating Impact.</button></h3>
+            <div class="cr-value-body" id="cr-value-1">
+              <p class="cr-value-head">Take ownership</p>
+              <p>Your decisions have a direct, tangible effect on the business and its results, and you can point to the difference you made.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">02</span>
-            <h3>Question everything</h3>
-            <p>Innovation doesn&#x27;t stop at our products. The way we work is never finished: we think things new, better and challenge the status quo.</p>
-            <span class="tag tag-line">Value: On Discovery</span>
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-2">On Discovery.</button></h3>
+            <div class="cr-value-body" id="cr-value-2">
+              <p class="cr-value-head">Question everything</p>
+              <p>Innovation doesn&#x27;t stop at our products. The way we work is never finished: we think things new, better and challenge the status quo.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">03</span>
-            <h3>See it coming. Act first.</h3>
-            <p>We&#x27;re agile and keep hierarchies flat, so the path from idea to decision is short. We&#x27;d rather try, learn and adjust than discuss something for months.</p>
-            <span class="tag tag-line">Value: Just Do It</span>
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-3">Just Do It.</button></h3>
+            <div class="cr-value-body" id="cr-value-3">
+              <p class="cr-value-head">See it coming. Act first.</p>
+              <p>We&#x27;re agile and keep hierarchies flat, so the path from idea to decision is short. We&#x27;d rather try, learn and adjust than discuss something for months.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">04</span>
-            <h3>Build something big, together</h3>
-            <p>We&#x27;re a strong team that pulls in one direction. Across every function, we back each other up and rely on each other.</p>
-            <span class="tag tag-line">Value: Fellowship</span>
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-4">Fellowship.</button></h3>
+            <div class="cr-value-body" id="cr-value-4">
+              <p class="cr-value-head">Build something big, together</p>
+              <p>We&#x27;re a strong team that pulls in one direction. Across every function, we back each other up and rely on each other.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
         </div>
       </div>
@@ -577,7 +586,7 @@
 
   <!-- careers.js first: it renders the key-fact cards that main.js then reveals + counts up;
        home.js supplies the shared nav tone (white logo over dark sections, purple over light). -->
-  <script src="assets/careers.js?v=13"></script>
+  <script src="assets/careers.js?v=14"></script>
   <script src="assets/main.js?v=31"></script>
   <script src="assets/home.js?v=1"></script>
   <script src="assets/consent-config.js?v=2"></script>

@@ -406,3 +406,33 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
 /* 3 · photo carousel: new photos come as <picture> (WebP + JPG fallback) */
 .cr-slide picture { display: block; width: 100%; height: 100%; }
+
+/* 4 · values: four equal, coloured boxes; title only, description revealed in place (no layout shift) */
+.cr-values .cr-value { position: relative; display: flex; flex-direction: column; min-height: 100%; padding: clamp(24px, 2.2vw, 34px);
+  background: var(--green); color: var(--ink); box-shadow: none; }
+.cr-values .cr-value:nth-child(2) { background: var(--gold); }
+.cr-values .cr-value:nth-child(3) { background: var(--purple); color: #fff; }
+.cr-values .cr-value:nth-child(4) { background: var(--lilac-2); color: var(--purple); }
+.cr-values .cr-value::before { display: none; }
+.cr-value-title { margin: 0 0 16px; font-size: clamp(1.5rem, 1.875vw, 1.875rem); line-height: 1.12; }
+/* the whole box is the button (stretched over the card) */
+.cr-value-btn { all: unset; cursor: pointer; font: inherit; color: inherit; text-wrap: balance; }
+.cr-value-btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.cr-value:has(.cr-value-btn:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; }
+.cr-values .cr-value:nth-child(3):has(.cr-value-btn:focus-visible) { outline-color: var(--purple); }
+/* the description always takes its space, so revealing it moves nothing */
+.cr-value-body { opacity: 0; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+.cr-value-body p { color: inherit; font-size: .98rem; line-height: 1.55; margin: 0; }
+.cr-value-head { font-weight: 600; margin-bottom: 6px !important; }
+.cr-value.is-open .cr-value-body { opacity: 1; transform: none; }
+/* without JavaScript, hover and keyboard focus still reveal it */
+@media (hover: hover) {
+  .cr-value:hover .cr-value-body, .cr-value:has(.cr-value-btn:focus-visible) .cr-value-body { opacity: 1; transform: none; }
+}
+/* small "+" in the corner says there is more; turns into "−" when open */
+.cr-value-hint { position: absolute; right: clamp(18px, 1.8vw, 26px); bottom: clamp(16px, 1.6vw, 24px); width: 14px; height: 14px; opacity: .7; transition: opacity .25s ease; }
+.cr-value-hint::before, .cr-value-hint::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .25s ease; }
+.cr-value-hint::after { transform: rotate(90deg); }
+.cr-value.is-open .cr-value-hint::after { transform: rotate(0deg); }
+@media (hover: hover) { .cr-value:hover .cr-value-hint::after, .cr-value:has(.cr-value-btn:focus-visible) .cr-value-hint::after { transform: rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) { .cr-value-body, .cr-value-hint, .cr-value-hint::before, .cr-value-hint::after { transition: none; } }
