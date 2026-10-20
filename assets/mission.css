@@ -102,8 +102,6 @@ html:not(.ms-js) .ms-reveal { display: none; }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .ms-ch-year { animation: msYear linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
-    @keyframes msYear { from { opacity: 0; transform: translateY(40px); } to { opacity: .9; transform: none; } }
   }
 }
 
@@ -193,3 +191,22 @@ html:not(.ms-js) .ms-reveal { display: none; }
 .ms-story { position: relative; overflow: clip;
   background: radial-gradient(70% 60% at 50% 0%, rgba(220,214,243,.7) 0%, rgba(220,214,243,0) 70%), #F3F3F3; }
 .ms-d-story { color: var(--lilac-2); opacity: .8; width: min(30vw, 440px); left: -9vw; bottom: -6%; transform: rotate(-16deg); }
+
+/* Our story: each year card unfolds as it scrolls into view (assets/mission.js adds .is-in):
+   card rises → colour bar draws down → year slides in → heading, text, button follow */
+@media (prefers-reduced-motion: no-preference) {
+  .ms-js .ms-ch { opacity: 0; transform: translateY(70px) scale(.97);
+    transition: opacity .7s var(--ease), transform .9s var(--ease); }
+  .ms-js .ms-ch::before { transform: scaleY(0); transform-origin: top; transition: transform .8s var(--ease) .25s; }
+  .ms-js .ms-ch-year { opacity: 0; transform: translateX(-48px); transition: opacity .8s var(--ease) .3s, transform 1s var(--ease) .3s; }
+  .ms-js .ms-ch-head > *, .ms-js .ms-ch .ms-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .7s var(--ease); }
+  .ms-js .ms-ch-head > :nth-child(1) { transition-delay: .45s; }
+  .ms-js .ms-ch-head > :nth-child(2) { transition-delay: .55s; }
+  .ms-js .ms-ch .ms-reveal { transition-delay: .68s; }
+  .ms-js .ms-ch.is-in { opacity: 1; transform: none; }
+  .ms-js .ms-ch.is-in::before { transform: none; }
+  .ms-js .ms-ch.is-in .ms-ch-year { opacity: 1; transform: none; }
+  .ms-js .ms-ch.is-in .ms-ch-head > *, .ms-js .ms-ch.is-in .ms-reveal { opacity: 1; transform: none; }
+  /* once revealed, the year button keeps its own quick hover/press transitions */
+  .ms-js .ms-ch.is-done .ms-reveal { transition: background .3s ease, color .3s ease, transform .3s ease; transition-delay: 0s; }
+}
