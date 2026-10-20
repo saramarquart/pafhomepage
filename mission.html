@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/consent.css?v=2">
   <link rel="stylesheet" href="assets/home.css?v=39" />
-  <link rel="stylesheet" href="assets/mission.css?v=13" />
-  <link rel="preload" as="image" href="assets/img/mission/hero-landscape-poster.jpg" />
+  <link rel="stylesheet" href="assets/mission.css?v=14" />
+  <link rel="preload" as="image" href="assets/img/mission/hero-misty-fields.webp" imagesrcset="assets/img/mission/hero-misty-fields-sm.webp 1200w, assets/img/mission/hero-misty-fields.webp 2400w" imagesizes="100vw" type="image/webp" />
   <meta property="og:title" content="Mission &amp; journey – Planet A Foods" />
   <meta property="og:description" content="Alternative ingredients for tomorrow: our mission and our journey, from a Munich food-tech start-up to a B2B partner for the global food industry." />
   <meta property="og:type" content="website" />
@@ -72,7 +72,17 @@
           </div>
         </div>
       </div>
-      <a href="mission.html" aria-current="page">Mission</a>
+      <div class="nav-item">
+        <a href="mission.html" aria-haspopup="true" aria-current="page">Mission</a>
+        <div class="nav-sub">
+          <div>
+            <a href="mission.html#why">Why we exist</a>
+            <a href="mission.html#our-mission">Our mission</a>
+            <a href="mission.html#journey">Our journey</a>
+            <a href="mission.html#story">Our story</a>
+          </div>
+        </div>
+      </div>
       <a href="careers.html">Careers</a>
       <a href="press.html">Press</a>
       <a href="contact.html">Contact</a>
@@ -84,10 +94,7 @@
     <!-- 1 · HERO -->
     <section class="hero ms-hero" data-tone="dark" aria-labelledby="ms-title">
       <div class="hero-stage">
-        <!-- slow drone flight over fields at sunrise; starts after load, stays on the still frame with reduced motion (assets/mission.js) -->
-        <video class="ms-hero-video" muted loop playsinline preload="auto" poster="assets/img/mission/hero-landscape-poster.jpg" aria-hidden="true" data-hero-video>
-          <source src="assets/img/mission/hero-landscape.mp4" type="video/mp4" />
-        </video>
+        <picture><source type="image/webp" srcset="assets/img/mission/hero-misty-fields-sm.webp 1200w, assets/img/mission/hero-misty-fields.webp 2400w" sizes="100vw" /><img src="assets/img/mission/hero-misty-fields.jpg" srcset="assets/img/mission/hero-misty-fields-sm.jpg 1200w, assets/img/mission/hero-misty-fields.jpg 2400w" sizes="100vw" width="2400" height="1347" fetchpriority="high" alt="Misty fields and trees at sunrise" /></picture>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="wrap hero-copy">
@@ -115,7 +122,7 @@
     </section>
 
     <!-- 3 · OUR MISSION -->
-    <section class="ms-sec ms-statement" data-tone="dark" aria-labelledby="ms-mission-title">
+    <section class="ms-sec ms-statement" id="our-mission" data-tone="dark" aria-labelledby="ms-mission-title">
       <svg class="deco-a ms-d-statement" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
         <div class="ms-statement-in reveal">
@@ -141,7 +148,7 @@
     </section>
 
     <!-- 5 · OUR STORY — one card per year; open a year to see its milestones (assets/mission.js) -->
-    <section class="ms-sec ms-story" data-tone="light" aria-labelledby="ms-story-title">
+    <section class="ms-sec ms-story" id="story" data-tone="light" aria-labelledby="ms-story-title">
       <div class="wrap">
         <div class="center-head reveal">
           <span class="pill">Our story</span>
@@ -330,7 +337,7 @@
 
   <script src="assets/main.js?v=32"></script>
   <script src="assets/home.js?v=9"></script>
-  <script src="assets/mission.js?v=4"></script>
+  <script src="assets/mission.js?v=5"></script>
   <script src="assets/consent-config.js?v=2"></script>
   <script src="assets/consent.js?v=3"></script>
 </body>

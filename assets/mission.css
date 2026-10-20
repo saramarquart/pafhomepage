@@ -165,7 +165,7 @@ html:not(.ms-js) .ms-reveal { display: none; }
 :root { --sky: var(--gold); --sky-lt: var(--lilac); }
 
 /* hero video (replaces the sunflower photo) + new leaf photo in a <picture> */
-.ms-hero .hero-stage video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+.ms-hero .hero-stage picture { display: block; width: 100%; height: 100%; }
 .ms-figure picture { display: block; width: 100%; height: 100%; }
 
 /* Our story: a calm grey ground with one white card per year; a coloured bar, the outlined year and the
