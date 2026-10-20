@@ -289,12 +289,25 @@ var KEY_FACTS = [
   onScroll();
 })();
 
-/* Values: hover, keyboard focus or a tap shows a value's description.
-   aria-expanded follows what is visible; on touch screens (no hover) a tap opens and closes it. */
+/* Values: closed, the "Value" label and name sit centred and larger; hover, keyboard focus or a tap
+   moves them to the top and shows the description. aria-expanded follows what is visible;
+   on touch screens (no hover) a tap anywhere on the box opens and closes it. */
 (function () {
   "use strict";
   var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
-  [].forEach.call(document.querySelectorAll("[data-value]"), function (card) {
+  var cards = [].slice.call(document.querySelectorAll("[data-value]"));
+  // how far to move (and how much to enlarge) the title so it sits in the middle of its box
+  function centre(card) {
+    var t = card.querySelector(".cr-value-title");
+    var pad = 24, w = t.offsetWidth, h = t.offsetHeight;
+    var scale = Math.max(1, Math.min(1.35, (card.clientWidth - 2 * pad) / w));
+    card.style.setProperty("--cx", ((card.clientWidth - w) / 2 - t.offsetLeft) + "px");
+    card.style.setProperty("--cy", ((card.clientHeight - h) / 2 - t.offsetTop) + "px");
+    card.style.setProperty("--cs", scale.toFixed(3));
+    card.classList.add("is-centred");
+  }
+  function centreAll() { cards.forEach(centre); }
+  cards.forEach(function (card) {
     var btn = card.querySelector(".cr-value-btn");
     var hover = false, focus = false, pinned = false;
     function sync() {
@@ -303,7 +316,7 @@ var KEY_FACTS = [
       btn.setAttribute("aria-expanded", open ? "true" : "false");
     }
     // touch screens: a tap opens, the next tap closes. With a mouse, hover already does the job.
-    btn.addEventListener("click", function () { if (!canHover) { pinned = !pinned; sync(); } });
+    card.addEventListener("click", function () { if (!canHover) { pinned = !pinned; sync(); } });
     if (canHover) {
       card.addEventListener("mouseenter", function () { hover = true; sync(); });
       card.addEventListener("mouseleave", function () { hover = false; sync(); });
@@ -311,4 +324,8 @@ var KEY_FACTS = [
     btn.addEventListener("focus", function () { focus = btn.matches(":focus-visible"); sync(); });
     btn.addEventListener("blur", function () { focus = false; sync(); });
   });
+  centreAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(centreAll);
+  if (window.ResizeObserver) { var ro = new ResizeObserver(centreAll); cards.forEach(function (c) { ro.observe(c); }); }
+  else window.addEventListener("resize", centreAll);
 })();
