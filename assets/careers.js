@@ -311,7 +311,7 @@ var KEY_FACTS = [
   else window.addEventListener("resize", centreAll);
 })();
 
-/* Benefits: only the title shows; hover, keyboard focus or a tap (touch screens) lifts it and reveals the text. */
+/* Benefits: only icon + title show, centred; hover, keyboard focus or a tap (touch screens) moves them left/up and reveals the text. */
 (function () {
   "use strict";
   var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
@@ -322,6 +322,11 @@ var KEY_FACTS = [
     if (!p.offsetParent) return;   // hidden tab: measured when it is shown
     var gap = parseFloat(getComputedStyle(p).marginTop) || 4;
     card.style.setProperty("--perk-dy", ((p.offsetHeight + gap) / 2).toFixed(1) + "px");
+    // and icon + title together in the middle of the card (horizontally)
+    var icon = card.querySelector(".cr-icon"), title = card.querySelector(".cr-perk-btn");
+    var cs = getComputedStyle(card), inner = card.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var group = icon.offsetWidth + (parseFloat(cs.columnGap) || 16) + title.offsetWidth;
+    card.style.setProperty("--perk-dx", Math.max(0, (inner - group) / 2).toFixed(1) + "px");
     card.classList.add("is-ready");
   }
   function placeAll() { perks.forEach(place); }
