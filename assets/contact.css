@@ -92,3 +92,9 @@ h3, .btn, .pill, .nav-pill a, .footer h4 { font-weight: 600; }
   .ct-submit { justify-self: stretch; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) { .ct-field input, .ct-field select, .ct-field textarea { transition: none; } }
+
+/* note under the button: two lines; "Prefer to write directly?" stays on one line with the address */
+.ct-note-line { display: block; }
+.ct-note-direct { white-space: nowrap; }
+@media (max-width: 480px) { .ct-note-direct { font-size: clamp(.74rem, 3.4vw, .92rem); } }
+@media (max-width: 340px) { .ct-note-direct { white-space: normal; } }
