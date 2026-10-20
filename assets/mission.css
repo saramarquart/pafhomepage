@@ -23,7 +23,7 @@
 .ms-figure { position: relative; margin: 0; isolation: isolate; aspect-ratio: 4 / 5; }
 .ms-figure img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
 .ms-figure::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: var(--r); transform: translate(18px, 18px); }
-.ms-figure-gold::before { background: var(--gold); }
+.ms-figure-sky::before { background: var(--sky); }
 .ms-figure-green::before { background: var(--green); transform: translate(-18px, 18px); }
 .ms-why { background: #fff; }
 .ms-d-why { color: var(--lilac); width: min(32vw, 480px); left: -10vw; top: -10%; transform: rotate(-16deg); }
@@ -31,7 +31,7 @@
 /* ---------- mission statement on violet ---------- */
 .ms-statement { color: #fff; isolation: isolate;
   background:
-    radial-gradient(60% 80% at 85% 10%, rgba(220,214,243,.22) 0%, rgba(220,214,243,0) 60%),
+    radial-gradient(60% 80% at 85% 10%, rgba(176,220,224,.22) 0%, rgba(176,220,224,0) 60%),
     radial-gradient(50% 70% at 5% 100%, rgba(130,199,174,.16) 0%, rgba(130,199,174,0) 60%),
     linear-gradient(160deg, #320F99 0%, #332D84 100%); }
 .ms-d-statement { color: #fff; opacity: .07; width: min(40vw, 620px); right: -8vw; top: -20%; transform: rotate(14deg); }
@@ -83,7 +83,7 @@ html:not(.ms-js) .ms-evs-wrap { grid-template-rows: 1fr; }
 html:not(.ms-js) .ms-reveal { display: none; }
 
 /* the year's events on a line */
-.ms-evs { list-style: none; margin: 0; padding: 0 0 0 30px; border-left: 2px solid var(--gold); transition: margin-top .55s var(--ease); }
+.ms-evs { list-style: none; margin: 0; padding: 0 0 0 30px; border-left: 2px solid var(--sky); transition: margin-top .55s var(--ease); }
 .ms-ch:nth-child(even) .ms-evs { border-left-color: var(--green); }
 .ms-ev { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: baseline; padding: 14px 0; }
 .ms-ev + .ms-ev { border-top: 1px solid #F0F0F0; }
@@ -102,8 +102,6 @@ html:not(.ms-js) .ms-reveal { display: none; }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .ms-ch-year { animation: msYear linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
-    @keyframes msYear { from { opacity: 0; transform: translateY(40px); } to { opacity: .9; transform: none; } }
   }
 }
 
@@ -151,7 +149,7 @@ html:not(.ms-js) .ms-reveal { display: none; }
 }
 
 /* the open list clips for the slide animation, so the line is drawn inside it and the dots stay inside its box */
-.ms-evs { padding-left: 40px; border-left: 0; background: linear-gradient(var(--gold), var(--gold)) 8px 0 / 2px 100% no-repeat; }
+.ms-evs { padding-left: 40px; border-left: 0; background: linear-gradient(var(--sky), var(--sky)) 8px 0 / 2px 100% no-repeat; }
 .ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--green), var(--green)); }
 .ms-ev::before { left: -38px; }
 .ms-ev-next::before { left: -38px; }
@@ -159,3 +157,67 @@ html:not(.ms-js) .ms-reveal { display: none; }
 .ms-reveal-label, .ms-reveal-n { white-space: nowrap; }
 @media (max-width: 640px) { .ms-reveal { gap: 8px; padding: 8px 8px 8px 16px; font-size: .9rem; } .ms-reveal-n { font-size: .75rem; padding: 2px 8px; } }
 @media (max-width: 360px) { .ms-reveal-n { display: none; } }
+
+/* the old light-blue accent was retired site-wide (gold + purple tints, #47); map this page's colours to it
+   so nothing falls back to black or disappears */
+:root { --sky: var(--gold); --sky-lt: var(--lilac); }
+
+/* hero video (replaces the sunflower photo) + new leaf photo in a <picture> */
+.ms-hero .hero-stage picture { display: block; width: 100%; height: 100%; }
+.ms-figure picture { display: block; width: 100%; height: 100%; }
+
+/* Our story: a calm grey ground with one white card per year; a coloured bar, the outlined year and the
+   milestone line share one colour per card (purple → green → gold) */
+.ms-story { background: var(--grey); }
+.ms-chs { display: grid; gap: 18px; }
+.ms-ch, .ms-ch:first-child { position: relative; overflow: hidden; background: #fff; border: 0; border-radius: 16px;
+  padding: clamp(28px, 3.6vw, 48px) clamp(24px, 4vw, 56px) clamp(28px, 3.6vw, 48px) clamp(30px, 4.4vw, 62px);
+  box-shadow: 0 1px 0 rgba(14,11,26,.04), 0 22px 44px -36px rgba(50,15,153,.4); --acc: var(--purple); }
+.ms-ch::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--acc); }
+.ms-ch:nth-child(3n+2) { --acc: var(--green); }
+.ms-ch:nth-child(3n) { --acc: var(--gold); }
+.ms-ch .ms-ch-year, .ms-ch:nth-child(even) .ms-ch-year { -webkit-text-stroke-color: var(--acc); }
+.ms-ch .ms-evs, .ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--acc), var(--acc)); }
+.ms-ch .ms-ev:not(.ms-ev-next)::before { box-shadow: inset 0 0 0 3px var(--acc); }
+.ms-ch-head h3 { margin-top: 0; }
+.ms-ch .ms-reveal { max-width: 100%; }
+@media (max-width: 640px) {
+  .ms-ch .ms-reveal { gap: 8px; padding: 8px 8px 8px 16px; text-align: left; }
+  .ms-ch .ms-reveal-n { display: none; }          /* the count returns once the year is open */
+  .ms-ch .ms-reveal-label { flex: 1 1 auto; }
+}
+
+/* Our story: same ground as "How to join" on Careers — a soft lilac glow from the top over light grey, faint A mark */
+.ms-story { position: relative; overflow: clip;
+  background: radial-gradient(70% 60% at 50% 0%, rgba(220,214,243,.7) 0%, rgba(220,214,243,0) 70%), #F3F3F3; }
+.ms-d-story { color: var(--lilac-2); opacity: .8; width: min(30vw, 440px); left: -9vw; bottom: -6%; transform: rotate(-16deg); }
+
+/* Our story: each year card unfolds as it scrolls into view (assets/mission.js adds .is-in):
+   card rises → colour bar draws down → year slides in → heading, text, button follow */
+@media (prefers-reduced-motion: no-preference) {
+  .ms-js .ms-ch { opacity: 0; transform: translateY(70px) scale(.97);
+    transition: opacity .7s var(--ease), transform .9s var(--ease); }
+  .ms-js .ms-ch::before { transform: scaleY(0); transform-origin: top; transition: transform .8s var(--ease) .25s; }
+  .ms-js .ms-ch-year { opacity: 0; transform: translateX(-48px); transition: opacity .8s var(--ease) .3s, transform 1s var(--ease) .3s; }
+  .ms-js .ms-ch-head > *, .ms-js .ms-ch .ms-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .7s var(--ease); }
+  .ms-js .ms-ch-head > :nth-child(1) { transition-delay: .45s; }
+  .ms-js .ms-ch-head > :nth-child(2) { transition-delay: .55s; }
+  .ms-js .ms-ch .ms-reveal { transition-delay: .68s; }
+  .ms-js .ms-ch.is-in { opacity: 1; transform: none; }
+  .ms-js .ms-ch.is-in::before { transform: none; }
+  .ms-js .ms-ch.is-in .ms-ch-year { opacity: 1; transform: none; }
+  .ms-js .ms-ch.is-in .ms-ch-head > *, .ms-js .ms-ch.is-in .ms-reveal { opacity: 1; transform: none; }
+  /* once revealed, the year button keeps its own quick hover/press transitions */
+  .ms-js .ms-ch.is-done .ms-reveal { transition: background .3s ease, color .3s ease, transform .3s ease; transition-delay: 0s; }
+}
+
+/* inline link inside a year's description (e.g. Cocoa booster in 2026) */
+.ms-inline { color: var(--purple); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(50,15,153,.35);
+  text-underline-offset: 3px; transition: text-decoration-color .2s ease; }
+.ms-inline:hover { text-decoration-color: var(--purple); }
+.ms-inline:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; border-radius: 2px; }
+
+/* no single words left alone on a last line */
+.ms-hero h1, main h2, main h3, .ms-sub, .ms-story .center-head .lead { text-wrap: balance; }
+main p, main li { text-wrap: pretty; }
+.ms-ev p { text-wrap: balance; }

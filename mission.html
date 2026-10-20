@@ -12,9 +12,9 @@
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/home.css?v=41" />
-  <link rel="stylesheet" href="assets/mission.css?v=10" />
-  <link rel="stylesheet" href="assets/footer.css?v=1" />
-  <link rel="preload" as="image" href="assets/img/mission/hero-sunflower-rows.jpg" imagesrcset="assets/img/mission/hero-sunflower-rows-sm.jpg 1200w, assets/img/mission/hero-sunflower-rows.jpg 2200w" imagesizes="100vw" />
+  <link rel="stylesheet" href="assets/mission.css?v=20" />
+  <link rel="stylesheet" href="assets/footer.css?v=2" />
+  <link rel="preload" as="image" href="assets/img/mission/hero-misty-fields.webp" imagesrcset="assets/img/mission/hero-misty-fields-sm.webp 1200w, assets/img/mission/hero-misty-fields.webp 2400w" imagesizes="100vw" type="image/webp" />
   <meta property="og:title" content="Mission &amp; journey – Planet A Foods" />
   <meta property="og:description" content="Alternative ingredients for tomorrow: our mission and our journey, from a Munich food-tech start-up to a B2B partner for the global food industry." />
   <meta property="og:type" content="website" />
@@ -74,7 +74,16 @@
           </div>
         </div>
       </div>
-      <a href="mission.html" aria-current="page">Mission</a>
+      <div class="nav-item">
+        <a href="mission.html" aria-haspopup="true" aria-current="page">Mission</a>
+        <div class="nav-sub">
+          <div>
+            <a href="mission.html#our-mission">Our Mission</a>
+            <a href="mission.html#journey">Our Journey</a>
+            <a href="mission.html#story">Our Story</a>
+          </div>
+        </div>
+      </div>
       <a href="careers.html">Careers</a>
       <a href="press.html">Press</a>
       <a href="contact.html">Contact</a>
@@ -86,7 +95,7 @@
     <!-- 1 · HERO -->
     <section class="hero ms-hero" data-tone="dark" aria-labelledby="ms-title">
       <div class="hero-stage">
-        <img src="assets/img/mission/hero-sunflower-rows.jpg" srcset="assets/img/mission/hero-sunflower-rows-sm.jpg 1200w, assets/img/mission/hero-sunflower-rows.jpg 2200w" sizes="100vw" width="2200" height="1238" fetchpriority="high" alt="Rows of sunflowers in a field, seen from above" />
+        <picture><source type="image/webp" srcset="assets/img/mission/hero-misty-fields-sm.webp 1200w, assets/img/mission/hero-misty-fields.webp 2400w" sizes="100vw" /><img src="assets/img/mission/hero-misty-fields.jpg" srcset="assets/img/mission/hero-misty-fields-sm.jpg 1200w, assets/img/mission/hero-misty-fields.jpg 2400w" sizes="100vw" width="2400" height="1347" fetchpriority="high" alt="Misty fields and trees at sunrise" /></picture>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="wrap hero-copy">
@@ -94,7 +103,7 @@
         <div class="hero-foot reveal">
           <p>That's the reason Planet A Foods exists today.</p>
           <div class="hero-actions">
-            <a class="btn-text" href="#journey">Our journey <span aria-hidden="true">↓</span></a>
+            <a class="btn-text" href="#why">Learn more <span aria-hidden="true">↓</span></a>
             <a class="btn btn-white" href="contact.html">Become a partner <span aria-hidden="true">↗</span></a>
           </div>
         </div>
@@ -102,20 +111,19 @@
     </section>
 
     <!-- 2 · WHY WE EXIST -->
-    <section class="ms-sec ms-why" data-tone="light" aria-labelledby="ms-why-title">
-      <svg class="deco-a ms-d-why" aria-hidden="true"><use href="#paf-a"/></svg>
+    <section class="ms-sec ms-why" id="why" data-tone="light" aria-labelledby="ms-why-title">
       <div class="wrap ms-split">
         <div class="ms-split-copy reveal">
           <span class="pill">Why we exist</span>
           <h2 id="ms-why-title">We create B2B solutions for the food industry to make their supply chains more resilient.</h2>
           <p class="lead">If we want to create meaningful change, we need to challenge the norm and set a new standard. Planet A Foods provides producing companies with future-proof food ingredient alternatives.</p>
         </div>
-        <figure class="ms-figure ms-figure-gold reveal"><img src="assets/img/mission/mission-heart-leaf.jpg" width="1140" height="1506" loading="lazy" decoding="async" alt="Shadow of two hands forming a heart on a green leaf"></figure>
+        <figure class="ms-figure reveal"><picture><source type="image/webp" srcset="assets/img/mission/mission-leaf-veins-sm.webp 600w, assets/img/mission/mission-leaf-veins.webp 1140w" sizes="(max-width: 900px) 90vw, 560px" /><img src="assets/img/mission/mission-leaf-veins.jpg" srcset="assets/img/mission/mission-leaf-veins-sm.jpg 600w, assets/img/mission/mission-leaf-veins.jpg 1140w" sizes="(max-width: 900px) 90vw, 560px" width="1140" height="1520" loading="lazy" decoding="async" alt="Close-up of a green leaf with its fine network of veins lit from behind"></picture></figure>
       </div>
     </section>
 
     <!-- 3 · OUR MISSION -->
-    <section class="ms-sec ms-statement" data-tone="dark" aria-labelledby="ms-mission-title">
+    <section class="ms-sec ms-statement" id="our-mission" data-tone="dark" aria-labelledby="ms-mission-title">
       <svg class="deco-a ms-d-statement" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
         <div class="ms-statement-in reveal">
@@ -140,20 +148,20 @@
       </div>
     </section>
 
-    <!-- 5 · OUR STORY — chronological chapters, one per year (assets/mission.js highlights the current chapter) -->
-    <section class="ms-sec ms-story" data-tone="light" aria-labelledby="ms-story-title">
+    <!-- 5 · OUR STORY — one card per year; open a year to see its milestones (assets/mission.js) -->
+    <section class="ms-sec ms-story" id="story" data-tone="light" aria-labelledby="ms-story-title">
+      <svg class="deco-a ms-d-story" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
         <div class="center-head reveal">
           <span class="pill">Our story</span>
           <h2 id="ms-story-title">From an idea to a platform</h2>
-          <p class="lead">Six years, one mission – how Planet A Foods grew, chapter by chapter. Open a year to see what happened.</p>
+          <p class="lead">Six years, one mission – how Planet A Foods grew, year by year. Open a year to see what happened.</p>
         </div>
         <ol class="ms-chs">
         <li class="ms-ch" id="ms-2021" data-ch="2021">
           <span class="ms-ch-year" aria-hidden="true">2021</span>
           <div class="ms-ch-body">
             <div class="ms-ch-head">
-            <span class="ms-ch-no">Chapter 1 · 2021</span>
             <h3>It starts with an idea</h3>
             <p>Planet A Foods is founded with one question: can the world’s most-loved ingredients be made without depending on fragile crops?</p>
             </div>
@@ -174,7 +182,6 @@
           <span class="ms-ch-year" aria-hidden="true">2022</span>
           <div class="ms-ch-body">
             <div class="ms-ch-head">
-            <span class="ms-ch-no">Chapter 2 · 2022</span>
             <h3>From the lab to first samples</h3>
             <p>A development centre in Munich turns the first recipes into ChoViva samples – and the market gets a first taste.</p>
             </div>
@@ -195,7 +202,6 @@
           <span class="ms-ch-year" aria-hidden="true">2023</span>
           <div class="ms-ch-body">
             <div class="ms-ch-head">
-            <span class="ms-ch-no">Chapter 3 · 2023</span>
             <h3>Going industrial</h3>
             <p>Our own production site in Pilsen, a growing team and the first products on shelf: ChoViva goes to market.</p>
             </div>
@@ -218,7 +224,6 @@
           <span class="ms-ch-year" aria-hidden="true">2024</span>
           <div class="ms-ch-body">
             <div class="ms-ch-head">
-            <span class="ms-ch-no">Chapter 4 · 2024</span>
             <h3>Breakthrough on the shelf</h3>
             <p>Sold-out editions, private labels and two funding rounds take ChoViva into the mainstream.</p>
             </div>
@@ -243,7 +248,6 @@
           <span class="ms-ch-year" aria-hidden="true">2025</span>
           <div class="ms-ch-body">
             <div class="ms-ch-head">
-            <span class="ms-ch-no">Chapter 5 · 2025</span>
             <h3>Across Europe – and beyond</h3>
             <p>ChoViva reaches new countries, its first market outside Europe and a global partner in Barry Callebaut.</p>
             </div>
@@ -267,9 +271,8 @@
           <span class="ms-ch-year" aria-hidden="true">2026</span>
           <div class="ms-ch-body">
             <div class="ms-ch-head">
-            <span class="ms-ch-no">Chapter 6 · 2026</span>
             <h3>From one product to a platform</h3>
-            <p>Global brands adopt ChoViva while new ingredient alternatives – from coffee to the Cocoa booster – join the portfolio.</p>
+            <p>Global brands adopt ChoViva while new ingredient alternatives – from coffee to the <a class="ms-inline" href="product-cocoa-booster.html">Cocoa booster</a> – join the portfolio.</p>
             </div>
             <button type="button" class="ms-reveal" aria-expanded="false" aria-controls="ms-evs-2026">
               <span class="ms-reveal-label">See what happened in 2026</span>
@@ -321,9 +324,9 @@
           <p class="sf-claim">Built for resilience.<br>Made for impact.</p>
         </div>
         <div class="sf-links">
-          <div><h4>Platform</h4><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a></div>
-          <div><h4>Company</h4><a href="mission.html">What we do</a><a href="press.html">Press</a></div>
-          <div><h4>Connect</h4><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
+          <div><h2>Platform</h2><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a></div>
+          <div><h2>Company</h2><a href="mission.html">What we do</a><a href="press.html">Press</a></div>
+          <div><h2>Connect</h2><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
       <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a><a href="privacy-policy.html#cookies" data-cookie-settings>Cookie Settings</a></nav></div>
@@ -334,6 +337,6 @@
   <script src="assets/consent.js?v=3"></script>
   <script src="assets/main.js?v=33"></script>
   <script src="assets/home.js?v=9"></script>
-  <script src="assets/mission.js?v=3"></script>
+  <script src="assets/mission.js?v=7"></script>
 </body>
 </html>
