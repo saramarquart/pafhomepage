@@ -247,7 +247,8 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
 /* ============================ FOOTER ============================ */
 .footer { background: var(--espresso); color: rgba(255,255,255,.7); padding: 72px 0 40px; }
 .footer-grid { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
-.footer h4 { font-family: var(--sans); font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:#fff; margin-bottom: 16px; }
+.footer h4, .footer .footer-h { line-height: 1.2; } 
+.footer h4, .footer .footer-h { font-family: var(--sans); font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:#fff; margin-bottom: 16px; }
 .footer a { display:block; padding: 6px 0; font-size:.92rem; color: rgba(255,255,255,.66); }
 .footer a:hover { color:#fff; }
 .footer .brand-name { color:#fff; }

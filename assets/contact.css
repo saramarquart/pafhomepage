@@ -19,7 +19,7 @@
 }
 /* typography weights per guideline: Bold headlines, Semi Bold subheads/UI */
 h1, h2 { font-weight: 700; }
-h3, .btn, .pill, .nav-pill a, .footer h4 { font-weight: 600; }
+h3, .btn, .pill, .nav-pill a, .footer h4, .footer .footer-h { font-weight: 600; }
 
 /* ---------- 1 · HEADER: brand banner ---------- */
 .ct-banner { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff;

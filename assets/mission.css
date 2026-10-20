@@ -216,3 +216,8 @@ html:not(.ms-js) .ms-reveal { display: none; }
   text-underline-offset: 3px; transition: text-decoration-color .2s ease; }
 .ms-inline:hover { text-decoration-color: var(--purple); }
 .ms-inline:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; border-radius: 2px; }
+
+/* no single words left alone on a last line */
+.ms-hero h1, main h2, main h3, .ms-sub, .ms-story .center-head .lead { text-wrap: balance; }
+main p, main li { text-wrap: pretty; }
+.ms-ev p { text-wrap: balance; }
