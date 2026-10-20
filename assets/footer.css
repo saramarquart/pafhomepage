@@ -11,6 +11,7 @@
   padding: clamp(72px, 10vh, 120px) 0 32px;
   font-family: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 17px; line-height: 1.5; letter-spacing: normal;
+  border-top: 1px solid rgba(255,255,255,.14);   /* separates it from purple bands above */
 }
 .site-footer::before { /* soft "A" mark */
   content: ""; position: absolute; z-index: -1; right: -4vw; bottom: -22%;
