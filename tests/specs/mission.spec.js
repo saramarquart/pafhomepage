@@ -21,14 +21,14 @@ test("anchors: hero Learn more and the dropdown targets exist, sections are not 
   }
 });
 
-test("dropdown: hovering Mission shows Our Mission / Our Journey / Our Story and they lead to the sections", async ({ context, page }) => {
+test("dropdown: hovering Mission shows Mission / Journey / Story and they lead to the sections", async ({ context, page }) => {
   await setup(context, {}); await decided(context);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(base(false) + "/index.html");
   const item = page.locator(".nav-item", { has: page.locator('> a[href="mission.html"]') });
   await item.hover();
   const links = item.locator(".nav-sub a");
-  await expect(links).toHaveText(["Our Mission", "Our Journey", "Our Story"]);
+  await expect(links).toHaveText(["Mission", "Journey", "Story"]);
   await expect(links.first()).toBeVisible();
   await links.nth(2).click();
   await expect(page).toHaveURL(/mission\.html#story$/);

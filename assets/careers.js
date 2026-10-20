@@ -270,25 +270,6 @@ var KEY_FACTS = [
   }
 })();
 
-/* Hero scroll cue: smooth scroll to the first section (instant with reduced motion);
-   the cue fades out as soon as the visitor has started scrolling. */
-(function () {
-  "use strict";
-  var cue = document.querySelector("[data-scroll-cue]");
-  if (!cue) return;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  cue.addEventListener("click", function (e) {
-    var target = document.querySelector(cue.getAttribute("href"));
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    target.focus({ preventScroll: true });   // keyboard users continue from the new section
-  });
-  function onScroll() { cue.classList.toggle("is-gone", (window.pageYOffset || 0) > 40); }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-})();
-
 /* Values: closed, the "Value" label and name sit centred and larger; hover, keyboard focus or a tap
    moves them to the top and shows the description. aria-expanded follows what is visible;
    on touch screens (no hover) a tap anywhere on the box opens and closes it. */
