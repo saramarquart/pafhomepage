@@ -39,7 +39,7 @@ var KEY_FACTS = [
   }
 
   /* Photo carousel — continuous marquee over a duplicated track. Pauses on
-     hover, keyboard focus and drag; arrows step one image; swipe on touch. */
+     hover, keyboard focus and drag; arrows step one image; swipe on touch; trackpad / shift+wheel scroll. */
   $$("[data-carousel]").forEach(function (root) {
     var viewport = root.querySelector("[data-carousel-viewport]");
     var track = root.querySelector("[data-carousel-track]");
@@ -121,6 +121,17 @@ var KEY_FACTS = [
     }
     viewport.addEventListener("pointerup", endDrag);
     viewport.addEventListener("pointercancel", endDrag);
+
+    // trackpad swipe / shift + mouse wheel scroll the photos sideways; normal vertical scrolling still moves the page
+    viewport.addEventListener("wheel", function (e) {
+      var dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+      if (!dx) return;
+      e.preventDefault();
+      tween = null;
+      offset += dx * (e.deltaMode === 1 ? 32 : 1);   // lines → pixels for classic mouse wheels
+      render();
+      resumeAt = performance.now() + 1600;
+    }, { passive: false });
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(root);
