@@ -105,7 +105,7 @@
   });
 
   /* ---- Portfolio groups: climate-threatened vs highly regulated ---- */
-  var groups = [].slice.call(document.querySelectorAll(".group"));
+  var groups = [].slice.call(document.querySelectorAll(".group[data-group]"));   // only real tabs; the single label is not clickable
   function pickGroup(btn) {
     var g = btn.getAttribute("data-group");
     groups.forEach(function (b) { var on = b === btn; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
