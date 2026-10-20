@@ -102,9 +102,12 @@
 
   function decide(analytics) {
     var before = readConsent();
+    var hadFocusInConsentUi = !!(document.activeElement && document.activeElement.closest &&
+      document.activeElement.closest(".pc-banner, .pc-dialog"));
     writeConsent(analytics);
     hideBanner();
     closeDialog();
+    if (hadFocusInConsentUi && !(opener && document.contains(opener))) focusPage();
     if (analytics) {
       loadAnalytics();
     } else {
@@ -116,6 +119,17 @@
   }
 
   /* ---------- 4. Building the banner and the dialog ---------- */
+
+  // Where keyboard focus goes once the banner has disappeared: the page's main heading (or the page itself).
+  function focusPage() {
+    var h = document.querySelector("main h1, h1");
+    if (h) {
+      if (!h.hasAttribute("tabindex")) h.setAttribute("tabindex", "-1");
+      h.focus({ preventScroll: true });
+    } else if (document.activeElement && document.activeElement !== document.body) {
+      document.activeElement.blur();
+    }
+  }
 
   function el(tag, attrs, text) {
     var n = document.createElement(tag);
@@ -156,6 +170,7 @@
     document.body.insertBefore(banner, document.body.firstChild);
     document.documentElement.classList.add("pc-has-banner");
     reserveSpace();
+    if (window.ResizeObserver) new ResizeObserver(reserveSpace).observe(banner);
   }
   function hideBanner() {
     if (!banner) return;
@@ -233,8 +248,14 @@
     row.appendChild(all); row.appendChild(none); row.appendChild(save);
     box.appendChild(row);
     dialog.appendChild(box);
-    // ESC fires "cancel": we just close. Nothing is stored, the banner stays until a real choice is made.
-    dialog.addEventListener("cancel", function (e) { e.preventDefault(); closeDialog(); });
+    // ESC (or ×) just closes the dialog: nothing is stored, the banner stays until a real choice is made.
+    // Whatever closed it, focus goes back to where it came from and the page can scroll again.
+    dialog.addEventListener("close", function () {
+      document.documentElement.classList.remove("pc-dialog-open");
+      if (opener && document.contains(opener)) opener.focus();
+      else if (banner) banner.querySelector("button").focus();
+      opener = null;
+    });
     document.body.appendChild(dialog);
   }
 
@@ -243,25 +264,41 @@
     opener = trigger || document.activeElement;
     var current = readConsent();
     analyticsBox.checked = !!(current && current.a);   // shows the visitor's own earlier choice; never pre-ticked otherwise
+    document.documentElement.classList.add("pc-dialog-open");   // the page behind does not scroll
     if (dialog.showModal) dialog.showModal(); else dialog.setAttribute("open", "");
     dialog.querySelector(".pc-close").focus();
   }
   function closeDialog() {
     if (!dialog || !dialog.hasAttribute("open")) return;
-    if (dialog.close) dialog.close(); else dialog.removeAttribute("open");
-    if (opener && document.contains(opener)) opener.focus();   // focus goes back to where it came from
-    else if (banner) banner.querySelector("button").focus();
-    opener = null;
+    if (dialog.close) dialog.close();   // fires "close" (focus + scroll handled there)
+    else { dialog.removeAttribute("open"); dialog.dispatchEvent(new Event("close")); }
   }
 
   /* ---------- 5. Start ---------- */
 
   // "Cookie Settings" links in the footer: open the dialog (without JS they lead to the cookie section of the policy).
+  [].forEach.call(document.querySelectorAll("[data-cookie-settings]"), function (a) { a.setAttribute("aria-haspopup", "dialog"); });
   document.addEventListener("click", function (e) {
     var link = e.target.closest && e.target.closest("[data-cookie-settings]");
     if (!link) return;
     e.preventDefault();
     openDialog(link);
+  });
+
+  // Pages restored with the browser's Back/Forward button come back exactly as they were left.
+  // Re-check the decision, which may have been made or withdrawn on another page meanwhile.
+  window.addEventListener("pageshow", function (e) {
+    if (!e.persisted) return;
+    var d = readConsent();
+    closeDialog();
+    if (d) hideBanner(); else showBanner();
+    if (d && d.a) {
+      loadAnalytics();
+    } else if (gaLoaded) {
+      if (cfg.measurementId) window["ga-disable-" + cfg.measurementId] = true;
+      deleteAnalyticsCookies();
+      location.reload();   // remove the Google code that is still in this restored page
+    }
   });
 
   var decision = readConsent();

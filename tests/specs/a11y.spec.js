@@ -47,3 +47,38 @@ test("12b · axe-core: no violations in banner and dialog (desktop and 200% zoom
     await expect(save).toBeInViewport();
   }
 });
+
+test("12c · small and short screens: all three banner buttons are fully on screen", async ({ context, page }) => {
+  await setup(context, {});
+  for (const [width, height] of [[320, 568], [390, 844], [844, 390], [720, 450]]) {
+    await page.setViewportSize({ width, height });
+    await page.goto(base(false) + "/index.html");
+    for (const b of ["accept", "decline", "settings"]) {
+      await expect(page.locator(`[data-pc=${b}]`), `${b} at ${width}x${height}`).toBeInViewport({ ratio: 1 });
+    }
+    const share = await page.evaluate(() => document.querySelector(".pc-banner-inner").getBoundingClientRect().height / innerHeight);
+    expect(share, `banner height share at ${width}x${height}`).toBeLessThan(0.66);
+  }
+});
+
+test("12d · dialog: page styles don't leak in (subpage) and the page behind doesn't scroll", async ({ context, page }) => {
+  await setup(context, {});
+  await page.goto(base(false) + "/press.html");
+  await page.locator("[data-pc=settings]").click();
+  const pad = await page.$$eval(".pc-dialog .pc-cat", (s) => s.map((x) => getComputedStyle(x).paddingBottom));
+  expect(pad).toEqual(["0px", "0px"]);
+  const overflowY = () => page.evaluate(() => getComputedStyle(document.documentElement).overflowY);
+  const before = await page.evaluate(() => document.documentElement.classList.contains("pc-dialog-open"));
+  expect(before).toBe(true);
+  expect(await overflowY()).toBe("hidden");
+  await page.keyboard.press("Escape");
+  await expect.poll(overflowY).not.toBe("hidden");
+});
+
+test("12e · after a choice in the banner, keyboard focus lands on the page heading (not lost)", async ({ context, page }) => {
+  await setup(context, {});
+  await page.goto(base(false) + "/index.html");
+  await page.locator("[data-pc=decline]").focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("h1").first()).toBeFocused();
+});
