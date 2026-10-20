@@ -13,6 +13,8 @@ test("anchors: hero Learn more and the dropdown targets exist, sections are not 
   await page.getByRole("link", { name: "Learn more" }).click();
   await expect(page).toHaveURL(/#why$/);
   for (const id of ["our-mission", "journey", "story"]) {
+    // arrive fresh, as from the dropdown on another page (a second jump started mid smooth-scroll can stop short — browser behaviour)
+    await page.goto(base(false) + "/index.html");
     await page.goto(base(false) + "/mission.html#" + id);
     // the page scrolls smoothly to the section; wait until it has arrived
     await expect.poll(() => page.evaluate((i) => Math.abs(document.getElementById(i).getBoundingClientRect().top), id), { message: id, timeout: 4000 }).toBeLessThan(4);
