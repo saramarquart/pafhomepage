@@ -335,7 +335,7 @@
 .cb-pillars { padding-top: calc(clamp(52px, 7.5vh, 88px) + 12px); }
 
 /* ---------- footer: the "A" sits fully visible, overlapping into the section above ---------- */
-.subpage .footer { overflow: visible; position: relative; z-index: 2; }
+.subpage .footer { position: relative; z-index: 2; }
 .subpage .footer-a { bottom: auto; top: -190px; right: var(--gutter); width: min(46vw, 700px); }
 .subpage .footer .wrap { position: relative; z-index: 1; }
 
@@ -487,4 +487,72 @@
 .sform .btn { background: #EEB650; color: var(--purple-dk); }
 .sform .btn:hover { background: #F3C670; }
 .step.check .link-arrow { color: #EEB650; }
+
+/* =================== COLOUR CONCEPT (as on the homepage preview) ===================
+   Purple carries the strong moments (Why now, applications, footer), light grey and
+   white the calm ones, lilac tints alternate on cards; purple type for titles. */
+.cb-pillars { background: #fff; }
+.cb-pillars .pillar { background: var(--grey); box-shadow: none; }
+.cb-pillars .pillar:nth-child(even) { background: var(--lilac); }
+.cb-pillars .pillar h3 { color: var(--purple); }
+.pi-no { color: var(--purple); font-weight: 600; }
+
+.cb-why.cb-dark { background: var(--purple); color: #fff; }
+.cb-dark h2 { color: #fff; }
+.cb-dark .lead { color: rgba(255,255,255,.82); }
+.cb-dark .why-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+.cb-dark .why-card h3 { color: #fff; }
+.cb-dark .why-card > p { color: rgba(255,255,255,.8); }
+.cb-dark .why-vis { background: #fff; color: var(--ink); }
+.cb-dark .why-mark { color: #fff; opacity: .05; }
+.pill-light { background: #fff; color: var(--purple); }
+
+.cb-quote { background: var(--lilac); color: var(--ink); }
+.cb-quote h2 { color: var(--purple); }
+.cb-quote .lead { color: var(--ink-2); }
+.cb-quote .quote blockquote { color: var(--purple); }
+.cb-quote .quote blockquote::before { color: var(--purple); opacity: .35; }
+.cb-quote .quote figcaption span { color: var(--ink-2); }
+.cb-quote .quote figcaption b { color: var(--ink); }
+.cb-quote .quote img { box-shadow: 0 0 0 3px #fff; }
+@supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) {
+  .story .cb-quote .quote blockquote .sw > i { color: rgba(50,15,153,.25); animation-name: dInkP; }
+  @keyframes dInkP { to { color: var(--purple); } }
+} }
+
+.cb-profiles { background: var(--grey); }
+.profile { box-shadow: none; }
+.profile h3 { color: var(--purple); }
+.chip.live { background: var(--purple); color: #fff; }
+
+.cb-quick { background: #fff; }
+.step:not(.check) { background: var(--grey); box-shadow: none; }
+.step:nth-child(2):not(.check) { background: var(--lilac); }
+.step h3 { color: var(--purple); }
+.step:nth-child(2) > b { color: var(--purple); }
+.step:nth-child(1):hover, .step:nth-child(2):hover { background: var(--lilac-2); }
+.step.check { background: var(--purple); }
+
+.cb-contact { background: var(--grey); }
+.person { background: #fff; }
+.events { box-shadow: inset 0 0 0 1.5px var(--lilac-2); }
+
+/* footer: dark (brand) blue-purple as in the preview */
+.footer.footer-dark { background: var(--purple); color: #fff; padding: clamp(72px, 10vh, 120px) 0 32px; overflow: hidden; }
+.footer-dark .footer-a { top: auto; bottom: -22%; right: -4vw; width: min(46vw, 700px); opacity: .55; }
+.footer-dark .wrap { position: relative; z-index: 1; }
+.fz-top { display: grid; gap: 48px; }
+.fz-brand { display: grid; gap: 40px; align-content: start; }
+.fz-brand .logo { width: 76px; height: auto; aspect-ratio: 57 / 95; color: #fff; }
+.fz-claim { font-size: clamp(2rem, 3.4vw, 3.4rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; color: #fff; }
+.fz-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.fz-links h4 { margin: 0 0 22px; font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: #fff; }
+.fz-links a { display: block; padding: 6px 0; color: rgba(255,255,255,.88); font-size: 1.05rem; transition: color .25s ease; }
+.fz-links a:hover { color: var(--gold); }
+.fz-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: clamp(64px, 10vh, 110px); padding-top: 24px; border-top: 1px solid rgba(255,255,255,.22); font-size: .9rem; color: rgba(255,255,255,.8); }
+.fz-legal p { margin: 0; color: inherit; }
+.fz-legal-links { display: flex; gap: 28px; }
+.fz-legal a:hover { color: #fff; }
+@media (min-width: 900px) { .fz-top { grid-template-columns: 1fr 1.6fr; } .fz-links { margin-top: 12px; } }
+@media (max-width: 560px) { .fz-links { grid-template-columns: 1fr 1fr; } }
 
