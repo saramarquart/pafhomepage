@@ -159,3 +159,32 @@ html:not(.ms-js) .ms-reveal { display: none; }
 .ms-reveal-label, .ms-reveal-n { white-space: nowrap; }
 @media (max-width: 640px) { .ms-reveal { gap: 8px; padding: 8px 8px 8px 16px; font-size: .9rem; } .ms-reveal-n { font-size: .75rem; padding: 2px 8px; } }
 @media (max-width: 360px) { .ms-reveal-n { display: none; } }
+
+/* the old light-blue accent was retired site-wide (gold + purple tints, #47); map this page's colours to it
+   so nothing falls back to black or disappears */
+:root { --sky: var(--gold); --sky-lt: var(--lilac); }
+
+/* hero video (replaces the sunflower photo) + new leaf photo in a <picture> */
+.ms-hero .hero-stage video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+.ms-figure picture { display: block; width: 100%; height: 100%; }
+
+/* Our story: a calm grey ground with one white card per year; a coloured bar, the outlined year and the
+   milestone line share one colour per card (purple → green → gold) */
+.ms-story { background: var(--grey); }
+.ms-chs { display: grid; gap: 18px; }
+.ms-ch, .ms-ch:first-child { position: relative; overflow: hidden; background: #fff; border: 0; border-radius: 16px;
+  padding: clamp(28px, 3.6vw, 48px) clamp(24px, 4vw, 56px) clamp(28px, 3.6vw, 48px) clamp(30px, 4.4vw, 62px);
+  box-shadow: 0 1px 0 rgba(14,11,26,.04), 0 22px 44px -36px rgba(50,15,153,.4); --acc: var(--purple); }
+.ms-ch::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--acc); }
+.ms-ch:nth-child(3n+2) { --acc: var(--green); }
+.ms-ch:nth-child(3n) { --acc: var(--gold); }
+.ms-ch .ms-ch-year, .ms-ch:nth-child(even) .ms-ch-year { -webkit-text-stroke-color: var(--acc); }
+.ms-ch .ms-evs, .ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--acc), var(--acc)); }
+.ms-ch .ms-ev:not(.ms-ev-next)::before { box-shadow: inset 0 0 0 3px var(--acc); }
+.ms-ch-head h3 { margin-top: 0; }
+.ms-ch .ms-reveal { max-width: 100%; }
+@media (max-width: 640px) {
+  .ms-ch .ms-reveal { gap: 8px; padding: 8px 8px 8px 16px; text-align: left; }
+  .ms-ch .ms-reveal-n { display: none; }          /* the count returns once the year is open */
+  .ms-ch .ms-reveal-label { flex: 1 1 auto; }
+}

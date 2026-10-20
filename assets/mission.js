@@ -15,3 +15,18 @@
     });
   });
 })();
+
+/* Hero video: plays (muted, looping) once the page has loaded; with reduced motion it stays on its still frame.
+   Pauses while off screen to save battery. */
+(function () {
+  "use strict";
+  var v = document.querySelector("[data-hero-video]");
+  if (!v) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  if (document.readyState === "complete") play(); else window.addEventListener("load", play);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) play(); else v.pause(); }).observe(v);
+  }
+})();
