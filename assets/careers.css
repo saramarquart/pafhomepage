@@ -28,7 +28,7 @@
 }
 /* Typography per guideline weights: Bold for headlines, Semi Bold for subheads/UI, Regular for body */
 h1, h2 { font-weight: 700; }
-h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
+h3, .btn, .pill, .tag, .nav-pill a, .footer h2 { font-weight: 600; }
 .fact b { font-weight: 700; }
 /* home.css literals that fall outside the palette, re-pointed for this page */
 .cr-hero.hero { background: #111111; }

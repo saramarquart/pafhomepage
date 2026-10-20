@@ -9,8 +9,8 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="assets/home.css?v=40" />
-  <link rel="stylesheet" href="assets/careers.css?v=30" />
+  <link rel="stylesheet" href="assets/home.css?v=41" />
+  <link rel="stylesheet" href="assets/careers.css?v=31" />
   <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
@@ -83,6 +83,7 @@
   </script>
 </head>
 <body class="careers">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Brand mark + icon sprite (icons: Lucide, ISC licence) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -161,7 +162,7 @@
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
   </header>
 
-  <main>
+  <main id="main">
     <!-- 1 · HERO — full screen, same build as the homepage hero -->
     <section class="hero cr-hero" data-tone="dark" aria-labelledby="cr-hero-title">
       <div class="hero-stage">
@@ -538,9 +539,9 @@
     </svg>
     <div class="wrap footer-in">
       <div class="footer-links">
-        <div><h4>Platform</h4><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a></div>
-        <div><h4>Company</h4><a href="press.html">Press</a></div>
-        <div><h4>Connect</h4><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
+        <div><h2>Platform</h2><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a></div>
+        <div><h2>Company</h2><a href="press.html">Press</a></div>
+        <div><h2>Connect</h2><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
       </div>
       <div class="footer-base">
         <svg class="logo" viewBox="0 0 57 95" role="img" aria-label="Planet A Foods"><use href="#paf-logo"/></svg>
@@ -553,7 +554,7 @@
   <!-- careers.js first: it renders the key-fact cards that main.js then reveals + counts up;
        home.js supplies the shared nav tone (white logo over dark sections, purple over light). -->
   <script src="assets/careers.js?v=12"></script>
-  <script src="assets/main.js?v=31"></script>
+  <script src="assets/main.js?v=33"></script>
   <script src="assets/home.js?v=1"></script>
 </body>
 </html>

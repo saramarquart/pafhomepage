@@ -319,7 +319,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .footer-a { position: absolute; z-index: 0; right: -4vw; bottom: 0; height: calc(100% + 56px); width: auto; max-width: 70vw; aspect-ratio: 57 / 60; pointer-events: none; }   /* rises 56px into the gap above, never under the cards */
 .footer-in { position: relative; display: grid; gap: 64px; }
 .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 760px; }
-.footer h4 { margin: 0 0 14px; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); }
+.footer h2 { margin: 0 0 14px; line-height: 1.4; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); }
 .footer-links a { display: block; padding: 4px 0; color: var(--ink-2); transition: color .25s ease; }
 .footer-links a:hover { color: var(--purple); }
 .footer-base { display: grid; gap: 22px; color: var(--purple); }
@@ -520,3 +520,7 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .footer-a { opacity: .9; }
 
 @media (max-width: 999px) { .why-media { box-shadow: 10px 10px 0 0 var(--green); } .driver::before { left: -10px; } .scale-media::before { transform: translate(-10px, 10px); } }
+
+/* skip link: first tab stop on every page, visible only when focused */
+.skip-link { position: fixed; left: 16px; top: -64px; z-index: 300; padding: 10px 16px; border-radius: 6px; background: var(--purple); color: #fff; font-weight: 500; transition: top .2s ease; }
+.skip-link:focus { top: 16px; }
