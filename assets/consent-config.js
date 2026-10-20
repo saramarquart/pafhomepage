@@ -2,8 +2,9 @@
    Consent configuration — the single place to change cookie consent settings.
    Read by assets/consent.js (banner, settings dialog, Google Analytics loader).
 
-   GO-LIVE: the only change needed is `measurementId` (the GA4 ID, "G-…").
-   While it is empty, Google Analytics never loads, whatever the visitor chooses.
+   `measurementId` is set, but Google Analytics still only loads on the production hosts below
+   (never on the test domain or locally) and only after the visitor accepts analytics.
+   Emptying `measurementId` switches analytics off everywhere.
 
    The cookie list below must match section 10 of the privacy policy
    (privacy-policy.html, source: docs/legal/privacy-policy-en.md) word for word.
@@ -12,8 +13,8 @@
    `consentVersion` must be raised so every visitor is asked again.
    ========================================================================== */
 window.PAF_CONSENT_CONFIG = {
-  // GA4 Measurement ID. Empty = analytics switched off everywhere.
-  measurementId: "",
+  // GA4 Measurement ID (Planet A Foods property, web stream planet-a-foods.com). Empty = analytics switched off everywhere.
+  measurementId: "G-YBE6M8Y545",
 
   // Google Analytics may only ever load on these hostnames (never on the test domain or localhost).
   productionHosts: ["planet-a-foods.com", "www.planet-a-foods.com"],
