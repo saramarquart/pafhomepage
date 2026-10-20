@@ -565,3 +565,11 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
   .tech-picto { max-width: 220px; order: -1; }
 }
 @media (prefers-reduced-motion: reduce) { .tech-step, .tech-step:hover .tp-route { transition: none; animation: none; } }
+
+/* Why now → Sustainability: no hard cut. Why now ends closer to its content, and the forest photo
+   rises out of the same purple (a fade over its top edge) instead of starting at a straight line. */
+.impact::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: clamp(120px, 22vh, 220px); z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, var(--purple) 0%, rgba(50,15,153,.72) 30%, rgba(50,15,153,.25) 65%, rgba(50,15,153,0) 100%); }
+@media (min-width: 1000px) {
+  .screen.why { min-height: 0; padding-bottom: clamp(48px, 7vh, 80px); }
+}
