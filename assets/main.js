@@ -78,17 +78,42 @@
     counters.forEach(animateCount);
   }
 
-  /* Background videos: only play while on-screen (saves CPU/battery) */
-  var vids = document.querySelectorAll(".media-vid");
+  /* Background videos (.media-vid). Clips marked up with <source data-src> show their sharp
+     poster first and only fetch the clip on screens wider than a phone, without Save-Data,
+     2G/3G or reduced motion; a phone on mobile data no longer pulls 3-14 MB per page. They
+     load once the page has finished and they come near the viewport, play only while on
+     screen, and get a small pause button (WCAG 2.2.2). Other clips just play on screen. */
+  var vids = [].slice.call(document.querySelectorAll("video.media-vid"));
+  var conn = navigator.connection || {};
+  var rich = !reduce && !conn.saveData && !/2g|3g/.test(conn.effectiveType || "") &&
+             window.matchMedia("(min-width: 700px)").matches;
+  function vplay(v) { if (v.dataset.userPaused) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  function arm(v) {   // swap data-src in, add the pause/play toggle
+    v.querySelectorAll("source[data-src]").forEach(function (s) { s.src = s.getAttribute("data-src"); s.removeAttribute("data-src"); });
+    v.load();
+    var host = v.closest("section") || v.parentNode;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "vid-toggle"; b.setAttribute("aria-label", "Pause background video");
+    b.addEventListener("click", function () {
+      var stop = !v.paused;
+      if (stop) { v.dataset.userPaused = "1"; v.pause(); } else { delete v.dataset.userPaused; vplay(v); }
+      b.classList.toggle("paused", stop);
+      b.setAttribute("aria-label", (stop ? "Play" : "Pause") + " background video");
+    });
+    host.appendChild(b);
+  }
   if ("IntersectionObserver" in window && vids.length) {
     var vo = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         var v = e.target;
-        if (e.isIntersecting) { if (v.play) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
-        else if (v.pause) { v.pause(); }
+        if (e.isIntersecting) {
+          if (v.querySelector("source[data-src]")) { if (!rich) { vo.unobserve(v); return; } arm(v); }
+          vplay(v);
+        } else { v.pause(); }
       });
-    }, { threshold: 0.15 });
-    vids.forEach(function (v) { vo.observe(v); });
+    }, { threshold: 0.15, rootMargin: "200px 0px" });
+    var watch = function () { vids.forEach(function (v) { vo.observe(v); }); };
+    if (document.readyState === "complete") watch(); else window.addEventListener("load", watch);
   }
 
   /* Current year */
