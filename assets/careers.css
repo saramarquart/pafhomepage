@@ -375,3 +375,31 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
   }
 }
+
+/* =====================================================================
+   Careers feedback (Oct 2026)
+   ===================================================================== */
+/* no single words left alone: balanced headings and subtitles, pretty body text */
+.careers h1, .careers h2, .careers h3, .careers .lead, .careers .cr-strong { text-wrap: balance; }
+.careers p { text-wrap: pretty; }
+
+/* 1 · hero scroll cue */
+.cr-scroll { position: absolute; z-index: 2; left: 50%; bottom: clamp(12px, 2.6vh, 26px); transform: translateX(-50%);
+  display: inline-flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 10px; border-radius: 999px;
+  color: #fff; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  transition: opacity .4s ease, visibility 0s linear 0s; }
+.cr-scroll-chev { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cr-scroll:hover { color: var(--green); }
+.cr-scroll:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.cr-scroll.is-gone { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .4s ease, visibility 0s linear .4s; }
+@media (prefers-reduced-motion: no-preference) {
+  .cr-scroll-chev { animation: crCueBounce 2.4s ease-in-out infinite; }
+  @keyframes crCueBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+}
+@media (prefers-reduced-motion: reduce) { .cr-scroll, .cr-scroll.is-gone { transition: none; } }
+/* keep the hero's button clear of the cue */
+.cr-hero .hero-copy { padding-bottom: max(clamp(48px, 9vh, 100px), 92px); }
+.cr-vision:focus { outline: none; }
+
+/* 2 · vision: wider paragraph so its last word never sits alone */
+.cr-vision .lead { max-width: 68ch; }

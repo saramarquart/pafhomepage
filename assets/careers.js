@@ -22,7 +22,7 @@ var KEY_FACTS = [
   /* "View our open positions" buttons */
   $$("[data-open-positions]").forEach(function (a) {
     a.setAttribute("href", OPEN_POSITIONS_URL);
-    if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener"; }
+    if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
   });
 
   /* Key facts */
@@ -257,4 +257,23 @@ var KEY_FACTS = [
     });
 
   }
+})();
+
+/* Hero scroll cue: smooth scroll to the first section (instant with reduced motion);
+   the cue fades out as soon as the visitor has started scrolling. */
+(function () {
+  "use strict";
+  var cue = document.querySelector("[data-scroll-cue]");
+  if (!cue) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  cue.addEventListener("click", function (e) {
+    var target = document.querySelector(cue.getAttribute("href"));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    target.focus({ preventScroll: true });   // keyboard users continue from the new section
+  });
+  function onScroll() { cue.classList.toggle("is-gone", (window.pageYOffset || 0) > 40); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 })();
