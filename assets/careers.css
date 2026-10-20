@@ -503,3 +503,23 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h2 { font-weight: 600; }
 @media (min-width: 1100px) {
   .cr-offer .cr-office-site > p:not([class]) { max-width: none; white-space: nowrap; }
 }
+
+/* Benefits, final: centred cards — icon above the title; closed, both sit in the middle; on hover / focus / tap they lift
+   and the text appears below. A "+" in the corner invites to open (turns into "−"), like the values. */
+.cr-offer .cr-grid-2 { gap: 16px; }
+.cr-offer .cr-perk[data-perk] { position: relative; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  gap: 14px; min-height: 196px; padding: 28px clamp(28px, 3vw, 48px) 30px; background: #F6F5FA; border-radius: 14px;
+  transition: background .3s ease, box-shadow .3s ease, transform .3s ease; }
+.cr-offer .cr-perk[data-perk]:hover, .cr-offer .cr-perk[data-perk].is-open { background: #EFECF8; box-shadow: 0 18px 40px -30px rgba(50,15,153,.45); }
+.cr-offer .cr-perk[data-perk] .cr-icon { width: 54px; height: 54px; flex: none; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.cr-offer .cr-perk[data-perk] .cr-icon .cr-ico { width: 24px; height: 24px; }
+.cr-offer .cr-perk[data-perk] .cr-perk-txt { display: grid; justify-items: center; }
+.cr-offer .cr-perk[data-perk] h3 { margin: 0 0 8px; font-size: clamp(1.1rem, 1.35vw, 1.3rem); }
+.cr-offer .cr-perk[data-perk] .cr-perk-txt p { max-width: 46ch; margin: 0; }
+.cr-perk.is-ready:not(.is-open) .cr-icon { transform: translateY(var(--perk-dy, 0px)); }
+.cr-perk-hint { position: absolute; right: 20px; bottom: 18px; width: 14px; height: 14px; color: var(--purple); opacity: .6; transition: opacity .25s ease; }
+.cr-perk-hint::before, .cr-perk-hint::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .25s ease; }
+.cr-perk-hint::after { transform: rotate(90deg); }
+.cr-perk.is-open .cr-perk-hint { opacity: 1; }
+.cr-perk.is-open .cr-perk-hint::after { transform: rotate(0deg); }
+@media (prefers-reduced-motion: reduce) { .cr-offer .cr-perk[data-perk], .cr-offer .cr-perk[data-perk] .cr-icon, .cr-perk-hint, .cr-perk-hint::before, .cr-perk-hint::after { transition: none; } }
