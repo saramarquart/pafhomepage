@@ -210,3 +210,9 @@ html:not(.ms-js) .ms-reveal { display: none; }
   /* once revealed, the year button keeps its own quick hover/press transitions */
   .ms-js .ms-ch.is-done .ms-reveal { transition: background .3s ease, color .3s ease, transform .3s ease; transition-delay: 0s; }
 }
+
+/* inline link inside a year's description (e.g. Cocoa booster in 2026) */
+.ms-inline { color: var(--purple); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(50,15,153,.35);
+  text-underline-offset: 3px; transition: text-decoration-color .2s ease; }
+.ms-inline:hover { text-decoration-color: var(--purple); }
+.ms-inline:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; border-radius: 2px; }
