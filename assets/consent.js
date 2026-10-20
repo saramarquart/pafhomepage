@@ -45,7 +45,9 @@
 
   function writeConsent(analytics) {
     var value = encodeURIComponent(JSON.stringify({ v: cfg.consentVersion, a: analytics, t: Date.now() }));
-    var secure = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? "" : "; Secure";
+    // Secure on every HTTPS page (the live site). Plain-http previews (localhost, a phone on the local network)
+    // would silently drop a Secure cookie and ask again on every page, so it is left out there.
+    var secure = location.protocol === "https:" ? "; Secure" : "";
     document.cookie = COOKIE + "=" + value + "; Path=/; Max-Age=" + cfg.consentMaxAgeDays * DAY + "; SameSite=Lax" + secure;
   }
 
