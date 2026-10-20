@@ -1527,3 +1527,11 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.0
 
 /* links inside running text are underlined, not colour-only (WCAG 1.4.1) */
 .prose a, .measure a, main p:not(.breadcrumb) a:not([class]) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* press releases: subheads under the h1, the media-contacts block */
+.prose h2.press-sub { font-size: clamp(1.2rem, 1.6vw, 1.45rem); letter-spacing: -.015em; line-height: 1.2; margin: 34px 0 10px; }
+.press-contacts { display: grid; gap: 18px; margin-top: 8px; }
+.press-contacts p { margin: 0; line-height: 1.55; }
+/* a brand name keeps its own capitals inside an uppercase label ("WHY ChoViva") */
+.nocaps { text-transform: none; letter-spacing: .02em; }
+.eyebrow:has(> .nocaps) { display: block; }   /* one line of text, not two flex items with a gap */
