@@ -26,7 +26,8 @@
 .sf-logo { display: block; width: 76px; height: auto; }
 .sf-claim { margin: 0; font-size: clamp(2rem, 3.4vw, 3.4rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; color: #fff; }
 .sf-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.sf-links h4 { margin: 0 0 22px; font-family: inherit; font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: #fff; }
+.sf-links h4, .sf-links h2 { line-height: 1.3; font-variation-settings: normal; }
+.sf-links h4, .sf-links h2 { margin: 0 0 22px; font-family: inherit; font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: #fff; }
 .sf-links a { display: block; padding: 6px 0; color: rgba(255,255,255,.88); font-size: 1.05rem; transition: color .25s ease; }
 .sf-links a:hover, .sf-links a:focus-visible { color: #EEB650; }
 .sf-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
