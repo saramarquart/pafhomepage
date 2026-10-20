@@ -3,7 +3,7 @@
 A complete, self-contained marketing site for **www.planet-a-foods.com**, repositioning Planet A Foods from a chocolate-alternative brand into a **sustainable ingredient powerhouse**.
 
 - **Pure static** — HTML + CSS + a little vanilla JS. No build step, no dependencies.
-- **Works offline** — double-click `index.html` (or serve the folder). Premium web fonts load online (Fraunces + Inter) and fall back gracefully to system fonts offline.
+- **Works offline** — double-click `index.html` (or serve the folder). The font (Rethink Sans) is self-hosted in assets/fonts, so it works offline too.
 - **Look & feel** — heavy-premium, editorial, à la givaudan.com (warm neutrals + espresso + a restrained gold/purple accent, big serif headlines, generous whitespace, subtle scroll-reveal).
 - **Voice** — inspired by planet-a-foods.com + Givaudan. **Lead themes: reliability, supply-chain resilience, sovereignty, price stability.** Sustainability is the *glue*, not the sales pitch. Written copy throughout (no placeholders).
 - **Positioning of the science** — the technology is the *engine, not the car*: whisper-quiet on the homepage (one line), full story on `technology.html`.

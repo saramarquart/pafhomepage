@@ -1,9 +1,9 @@
 /* ============================================================================
    Mission & journey page — builds on home.css (Rethink Sans, Warm Violet,
-   sky/green accents, pills, rounded media, the "A" mark) like the careers page.
+   gold/green accents, pills, rounded media, the "A" mark) like the careers page.
    ========================================================================== */
 
-.nav-pill a[aria-current="page"] { background: var(--sky-lt); color: var(--purple); }
+.nav-pill a[aria-current="page"] { background: var(--lilac); color: var(--purple); }
 
 .ms-sec { position: relative; padding: clamp(72px, 9vw, 140px) 0; overflow-x: clip; }
 
@@ -23,15 +23,15 @@
 .ms-figure { position: relative; margin: 0; isolation: isolate; aspect-ratio: 4 / 5; }
 .ms-figure img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
 .ms-figure::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: var(--r); transform: translate(18px, 18px); }
-.ms-figure-sky::before { background: var(--sky); }
+.ms-figure-gold::before { background: var(--gold); }
 .ms-figure-green::before { background: var(--green); transform: translate(-18px, 18px); }
 .ms-why { background: #fff; }
-.ms-d-why { color: var(--sky-lt); width: min(32vw, 480px); left: -10vw; top: -10%; transform: rotate(-16deg); }
+.ms-d-why { color: var(--lilac); width: min(32vw, 480px); left: -10vw; top: -10%; transform: rotate(-16deg); }
 
 /* ---------- mission statement on violet ---------- */
 .ms-statement { color: #fff; isolation: isolate;
   background:
-    radial-gradient(60% 80% at 85% 10%, rgba(176,220,224,.22) 0%, rgba(176,220,224,0) 60%),
+    radial-gradient(60% 80% at 85% 10%, rgba(220,214,243,.22) 0%, rgba(220,214,243,0) 60%),
     radial-gradient(50% 70% at 5% 100%, rgba(130,199,174,.16) 0%, rgba(130,199,174,0) 60%),
     linear-gradient(160deg, #320F99 0%, #332D84 100%); }
 .ms-d-statement { color: #fff; opacity: .07; width: min(40vw, 620px); right: -8vw; top: -20%; transform: rotate(14deg); }
@@ -62,7 +62,7 @@
 .ms-reveal { display: inline-flex; align-items: center; gap: 12px; margin-top: 22px; padding: 10px 12px 10px 20px; border: 0; border-radius: 999px;
   background: var(--grey); color: var(--purple); cursor: pointer; font: inherit; font-weight: 600; font-size: .98rem;
   transition: background .3s ease, color .3s ease, transform .3s var(--ease); }
-.ms-reveal:hover { background: var(--sky-lt); transform: translateY(-2px); }
+.ms-reveal:hover { background: var(--lilac); transform: translateY(-2px); }
 .ms-reveal-n { padding: 3px 10px; border-radius: 999px; background: #fff; font-size: .82rem; color: var(--ink-2); }
 .ms-reveal-ico { position: relative; width: 30px; height: 30px; border-radius: 50%; background: var(--purple); flex: 0 0 auto; transition: transform .35s var(--ease); }
 .ms-reveal-ico::before, .ms-reveal-ico::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; margin: -1px 0 0 -6px; border-radius: 2px; background: #fff; transition: transform .35s var(--ease); }
@@ -83,7 +83,7 @@ html:not(.ms-js) .ms-evs-wrap { grid-template-rows: 1fr; }
 html:not(.ms-js) .ms-reveal { display: none; }
 
 /* the year's events on a line */
-.ms-evs { list-style: none; margin: 0; padding: 0 0 0 30px; border-left: 2px solid var(--sky); transition: margin-top .55s var(--ease); }
+.ms-evs { list-style: none; margin: 0; padding: 0 0 0 30px; border-left: 2px solid var(--gold); transition: margin-top .55s var(--ease); }
 .ms-ch:nth-child(even) .ms-evs { border-left-color: var(--green); }
 .ms-ev { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: baseline; padding: 14px 0; }
 .ms-ev + .ms-ev { border-top: 1px solid #F0F0F0; }
@@ -151,7 +151,7 @@ html:not(.ms-js) .ms-reveal { display: none; }
 }
 
 /* the open list clips for the slide animation, so the line is drawn inside it and the dots stay inside its box */
-.ms-evs { padding-left: 40px; border-left: 0; background: linear-gradient(var(--sky), var(--sky)) 8px 0 / 2px 100% no-repeat; }
+.ms-evs { padding-left: 40px; border-left: 0; background: linear-gradient(var(--gold), var(--gold)) 8px 0 / 2px 100% no-repeat; }
 .ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--green), var(--green)); }
 .ms-ev::before { left: -38px; }
 .ms-ev-next::before { left: -38px; }
