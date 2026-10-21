@@ -597,3 +597,22 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .benefit.big .b-list li:nth-child(1) b::before { background: var(--green); }
 .benefit.big .b-list li:nth-child(2) b::before { background: var(--gold); }
 @media (prefers-reduced-motion: reduce) { .benefit-grid .benefit:not(.big)::before { transition: none; } }
+
+/* ============ BENEFITS: six equal cards ============ */
+/* phones one column · tablets two · desktop a calm brick pattern: wide · normal · normal, then mirrored (same height, widths differ only slightly) */
+.bx-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+.bx { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 28px 28px 30px; border-radius: var(--r); background: #fff;
+  box-shadow: 0 0 0 1px rgba(50,15,153,.10), 0 10px 28px -22px rgba(50,15,153,.35); transition: transform .5s var(--ease), box-shadow .5s var(--ease), opacity 1s var(--ease); }
+.bx.reveal.in:hover { transform: translateY(-6px); box-shadow: 0 0 0 1px rgba(50,15,153,.22), 0 26px 50px -30px rgba(50,15,153,.45); }
+.bx h3 { margin: 8px 0 0; font-size: clamp(1.2rem, 1.45vw, 1.4rem); line-height: 1.2; }
+.bx p { margin: 0; color: var(--ink-2); line-height: 1.55; max-width: 44ch; text-wrap: pretty; }
+.bx-ico { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--lilac); color: var(--purple); }
+.bx-ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.bx .b-more { margin-top: auto; }
+@media (min-width: 700px) { .bx-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) {
+  .bx-grid { grid-template-columns: repeat(10, 1fr); gap: 20px; }
+  .bx { grid-column: span 3; }
+  .bx:nth-child(1), .bx:nth-child(6) { grid-column: span 4; }
+}
+@media (prefers-reduced-motion: reduce) { .bx { transition: none; } }
