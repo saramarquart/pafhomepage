@@ -85,6 +85,30 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://test.planet-a-foods.com/press-series-a.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://test.planet-a-foods.com/press-rewe.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://test.planet-a-foods.com/press-treets.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://test.planet-a-foods.com/press-series-b.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://test.planet-a-foods.com/press-honored.html</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
