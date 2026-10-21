@@ -1,6 +1,6 @@
 /* Planet A Foods — ingredient detail pages.
    Sample-request form (pre-filled email until CRM routing exists) and
-   links that pre-fill the form (colour profile, requested document). */
+   links that pre-fill the form (color profile, requested document). */
 (function () {
   "use strict";
   var form = document.getElementById("sampleForm");
