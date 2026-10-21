@@ -556,3 +556,10 @@
 @media (min-width: 900px) { .fz-top { grid-template-columns: 1fr 1.6fr; } .fz-links { margin-top: 12px; } }
 @media (max-width: 560px) { .fz-links { grid-template-columns: 1fr 1fr; } }
 
+/* hero headline: exactly two lines (one per sentence); size follows the viewport so both fit */
+.cb-hero-light .cb-hero-copy { max-width: none; }
+.cb-h1 { font-size: clamp(1.9rem, 4.1vw, 4.4rem); }
+.cb-h1 > span { display: block; white-space: nowrap; }
+.cb-hero-light .lead { max-width: 46ch; }
+@media (max-width: 560px) { .cb-h1 { font-size: clamp(1.45rem, 7.4vw, 2.2rem); } }
+
