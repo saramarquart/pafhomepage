@@ -580,6 +580,7 @@
 .cb-hero-dark .crumbs a:hover, .cb-hero-dark .crumbs b { color: #fff; }
 .cb-hero-dark .kicker { color: #EEB650; }
 .cb-hero-dark h1 { color: #fff; }
+.cb-hero-dark .cb-hero-copy { max-width: none; }
 .cb-hero-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: clamp(24px, 4vh, 44px); }
 .cb-hero-dark .lead { color: #fff; font-weight: 500; margin: 0; max-width: 44ch; }
 .cb-hero-dark .hero-actions { display: flex; align-items: center; gap: 32px; flex: 0 0 auto; }
@@ -602,15 +603,8 @@
 .cb-pillars .pillar:hover p { color: rgba(255,255,255,.9); }
 .cb-pillars .pillar:hover .pi-ic { stroke: #fff; }
 
-/* ---- Why now: gold ---- */
-.cb-why.cb-dark { background: #EEB650; color: var(--purple-dk); }
-.cb-why.cb-dark h2 { color: var(--purple-dk); }
-.cb-why.cb-dark .lead { color: rgba(31,8,102,.82); }
-.cb-why .pill-light { background: var(--purple); color: #fff; }
-.cb-why.cb-dark .why-card { background: rgba(255,255,255,.35); border-color: rgba(31,8,102,.12); }
-.cb-why.cb-dark .why-card h3 { color: var(--purple-dk); }
-.cb-why.cb-dark .why-card > p { color: rgba(31,8,102,.82); }
-.cb-why.cb-dark .why-mark { color: #fff; opacity: .18; }
+/* ---- Why now: brand purple, only the pill in gold ---- */
+.cb-why .pill-gold { background: #EEB650; color: var(--purple-dk); }
 
 /* ---- Applications: explanation on one line ---- */
 @media (min-width: 1000px) {
@@ -618,43 +612,39 @@
   .apps-note > span:last-child { display: inline; }
 }
 
-/* ---- Quick start: a rising path, circles grow with each step, sensory check floats beside ---- */
-.qs { position: relative; display: grid; gap: 22px; }
-.qs-path { display: none; }
+/* ---- Quick start: circles stacked on a dotted line, sensory check as a card beside ---- */
+.qs { position: relative; display: grid; gap: 28px; align-items: center; }
+.qs-col { position: relative; display: grid; gap: 22px; justify-items: center; }
+.qs-col .step { width: min(100%, 290px); height: auto; aspect-ratio: 1 / 1; padding: 34px 40px; overflow: hidden; }
+.qs-col .step p { font-size: .88rem; line-height: 1.4; }
+.qs-col .step > b { font-size: 2rem; }
+.qs-col .step h3 { margin-top: 6px; }
+.qs-line { position: absolute; top: 40px; bottom: 40px; left: 50%; width: 0; border-left: 3px dashed var(--lilac-2); z-index: 0; }
 .qs .step { position: relative; z-index: 1; }
-@media (min-width: 1000px) {
-  .qs { grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(10, minmax(46px, auto)); gap: 0; min-height: 600px; }
-  .qs-path { display: block; position: absolute; inset: 4% 4% 8% 2%; width: 94%; height: 88%; z-index: 0; overflow: visible; }
-  .qs-path path { fill: none; stroke: var(--lilac-2); stroke-width: 3; stroke-dasharray: 10 12; vector-effect: non-scaling-stroke; }
-  .qs-1 { grid-column: 1 / 4; grid-row: 5 / 11; align-self: end; width: 92%; }
-  .qs-2 { grid-column: 4 / 7; grid-row: 3 / 10; align-self: center; width: 100%; margin-left: 6%; }
-  .qs-3 { grid-column: 7 / 10; grid-row: 1 / 9; align-self: start; width: 108%; margin-left: 10%; }
-  .qs-check { grid-column: 10 / 13; grid-row: 6 / 11; align-self: end; margin-left: 14%; rotate: 2.5deg; }
-  .qs-3 > b { font-size: 3rem; }
-}
 .qs .step:not(.check) { background: var(--lilac); }
 .qs .qs-2:not(.check) { background: #fff; box-shadow: inset 0 0 0 2px var(--lilac-2); }
 .qs .qs-3:not(.check) { background: var(--purple); color: #fff; box-shadow: 0 30px 60px -30px rgba(50,15,153,.6); }
 .qs .qs-3 h3, .qs .qs-3 > b, .qs .qs-3 p { color: #fff !important; }
 .qs .step:not(.check):hover { background: var(--purple); color: #fff; }
 .qs .step:not(.check):hover h3, .qs .step:not(.check):hover > b, .qs .step:not(.check):hover p { color: #fff; }
-.qs .qs-check { background: var(--purple-dk); }
-.qs .qs-check:hover { rotate: 0deg; }
-
-/* motion: circles climb into place along the path as you scroll; path draws itself; card floats */
+.qs .qs-check { background: var(--purple-dk); align-self: center; }
+@media (min-width: 900px) {
+  .qs { grid-template-columns: minmax(280px, 1fr) 1.3fr; gap: clamp(40px, 6vw, 110px); }
+  .qs-col .step { width: 290px; }
+  .qs-1 { translate: -70px 0; } .qs-3 { translate: 70px 0; }   /* a slight zigzag down the line */
+  .qs .qs-check { padding: clamp(32px, 4vw, 56px); border-radius: 28px; }
+  .qs .qs-check h3 { font-size: clamp(1.5rem, 2vw, 2rem); }
+  .qs .qs-check ul { font-size: 1.08rem; gap: 14px; margin: 22px 0 28px; }
+}
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 1000px) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 900px) {
     .story .qs .step { animation: none; opacity: 1; }
-    .story .qs-path path { stroke-dashoffset: 0; animation: qsDraw linear both; animation-timeline: view(); animation-range: entry 10% cover 55%; }
-    @keyframes qsDraw { from { stroke-dasharray: 0 2000; } to { stroke-dasharray: 10 12; } }
-    .story .qs-1 { animation: qsUp1 linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
-    .story .qs-2 { animation: qsUp2 linear both; animation-timeline: view(); animation-range: entry 5% cover 50%; }
-    .story .qs-3 { animation: qsUp3 linear both; animation-timeline: view(); animation-range: entry 10% cover 55%; }
-    .story .qs-check { animation: qsCard linear both; animation-timeline: view(); animation-range: entry 15% cover 60%; }
-    @keyframes qsUp1 { from { transform: translateY(80px) scale(.85); opacity: .3; } to { transform: none; opacity: 1; } }
-    @keyframes qsUp2 { from { transform: translateY(160px) scale(.8); opacity: .3; } to { transform: none; opacity: 1; } }
-    @keyframes qsUp3 { from { transform: translateY(240px) scale(.75); opacity: .3; } to { transform: none; opacity: 1; } }
-    @keyframes qsCard { from { transform: translate(80px, 60px) rotate(8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+    .story .qs-col .step { animation: qsIn linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+    @keyframes qsIn { from { transform: translateY(60px) scale(.85); opacity: .2; } to { transform: none; opacity: 1; } }
+    .story .qs-line { animation: qsLine linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; transform-origin: top; }
+    @keyframes qsLine { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    .story .qs-check { position: sticky; top: 120px; animation: qsCard linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+    @keyframes qsCard { from { transform: translateX(60px); opacity: 0; } to { transform: none; opacity: 1; } }
   }
 }
 /* idle: the circles gently bob, out of sync */
