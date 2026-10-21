@@ -1,5 +1,5 @@
 /* Contact page — built on the homepage system (home.css: nav, hero, pill, btn, footer, reveal).
-   Hero photo, then a white sheet with the team's details and the enquiry form. */
+   Hero photo, then a white sheet with the team's details and the inquiry form. */
 
 /* ---------- Brand tokens: same as careers.css — ONLY colours from Brand Guideline V1.0 (Apr 2025).
    Warm Violet #320F99 · Blue Print #332D84 · Slate Grey #2D2D2D · Neutral Dark #444444 · Neutral #666666
@@ -24,21 +24,16 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
 /* ---------- 1 · HEADER: brand banner ---------- */
 .ct-banner { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff;
   min-height: clamp(230px, 19vw, 300px); display: grid; place-items: center; padding: 92px var(--gutter) 60px; }
-/* the large brand rings in a lighter violet, as in the banner artwork */
-.ct-ring { position: absolute; z-index: -1; aspect-ratio: 57 / 60; height: auto; color: #fff; opacity: .07; pointer-events: none; }
-.ct-ring-1 { width: max(560px, 44vw); left: 50%; top: 50%; transform: translate(-58%, -40%) rotate(-8deg); }
-.ct-ring-2 { width: max(900px, 74vw); right: -46%; top: -30%; transform: rotate(14deg); opacity: .06; }
 
 /* ---------- 2 · CONTACT ---------- */
 .ct-intro h1 { margin: 18px 0 0; font-size: clamp(2rem, 3.2vw, 3.1rem); line-height: 1.06; max-width: 16ch; text-wrap: balance; }
 .ct-lead { margin: 16px 0 0; max-width: 52ch; color: var(--ink-2); font-size: clamp(1.02rem, 1.2vw, 1.2rem); line-height: 1.55; text-wrap: pretty; }
 .ct-sec { position: relative; z-index: 1; margin-top: -32px; border-radius: 28px 28px 0 0; background: #fff; overflow: clip;
   padding: clamp(40px, 4vw, 64px) 0 clamp(72px, 8vw, 128px); box-shadow: 0 -24px 48px -32px rgba(17,17,17,.45); }
-.ct-deco { color: var(--lilac-2); opacity: .7; width: min(30vw, 440px); right: -9vw; top: -6%; transform: rotate(16deg); }
 /* desktop: intro on the left, the form on the right; phones: intro → form */
 .ct-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); grid-template-areas: "intro form"; column-gap: clamp(40px, 6vw, 96px); row-gap: clamp(36px, 4vw, 56px); align-items: start; }
 .ct-intro { grid-area: intro; }
-/* one block per enquiry route: Cocoa booster (sales) first, the other solutions (hello) below */
+/* one block per inquiry route: Cocoa booster (sales) first, the other solutions (hello) below */
 .ct-topics { margin-top: clamp(28px, 3vw, 40px); display: grid; gap: clamp(22px, 2.4vw, 30px); max-width: 52ch; }
 .ct-topic { padding-top: clamp(20px, 2.2vw, 26px); border-top: 1px solid rgba(14,11,26,.12); display: grid; gap: 8px; }
 .ct-topic h2 { margin: 0; font-size: clamp(1.25rem, 1.6vw, 1.5rem); line-height: 1.2; }
