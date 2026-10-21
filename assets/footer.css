@@ -1,0 +1,40 @@
+/* ============================================================================
+   Planet A Foods — site footer (shared by every page)
+   Brand purple ground, white logo + claim, three link columns, legal row.
+   Self-contained: own class names (.sf-*), own font stack, no page CSS needed.
+   ========================================================================== */
+/* Rethink Sans comes from assets/fonts.css (self-hosted); no Google Fonts request (GDPR, CSP). */
+
+.site-footer {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: #320F99; color: #fff;
+  padding: clamp(72px, 10vh, 120px) 0 32px;
+  font-family: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.5; letter-spacing: normal;
+  border-top: 1px solid rgba(255,255,255,.14);   /* separates it from purple bands above */
+}
+.site-footer::before { /* soft "A" mark */
+  content: ""; position: absolute; z-index: -1; right: -4vw; bottom: -22%;
+  width: min(46vw, 700px); aspect-ratio: 57 / 60; opacity: .55; pointer-events: none;
+  background: url("img/a-mark-footer.svg") center / contain no-repeat;
+}
+.site-footer * { box-sizing: border-box; }
+.site-footer a { color: inherit; text-decoration: none; }
+.sf-wrap { width: 100%; max-width: 1600px; margin: 0 auto; padding-inline: clamp(20px, 4vw, 70px); }
+.sf-top { display: grid; gap: 48px; }
+.sf-brand { display: grid; gap: 40px; align-content: start; }
+.sf-logo { display: block; width: 76px; height: auto; }
+.sf-claim { margin: 0; font-size: clamp(2rem, 3.4vw, 3.4rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; color: #fff; }
+.sf-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.sf-links h4, .sf-links h2 { line-height: 1.3; font-variation-settings: normal; }
+.sf-links h4, .sf-links h2 { margin: 0 0 22px; font-family: inherit; font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: #fff; }
+.sf-links a { display: block; padding: 6px 0; color: rgba(255,255,255,.88); font-size: 1.05rem; transition: color .25s ease; }
+.sf-links a:hover, .sf-links a:focus-visible { color: #EEB650; }
+.sf-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  margin-top: clamp(64px, 10vh, 110px); padding-top: 24px; border-top: 1px solid rgba(255,255,255,.22);
+  font-size: .9rem; color: rgba(255,255,255,.8); }
+.sf-legal p { margin: 0; color: inherit; }
+.sf-legal nav { display: flex; gap: 28px; }
+.sf-legal a:hover { color: #fff; }
+@media (min-width: 900px) { .sf-top { grid-template-columns: 1fr 1.6fr; } .sf-links { margin-top: 12px; } }
+@media (max-width: 560px) { .sf-links { grid-template-columns: 1fr 1fr; } }

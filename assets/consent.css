@@ -1,0 +1,102 @@
+/* Cookie banner + settings dialog (see assets/consent.js). Self-contained: brand colours and
+   Rethink Sans, no external resources. Works on the homepage and the subpages alike. */
+:root {
+  --pc-purple: #320F99; --pc-purple-dk: #240A70; --pc-ink: #0E0B1A; --pc-ink-2: #3D3A4A;
+  --pc-green: #82C7AE; --pc-grey: #F3F3F3; --pc-line: rgba(14, 11, 26, .12); --pc-r: 8px;
+}
+.pc-banner, .pc-dialog { text-align: left; font-family: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--pc-ink); letter-spacing: normal; }
+.pc-banner *, .pc-dialog * { box-sizing: border-box; }
+/* page styles must not leak in (e.g. subpages pad every <section>, headings have tight tracking) */
+.pc-banner, .pc-dialog section { margin: 0; }
+.pc-title, .pc-cat h3 { font-family: inherit; letter-spacing: normal; font-variation-settings: normal; text-transform: none; }
+html.pc-dialog-open { overflow: hidden; }
+
+/* keeps the end of every page reachable while the banner is open */
+html.pc-has-banner body { padding-bottom: var(--pc-banner-h, 0px); }
+
+/* ---- first layer: non-blocking banner at the bottom ---- */
+.pc-banner { position: fixed; z-index: 1000; left: 0; right: 0; bottom: 0; padding: 16px clamp(16px, 4vw, 70px) calc(16px + env(safe-area-inset-bottom)); pointer-events: none; }
+.pc-banner-inner { pointer-events: auto; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 8px 32px; align-items: center;
+  background: #fff; border-radius: var(--pc-r); padding: 22px 26px; box-shadow: 0 18px 50px -20px rgba(14, 11, 26, .45), 0 0 0 1px var(--pc-line); }
+.pc-title { margin: 0; font-size: 1.15rem; font-weight: 600; line-height: 1.3; color: var(--pc-ink); }
+.pc-banner .pc-title { grid-column: 1; }
+.pc-text { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--pc-ink-2); }
+.pc-banner .pc-text { grid-column: 1; max-width: 80ch; }
+.pc-text a { color: var(--pc-purple); text-decoration: underline; text-underline-offset: 2px; }
+.pc-banner .pc-actions { grid-column: 2; grid-row: 1 / 3; }
+
+.pc-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* ACCEPT and DECLINE: identical size, colour and weight */
+.pc-btn { font: inherit; font-size: .95rem; font-weight: 600; line-height: 1.2; min-height: 44px; padding: 11px 22px; border-radius: 6px; cursor: pointer;
+  border: 1.5px solid var(--pc-purple); transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.pc-choice { min-width: 9.5em; background: var(--pc-purple); color: #fff; text-transform: uppercase; letter-spacing: .04em; }
+.pc-choice:hover { background: var(--pc-purple-dk); border-color: var(--pc-purple-dk); }
+.pc-ghost { background: #fff; color: var(--pc-purple); }
+.pc-ghost:hover { background: var(--pc-grey); }
+.pc-btn:focus-visible, .pc-close:focus-visible, .pc-text a:focus-visible, .pc-switch input:focus-visible + .pc-sr + .pc-slider {
+  outline: 3px solid var(--pc-green); outline-offset: 2px; }
+
+/* ---- settings dialog ---- */
+.pc-dialog { width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); padding: 0; border: 0;
+  border-radius: 12px; background: #fff; box-shadow: 0 30px 80px -30px rgba(14, 11, 26, .6); overflow: auto; }
+.pc-dialog::backdrop { background: rgba(14, 11, 26, .55); }
+.pc-dialog-inner { padding: clamp(20px, 4vw, 34px); display: grid; gap: 18px; }
+.pc-dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.pc-dialog .pc-title { font-size: 1.35rem; }
+.pc-close { flex: 0 0 auto; width: 44px; height: 44px; border: 0; border-radius: 6px; background: var(--pc-grey); color: var(--pc-ink); font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.pc-close:hover { background: #e6e6e6; }
+.pc-cat { border-top: 1px solid var(--pc-line); padding: 16px 0 0; display: grid; gap: 10px; }
+.pc-cat-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.pc-cat h3 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--pc-ink); }
+.pc-always { font-size: .85rem; font-weight: 600; color: var(--pc-purple); }
+
+/* on/off switch (a real checkbox underneath) */
+.pc-switch { position: relative; display: inline-flex; cursor: pointer; }
+.pc-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.pc-slider { width: 48px; height: 28px; border-radius: 999px; background: #c9c7d1; position: relative; transition: background .2s ease; }
+.pc-slider::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s ease; }
+.pc-switch input:checked ~ .pc-slider { background: var(--pc-purple); }
+.pc-switch input:checked ~ .pc-slider::after { transform: translateX(20px); }
+
+.pc-table-wrap { overflow-x: auto; }
+.pc-table { width: 100%; border-collapse: collapse; font-size: .88rem; line-height: 1.45; }
+.pc-table th, .pc-table td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--pc-line); }
+.pc-table th { font-weight: 600; color: var(--pc-ink); background: var(--pc-grey); }
+.pc-table td { color: var(--pc-ink-2); }
+.pc-table td:first-child { font-weight: 600; color: var(--pc-ink); white-space: nowrap; }
+
+.pc-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* footer "Cookie Settings" link looks like its neighbours */
+[data-cookie-settings] { cursor: pointer; }
+
+/* ---- small screens and 200% zoom ---- */
+@media (max-width: 760px), (max-height: 560px) {
+  .pc-banner { padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); }
+  /* text scrolls inside the card; the buttons below it always stay on screen */
+  .pc-banner-inner { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; max-height: min(62vh, 520px); max-height: min(62dvh, 520px); }
+  .pc-banner .pc-title { font-size: 1.02rem; flex: none; }
+  .pc-banner .pc-text { font-size: .86rem; line-height: 1.5; overflow-y: auto; min-height: 2.6em; flex: 0 1 auto; }
+  .pc-banner .pc-actions { flex: none; gap: 8px; }
+  .pc-btn { min-height: 42px; padding: 9px 14px; font-size: .9rem; }
+}
+@media (max-width: 760px) {
+  .pc-choice { flex: 1 1 0; min-width: 0; }
+  .pc-banner .pc-ghost { flex: 1 1 100%; }
+  .pc-dialog .pc-actions .pc-btn { flex: 1 1 100%; }
+  /* cookie tables become stacked cards */
+  .pc-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .pc-table, .pc-table tbody, .pc-table tr, .pc-table td { display: block; width: 100%; }
+  .pc-table tr { border: 1px solid var(--pc-line); border-radius: 6px; margin-bottom: 10px; padding: 4px 0; }
+  .pc-table td { border: 0; padding: 5px 12px; white-space: normal; }
+  .pc-table td::before { content: attr(data-label); display: block; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--pc-purple); }
+}
+/* short and wide (phone in landscape, desktop at high zoom): text beside the buttons */
+@media (max-height: 560px) and (min-width: 600px) {
+  .pc-banner-inner { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto minmax(0, 1fr); column-gap: 20px; }
+  .pc-banner .pc-title { grid-column: 1; grid-row: 1; }
+  .pc-banner .pc-text { grid-column: 1; grid-row: 2; }
+  .pc-banner .pc-actions { grid-column: 2; grid-row: 1 / 3; flex-direction: column; justify-content: center; }
+  .pc-banner .pc-choice, .pc-banner .pc-ghost { flex: none; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .pc-btn, .pc-slider, .pc-slider::after { transition: none; } }

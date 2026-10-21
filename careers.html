@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- Content Security Policy: keep identical to staticwebapp.config.json, see docs/security.md -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Careers – Planet A Foods</title>
@@ -10,7 +12,8 @@
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/home.css?v=41" />
-  <link rel="stylesheet" href="assets/careers.css?v=31" />
+  <link rel="stylesheet" href="assets/careers.css?v=45" />
+  <link rel="stylesheet" href="assets/footer.css?v=2" />
   <link rel="preload" as="image" href="assets/img/careers/careers-hero-team-summer.jpg" imagesrcset="assets/img/careers/careers-hero-team-summer-sm.jpg 1200w, assets/img/careers/careers-hero-team-summer.jpg 2000w, assets/img/careers/careers-hero-team-summer-xl.jpg 2800w" imagesizes="100vw" />
   <meta property="og:title" content="Careers – Planet A Foods" />
   <meta property="og:description" content="Join Planet A Foods in Munich or Pilsen and help build future-proof ingredient alternatives for the food industry." />
@@ -81,6 +84,7 @@
   }
 ]
   </script>
+  <link rel="stylesheet" href="assets/consent.css?v=3">
 </head>
 <body class="careers">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -154,7 +158,16 @@
           </div>
         </div>
       </div>
-      <a href="mission.html">Mission</a>
+      <div class="nav-item">
+        <a href="mission.html" aria-haspopup="true">Mission</a>
+        <div class="nav-sub">
+          <div>
+            <a href="mission.html#our-mission">Mission</a>
+            <a href="mission.html#journey">Journey</a>
+            <a href="mission.html#story">Story</a>
+          </div>
+        </div>
+      </div>
       <a href="careers.html" aria-current="page">Careers</a>
       <a href="press.html">Press</a>
       <a href="contact.html">Contact</a>
@@ -175,20 +188,20 @@
       <div class="wrap hero-copy">
         <div class="hero-foot">
           <h1 id="cr-hero-title" class="reveal">Revolutionise the food industry with us</h1>
-          <div class="hero-actions reveal"><a class="btn btn-white" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions>View our open positions <span aria-hidden="true">↗</span></a></div>
+          <div class="hero-actions reveal"><a class="btn-text" href="#cr-vision">Learn more <span aria-hidden="true">↓</span></a><a class="btn btn-white" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener noreferrer" data-open-positions>View our open positions <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </section>
 
     <!-- 2 · OUR VISION -->
-    <section class="cr-sec cr-vision" data-tone="light" aria-labelledby="cr-vision-title">
+    <section class="cr-sec cr-vision" id="cr-vision" data-tone="light" aria-labelledby="cr-vision-title" tabindex="-1">
       <svg class="deco-a cr-d-vision" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">Our vision</span>
           <h2 id="cr-vision-title">We don't follow the norm.<br /><span class="cr-hl">We set a new standard.</span></h2>
           <p class="lead">At Planet A Foods, we build high-quality, future-proof ingredient alternatives. Our solutions are made for mass-market products and help producers build supply chains that can withstand the upcoming climate challenges.</p>
-          <p class="cr-strong">If you want to change an entire industry with us, this is where you belong.</p>
+          <p class="cr-strong">If you want to change an entire industry with us, this is where you can make a tangible impact.</p>
         </div>
       </div>
     </section>
@@ -207,7 +220,24 @@
             <li class="cr-slide"><img src="assets/img/careers/careers-carousel-07-bowling-pilsen.jpg" srcset="assets/img/careers/careers-carousel-07-bowling-pilsen-sm.jpg 560w, assets/img/careers/careers-carousel-07-bowling-pilsen.jpg 1000w" sizes="(max-width: 640px) 70vw, 320px" width="1000" height="750" loading="lazy" decoding="async" draggable="false" alt="Bowling night with the Pilsen team" /></li>
             <li class="cr-slide"><img src="assets/img/careers/careers-carousel-08-grand-opening-pilsen.jpg" srcset="assets/img/careers/careers-carousel-08-grand-opening-pilsen-sm.jpg 560w, assets/img/careers/careers-carousel-08-grand-opening-pilsen.jpg 1000w" sizes="(max-width: 640px) 70vw, 320px" width="1000" height="750" loading="lazy" decoding="async" draggable="false" alt="Celebrating the grand opening in Pilsen" /></li>
             <li class="cr-slide"><img src="assets/img/careers/careers-carousel-09-cycling-road.jpg" srcset="assets/img/careers/careers-carousel-09-cycling-road-sm.jpg 421w, assets/img/careers/careers-carousel-09-cycling-road.jpg 753w" sizes="(max-width: 640px) 70vw, 320px" width="753" height="1000" loading="lazy" decoding="async" draggable="false" style="object-position:50% 60%" alt="Colleagues on an after-work bike ride" /></li>
-            <li class="cr-slide"><img src="assets/img/careers/careers-carousel-10-cycling-group.jpg" srcset="assets/img/careers/careers-carousel-10-cycling-group-sm.jpg 421w, assets/img/careers/careers-carousel-10-cycling-group.jpg 753w" sizes="(max-width: 640px) 70vw, 320px" width="753" height="1000" loading="lazy" decoding="async" draggable="false" style="object-position:50% 58%" alt="Cycling group with a view of the Alps" /></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-11-oktoberfest-dinner.webp 480w, assets/images/careers/careers-life-11-oktoberfest-dinner-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-11-oktoberfest-dinner.jpg" srcset="assets/images/careers/careers-life-11-oktoberfest-dinner.jpg 480w, assets/images/careers/careers-life-11-oktoberfest-dinner-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Team dinner at the Oktoberfest" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-12-oktoberfest-friends.webp 480w, assets/images/careers/careers-life-12-oktoberfest-friends-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-12-oktoberfest-friends.jpg" srcset="assets/images/careers/careers-life-12-oktoberfest-friends.jpg 480w, assets/images/careers/careers-life-12-oktoberfest-friends-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Colleagues smiling together at the Oktoberfest" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-13-pilsen-team-site.webp 480w, assets/images/careers/careers-life-13-pilsen-team-site-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-13-pilsen-team-site.jpg" srcset="assets/images/careers/careers-life-13-pilsen-team-site.jpg 480w, assets/images/careers/careers-life-13-pilsen-team-site-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="The Pilsen team in high-visibility vests outside the production site" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-14-production-equipment.webp 640w, assets/images/careers/careers-life-14-production-equipment-2x.webp 1280w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-14-production-equipment.jpg" srcset="assets/images/careers/careers-life-14-production-equipment.jpg 640w, assets/images/careers/careers-life-14-production-equipment-2x.jpg 1280w" sizes="(max-width: 640px) 70vw, 360px" width="640" height="360" loading="lazy" decoding="async" draggable="false" alt="Production equipment in our Pilsen facility" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-15-focus-day-talk.webp 360w, assets/images/careers/careers-life-15-focus-day-talk-2x.webp 720w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-15-focus-day-talk.jpg" srcset="assets/images/careers/careers-life-15-focus-day-talk.jpg 360w, assets/images/careers/careers-life-15-focus-day-talk-2x.jpg 720w" sizes="(max-width: 640px) 70vw, 360px" width="360" height="480" loading="lazy" decoding="async" draggable="false" alt="A colleague presenting at our “On Discovery” focus day" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-16-protective-suits.webp 480w, assets/images/careers/careers-life-16-protective-suits-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-16-protective-suits.jpg" srcset="assets/images/careers/careers-life-16-protective-suits.jpg 480w, assets/images/careers/careers-life-16-protective-suits-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Two colleagues in protective suits striking a pose" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-17-treets-billboard.webp 480w, assets/images/careers/careers-life-17-treets-billboard-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-17-treets-billboard.jpg" srcset="assets/images/careers/careers-life-17-treets-billboard.jpg 480w, assets/images/careers/careers-life-17-treets-billboard-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="A colleague next to a Treets billboard" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-18-town-hall.webp 486w, assets/images/careers/careers-life-18-town-hall-2x.webp 971w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-18-town-hall.jpg" srcset="assets/images/careers/careers-life-18-town-hall.jpg 486w, assets/images/careers/careers-life-18-town-hall-2x.jpg 971w" sizes="(max-width: 640px) 70vw, 360px" width="486" height="360" loading="lazy" decoding="async" draggable="false" alt="The team at a town hall meeting" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-19-team-dinner.webp 480w, assets/images/careers/careers-life-19-team-dinner-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-19-team-dinner.jpg" srcset="assets/images/careers/careers-life-19-team-dinner.jpg 480w, assets/images/careers/careers-life-19-team-dinner-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Team dinner at a long table" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-20-lab-team.webp 480w, assets/images/careers/careers-life-20-lab-team-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-20-lab-team.jpg" srcset="assets/images/careers/careers-life-20-lab-team.jpg 480w, assets/images/careers/careers-life-20-lab-team-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Colleagues working in the lab" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-21-hard-hats.webp 480w, assets/images/careers/careers-life-21-hard-hats-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-21-hard-hats.jpg" srcset="assets/images/careers/careers-life-21-hard-hats.jpg 480w, assets/images/careers/careers-life-21-hard-hats-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Two colleagues in hard hats at the production line" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-22-choviva-products.webp 480w, assets/images/careers/careers-life-22-choviva-products-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-22-choviva-products.jpg" srcset="assets/images/careers/careers-life-22-choviva-products.jpg 480w, assets/images/careers/careers-life-22-choviva-products-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Two colleagues proudly holding up product packs" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-23-bike-ride.webp 360w, assets/images/careers/careers-life-23-bike-ride-2x.webp 720w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-23-bike-ride.jpg" srcset="assets/images/careers/careers-life-23-bike-ride.jpg 360w, assets/images/careers/careers-life-23-bike-ride-2x.jpg 720w" sizes="(max-width: 640px) 70vw, 360px" width="360" height="478" loading="lazy" decoding="async" draggable="false" alt="Colleagues on a bike ride through the countryside" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-24-ism-booth.webp 480w, assets/images/careers/careers-life-24-ism-booth-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-24-ism-booth.jpg" srcset="assets/images/careers/careers-life-24-ism-booth.jpg 480w, assets/images/careers/careers-life-24-ism-booth-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Our team at the ChoViva booth at ISM 2026" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-25-bowling.webp 480w, assets/images/careers/careers-life-25-bowling-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-25-bowling.jpg" srcset="assets/images/careers/careers-life-25-bowling.jpg 480w, assets/images/careers/careers-life-25-bowling-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Bowling night with the team" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-26-tasting.webp 480w, assets/images/careers/careers-life-26-tasting-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-26-tasting.jpg" srcset="assets/images/careers/careers-life-26-tasting.jpg 480w, assets/images/careers/careers-life-26-tasting-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="A product tasting in the office" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-27-lake-pier.webp 360w, assets/images/careers/careers-life-27-lake-pier-2x.webp 720w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-27-lake-pier.jpg" srcset="assets/images/careers/careers-life-27-lake-pier.jpg 360w, assets/images/careers/careers-life-27-lake-pier-2x.jpg 720w" sizes="(max-width: 640px) 70vw, 360px" width="360" height="480" loading="lazy" decoding="async" draggable="false" alt="The team on a lakeside pier on a sunny day" /></picture></li>
+            <li class="cr-slide"><picture><source type="image/webp" srcset="assets/images/careers/careers-life-28-ski-trip.webp 480w, assets/images/careers/careers-life-28-ski-trip-2x.webp 960w" sizes="(max-width: 640px) 70vw, 360px" /><img src="assets/images/careers/careers-life-28-ski-trip.jpg" srcset="assets/images/careers/careers-life-28-ski-trip.jpg 480w, assets/images/careers/careers-life-28-ski-trip-2x.jpg 960w" sizes="(max-width: 640px) 70vw, 360px" width="480" height="360" loading="lazy" decoding="async" draggable="false" alt="Team ski trip in the mountains" /></picture></li>
           </ul>
         </div>
         <div class="wrap cr-carousel-ctrl">
@@ -224,30 +254,39 @@
           </div>
           <p class="lead">We're scaling up and changing an entire industry at the same time. That means what you do here shows up in the business, in our products and in the way we work together.</p>
         </div>
-        <div class="cr-grid-4">
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">01</span>
-            <h3>Take ownership</h3>
-            <p>Your decisions have a direct, tangible effect on the business and its results, and you can point to the difference you made.</p>
-            <span class="tag tag-line">Value: Create Impact</span>
+        <!-- Values: title only; the description appears on hover / keyboard focus / tap (assets/careers.js). It always stays in the HTML. -->
+        <div class="cr-grid-4 cr-values">
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-1"><span class="cr-value-label">Value</span><span class="cr-value-name">Creating Impact.</span></button></h3>
+            <div class="cr-value-body" id="cr-value-1">
+              <p class="cr-value-head">Take ownership</p>
+              <p>Your decisions have a direct, tangible effect on the business and its results, and you can point to the difference you made.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">02</span>
-            <h3>Question everything</h3>
-            <p>Innovation doesn&#x27;t stop at our products. The way we work is never finished: we think things new, better and challenge the status quo.</p>
-            <span class="tag tag-line">Value: On Discovery</span>
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-2"><span class="cr-value-label">Value</span><span class="cr-value-name">On Discovery.</span></button></h3>
+            <div class="cr-value-body" id="cr-value-2">
+              <p class="cr-value-head">Question everything</p>
+              <p>Innovation doesn&#x27;t stop at our products. The way we work is never finished: we think things new, better and challenge the status quo.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">03</span>
-            <h3>See it coming. Act first.</h3>
-            <p>We&#x27;re agile and keep hierarchies flat, so the path from idea to decision is short. We&#x27;d rather try, learn and adjust than discuss something for months.</p>
-            <span class="tag tag-line">Value: Just Do It</span>
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-3"><span class="cr-value-label">Value</span><span class="cr-value-name">Just Do It.</span></button></h3>
+            <div class="cr-value-body" id="cr-value-3">
+              <p class="cr-value-head">See it coming. Act first.</p>
+              <p>We&#x27;re agile and keep hierarchies flat, so the path from idea to decision is short. We&#x27;d rather try, learn and adjust than discuss something for months.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
-          <article class="cr-card cr-value reveal">
-            <span class="cr-no">04</span>
-            <h3>Build something big, together</h3>
-            <p>We&#x27;re a strong team that pulls in one direction. Across every function, we back each other up and rely on each other.</p>
-            <span class="tag tag-line">Value: Fellowship</span>
+          <article class="cr-card cr-value reveal" data-value>
+            <h3 class="cr-value-title"><button type="button" class="cr-value-btn" aria-expanded="false" aria-controls="cr-value-4"><span class="cr-value-label">Value</span><span class="cr-value-name">Fellowship.</span></button></h3>
+            <div class="cr-value-body" id="cr-value-4">
+              <p class="cr-value-head">Build something big, together</p>
+              <p>We&#x27;re a strong team that pulls in one direction. Across every function, we back each other up and rely on each other.</p>
+            </div>
+            <span class="cr-value-hint" aria-hidden="true"></span>
           </article>
         </div>
       </div>
@@ -268,7 +307,6 @@
 
     <!-- 6 · PERKS & BENEFITS -->
     <section class="cr-sec cr-perks" data-tone="light" aria-labelledby="cr-perks-title">
-      <svg class="deco-a cr-d-perks" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">What we offer</span>
@@ -283,19 +321,21 @@
         </div>
 
         <div class="cr-tabpanel" role="tabpanel" id="cr-panel-munich" aria-labelledby="cr-tab-munich" tabindex="0">
+          <div class="cr-offer">
+            <div class="cr-offer-main">
           <div class="cr-office">
             <div class="cr-office-site">
-              <p class="cr-office-kicker"><svg class="cr-ico" aria-hidden="true"><use href="#i-map-pin"/></svg>Munich · Headquarters</p>
               <h3>Our headquarters near Munich</h3>
               <p>Home to our R&amp;D lab and the teams that take our ingredient alternatives from first idea to market.</p>
             </div>
           </div>
           <div class="cr-grid-2">
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sun"/></svg></span><div><h3>30 days of vacation</h3><p>30 days a year to rest, travel and recharge. Day to day, we're office-first with flexible hours, and you can work from home now and then.</p></div></div>
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-utensils"/></svg></span><div><h3>Lunch together</h3><p>Healthy, subsidised lunch options for €7.50 a day, and a shared moment at the table with the team.</p></div></div>
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-gift"/></svg></span><div><h3>€50 monthly vouchers</h3><p>Flexible to use across many options, from gym and mobility to lifestyle and more. You choose.</p></div></div>
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sprout"/></svg></span><div><h3>Feedback, development &amp; town halls</h3><p>Regular feedback and development conversations, with options to grow in your role. Plus town halls and Lunch &amp; Learns to stay in the loop and keep learning from each other.</p></div></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sun"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-1">30 days of vacation</button></h3><p id="cr-perk-1">30 days a year to rest, travel and recharge. Day to day, we're office-first with flexible hours, and you can work from home now and then.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-utensils"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-2">Lunch together</button></h3><p id="cr-perk-2">Daily healthy lunch options, and a shared moment at the table with the team.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-gift"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-3">€50 monthly vouchers</button></h3><p id="cr-perk-3">Flexible to use across many options, from gym and mobility to lifestyle and more. You choose.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sprout"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-4">Feedback, development &amp; focus days</button></h3><p id="cr-perk-4">Regular town halls and lunch &amp; learns keep us learning from each other.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
           </div>
+            </div>
           <div class="cr-banner">
             <img src="assets/img/careers/careers-perks-munich-5-years.jpg" srcset="assets/img/careers/careers-perks-munich-5-years-sm.jpg 1000w, assets/img/careers/careers-perks-munich-5-years.jpg 1920w" sizes="(max-width: 1600px) 100vw, 1600px" width="1920" height="1080" loading="lazy" decoding="async" style="object-position:50% 42%" alt="The Munich team celebrating five years of Planet A Foods" />
             <div class="cr-banner-copy">
@@ -303,22 +343,25 @@
               <p>Summer, Oktoberfest, Christmas parties and much more to celebrate our wins together.</p>
             </div>
           </div>
+          </div>
         </div>
 
         <div class="cr-tabpanel" role="tabpanel" id="cr-panel-pilsen" aria-labelledby="cr-tab-pilsen" tabindex="0" hidden>
+          <div class="cr-offer">
+            <div class="cr-offer-main">
           <div class="cr-office">
             <div class="cr-office-site">
-              <p class="cr-office-kicker"><svg class="cr-ico" aria-hidden="true"><use href="#i-map-pin"/></svg>Pilsen · Production</p>
               <h3>Our own production site in Pilsen</h3>
               <p>Where our ingredients are produced at industrial scale, by a close-knit team that keeps the lines running.</p>
             </div>
           </div>
           <div class="cr-grid-2">
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sun"/></svg></span><div><h3>6 weeks of vacation</h3><p>Six weeks a year to rest, travel and recharge. Day to day, we're office-first with flexible hours, and you can work from home now and then.</p></div></div>
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-utensils"/></svg></span><div><h3>Daily hot lunch</h3><p>A hot lunch every day, plus snacks and drinks to keep you going.</p></div></div>
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sprout"/></svg></span><div><h3>Development budget</h3><p>Invest in your growth with a budget for courses, training and conferences.</p></div></div>
-            <div class="cr-card cr-perk"><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-user-plus"/></svg></span><div><h3>Bonus system &amp; salary review</h3><p>Get rewarded for bringing great people on board, with an annual salary review for everyone.</p></div></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sun"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-5">6 weeks of vacation</button></h3><p id="cr-perk-5">Six weeks a year to rest, travel and recharge. Day to day, we're office-first with flexible hours, and you can work from home now and then.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-utensils"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-6">Daily hot lunch</button></h3><p id="cr-perk-6">Daily hot lunch options, and a shared moment at the table with the team.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-sprout"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-7">Feedback, development &amp; focus days</button></h3><p id="cr-perk-7">Regular town halls and lunch &amp; learns keep us learning from each other.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
+            <div class="cr-card cr-perk" data-perk><span class="cr-icon"><svg class="cr-ico" aria-hidden="true"><use href="#i-laptop"/></svg></span><div class="cr-perk-txt"><h3><button type="button" class="cr-perk-btn" aria-expanded="false" aria-controls="cr-perk-8">Parking &amp; the latest tech</button></h3><p id="cr-perk-8">A parking spot at our facility and up-to-date equipment, so your workday runs smoothly.</p></div><span class="cr-perk-hint" aria-hidden="true"></span></div>
           </div>
+            </div>
           <div class="cr-banner">
             <img src="assets/img/careers/careers-perks-pilsen-5-years.jpg" srcset="assets/img/careers/careers-perks-pilsen-5-years-sm.jpg 800w, assets/img/careers/careers-perks-pilsen-5-years.jpg 1195w" sizes="(max-width: 1600px) 100vw, 1600px" width="1195" height="896" loading="lazy" decoding="async" style="object-position:50% 32%" alt="The Pilsen team celebrating five years of Planet A Foods" />
             <div class="cr-banner-copy">
@@ -326,23 +369,24 @@
               <p>Help build ChoViva, our cocoa-free chocolate alternative, into a future market leader. Along the way: team-building events, pub nights and celebrations, on us.</p>
             </div>
           </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 7 · HOW TO JOIN — full-time / internship switch; stepper on desktop, accordion on mobile -->
+    <!-- 7 · HOW TO JOIN — permanent / student roles switch; stepper on desktop, accordion on mobile -->
     <section class="cr-sec cr-join" data-tone="light" aria-labelledby="cr-join-title">
       <svg class="deco-a cr-d-join" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap">
         <div class="center-head cr-center reveal">
           <span class="pill">How to join</span>
-          <h2 id="cr-join-title">Your steps to join our mission</h2>
+          <h2 id="cr-join-title">Your steps to join</h2>
           <p class="lead">Click through to see what to expect along the way.</p>
         </div>
         <div class="cr-seg-wrap">
           <div class="cr-seg" role="tablist" aria-label="Hiring process" data-tabs>
-            <button type="button" role="tab" id="cr-tab-fulltime" aria-selected="true" aria-controls="cr-panel-fulltime" tabindex="0"><svg class="cr-ico" aria-hidden="true"><use href="#i-briefcase"/></svg>Full-time roles</button>
-            <button type="button" role="tab" id="cr-tab-intern" aria-selected="false" aria-controls="cr-panel-intern" tabindex="-1"><svg class="cr-ico" aria-hidden="true"><use href="#i-graduation-cap"/></svg>Internships</button>
+            <button type="button" role="tab" id="cr-tab-fulltime" aria-selected="true" aria-controls="cr-panel-fulltime" tabindex="0"><svg class="cr-ico" aria-hidden="true"><use href="#i-briefcase"/></svg>Permanent roles</button>
+            <button type="button" role="tab" id="cr-tab-intern" aria-selected="false" aria-controls="cr-panel-intern" tabindex="-1"><svg class="cr-ico" aria-hidden="true"><use href="#i-graduation-cap"/></svg>Student roles</button>
           </div>
         </div>
 
@@ -356,9 +400,9 @@
             <div class="cr-step-panel" id="cr-step-1-panel" role="region" aria-labelledby="cr-step-1">
               <div class="cr-step-main">
                 <p class="cr-step-no">Step 01 of 5</p>
-                <h3>Introduction call and contact</h3>
+                <h3>Introduction call</h3>
                 <span class="tag">Phone call</span>
-                <p>A first phone call to get to know each other: what drives you, what we are building and whether the role could be a match.</p>
+                <p>A first phone call with our People &amp; Culture team.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>Think about why our mission speaks to you. That is what we are most curious about.</p></div>
@@ -379,7 +423,7 @@
                 <p class="cr-step-no">Step 02 of 5</p>
                 <h3>Role fit conversation</h3>
                 <span class="tag">Video call</span>
-                <p>A deeper conversation with your future team lead about the role, your experience and how you like to work.</p>
+                <p>A deeper conversation with your future manager about the role, your experience and how you like to work.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>Bring an example of work you&#x27;re proud of, and your questions about the team.</p></div>
@@ -399,8 +443,8 @@
               <div class="cr-step-main">
                 <p class="cr-step-no">Step 03 of 5</p>
                 <h3>Technical session</h3>
-                <span class="tag">Case or task</span>
-                <p>Depending on the role, a practical task or case discussion that shows how you approach the challenges we work on.</p>
+                <span class="tag">Hands-on task</span>
+                <p>Depending on the role, a practical task or discussion that shows how you approach the challenges you might encounter here.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>There&#x27;s rarely one right answer. We want to see how you think.</p></div>
@@ -421,7 +465,7 @@
                 <p class="cr-step-no">Step 04 of 5</p>
                 <h3>Onsite experience</h3>
                 <span class="tag">In person</span>
-                <p>Visit us in Munich or Pilsen, meet the people you&#x27;d work with and get a feel for our day-to-day.</p>
+                <p>Visit us in Munich or Pilsen, meet the people you&#x27;d work with and get a feel for our day-to-day. Depending on where you applied, you&#x27;ll also get to visit our lab or production facility.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>This is as much about you getting to know us. Ask anything.</p></div>
@@ -442,13 +486,13 @@
                 <p class="cr-step-no">Step 05 of 5</p>
                 <h3>Reference calls</h3>
                 <span class="tag">Final step</span>
-                <p>With your consent, we speak to one or two people you&#x27;ve worked with before we make our decision.</p>
+                <p>With your consent, we&#x27;d like to connect with the people who can speak most to your strengths.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>Let your references know they may hear from us.</p></div>
                 <div class="cr-step-nav">
                   <button type="button" class="btn-text dark" data-step-prev><span aria-hidden="true">←</span> Previous</button>
-                  <a class="btn" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions data-step-next>View our open positions <span aria-hidden="true">↗</span></a>
+                  <a class="btn" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener noreferrer" data-open-positions data-step-next>View our open positions <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </div>
@@ -457,7 +501,7 @@
         </div>
 
         <div class="cr-tabpanel" role="tabpanel" id="cr-panel-intern" aria-labelledby="cr-tab-intern" hidden>
-        <p class="cr-note"><svg class="cr-ico" aria-hidden="true"><use href="#i-graduation-cap"/></svg><span><b>Applying for an internship?</b> Your process is shorter: one role fit conversation and one technical session.</span></p>
+        <p class="cr-note"><svg class="cr-ico" aria-hidden="true"><use href="#i-graduation-cap"/></svg><span><b>Applying for a student role?</b> Your process is shorter: one role fit conversation and one technical session.</span></p>
         <ol class="cr-steps" data-stepper style="--steps:2">
           <li class="cr-step">
             <button type="button" class="cr-step-btn" id="cr-istep-1" aria-controls="cr-istep-1-panel" aria-expanded="true" aria-current="step">
@@ -469,7 +513,7 @@
                 <p class="cr-step-no">Step 01 of 2</p>
                 <h3>Role fit conversation</h3>
                 <span class="tag">Video call</span>
-                <p>A deeper conversation with your future team lead about the role, your experience and how you like to work.</p>
+                <p>A deeper conversation with your future manager about the role, your experience and how you like to work.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>Bring an example of work you&#x27;re proud of, and your questions about the team.</p></div>
@@ -489,14 +533,14 @@
               <div class="cr-step-main">
                 <p class="cr-step-no">Step 02 of 2</p>
                 <h3>Technical session</h3>
-                <span class="tag">Case or task</span>
-                <p>Depending on the role, a practical task or case discussion that shows how you approach the challenges we work on.</p>
+                <span class="tag">Hands-on task</span>
+                <p>Depending on the role, a practical task or discussion that shows how you approach the challenges you might encounter here.</p>
               </div>
               <div class="cr-step-side">
                 <div class="cr-tip"><p class="cr-tip-label">Good to know</p><p>There&#x27;s rarely one right answer. We want to see how you think.</p></div>
                 <div class="cr-step-nav">
                   <button type="button" class="btn-text dark" data-step-prev><span aria-hidden="true">←</span> Previous</button>
-                  <a class="btn" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions data-step-next>View our open positions <span aria-hidden="true">↗</span></a>
+                  <a class="btn" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener noreferrer" data-open-positions data-step-next>View our open positions <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </div>
@@ -518,42 +562,45 @@
             <span class="pill pill-light">Join us</span>
             <h2 id="cr-final-title">Ready to shape the future of food?</h2>
             <p>If you want real ownership, tangible impact and a team that builds big things together, we'd love to hear from you. All our open roles are in one place.</p>
-            <a class="btn btn-white" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener" data-open-positions>View our open positions <span aria-hidden="true">↗</span></a>
-            <a class="cr-kununu" href="https://www.kununu.com/de/planeta-foods?rfr=affiliate_widget&amp;utm_content=widget_score_logo_small&amp;utm_medium=affiliate&amp;utm_source=widget" target="_blank" rel="noopener" aria-label="Rated 4.6 out of 5 on kununu – read our reviews (opens in a new tab)">
-              <img src="assets/img/careers/kununu-badge.svg" width="195" height="90" alt="" loading="lazy" decoding="async" />
-            </a>
+            <a class="btn btn-white" href="https://planetafoods.jobs.personio.de/?language=en" target="_blank" rel="noopener noreferrer" data-open-positions>View our open positions <span aria-hidden="true">↗</span></a>
+            <p class="cr-dayline">Want to see more of our day-to-day?</p>
+            <div class="cr-social">
+              <a class="cr-kununu" href="https://www.kununu.com/de/planeta-foods?rfr=affiliate_widget&amp;utm_content=widget_score_logo_small&amp;utm_medium=affiliate&amp;utm_source=widget" target="_blank" rel="noopener noreferrer" aria-label="Rated 4.6 out of 5 on kununu – read our reviews (opens in a new tab)">
+                <img src="assets/img/careers/kununu-badge.svg" width="195" height="90" alt="" loading="lazy" decoding="async" />
+              </a>
+              <a class="cr-li" href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener noreferrer" aria-label="Planet A Foods on LinkedIn (opens in a new tab)">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER — same as the homepage: light grey, soft ring mark, purple logo -->
-  <footer class="footer" data-tone="light">
-    <svg class="footer-a" viewBox="0 0 57 60" aria-hidden="true">
-      <defs><linearGradient id="a-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F1EFFA"/><stop offset="1" stop-color="#DCD6F3"/></linearGradient></defs>
-      <g transform="translate(0,-17)" fill="url(#a-grad)">
-        <path d="M21.5177 74.6373C16.503 74.6373 11.7879 72.6873 8.24155 69.1476C4.69514 65.6079 2.74268 60.9 2.74268 55.8937C2.74268 50.8873 4.69594 46.1802 8.24155 42.6397C11.7872 39.0992 16.503 37.15 21.5177 37.15C26.5324 37.15 31.2474 39.1 34.7938 42.6397C38.3402 46.1802 40.2927 50.8873 40.2927 55.8937C40.2927 60.9 38.3395 65.6071 34.7938 69.1476C31.2474 72.6881 26.5324 74.6373 21.5177 74.6373ZM21.5177 45.2444C15.6364 45.2444 10.8515 50.0214 10.8515 55.8929C10.8515 61.7643 15.6364 66.5413 21.5177 66.5413C27.399 66.5413 32.1839 61.7643 32.1839 55.8929C32.1839 50.0214 27.399 45.2444 21.5177 45.2444Z"/>
-        <path d="M43.2 38.4349C46.5357 44.4056 47.2249 51.3937 45.1413 58.1103C43.0632 64.8079 38.4818 70.4405 32.2269 74.0016H44.8368C45.3957 73.3992 45.9355 72.7778 46.4546 72.1357C49.2831 68.6341 51.3867 64.7024 52.7055 60.4492C54.03 56.1794 54.499 51.7992 54.0983 47.4302C53.6818 42.8905 52.3422 38.5683 50.1163 34.5833C47.8903 30.5984 44.9108 27.1897 41.261 24.45C37.7488 21.8143 33.7691 19.9103 29.4341 18.7921C25.1166 17.6778 20.6607 17.3984 16.1898 17.9611C14.2476 18.2056 12.3389 18.6056 10.4723 19.1571L7.16995 29.0405C13.4805 25.619 20.6695 24.696 27.4522 26.446C34.2716 28.2056 39.8642 32.4627 43.2 38.4341V38.4349Z"/>
-      </g>
-    </svg>
-    <div class="wrap footer-in">
-      <div class="footer-links">
-        <div><h2>Platform</h2><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a></div>
-        <div><h2>Company</h2><a href="press.html">Press</a></div>
-        <div><h2>Connect</h2><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
+  <!-- FOOTER — shared site footer (assets/footer.css) -->
+  <footer class="site-footer">
+    <div class="sf-wrap">
+      <div class="sf-top">
+        <div class="sf-brand">
+          <a href="index.html" aria-label="Planet A Foods — home"><img class="sf-logo" src="assets/paf-logo-white.svg" alt="Planet A Foods" width="76" height="127"></a>
+          <p class="sf-claim">Built for resilience.<br>Made for impact.</p>
+        </div>
+        <div class="sf-links">
+          <div><h2>Platform</h2><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a></div>
+          <div><h2>Company</h2><a href="mission.html">What we do</a><a href="press.html">Press</a></div>
+          <div><h2>Connect</h2><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
       </div>
-      <div class="footer-base">
-        <svg class="logo" viewBox="0 0 57 95" role="img" aria-label="Planet A Foods"><use href="#paf-logo"/></svg>
-        <p class="footer-claim">Built for resilience.<br>Made for impact.</p>
-        <p class="footer-legal">© <span data-year>2026</span> Planet A Foods GmbH · Munich · Figures as of October 2026 · <a href="imprint.html">Imprint</a> · <a href="privacy-policy.html">Privacy</a></p>
-      </div>
+      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a><a href="privacy-policy.html#cookies" data-cookie-settings>Cookie Settings</a></nav></div>
     </div>
   </footer>
 
   <!-- careers.js first: it renders the key-fact cards that main.js then reveals + counts up;
        home.js supplies the shared nav tone (white logo over dark sections, purple over light). -->
-  <script src="assets/careers.js?v=12"></script>
+  <script src="assets/consent-config.js?v=2"></script>
+  <script src="assets/consent.js?v=3"></script>
+  <script src="assets/careers.js?v=21"></script>
   <script src="assets/main.js?v=33"></script>
   <script src="assets/home.js?v=1"></script>
 </body>
