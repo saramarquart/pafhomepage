@@ -22,7 +22,7 @@ var KEY_FACTS = [
   /* "View our open positions" buttons */
   $$("[data-open-positions]").forEach(function (a) {
     a.setAttribute("href", OPEN_POSITIONS_URL);
-    if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener"; }
+    if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
   });
 
   /* Key facts */
@@ -39,7 +39,7 @@ var KEY_FACTS = [
   }
 
   /* Photo carousel — continuous marquee over a duplicated track. Pauses on
-     hover, keyboard focus and drag; arrows step one image; swipe on touch. */
+     hover, keyboard focus and drag; arrows step one image; swipe on touch; trackpad / shift+wheel scroll. */
   $$("[data-carousel]").forEach(function (root) {
     var viewport = root.querySelector("[data-carousel-viewport]");
     var track = root.querySelector("[data-carousel-track]");
@@ -121,6 +121,17 @@ var KEY_FACTS = [
     }
     viewport.addEventListener("pointerup", endDrag);
     viewport.addEventListener("pointercancel", endDrag);
+
+    // trackpad swipe / shift + mouse wheel scroll the photos sideways; normal vertical scrolling still moves the page
+    viewport.addEventListener("wheel", function (e) {
+      var dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+      if (!dx) return;
+      e.preventDefault();
+      tween = null;
+      offset += dx * (e.deltaMode === 1 ? 32 : 1);   // lines → pixels for classic mouse wheels
+      render();
+      resumeAt = performance.now() + 1600;
+    }, { passive: false });
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(root);
@@ -257,4 +268,86 @@ var KEY_FACTS = [
     });
 
   }
+})();
+
+/* Values: closed, the "Value" label and name sit centred and larger; hover, keyboard focus or a tap
+   moves them to the top and shows the description. aria-expanded follows what is visible;
+   on touch screens (no hover) a tap anywhere on the box opens and closes it. */
+(function () {
+  "use strict";
+  var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  var cards = [].slice.call(document.querySelectorAll("[data-value]"));
+  // how far to move (and how much to enlarge) the title so it sits in the middle of its box
+  function centre(card) {
+    var t = card.querySelector(".cr-value-title");
+    var pad = 24, w = t.offsetWidth, h = t.offsetHeight;
+    var scale = Math.max(1, Math.min(1.35, (card.clientWidth - 2 * pad) / w));
+    card.style.setProperty("--cx", ((card.clientWidth - w) / 2 - t.offsetLeft) + "px");
+    card.style.setProperty("--cy", ((card.clientHeight - h) / 2 - t.offsetTop) + "px");
+    card.style.setProperty("--cs", scale.toFixed(3));
+    card.classList.add("is-centred");
+  }
+  function centreAll() { cards.forEach(centre); }
+  cards.forEach(function (card) {
+    var btn = card.querySelector(".cr-value-btn");
+    var hover = false, focus = false, pinned = false;
+    function sync() {
+      var open = pinned || hover || focus;
+      card.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    // touch screens: a tap opens, the next tap closes. With a mouse, hover already does the job.
+    card.addEventListener("click", function () { if (!canHover) { pinned = !pinned; sync(); } });
+    if (canHover) {
+      card.addEventListener("mouseenter", function () { hover = true; sync(); });
+      card.addEventListener("mouseleave", function () { hover = false; sync(); });
+    }
+    btn.addEventListener("focus", function () { focus = btn.matches(":focus-visible"); sync(); });
+    btn.addEventListener("blur", function () { focus = false; sync(); });
+  });
+  centreAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(centreAll);
+  if (window.ResizeObserver) { var ro = new ResizeObserver(centreAll); cards.forEach(function (c) { ro.observe(c); }); }
+  else window.addEventListener("resize", centreAll);
+})();
+
+/* Benefits: only icon + title show, centred; hover, keyboard focus or a tap (touch screens) moves them left/up and reveals the text. */
+(function () {
+  "use strict";
+  var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  var perks = [].slice.call(document.querySelectorAll("[data-perk]"));
+  // while closed, the title sits in the middle of the space it shares with its text
+  function place(card) {
+    var p = card.querySelector(".cr-perk-txt p");
+    if (!p.offsetParent) return;   // hidden tab: measured when it is shown
+    var gap = parseFloat(getComputedStyle(p).marginTop) || 4;
+    card.style.setProperty("--perk-dy", ((p.offsetHeight + gap) / 2).toFixed(1) + "px");
+    // and icon + title together in the middle of the card (horizontally)
+    var icon = card.querySelector(".cr-icon"), title = card.querySelector(".cr-perk-btn");
+    var cs = getComputedStyle(card), inner = card.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var group = icon.offsetWidth + (parseFloat(cs.columnGap) || 16) + title.offsetWidth;
+    card.style.setProperty("--perk-dx", Math.max(0, (inner - group) / 2).toFixed(1) + "px");
+    card.classList.add("is-ready");
+  }
+  function placeAll() { perks.forEach(place); }
+  perks.forEach(function (card) {
+    var btn = card.querySelector(".cr-perk-btn");
+    var hover = false, focus = false, pinned = false;
+    function sync() {
+      var open = pinned || hover || focus;
+      card.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    card.addEventListener("click", function () { if (!canHover) { pinned = !pinned; sync(); } });
+    if (canHover) {
+      card.addEventListener("mouseenter", function () { hover = true; sync(); });
+      card.addEventListener("mouseleave", function () { hover = false; sync(); });
+    }
+    btn.addEventListener("focus", function () { focus = btn.matches(":focus-visible"); sync(); });
+    btn.addEventListener("blur", function () { focus = false; sync(); });
+  });
+  placeAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeAll);
+  if (window.ResizeObserver) { var ro = new ResizeObserver(placeAll); perks.forEach(function (c) { ro.observe(c); }); }
+  [].forEach.call(document.querySelectorAll('[role="tab"]'), function (t) { t.addEventListener("click", function () { setTimeout(placeAll, 0); }); });
 })();

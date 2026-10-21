@@ -3,7 +3,7 @@
    Brand purple ground, white logo + claim, three link columns, legal row.
    Self-contained: own class names (.sf-*), own font stack, no page CSS needed.
    ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap");
+/* Rethink Sans comes from assets/fonts.css (self-hosted); no Google Fonts request (GDPR, CSP). */
 
 .site-footer {
   position: relative; overflow: hidden; isolation: isolate;
@@ -11,6 +11,7 @@
   padding: clamp(72px, 10vh, 120px) 0 32px;
   font-family: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 17px; line-height: 1.5; letter-spacing: normal;
+  border-top: 1px solid rgba(255,255,255,.14);   /* separates it from purple bands above */
 }
 .site-footer::before { /* soft "A" mark */
   content: ""; position: absolute; z-index: -1; right: -4vw; bottom: -22%;
@@ -25,7 +26,8 @@
 .sf-logo { display: block; width: 76px; height: auto; }
 .sf-claim { margin: 0; font-size: clamp(2rem, 3.4vw, 3.4rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; color: #fff; }
 .sf-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.sf-links h4 { margin: 0 0 22px; font-family: inherit; font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: #fff; }
+.sf-links h4, .sf-links h2 { line-height: 1.3; font-variation-settings: normal; }
+.sf-links h4, .sf-links h2 { margin: 0 0 22px; font-family: inherit; font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: #fff; }
 .sf-links a { display: block; padding: 6px 0; color: rgba(255,255,255,.88); font-size: 1.05rem; transition: color .25s ease; }
 .sf-links a:hover, .sf-links a:focus-visible { color: #EEB650; }
 .sf-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
@@ -36,3 +38,7 @@
 .sf-legal a:hover { color: #fff; }
 @media (min-width: 900px) { .sf-top { grid-template-columns: 1fr 1.6fr; } .sf-links { margin-top: 12px; } }
 @media (max-width: 560px) { .sf-links { grid-template-columns: 1fr 1fr; } }
+
+/* two link columns (Company, Connect), aligned to the right edge like the legal links below */
+.sf-links { grid-template-columns: repeat(2, auto); justify-content: end; column-gap: clamp(56px, 7vw, 120px); }
+@media (max-width: 899px) { .sf-links { justify-content: start; } }

@@ -28,7 +28,7 @@
 }
 /* Typography per guideline weights: Bold for headlines, Semi Bold for subheads/UI, Regular for body */
 h1, h2 { font-weight: 700; }
-h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
+h3, .btn, .pill, .tag, .nav-pill a, .footer h2 { font-weight: 600; }
 .fact b { font-weight: 700; }
 /* home.css literals that fall outside the palette, re-pointed for this page */
 .cr-hero.hero { background: #111111; }
@@ -375,3 +375,146 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h4 { font-weight: 600; }
 
   }
 }
+
+/* =====================================================================
+   Careers feedback (Oct 2026)
+   ===================================================================== */
+/* no single words left alone: balanced headings and subtitles, pretty body text */
+.careers h1, .careers h2, .careers h3, .careers .cr-strong, .cr-perks .lead, .cr-join .lead { text-wrap: balance; }
+/* longer intro paragraphs: "pretty" keeps the last line from holding a single word (balance stops working beyond ~6 lines) */
+.careers p, .careers .lead { text-wrap: pretty; }
+.cr-perks .lead, .cr-join .lead { text-wrap: balance; }
+
+/* 2 · vision: wider paragraph so its last word never sits alone */
+.cr-vision .lead { max-width: 68ch; }
+
+/* 3 · photo carousel: new photos come as <picture> (WebP + JPG fallback) */
+.cr-slide picture { display: block; width: 100%; height: 100%; }
+
+/* 4 · values: four equal, coloured boxes; title only, description revealed in place (no layout shift) */
+.cr-values .cr-value { position: relative; display: flex; flex-direction: column; min-height: 100%; padding: clamp(24px, 2.2vw, 34px);
+  background: var(--green); color: var(--ink); box-shadow: none; }
+.cr-values .cr-value:nth-child(2) { background: var(--gold); }
+.cr-values .cr-value:nth-child(3) { background: var(--purple); color: #fff; }
+.cr-values .cr-value:nth-child(4) { background: var(--lilac-2); color: var(--purple); }
+.cr-values .cr-value::before { display: none; }
+.cr-value-title { margin: 0 0 16px; font-size: clamp(1.5rem, 1.875vw, 1.875rem); line-height: 1.12; }
+/* the button holds the "Value" label + name; the whole box reacts to a tap (assets/careers.js) */
+.cr-values .cr-value { cursor: pointer; }
+.cr-value-btn { all: unset; display: block; cursor: pointer; font: inherit; color: inherit; }
+.cr-value-label { display: block; margin-bottom: 4px; font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; opacity: .72; }
+.cr-value-name { display: block; text-wrap: balance; }
+.cr-value:has(.cr-value-btn:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; }
+.cr-values .cr-value:nth-child(3):has(.cr-value-btn:focus-visible) { outline-color: var(--purple); }
+/* closed: label + name sit larger in the middle of the box (offsets measured by careers.js);
+   open: they shrink back to the top and the description appears below */
+.cr-value-title { width: fit-content; max-width: 100%; transform-origin: center; text-align: left;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.cr-value.is-centred:not(.is-open) .cr-value-title { text-align: center;
+  transform: translate(var(--cx, 0px), var(--cy, 0px)) scale(var(--cs, 1)); }
+/* the description always takes its space, so revealing it moves nothing */
+.cr-value-body { opacity: 0; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+.cr-value-body p { color: inherit; font-size: .98rem; line-height: 1.55; margin: 0; }
+.cr-value-head { font-weight: 600; margin-bottom: 6px !important; }
+.cr-value.is-open .cr-value-body { opacity: 1; transform: none; }
+/* without JavaScript, hover and keyboard focus still reveal it */
+@media (hover: hover) {
+  .cr-value:hover .cr-value-body, .cr-value:has(.cr-value-btn:focus-visible) .cr-value-body { opacity: 1; transform: none; }
+}
+/* small "+" in the corner says there is more; turns into "−" when open */
+.cr-value-hint { position: absolute; right: clamp(18px, 1.8vw, 26px); bottom: clamp(16px, 1.6vw, 24px); width: 14px; height: 14px; opacity: .7; transition: opacity .25s ease; }
+.cr-value-hint::before, .cr-value-hint::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .25s ease; }
+.cr-value-hint::after { transform: rotate(90deg); }
+.cr-value.is-open .cr-value-hint::after { transform: rotate(0deg); }
+@media (hover: hover) { .cr-value:hover .cr-value-hint::after, .cr-value:has(.cr-value-btn:focus-visible) .cr-value-hint::after { transform: rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) { .cr-value-body, .cr-value-title, .cr-value-hint, .cr-value-hint::before, .cr-value-hint::after { transition: none; } }
+
+/* 5 · what we offer: photo text + purple fade on the right */
+.cr-banner { justify-content: flex-end; }
+.cr-banner::after {
+  background: linear-gradient(270deg, rgba(50,15,153,.88) 0%, rgba(50,15,153,.55) 38%, rgba(50,15,153,0) 72%),
+              linear-gradient(0deg, rgba(17,17,17,.45) 0%, rgba(17,17,17,0) 45%); }
+.cr-perks .lead { text-wrap: balance; }
+@media (max-width: 640px) {
+  .cr-banner::after { background: linear-gradient(0deg, rgba(50,15,153,.9) 0%, rgba(50,15,153,.5) 45%, rgba(50,15,153,0) 75%); }
+}
+@media (min-width: 1000px) {
+  .cr-perks .lead { max-width: none; }        /* subtitle on one line on desktop */
+}
+/* stacked again: centred site intro, 2×2 perks (a little roomier), team photo below */
+.cr-offer .cr-grid-2 { gap: 22px; }
+.cr-offer .cr-perk { gap: 20px; padding: clamp(24px, 2.1vw, 32px); }
+.cr-offer .cr-perk .cr-icon { width: 52px; height: 52px; flex: none; }
+.cr-offer .cr-perk .cr-icon .cr-ico { width: 23px; height: 23px; }
+.cr-offer .cr-perk h3 { font-size: clamp(1.12rem, 1.4vw, 1.35rem); }
+.cr-offer .cr-perk p { font-size: 1rem; line-height: 1.55; }
+.cr-offer .cr-banner { margin-top: 28px; }
+
+
+/* the second sentence of the vision heading balances on its own (it follows a line break) */
+.cr-vision h2 .cr-hl { display: inline-block; text-wrap: balance; }
+
+/* hero: "Learn more" text link beside the main button (as on the homepage and mission page) */
+.cr-hero .hero-actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.cr-vision:focus { outline: none; }
+@media (max-width: 640px) { .cr-hero .hero-actions .btn-text { width: auto; } }
+
+/* What we offer: tighter, calmer overview; no frame behind the photos */
+.cr-perks { padding-top: clamp(56px, 6vw, 88px); }
+.cr-perks .center-head { margin-bottom: 20px; }
+.cr-perks .center-head h2 { margin-top: 14px; }
+.cr-perks .center-head .lead { margin-top: 10px; }
+.cr-perks .cr-seg-wrap { margin-bottom: 26px; }
+.cr-offer .cr-office { margin-bottom: 18px; }
+.cr-offer .cr-office-site h3 { margin: 6px 0 6px; }
+.cr-offer .cr-grid-2 { gap: 14px; }
+.cr-offer .cr-perk { padding: clamp(16px, 1.5vw, 22px) clamp(20px, 2vw, 28px); gap: 16px; }
+.cr-offer .cr-perk .cr-icon { width: 44px; height: 44px; }
+.cr-offer .cr-perk h3 { margin: 0 0 4px; }
+.cr-offer .cr-banner { margin-top: 18px; }
+.cr-tabpanel .cr-banner, #cr-panel-pilsen .cr-banner { box-shadow: none; margin-right: 0; }
+
+/* Join us: a quiet line, then kununu and the LinkedIn logo side by side */
+.cr-dayline { margin: 28px 0 12px !important; color: rgba(255,255,255,.88); font-weight: 500; }
+.cr-social { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.cr-social .cr-kununu { margin-top: 0; }
+.cr-li { display: inline-flex; align-items: center; justify-content: center; width: 69px; height: 69px; border-radius: 10px; background: #fff; color: #0A66C2;
+  box-shadow: 0 12px 28px -16px rgba(17,17,17,.6); transition: transform .3s ease, box-shadow .3s ease; }
+.cr-li svg { width: 34px; height: 34px; }
+.cr-li:hover { transform: translateY(-3px); box-shadow: 0 18px 34px -16px rgba(17,17,17,.7); }
+.cr-li:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .cr-li { transition: none; } }
+
+/* Benefits: like the values, only the title shows; hover, keyboard focus or a tap lifts it and reveals the text.
+   The text keeps its space (no jumping); careers.js measures how far the title sits lower while closed. */
+.cr-offer .cr-office-site h3 { margin-top: 0; }
+.cr-perk[data-perk] { align-items: center; cursor: pointer; }
+.cr-perk-btn { all: unset; cursor: pointer; font: inherit; color: inherit; text-wrap: balance; }
+.cr-perk-btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.cr-perk[data-perk] { position: relative; }
+.cr-perk[data-perk]:has(.cr-perk-btn:focus-visible) { outline: 3px solid var(--purple); outline-offset: 3px; }
+.cr-perk-txt h3 { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.cr-perk-txt p { transition: opacity .25s ease, transform .3s ease; }
+.cr-perk.is-ready:not(.is-open) .cr-perk-txt h3 { transform: translateY(var(--perk-dy, 0px)); }
+.cr-perk.is-ready:not(.is-open) .cr-perk-txt p { opacity: 0; transform: translateY(8px); }
+@media (prefers-reduced-motion: reduce) { .cr-perk-txt h3, .cr-perk-txt p { transition: none; } }
+
+/* location sentence (Munich / Pilsen) on one line on desktop to save height */
+@media (min-width: 1100px) {
+  .cr-offer .cr-office-site > p:not([class]) { max-width: none; white-space: nowrap; }
+}
+
+/* Benefits, final: compact cards. Closed, icon + title sit together in the middle of the card; on hover / focus / tap
+   they slide to the left and lift, and the text appears under the title. A "+" in the corner invites to open. */
+.cr-offer .cr-perk[data-perk] { position: relative; overflow: hidden; align-items: center; min-height: 112px; border-radius: 12px; background: #F6F5FA;
+  padding: 18px 48px 18px clamp(20px, 2vw, 28px); transition: background .3s ease, box-shadow .3s ease; }
+.cr-offer .cr-perk[data-perk]:hover, .cr-offer .cr-perk[data-perk].is-open { background: #EFECF8; box-shadow: 0 18px 40px -30px rgba(50,15,153,.45); }
+.cr-offer .cr-perk[data-perk] .cr-icon, .cr-offer .cr-perk[data-perk] .cr-perk-txt h3 { transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+.cr-perk.is-ready:not(.is-open) .cr-icon { transform: translateX(var(--perk-dx, 0px)); }
+.cr-perk.is-ready:not(.is-open) .cr-perk-txt h3 { transform: translate(var(--perk-dx, 0px), var(--perk-dy, 0px)); }
+.cr-perk-hint { position: absolute; right: 18px; bottom: 16px; width: 14px; height: 14px; color: var(--purple); opacity: .6; transition: opacity .25s ease; }
+.cr-perk-hint::before, .cr-perk-hint::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .25s ease; }
+.cr-perk-hint::after { transform: rotate(90deg); }
+.cr-perk.is-open .cr-perk-hint { opacity: 1; }
+.cr-perk.is-open .cr-perk-hint::after { transform: rotate(0deg); }
+@media (prefers-reduced-motion: reduce) { .cr-offer .cr-perk[data-perk], .cr-offer .cr-perk[data-perk] .cr-icon, .cr-offer .cr-perk[data-perk] .cr-perk-txt h3, .cr-perk-hint, .cr-perk-hint::before, .cr-perk-hint::after { transition: none; } }

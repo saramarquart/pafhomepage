@@ -154,7 +154,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .hero-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: clamp(24px, 4vh, 48px); }
 .hero-foot p { color: #fff; font-weight: 500; font-size: clamp(1rem, 1.15vw, 1.2rem); max-width: 44ch; }
 .hero-actions { display: flex; align-items: center; gap: 32px; flex: 0 0 auto; }
-.reel-index { position: absolute; z-index: 1; right: var(--gutter); top: 50%; transform: translateY(-50%); list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; text-align: right; }
+.reel-index { position: absolute; z-index: 1; right: max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter))); top: 50%; transform: translateY(-50%); list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; text-align: right; }
 .reel-index li { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); position: relative; padding-right: 34px; transition: color .6s ease; }
 .reel-index li.on { color: #fff; }
 /* the name is a link to its page; the stripe is a button that shows that shot */
@@ -241,7 +241,6 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .carousel .track { --fl: 0px; --fr: 0px; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%); }
 .carousel.more-right .track { --fr: 72px; }
-.carousel.more-left .track { --fl: 72px; }
 
 /* ============================ 05 SCALE ============================ */
 .scale-grid { display: grid; gap: 40px; align-items: center; }
@@ -314,11 +313,12 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .company .tile:hover .badge { transform: rotate(45deg); }
 
 /* ============================ 08 FOOTER ============================ */
-.footer { position: relative; overflow: hidden; background: var(--grey); color: var(--ink); padding: clamp(64px, 10vh, 120px) 0 36px; }
-.footer-a { position: absolute; right: -4vw; bottom: -14%; width: min(62vw, 980px); height: auto; pointer-events: none; }
+.footer { position: relative; overflow-x: clip; overflow-y: visible; background: var(--grey); color: var(--ink); padding: clamp(64px, 10vh, 120px) 0 36px; }
+/* the footer "A" is shown whole: its top rises past the footer edge onto the section above */
+.footer-a { position: absolute; z-index: 0; right: -4vw; bottom: 0; height: calc(100% + 56px); width: auto; max-width: 70vw; aspect-ratio: 57 / 60; pointer-events: none; }   /* rises 56px into the gap above, never under the cards */
 .footer-in { position: relative; display: grid; gap: 64px; }
 .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 760px; }
-.footer h4 { margin: 0 0 14px; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); }
+.footer h2 { margin: 0 0 14px; line-height: 1.4; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); }
 .footer-links a { display: block; padding: 4px 0; color: var(--ink-2); transition: color .25s ease; }
 .footer-links a:hover { color: var(--purple); }
 .footer-base { display: grid; gap: 22px; color: var(--purple); }
@@ -334,6 +334,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .group { border: 0; background: none; padding: 9px 18px; border-radius: 999px; font-weight: 500; font-size: .95rem; color: var(--purple); cursor: pointer; transition: background .3s ease, color .3s ease; }
 .group:hover { background: var(--lilac); }
 .group.on { background: var(--purple); color: #fff; }
+span.group { cursor: default; }   /* single group: a label, not a tab */
 .group-note { margin: 16px auto 0; max-width: 52ch; color: var(--ink-2); }
 .slide[hidden] { display: none; }
 /* colour alternatives: a swatch tile in natural colour bands until a photo exists */
@@ -359,8 +360,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .tiles.four { grid-template-columns: repeat(2, 1fr); }
   .tiles.layers { grid-template-columns: repeat(2, 1fr); }
-  .benefit-grid { grid-template-columns: 1fr 1fr; }
-  .benefit.big { grid-column: 1 / -1; }
+  .benefit .b-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }   /* full-width cards: paired points side by side */
+  .benefit .b-list li { padding-bottom: 0; }
   .track { grid-auto-columns: calc((100% - 40px) / 2.3); }   /* next card peeks in */
   .footer-links { grid-template-columns: repeat(3, 1fr); }
 }
@@ -386,10 +387,11 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .scale-media { aspect-ratio: auto; height: min(66vh, 40vw); }
   .impact-grid { grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 6vw, 120px); }
   .tiles.four { grid-template-columns: repeat(4, 1fr); }
-  .benefit-grid { grid-template-columns: 1.35fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
-  .benefit.big { grid-row: 1 / 3; grid-column: 1; }
-  .benefit-grid .benefit:nth-child(4) { grid-column: 2 / 4; }
-  .b-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+  /* two rows, no empty corners: featured card + Sustainability on top, the two paired cards below; paired points side by side */
+  .benefit-grid { grid-template-columns: repeat(6, 1fr); }
+  .benefit.big { grid-column: span 4; }
+  .benefit-grid .benefit:nth-child(2) { grid-column: span 2; }
+  .benefit-grid .benefit:nth-child(3), .benefit-grid .benefit:nth-child(4) { grid-column: span 3; }
   .company .tile { aspect-ratio: auto; height: min(56vh, 30vw); }
   .footer-in { grid-template-columns: 1fr 1.2fr; align-items: end; min-height: min(70vh, 640px); }
   .footer-base { grid-row: 1; align-self: end; }
@@ -403,7 +405,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   .brand .logo { width: 34px; }
   .nav-toggle { display: inline-flex; }
   .nav-pill {
-    position: fixed; top: calc(100% + 6px); left: var(--gutter); right: var(--gutter); margin: 0; background: #fff; box-shadow: 0 18px 40px -20px rgba(14,11,26,.45);
+    position: absolute; top: calc(100% + 6px); left: var(--gutter); right: var(--gutter);   /* absolute to the fixed bar: fixed put it below the screen until the bar blurred */ margin: 0; background: #fff; box-shadow: 0 18px 40px -20px rgba(14,11,26,.45);
     flex-direction: column; align-items: stretch; padding: 10px;
     opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .3s ease, transform .3s ease;
   }
@@ -438,6 +440,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .wrap { position: relative; z-index: 1; }
 .d-numbers { color: var(--lilac); width: min(30vw, 460px); left: -8vw; top: -30%; transform: rotate(-18deg); }
 .d-portfolio { color: var(--lilac-2); opacity: .8; width: min(42vw, 680px); right: -12vw; top: -16%; transform: rotate(14deg); }
+.d-benefit { color: #fff; opacity: .07; width: min(72%, 420px); right: -6%; bottom: -38%; transform: rotate(-12deg); transition: transform 1.2s var(--ease); }
+.benefit.big:hover .d-benefit { transform: rotate(-4deg) scale(1.04); }
 
 /* colour codes: 01 green · 02 sky · 03 white/lilac · 04 green */
 .fact b { position: relative; }
@@ -462,7 +466,6 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .driver { position: relative; }
 .driver::before { content: ""; position: absolute; left: -18px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: var(--green); transform: scaleY(0); transition: transform .5s var(--ease); }
 .driver.on::before { transform: scaleY(1); }
-.why-media { box-shadow: 18px 18px 0 0 var(--green); }
 .pill-light { background: var(--gold); color: var(--purple); }
 
 /* Portfolio on a sky wash */
@@ -486,6 +489,19 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .b-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 10px; vertical-align: middle; }
 .b-list li:nth-child(2) b::before { background: var(--gold); }
 .b-list li:nth-child(3) b::before { background: #fff; }
+/* the paired benefits inside the white cards */
+.benefit:not(.big) .b-list li { border-top-color: rgba(14,11,26,.1); padding: 12px 0; }
+.benefit:not(.big) .b-list li:last-child { padding-bottom: 0; }
+.benefit:not(.big) .b-list b { font-size: 1.05rem; color: var(--ink); }
+.benefit:not(.big) .b-list span { color: var(--ink-2); }
+.benefit.big .b-list li { padding: 20px 0; }
+.benefit.big .b-list b { font-size: 1.3rem; }
+.benefit.big .b-list span { font-size: 1.05rem; max-width: 36ch; }
+.benefit-grid .benefit:nth-child(2) { display: flex; flex-direction: column; align-items: flex-start; }
+.b-list li { align-content: start; }
+.b-more { margin-top: auto; padding-top: 18px; display: inline-flex; gap: 8px; font-weight: 500; color: var(--purple); }
+.b-more span { transition: transform .35s var(--ease); }
+.b-more:hover span { transform: translateY(-3px); }
 
 /* Scale: image sits on an offset gold block */
 .scale { overflow: hidden; }
@@ -501,4 +517,83 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 /* Footer "A" in sky → light green */
 .footer-a { opacity: .9; }
 
-@media (max-width: 999px) { .why-media { box-shadow: 10px 10px 0 0 var(--green); } .driver::before { left: -10px; } .scale-media::before { transform: translate(-10px, 10px); } }
+@media (max-width: 999px) { .driver::before { left: -10px; } .scale-media::before { transform: translate(-10px, 10px); } }
+
+/* skip link: first tab stop on every page, visible only when focused */
+.skip-link { position: fixed; left: 16px; top: -64px; z-index: 300; padding: 10px 16px; border-radius: 6px; background: var(--purple); color: #fff; font-weight: 500; transition: top .2s ease; }
+.skip-link:focus { top: 16px; }
+
+/* ============================ TECHNOLOGY: four layers as a calm, technical stack ============================
+   one colour family only (brand purple + its light tints); line pictograms on a faint grid instead of photos */
+.tech-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); gap: clamp(32px, 5vw, 96px); align-items: start; }
+.tech-intro { position: sticky; top: 120px; }
+.tech-intro h2 { margin-top: 24px; max-width: 12ch; text-wrap: balance; }
+.tech-intro .lead { max-width: 36ch; text-wrap: pretty; }
+.tech-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.tech-step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(130px, 176px); align-items: center; gap: 24px;
+  padding: clamp(16px, 1.6vw, 24px) clamp(22px, 2.6vw, 40px); border-radius: 12px; background: #F6F5FA;
+  box-shadow: inset 0 0 0 1px rgba(50,15,153,.05); transition: background .35s ease, box-shadow .35s ease; }
+.tech-step:nth-child(even) { background: #EFECF8; }
+.tech-step:hover { background: #ECE8F8; box-shadow: inset 0 0 0 1px rgba(50,15,153,.14); }
+.tech-step-k { display: flex; gap: 10px; margin: 0 0 6px; font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.tech-step-k span { color: var(--purple); font-variant-numeric: tabular-nums; }
+.tech-step h3 { margin: 0 0 6px; color: var(--purple); font-size: clamp(1.3rem, 1.9vw, 1.8rem); font-weight: 600; letter-spacing: -.015em; }
+.tech-step-copy > p:last-child { margin: 0; max-width: 32ch; color: var(--ink-2); font-size: clamp(.98rem, 1.1vw, 1.08rem); line-height: 1.5; text-wrap: pretty; }
+/* pictograms */
+.tech-picto { width: 100%; height: auto; display: block; overflow: visible; }
+.tech-picto .tp-grid path { fill: none; stroke: rgba(50,15,153,.06); stroke-width: 1; }
+.tech-picto .tp-thin, .tech-picto .tp-route { fill: none; stroke: #B7ACE3; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.tech-picto .tp-route { stroke-dasharray: 4 5; stroke: #9C8DD9; }
+.tech-picto .tp-line { fill: none; stroke: #6A55C4; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.tech-picto .tp-fill-w, .tech-picto .tp-fill-1, .tech-picto .tp-fill-2 { stroke: #6A55C4; stroke-width: 1.4; stroke-linejoin: round; }
+.tech-picto .tp-fill-w { fill: #fff; }
+.tech-picto .tp-fill-1 { fill: #D9D2F4; }
+.tech-picto .tp-fill-2 { fill: #A796E2; }
+.tech-picto .tp-dot { fill: #fff; stroke: #9C8DD9; stroke-width: 1.2; }
+.tech-picto .tp-dot.tp-on { fill: var(--purple); stroke: none; }
+.tech-step:hover .tp-route { animation: tpFlow 1.6s linear infinite; }
+@keyframes tpFlow { to { stroke-dashoffset: -18; } }
+/* facts below in the same single colour */
+.tech .tech-foot .fact::before { background: var(--purple); }
+@media (max-width: 999px) {
+  .tech-grid { grid-template-columns: 1fr; }
+  .tech-intro { position: static; }
+  .tech-intro h2 { max-width: none; }
+}
+@media (max-width: 560px) {
+  .tech-step { grid-template-columns: 1fr; gap: 14px; }
+  .tech-picto { max-width: 220px; order: -1; }
+}
+@media (prefers-reduced-motion: reduce) { .tech-step, .tech-step:hover .tp-route { transition: none; animation: none; } }
+
+
+/* hero: "fragile commodities." stays together on one line where it fits */
+@media (min-width: 700px) {
+  .hero h1 { max-width: 17ch; }
+  .hero h1 .nw { white-space: nowrap; }
+}
+
+/* Benefits: no numbers (all equally important); clear card edges on a slightly deeper ground; one calm colour */
+.benefits { background: #F1EFF7; }
+.benefit-grid .benefit:not(.big) { background: #fff; box-shadow: 0 0 0 1px rgba(50,15,153,.10), 0 10px 28px -22px rgba(50,15,153,.35); }
+.benefit-grid .benefit:not(.big):hover { background: #fff; box-shadow: 0 0 0 1px rgba(50,15,153,.22), 0 24px 46px -28px rgba(50,15,153,.45); }
+.benefit h3 { margin-top: 0; }
+.benefit.big h3 { margin-top: 0; }
+.benefit:not(.big) .b-list b::before, .benefit:not(.big) .b-list li:nth-child(2) b::before { background: var(--purple); }
+.benefit.big .b-list b::before, .benefit.big .b-list li:nth-child(2) b::before { background: #fff; }
+.benefit.big .b-list li { border-top-color: rgba(255,255,255,.22); }
+.sec-head h2 { text-wrap: balance; }
+
+/* small colour hints, one per card: a short bar at the top, matching bullet dots, and a tinted outline on hover */
+.benefit-grid .benefit:nth-child(2) { --acc: var(--green); --acc-rgb: 130,199,174; }
+.benefit-grid .benefit:nth-child(3) { --acc: var(--gold); --acc-rgb: 238,182,80; }
+.benefit-grid .benefit:nth-child(4) { --acc: var(--purple); --acc-rgb: 50,15,153; }
+.benefit-grid .benefit:not(.big)::before { content: ""; position: absolute; left: 30px; top: 0; width: 44px; height: 4px; border-radius: 0 0 4px 4px; background: var(--acc);
+  transition: width .5s var(--ease); }
+.benefit-grid .benefit:not(.big):hover::before { width: 88px; }
+.benefit-grid .benefit:not(.big) .b-list b::before, .benefit-grid .benefit:not(.big) .b-list li:nth-child(2) b::before { background: var(--acc); }
+.benefit-grid .benefit:not(.big):hover { box-shadow: 0 0 0 1px rgba(var(--acc-rgb), .55), 0 24px 46px -28px rgba(50,15,153,.4); }
+.benefit-grid .benefit:not(.big) .b-more { color: var(--purple); }
+.benefit.big .b-list li:nth-child(1) b::before { background: var(--green); }
+.benefit.big .b-list li:nth-child(2) b::before { background: var(--gold); }
+@media (prefers-reduced-motion: reduce) { .benefit-grid .benefit:not(.big)::before { transition: none; } }

@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- Content Security Policy: keep identical to staticwebapp.config.json, see docs/security.md -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Planet A Foods — A backbone for the world's most fragile commodities</title>
   <meta name="description" content="Planet A Foods is a food ingredient innovation platform: one technology platform and a growing portfolio of ingredient alternatives for the crops climate change puts at risk." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/home.css?v=30" />
-  <link rel="stylesheet" href="assets/footer.css?v=1" />
+  <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/home.css?v=48" />
+  <link rel="stylesheet" href="assets/footer.css?v=4" />
   <link rel="preload" as="image" href="assets/img/hero-booster-powder.jpg?v=3" />
   <meta property="og:title" content="Planet A Foods — A backbone for the world's most fragile commodities" />
   <meta property="og:description" content="One technology platform. A growing portfolio of ingredient alternatives for the crops climate change puts at risk." />
@@ -54,8 +56,10 @@
   { "@context": "https://schema.org", "@type": "WebSite", "name": "Planet A Foods", "url": "https://test.planet-a-foods.com/" }
 ]
   </script>
+  <link rel="stylesheet" href="assets/consent.css?v=3">
 </head>
 <body class="home">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Brand mark (PLANET A FOODS), defined once and reused in nav + footer. Colour follows currentColor. -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -87,78 +91,55 @@
     <a class="brand" href="index.html" aria-label="Planet A Foods — home"><svg class="logo" viewBox="0 0 57 95"><use href="#paf-logo"/></svg></a>
     <nav class="nav-pill" aria-label="Primary">
       <div class="nav-item">
-        <a href="solutions.html" aria-haspopup="true">Solutions</a>
-        <div class="nav-sub nav-sub-wide">
-          <div><span class="nav-sub-head">By application</span>
-            <a href="solution-baked-confectionery.html">Baked confectionery</a>
-            <a href="solution-panned-products.html">Panned products</a>
-            <a href="solution-beverages.html">Beverages</a>
-            <a href="solution-functional-food.html">Functional food</a>
-            <a href="solution-coatings.html">Coatings</a>
-            <a href="solution-spreads.html">Spreads</a>
-          </div>
-          <div><span class="nav-sub-head">By ingredient</span>
+        <a href="index.html#portfolio" aria-haspopup="true">Solutions</a>
+        <div class="nav-sub">
+          <div>
             <a href="product-cocoa-booster.html">Cocoa booster</a>
-            <a href="product-coffee.html">Coffee alternative</a>
-            <a href="product-hazelnut.html">Nuts alternative</a>
-            <a href="product-choviva.html">Cocoa-free chocolate alternative</a>
-            <a href="product-butter.html">Speciality fats</a>
+            <a href="https://choviva.com/" target="_blank" rel="noopener noreferrer">Chocolate solutions</a>
           </div>
         </div>
       </div>
-      <a href="technology.html">Technology</a>
       <div class="nav-item">
-        <a href="mission.html" aria-haspopup="true">Company</a>
+        <a href="mission.html" aria-haspopup="true">Mission</a>
         <div class="nav-sub">
-          <div><span class="nav-sub-head">About</span>
-            <a href="mission.html">Purpose</a>
-            <a href="journey.html">Journey</a>
-            <a href="company-global-footprint.html">Global footprint</a>
-            <a href="sustainability-impact.html">Sustainability &amp; impact</a>
-            <a href="partners.html">Partners</a>
-          </div>
-          <div><span class="nav-sub-head">People</span>
-            <a href="people.html">Leadership team</a>
-            <a href="company-people-culture.html">People &amp; culture</a>
+          <div>
+            <a href="mission.html#our-mission">Mission</a>
+            <a href="mission.html#journey">Journey</a>
+            <a href="mission.html#story">Story</a>
           </div>
         </div>
       </div>
       <a href="careers.html">Careers</a>
-      <a href="investors.html">Investors</a>
+      <a href="press.html">Press</a>
       <a href="contact.html">Contact</a>
-      <button class="lang" type="button" title="Language: English (German version coming soon)" aria-label="Language">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3Z"/></svg>
-      </button>
     </nav>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
   </header>
 
-  <main>
+  <main id="main">
 
-    <!-- 01 · HERO — ingredient film: cocoa booster, coffee, nuts, cocoa-free chocolate, sugar reduction, speciality fats.
+    <!-- 01 · HERO — ingredient film: cocoa booster, coffee, nuts, chocolate, speciality fats.
          Each name links to its page; the stripe next to it shows that shot. -->
     <section class="hero" id="top">
       <div class="hero-stage" aria-hidden="true">
         <div class="reel still on" data-label="Cocoa booster"><img src="assets/img/hero-booster-powder.jpg?v=3" alt=""></div>
-        <div class="reel" data-label="Coffee alternative" data-in="drop"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
-        <div class="reel still" data-label="Nuts alternative"><img src="assets/img/hero-nuts-hq.jpg" alt=""></div>
-        <div class="reel" data-label="Cocoa-free chocolate alternative"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-cocoa.jpg"><source src="assets/img/hero-cocoa.mp4" type="video/mp4"></video></div>
-        <div class="reel" data-label="Sugar reduction"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-sugar-fall.jpg"><source src="assets/img/hero-sugar-fall.mp4" type="video/mp4"></video></div>
+        <div class="reel" data-label="Coffee solutions" data-in="drop"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
+        <div class="reel still" data-label="Nuts solutions"><img src="assets/img/hero-nuts-hq.jpg" alt=""></div>
+        <div class="reel" data-label="Chocolate solutions"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-cocoa.jpg"><source src="assets/img/hero-cocoa.mp4" type="video/mp4"></video></div>
         <div class="reel still" data-label="Speciality fats"><img src="assets/img/hero-fats.jpg" alt="" style="object-position:50% 55%"></div>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
 
       <ol class="reel-index" aria-label="Our ingredient solutions">
         <li class="on"><a href="product-cocoa-booster.html">Cocoa booster</a><button class="reel-go" type="button" aria-label="Show Cocoa booster"></button></li>
-        <li><a href="product-coffee.html">Coffee alternative</a><button class="reel-go" type="button" aria-label="Show Coffee alternative"></button></li>
-        <li><a href="product-hazelnut.html">Nuts alternative</a><button class="reel-go" type="button" aria-label="Show Nuts alternative"></button></li>
-        <li><a href="product-choviva.html">Cocoa-free chocolate alternative</a><button class="reel-go" type="button" aria-label="Show Cocoa-free chocolate alternative"></button></li>
-        <li><a href="solutions.html">Sugar reduction</a><button class="reel-go" type="button" aria-label="Show Sugar reduction"></button></li> <!-- TODO: link to a sugar-reduction page once it exists -->
-        <li><a href="product-butter.html">Speciality fats</a><button class="reel-go" type="button" aria-label="Show Speciality fats"></button></li>
+        <li><a href="contact.html?interest=product">Coffee solutions</a><button class="reel-go" type="button" aria-label="Show Coffee solutions"></button></li>
+        <li><a href="contact.html?interest=product">Nuts solutions</a><button class="reel-go" type="button" aria-label="Show Nuts solutions"></button></li>
+        <li><a href="https://choviva.com/" target="_blank" rel="noopener noreferrer">Chocolate solutions</a><button class="reel-go" type="button" aria-label="Show Chocolate solutions"></button></li>
+        <li><a href="contact.html?interest=product">Speciality fats</a><button class="reel-go" type="button" aria-label="Show Speciality fats"></button></li>
       </ol>
 
       <div class="wrap hero-copy">
-        <h1 class="reveal">A backbone for the world’s most fragile commodities.</h1>
+        <h1 class="reveal">A backbone for the world’s most <span class="nw">fragile commodities.</span></h1>
         <div class="hero-foot reveal">
           <p>We supply a growing portfolio of food ingredient alternatives for climate-threatened and highly regulated raw materials. One technology platform.</p>
           <div class="hero-actions">
@@ -213,106 +194,7 @@
       </div>
     </section>
 
-    <!-- 03 · TECHNOLOGY — four layers: raw materials, process, supply chain, applications -->
-    <section class="screen tech" id="technology">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <div>
-            <h2>One platform – built in layers.</h2>
-            <p class="lead">Our fermentation platform turns everyday crops into ingredients that perform like the originals – at industrial scale.</p>
-          </div>
-          <span class="pill">Technology</span>
-        </div>
-        <div class="tiles layers">
-          <article class="tile reveal">
-            <div class="tile-media drift"><img src="assets/img/tech-seeds.jpg" alt="" loading="lazy"></div>
-            <span class="badge">01</span>
-            <h3>Resilient raw materials</h3>
-            <p>Local, climate-stable.</p>
-          </article>
-          <article class="tile reveal">
-            <div class="tile-media drift"><img src="assets/img/tech-process-reactor.jpg" alt="" loading="lazy"></div>
-            <span class="badge">02</span>
-            <h3>Process technology</h3>
-            <p>Proprietary fermentation platform.</p>
-          </article>
-          <article class="tile reveal">
-            <div class="tile-media drift"><img src="assets/img/tech-logistics.jpg?v=2" alt="" loading="lazy"></div>
-            <span class="badge">03</span>
-            <h3>Independent supply chain</h3>
-            <p>Sourced regionally, decoupled from tropical harvests.</p>
-          </article>
-          <article class="tile reveal">
-            <div class="tile-media drift"><img src="assets/img/tech-applications-muffins-c.jpg" alt="" loading="lazy"></div>
-            <span class="badge">04</span>
-            <h3>Plug &amp; play applications</h3>
-            <p>Confectionery, bakery, drinks …</p>
-          </article>
-        </div>
-        <div class="tech-foot reveal">
-          <div class="fact"><b data-count="10" data-suffix="+">10+</b><span>Patent families</span></div>
-          <div class="fact"><b data-count="30" data-suffix="+">30+</b><span>Scientists &amp; engineers</span></div>
-          <div class="fact"><b>Lab → Line</b><span>Proven scale-up</span></div>
-          <a class="btn btn-block" href="technology.html">Explore our technology <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · PLATFORM PORTFOLIO — two groups: climate-threatened vs highly regulated materials -->
-    <section class="screen portfolio" id="portfolio">
-      <svg class="deco-a d-portfolio" aria-hidden="true"><use href="#paf-a"/></svg>
-      <div class="wrap">
-        <div class="center-head reveal">
-          <span class="pill">Portfolio</span>
-          <h2>One platform.<br>A growing portfolio.</h2>
-          <div class="groups" role="tablist" aria-label="Portfolio groups">
-            <button class="group on" role="tab" aria-selected="true" data-group="climate">Climate-threatened materials <span class="group-count" data-count-for="climate"></span></button>
-            <button class="group" role="tab" aria-selected="false" data-group="regulated">Highly regulated materials <span class="group-count" data-count-for="regulated"></span></button>
-          </div>
-          <p class="group-note" data-note="climate">Crops under pressure from climate change, deforestation rules and volatile supply.</p>
-          <p class="group-note" data-note="regulated" hidden>Ingredients facing tighter rules – from sugar levies to bans on synthetic colours.</p>
-        </div>
-        <div class="carousel reveal">
-          <div class="track" tabindex="0" aria-label="Ingredient portfolio">
-            <a class="slide" data-group="climate" href="product-cocoa-booster.html">
-              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-booster-powder.jpg?v=2" alt="Close-up of Cocoa booster powder" loading="lazy"></div>
-                <h3>Cocoa booster</h3><p>Extends cocoa – same taste and colour, less exposure.</p></div>
-            </a>
-            <a class="slide" data-group="climate" href="product-coffee.html">
-              <div class="tile"><div class="tile-media"><video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-portfolio-coffee-pour.jpg?v=2" aria-label="Brewed coffee alternative swirled and poured between lab glasses"><source src="assets/img/portfolio-coffee-pour.mp4?v=2" type="video/mp4"></video></div>
-                <h3>Coffee</h3><p>Coffee taste and function from regional crops.</p></div>
-            </a>
-            <a class="slide" data-group="climate" href="product-hazelnut.html">
-              <div class="tile"><div class="tile-media drift"><img src="assets/img/portfolio-nuts.jpg" alt="Close-up of a smooth nut alternative spread" loading="lazy"></div>
-                <h3>Nuts</h3><p>Nutty depth for spreads, fillings and pralines.</p></div>
-            </a>
-            <a class="slide" data-group="climate" href="product-choviva.html">
-              <div class="tile"><div class="tile-media"><video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-portfolio-choviva.jpg" aria-label="ChoViva, cocoa-free chocolate alternative, flowing from a tempering machine"><source src="assets/img/portfolio-choviva.mp4" type="video/mp4"></video></div>
-                <h3>Chocolate alternative</h3><p>ChoViva – cocoa-free, also available in fluid form.</p></div>
-            </a>
-            <a class="slide" data-group="climate" href="product-butter.html">
-              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-fats.jpg" alt="Broken pieces of speciality fat" loading="lazy"></div>
-                <h3>Speciality fats</h3><p>Cocoa-butter functionality without tropical supply.</p></div>
-            </a>
-            <a class="slide" data-group="regulated" href="solutions.html" hidden>
-              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-sugar.jpg" alt="White sugar with a wooden spoon on dark slate" loading="lazy"></div>
-                <h3>Sugar reduction</h3><p>Less sugar, same sweet experience.</p></div>
-            </a>
-            <a class="slide" data-group="regulated" href="solutions.html" hidden>
-              <div class="tile"><div class="tile-media"><video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-portfolio-colouring.jpg" aria-label="Orange and green colour unfurling in water"><source src="assets/img/portfolio-colouring.webm?v=2" type="video/webm"><source src="assets/img/portfolio-colouring.mp4?v=2" type="video/mp4"></video></div>
-                <h3>Colour alternatives</h3><p>Natural colour, without synthetic dyes.</p></div>
-            </a>
-          </div>
-          <div class="arrows">
-            <button class="arrow-btn" data-dir="-1" aria-label="Previous">←</button>
-            <span class="carousel-count" aria-live="polite"></span>
-            <button class="arrow-btn" data-dir="1" aria-label="Next">→</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · SUSTAINABILITY (CO₂ story) — full-bleed forest that slowly moves like footage; light green accents -->
+    <!-- 03 · SUSTAINABILITY (CO₂ story) — full-bleed forest that slowly moves like footage; light green accents -->
     <section class="screen impact" id="impact">
       <div class="impact-film" aria-hidden="true"><img src="assets/img/forest-aerial.jpg" alt=""></div>
       <div class="impact-shade" aria-hidden="true"></div>
@@ -344,7 +226,6 @@
           <div class="impact-card"><span class="ic-no">Scope 3</span><h3>Reporting-ready data</h3><p>Supports our customers’ Scope&nbsp;3 climate targets.</p></div>
           <div class="impact-card"><span class="ic-no">EUDR</span><h3>Less deforestation risk</h3><p>Regional raw materials instead of deforestation-risk commodities – less due diligence in your supply chain.</p></div>
           <div class="impact-actions">
-            <a class="btn btn-mint" href="sustainability-impact.html">Our impact <span aria-hidden="true">↗</span></a>
             <a class="btn-text" href="product-choviva.html">ChoViva CO₂ footprint <span aria-hidden="true">↗</span></a>
           </div>
         </div>
@@ -364,6 +245,141 @@
       </div>
     </section>
 
+    <!-- 04 · TECHNOLOGY — four layers: raw materials, process, supply chain, applications -->
+    <section class="screen tech" id="technology">
+      <div class="wrap">
+        <!-- the four layers as a calm, technical stack: line pictograms instead of photos -->
+        <div class="tech-grid">
+          <div class="tech-intro reveal">
+            <span class="pill">Technology</span>
+            <h2>One platform – built in layers.</h2>
+            <p class="lead">Our fermentation platform turns everyday crops into ingredients that perform like the originals – at industrial scale.</p>
+          </div>
+          <ol class="tech-steps">
+          <li class="tech-step reveal">
+            <div class="tech-step-copy">
+              <p class="tech-step-k"><span>01</span>Input</p>
+              <h3>Resilient raw materials</h3>
+              <p>Local, climate-stable.</p>
+            </div>
+<svg class="tech-picto" viewBox="0 0 240 180" aria-hidden="true"><g class="tp-grid"><path d="M10 30h220M10 70h220M10 110h220M10 150h220M40 10v160M100 10v160M160 10v160M220 10v160"/></g>
+  <path class="tp-thin" d="M22 40v-14h14M218 40v-14h-14M22 140v14h14M218 140v14h-14"/>
+  <ellipse class="tp-thin" cx="120" cy="92" rx="96" ry="34" transform="rotate(-14 120 92)"/>
+  <circle class="tp-dot" cx="27" cy="112" r="3"/><circle class="tp-dot tp-on" cx="200" cy="58" r="3.5"/>
+  <circle class="tp-fill-w" cx="120" cy="90" r="50"/>
+  <path class="tp-fill-2" d="M110 108c-14-10-16-30-4-44 10 2 20 14 18 30-2 8-6 12-14 14z"/>
+  <path class="tp-line" d="M110 108c2-14 4-26 2-40"/>
+  <path class="tp-fill-1" d="M128 112c10-8 18-24 10-38-10 0-20 12-20 26 0 6 4 10 10 12z"/>
+  <path class="tp-line" d="M128 112c2-12 6-24 8-34"/>
+  <path class="tp-fill-1" d="M98 116c-8-2-14-10-12-20 8-2 16 4 18 12z"/>
+</svg>
+          </li>
+          <li class="tech-step reveal">
+            <div class="tech-step-copy">
+              <p class="tech-step-k"><span>02</span>Transformation</p>
+              <h3>Process technology</h3>
+              <p>Proprietary fermentation platform.</p>
+            </div>
+<svg class="tech-picto" viewBox="0 0 240 180" aria-hidden="true"><g class="tp-grid"><path d="M10 30h220M10 70h220M10 110h220M10 150h220M40 10v160M100 10v160M160 10v160M220 10v160"/></g>
+  <path class="tp-thin" d="M20 68h36v-20h30M150 108h30v40h40"/>
+  <circle class="tp-dot" cx="20" cy="68" r="3"/><circle class="tp-dot" cx="220" cy="148" r="3"/>
+  <rect class="tp-fill-2" x="111" y="22" width="18" height="10" rx="2"/><path class="tp-line" d="M120 32v20"/>
+  <path class="tp-fill-w" d="M84 54c0-6 16-10 36-10s36 4 36 10v86c0 6-16 10-36 10s-36-4-36-10z"/>
+  <path class="tp-fill-1" d="M84 98c0 6 16 10 36 10s36-4 36-10v42c0 6-16 10-36 10s-36-4-36-10z"/>
+  <ellipse class="tp-line" cx="120" cy="54" rx="36" ry="10" fill="none"/>
+  <path class="tp-line" d="M120 54v70M104 80l32 10M104 90l32-10M106 112l28 8M106 120l28-8"/>
+  <circle class="tp-dot tp-on" cx="104" cy="128" r="2.5"/><circle class="tp-dot tp-on" cx="132" cy="134" r="2"/>
+  <path class="tp-line" d="M98 150v12M142 150v12"/>
+  <rect class="tp-fill-w" x="166" y="42" width="46" height="34" rx="4"/>
+  <path class="tp-line" d="M174 62h8l4-8 6 14 4-6h8"/><circle class="tp-dot tp-on" cx="204" cy="49" r="2"/>
+</svg>
+          </li>
+          <li class="tech-step reveal">
+            <div class="tech-step-copy">
+              <p class="tech-step-k"><span>03</span>Supply</p>
+              <h3>Independent supply chain</h3>
+              <p>Sourced regionally, decoupled from tropical harvests.</p>
+            </div>
+<svg class="tech-picto" viewBox="0 0 240 180" aria-hidden="true"><g class="tp-grid"><path d="M10 30h220M10 70h220M10 110h220M10 150h220M40 10v160M100 10v160M160 10v160M220 10v160"/></g>
+  <path class="tp-route" d="M34 132c30 0 26-50 64-50s34 40 70 40 22-62 40-72"/>
+  <circle class="tp-fill-w tp-node" cx="34" cy="132" r="9"/><circle class="tp-dot tp-on" cx="34" cy="132" r="3"/>
+  <circle class="tp-fill-w tp-node" cx="98" cy="82" r="9"/><circle class="tp-dot tp-on" cx="98" cy="82" r="3"/>
+  <circle class="tp-fill-w tp-node" cx="168" cy="122" r="9"/><circle class="tp-dot tp-on" cx="168" cy="122" r="3"/>
+  <path class="tp-fill-1" d="M208 74c-10-12-16-20-16-28a16 16 0 0 1 32 0c0 8-6 16-16 28z"/><circle class="tp-fill-w" cx="208" cy="46" r="6"/>
+  <path class="tp-fill-2" d="M60 52l20-10 20 10-20 10z"/><path class="tp-fill-w" d="M60 52v22l20 10V62z"/><path class="tp-fill-1" d="M100 52v22l-20 10V62z"/>
+  <path class="tp-thin" d="M120 150h60M188 150h10M28 30h22"/>
+</svg>
+          </li>
+          <li class="tech-step reveal">
+            <div class="tech-step-copy">
+              <p class="tech-step-k"><span>04</span>Output</p>
+              <h3>Plug &amp; play applications</h3>
+              <p>Confectionery, bakery, drinks …</p>
+            </div>
+<svg class="tech-picto" viewBox="0 0 240 180" aria-hidden="true"><g class="tp-grid"><path d="M10 30h220M10 70h220M10 110h220M10 150h220M40 10v160M100 10v160M160 10v160M220 10v160"/></g>
+  <path class="tp-thin" d="M30 148l60 22 120-40M30 148l48-24M210 130l-40-20"/>
+  <circle class="tp-dot" cx="30" cy="148" r="3"/><circle class="tp-dot" cx="210" cy="130" r="3"/>
+  <path class="tp-fill-2" d="M30 92l40-18 36 14-40 18z"/><path class="tp-fill-w" d="M30 92v16l36 14v-16z"/><path class="tp-fill-1" d="M106 88v16l-40 18v-16z"/>
+  <path class="tp-line" d="M48 84l36 14M52 106v-4"/>
+  <path class="tp-fill-1" d="M112 92h44l-6 40h-32z"/><path class="tp-line" d="M124 92l2 40M144 92l-2 40"/>
+  <path class="tp-fill-w" d="M110 92c-6-14 6-26 18-22 4-10 20-10 24 0 12-2 18 12 10 22z"/>
+  <path class="tp-fill-w" d="M172 70h34l-5 58c0 4-6 6-12 6s-12-2-12-6z"/><path class="tp-fill-1" d="M176 96h26l-3 32c0 3-5 5-10 5s-10-2-10-5z"/>
+  <ellipse class="tp-line" cx="189" cy="70" rx="17" ry="4" fill="none"/><path class="tp-line" d="M194 70l8-30h10"/>
+</svg>
+          </li>
+          </ol>
+        </div>
+        <div class="tech-foot reveal">
+          <div class="fact"><b data-count="10" data-suffix="+">10+</b><span>Patent families</span></div>
+          <div class="fact"><b data-count="30" data-suffix="+">30+</b><span>Scientists &amp; engineers</span></div>
+          <div class="fact"><b>Lab → Line</b><span>Proven scale-up</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · PLATFORM PORTFOLIO — climate-threatened materials -->
+    <section class="screen portfolio" id="portfolio">
+      <div class="wrap">
+        <div class="center-head reveal">
+          <span class="pill">Portfolio</span>
+          <h2>One platform.<br>A growing portfolio.</h2>
+          <div class="groups">
+            <span class="group on">Climate-threatened materials <span class="group-count" data-count-for="climate"></span></span>
+          </div>
+          <p class="group-note" data-note="climate">Crops under pressure from climate change, deforestation rules and volatile supply.</p>
+        </div>
+        <div class="carousel reveal">
+          <div class="track" tabindex="0" aria-label="Ingredient portfolio">
+            <a class="slide" data-group="climate" href="product-cocoa-booster.html">
+              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-booster-powder.jpg?v=2" alt="Close-up of Cocoa booster powder" loading="lazy"></div>
+                <h3>Cocoa booster</h3><p>Extends cocoa – same taste and colour, less exposure.</p></div>
+            </a>
+            <a class="slide" data-group="climate" href="contact.html?interest=product">
+              <div class="tile"><div class="tile-media"><video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-portfolio-coffee-pour.jpg?v=2" aria-label="Brewed coffee alternative swirled and poured between lab glasses"><source src="assets/img/portfolio-coffee-pour.mp4?v=2" type="video/mp4"></video></div>
+                <h3>Coffee solutions</h3><p>Coffee taste and function from regional crops.</p></div>
+            </a>
+            <a class="slide" data-group="climate" href="contact.html?interest=product">
+              <div class="tile"><div class="tile-media drift"><img src="assets/img/portfolio-nuts.jpg" alt="Close-up of a smooth nut alternative spread" loading="lazy"></div>
+                <h3>Nuts solutions</h3><p>Nutty depth for spreads, fillings and pralines.</p></div>
+            </a>
+            <a class="slide" data-group="climate" href="https://choviva.com/" target="_blank" rel="noopener noreferrer">
+              <div class="tile"><div class="tile-media"><video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-portfolio-choviva.jpg" aria-label="ChoViva, cocoa-free chocolate alternative, flowing from a tempering machine"><source src="assets/img/portfolio-choviva.mp4" type="video/mp4"></video></div>
+                <h3>Chocolate solutions</h3><p>ChoViva – cocoa-free, also available in fluid form.</p></div>
+            </a>
+            <a class="slide" data-group="climate" href="contact.html?interest=product">
+              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-fats.jpg" alt="Broken pieces of speciality fat" loading="lazy"></div>
+                <h3>Speciality fats</h3><p>Cocoa-butter functionality without tropical supply.</p></div>
+            </a>
+          </div>
+          <div class="arrows">
+            <button class="arrow-btn" data-dir="-1" aria-label="Previous">←</button>
+            <span class="carousel-count" aria-live="polite"></span>
+            <button class="arrow-btn" data-dir="1" aria-label="Next">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 06 · BENEFITS — what every ingredient on the platform has to deliver -->
     <section class="screen benefits" id="benefits">
       <div class="wrap">
@@ -376,31 +392,33 @@
         </div>
         <div class="benefit-grid">
           <article class="benefit big reveal">
-            <span class="b-no">01</span>
-            <h3>Functionality</h3>
+            <svg class="deco-a d-benefit" aria-hidden="true"><use href="#paf-a"/></svg>
+            <h3>Taste &amp; nutrition</h3>
             <ul class="b-list">
               <li><b>Taste</b><span>Matches the original in flavour and mouthfeel.</span></li>
-              <li><b>Sustainability</b><span>A measurably lower carbon footprint than the conventional ingredient.</span></li>
               <!-- TODO: health wording needs regulatory clearance (EU health claims) -->
               <li><b>Nutrition</b><span>Better nutritional profiles, e.g. reduced sugar.</span></li>
-              <li><b>Value</b><span>More functionality for the cost than comparable solutions.</span></li>
             </ul>
           </article>
           <article class="benefit reveal">
-            <span class="b-no">02</span>
-            <h3>Seamless integration</h3>
-            <p>Natural ingredients that fit your existing recipes and lines – no retooling, no risk to your brand.</p>
+            <h3>Sustainability</h3>
+            <p>A measurably lower carbon footprint than the conventional ingredient.</p>
+            <a class="b-more" href="#impact">See the numbers <span aria-hidden="true">↑</span></a>
           </article>
           <article class="benefit reveal">
-            <span class="b-no">03</span>
-            <h3>Stable prices</h3>
-            <!-- TODO: confirm pricing commitment is cleared for publication -->
-            <p>Prices that hold for years, independent of volume. No hedging, predictable P&amp;Ls.</p>
+            <h3>Seamless integration &amp; scalability</h3>
+            <ul class="b-list">
+              <li><b>Seamless integration</b><span>Natural ingredients that fit your existing recipes and lines – no retooling, no risk to your brand.</span></li>
+              <li><b>Scalability</b><span>Proven in industrial settings – from supply chain to process.</span></li>
+            </ul>
           </article>
           <article class="benefit reveal">
-            <span class="b-no">04</span>
-            <h3>Scalability</h3>
-            <p>Proven in industrial settings – from supply chain to process.</p>
+            <h3>Stable prices &amp; value</h3>
+            <ul class="b-list">
+              <!-- TODO: confirm pricing commitment is cleared for publication -->
+              <li><b>Stable prices</b><span>Prices that hold for years, independent of volume. No hedging, predictable P&amp;Ls.</span></li>
+              <li><b>Value</b><span>More functionality for the cost than comparable solutions.</span></li>
+            </ul>
           </article>
         </div>
       </div>
@@ -417,16 +435,17 @@
           <p class="sf-claim">Built for resilience.<br>Made for impact.</p>
         </div>
         <div class="sf-links">
-          <div><h4>Platform</h4><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a><a href="sustainability-impact.html">Impact</a></div>
-          <div><h4>Company</h4><a href="mission.html">What we do</a><a href="people.html">Leadership</a><a href="company-global-footprint.html">Global footprint</a><a href="press.html">Press</a></div>
-          <div><h4>Connect</h4><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
+          <div><h2>Company</h2><a href="mission.html">What we do</a><a href="press.html">Press</a></div>
+          <div><h2>Connect</h2><a href="careers.html">Careers</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
-      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a></nav></div>
+      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a><a href="privacy-policy.html#cookies" data-cookie-settings>Cookie Settings</a></nav></div>
     </div>
   </footer>
 
-  <script src="assets/main.js?v=32"></script>
-  <script src="assets/home.js?v=9"></script>
+  <script src="assets/consent-config.js?v=2"></script>
+  <script src="assets/consent.js?v=3"></script>
+  <script src="assets/main.js?v=33"></script>
+  <script src="assets/home.js?v=16"></script>
 </body>
 </html>
