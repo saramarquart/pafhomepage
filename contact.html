@@ -12,7 +12,7 @@
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/home.css?v=43" />
-  <link rel="stylesheet" href="assets/contact.css?v=8" />
+  <link rel="stylesheet" href="assets/contact.css?v=9" />
   <link rel="stylesheet" href="assets/footer.css?v=2" />
   <meta property="og:title" content="Contact – Planet A Foods" />
   <meta property="og:description" content="Request a sample or start a co-development conversation with Planet A Foods." />
@@ -184,10 +184,21 @@
       <svg class="deco-a ct-deco" aria-hidden="true"><use href="#paf-a"/></svg>
       <div class="wrap ct-grid">
         <div class="ct-intro reveal">
-          <span class="pill">Partner with us</span>
-          <h1 id="ct-title">Let's secure your best‑loved ingredients.</h1>
-          <p class="ct-lead">For our <b>coffee, nuts and speciality fats solutions</b>, send us your enquiry here. Tell us the application and the challenge — reliability, cost, supply — and we'll come back with the right product, samples and the technical detail to match.</p>
-          <p class="ct-lead">The same form works for co-development and anything else.</p>
+          <span class="pill">Contact</span>
+          <h1 id="ct-title">Enquiries</h1>
+          <p class="ct-lead">Please contact the team responsible for your enquiry, or use the form – it is routed to the right team automatically.</p>
+          <div class="ct-topics">
+            <div class="ct-topic">
+              <h2>Cocoa booster</h2>
+              <p>For specifications, samples and commercial enquiries about Cocoa booster, please contact our sales team.</p>
+              <a class="ct-mail" href="mailto:sales@forplaneta.com">sales@forplaneta.com</a>
+            </div>
+            <div class="ct-topic">
+              <h2>Coffee, nuts and speciality fats</h2>
+              <p>For enquiries about our coffee, nuts and speciality fats solutions, as well as co-development and general questions, please write to us.</p>
+              <a class="ct-mail" href="mailto:hello@forplaneta.com">hello@forplaneta.com</a>
+            </div>
+          </div>
         </div>
         <form class="ct-form reveal" id="contactForm">
           <h2 class="ct-form-title">Send us your enquiry</h2>
@@ -199,9 +210,10 @@
             <div class="ct-field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
             <div class="ct-field"><label for="interest">I'm interested in</label>
               <select id="interest" name="interest">
+                <option value="booster">Cocoa booster</option>
+                <option value="product">Coffee, nuts or speciality fats</option>
                 <option value="sample">Requesting a sample</option>
                 <option value="codev">Co-development / integrated solution</option>
-                <option value="product">Coffee, nuts or speciality fats</option>
                 <option value="volumes">Volumes &amp; supply for manufacturing</option>
                 <option value="other">Something else</option>
               </select>
@@ -209,7 +221,7 @@
           </div>
           <div class="ct-field"><label for="message">How can we help?</label><textarea id="message" name="message" rows="6" placeholder="Your application, the challenge you're solving (supply, cost, reliability…), and any volumes or timelines."></textarea></div>
           <button class="btn ct-submit" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
-          <p class="ct-note"><span class="ct-note-line">This opens your email client with the details pre-filled.</span> <span class="ct-note-line ct-note-direct">Prefer to write directly? <a href="mailto:hello@forplaneta.com">hello@forplaneta.com</a></span></p>
+          <p class="ct-note"><span class="ct-note-line">This opens your email client with the details pre-filled.</span></p>
           <div class="ct-ok" id="formOk" role="status">Thanks — your email client should be opening. We'll be in touch shortly.</div>
         </form>
       </div>
@@ -237,6 +249,6 @@
   <script src="assets/consent.js?v=3"></script>
   <script src="assets/main.js?v=33"></script>
   <script src="assets/home.js?v=16"></script>
-  <script src="assets/contact.js?v=2"></script>
+  <script src="assets/contact.js?v=3"></script>
 </body>
 </html>
