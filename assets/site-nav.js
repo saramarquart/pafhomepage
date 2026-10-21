@@ -8,7 +8,7 @@
   if (!nav) return;
 
   var page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  var section = /^(solution|product|portfolio)/.test(page) ? "solutions.html"
+  var section = /^(solution|portfolio)/.test(page) ? "index.html#portfolio"
     : /^(mission|journey|people|partners|company-|sustainability)/.test(page) ? "mission.html"
     : /^press/.test(page) ? "press.html" : page;
   var top = nav.querySelector('.nav-pill > a[href="' + section + '"], .nav-pill > .nav-item > a[href="' + section + '"]');
