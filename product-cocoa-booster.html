@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'">
   <!-- PR embargo until 26.10.2026 00:00 — keep noindex until then -->
   <meta name="robots" content="noindex, nofollow" />
   <title>Cocoa Booster – single-ingredient cocoa powder replacer | Planet A Foods</title>
   <meta name="description" content="Replace part of your cocoa powder with one EU-sourced ingredient. Matched taste and colour, no process changes, more fibre." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/home.css?v=30" />
-  <link rel="stylesheet" href="assets/subpage.css?v=17" />
-  <link rel="stylesheet" href="assets/footer.css?v=1" />
+  <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="preload" as="image" href="assets/img/hero-booster-powder.jpg?v=3" />
+  <link rel="stylesheet" href="assets/home.css?v=48" />
+  <link rel="stylesheet" href="assets/subpage.css?v=18" />
+  <link rel="stylesheet" href="assets/footer.css?v=4" />
   <link rel="canonical" href="https://test.planet-a-foods.com/product-cocoa-booster.html" />
   <meta property="og:title" content="Cocoa Booster – single-ingredient cocoa powder replacer | Planet A Foods" />
   <meta property="og:description" content="Replace part of your cocoa powder with one EU-sourced ingredient. Matched taste and colour, no process changes, more fibre." />
@@ -20,10 +22,11 @@
   <meta property="og:image" content="https://test.planet-a-foods.com/assets/img/cb-texture.jpg" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Solutions","item":"https://test.planet-a-foods.com/solutions.html"},
-    {"@type":"ListItem","position":2,"name":"Ingredients","item":"https://test.planet-a-foods.com/solutions.html#ingredients"},
+    {"@type":"ListItem","position":1,"name":"Solutions","item":"https://test.planet-a-foods.com/#portfolio"},
+    {"@type":"ListItem","position":2,"name":"Ingredients","item":"https://test.planet-a-foods.com/#portfolio"},
     {"@type":"ListItem","position":3,"name":"Cocoa Booster","item":"https://test.planet-a-foods.com/product-cocoa-booster.html"}]}
   </script>
+  <link rel="stylesheet" href="assets/consent.css?v=3">
 </head>
 <body class="subpage">
 
@@ -56,26 +59,24 @@
     <a class="brand" href="index.html" aria-label="Planet A Foods — home"><svg class="logo" viewBox="0 0 57 95"><use href="#paf-logo"/></svg></a>
     <nav class="nav-pill" aria-label="Primary">
       <div class="nav-item">
-        <a href="solutions.html" aria-haspopup="true" class="is-active">Solutions</a>
-        <div class="nav-sub nav-sub-wide">
-          <div><span class="nav-sub-head">By application</span>
-            <a href="solution-baked-confectionery.html">Baked confectionery</a>
-            <a href="solution-panned-products.html">Panned products</a>
-            <a href="solution-beverages.html">Beverages</a>
-            <a href="solution-functional-food.html">Functional food</a>
-            <a href="solution-coatings.html">Coatings</a>
-            <a href="solution-spreads.html">Spreads</a>
-          </div>
-          <div><span class="nav-sub-head">By ingredient</span>
+        <a href="index.html#portfolio" aria-haspopup="true" class="is-active">Solutions</a>
+        <div class="nav-sub">
+          <div>
             <a href="product-cocoa-booster.html" aria-current="page">Cocoa booster</a>
-            <a href="product-coffee.html">Coffee solutions</a>
-            <a href="product-hazelnut.html">Nuts solutions</a>
-            <a href="product-choviva.html">Chocolate solutions</a>
-            <a href="product-butter.html">Speciality fats</a>
+            <a href="https://choviva.com/" target="_blank" rel="noopener noreferrer">Chocolate solutions</a>
           </div>
         </div>
       </div>
-      <a href="mission.html">Mission</a>
+      <div class="nav-item">
+        <a href="mission.html" aria-haspopup="true">Mission</a>
+        <div class="nav-sub">
+          <div>
+            <a href="mission.html#our-mission">Mission</a>
+            <a href="mission.html#journey">Journey</a>
+            <a href="mission.html#story">Story</a>
+          </div>
+        </div>
+      </div>
       <a href="careers.html">Careers</a>
       <a href="press.html">Press</a>
       <a href="contact.html">Contact</a>
@@ -86,26 +87,26 @@
   <main class="sub">
 
     <!-- 01 · HERO — full-bleed Cocoa Booster powder texture, slow drift -->
-    <section class="cb-hero cb-hero-light" id="top">
-      <!-- Hero visual: one pile of Cocoa Booster powder (cut-out), blended onto the light ground -->
-      <!-- Hero visual: Cocoa Booster powder handled in the lab; slow camera move + light dust -->
-      <figure class="cb-shot cb-shot-full">
-        <div class="cb-shot-frame"><img src="assets/img/cb-hero-lab.jpg" alt="Gloved hands sampling Cocoa Booster powder from a large pile in the lab"></div>
+    <!-- 01 · HERO — same powder image and motion as the landing page; Tell me more scrolls on -->
+    <section class="cb-hero cb-hero-dark" id="top">
+      <figure class="cb-shot cb-shot-full" aria-hidden="true">
+        <div class="cb-shot-frame"><img src="assets/img/hero-booster-powder.jpg?v=3" alt=""></div>
       </figure>
-      <div class="cb-full-shade" aria-hidden="true"></div>
+      <div class="cb-dark-shade" aria-hidden="true"></div>
       <div class="wrap">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="solutions.html">Solutions</a><span>›</span><a href="solutions.html#ingredients">Ingredients</a><span>›</span><b aria-current="page">Cocoa Booster</b></nav>
-        <!-- calm hero: one kicker, headline, one sentence, one action -->
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html#portfolio">Solutions</a><span>›</span><a href="index.html#portfolio">Ingredients</a><span>›</span><b aria-current="page">Cocoa Booster</b></nav>
         <div class="cb-hero-copy reveal">
           <p class="kicker">Cocoa Booster</p>
           <h1 class="cb-h1"><span>Cocoa taste and colour.</span> <span>Less cocoa dependency.</span></h1>
-          <p class="lead">A single-ingredient replacer for cocoa powder – plug-and-play in your existing recipes.</p>
-          <div class="cb-actions">
-            <a class="btn btn-gold" href="#contact">Request a sample <span aria-hidden="true">↗</span></a>
+          <div class="cb-hero-foot">
+            <p class="lead">A single-ingredient replacer for cocoa powder – plug-and-play in your existing recipes.</p>
+            <div class="hero-actions">
+              <a class="btn-text" href="#benefits">Tell me more <span aria-hidden="true">↓</span></a>
+              <a class="btn btn-gold" href="#contact">Request a sample <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
         </div>
       </div>
-      <a class="scroll-cue" href="#benefits" aria-label="Scroll to the benefits"><span>Scroll</span><i aria-hidden="true"></i></a>
     </section>
 
     <!-- 05 · BENEFITS — 5 pillars -->
@@ -245,18 +246,19 @@
       </div>
     </section>
 
-    <!-- 08 · QUICK START -->
+    <!-- 08 · QUICK START — a rising path: three growing circles climb a curve, the sensory check floats beside them -->
     <section class="cb-sec cb-quick">
       <div class="wrap">
         <div class="cb-head reveal">
           <span class="pill">Quick start</span>
           <h2>From first trial to scale in three steps.</h2>
         </div>
-        <div class="steps">
-          <article class="step reveal"><b>01</b><h3>Replace</h3><p>Swap 50% of the cocoa powder in your existing recipe.</p></article>
-          <article class="step reveal"><b>02</b><h3>Keep</h3><p>Leave process parameters unchanged at first.</p></article>
-          <article class="step reveal"><b>03</b><h3>Scale</h3><p>Benchmark against your 100% cocoa reference, then increase the Booster share step by step.</p></article>
-          <article class="step check reveal"><h3>Sensory check</h3>
+        <div class="qs">
+          <svg class="qs-path" viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true"><path d="M60 360 C 260 360, 300 250, 470 240 S 760 120, 940 70"/></svg>
+          <article class="step qs-1"><b>01</b><h3>Replace</h3><p>Swap 50% of the cocoa powder in your existing recipe.</p></article>
+          <article class="step qs-2"><b>02</b><h3>Keep</h3><p>Leave process parameters unchanged at first.</p></article>
+          <article class="step qs-3"><b>03</b><h3>Scale</h3><p>Benchmark against your 100% cocoa reference, then increase the Booster share step by step.</p></article>
+          <article class="step check qs-check"><h3>Sensory check</h3>
             <ul><li><b>Colour</b> matches across the tested range</li><li><b>Taste</b> cocoa character stays pronounced at 50–70%</li><li><b>Texture</b> no process reformulation needed</li></ul>
             <a class="link-arrow" href="#contact" data-prefill-req="Please send me the Cocoa Booster Application Guide.">Request the application guide <span aria-hidden="true">→</span></a></article>
         </div>
@@ -302,7 +304,6 @@
 
   </main>
 
-  <!-- FOOTER — shared site footer (assets/footer.css) -->
   <footer class="site-footer">
     <div class="sf-wrap">
       <div class="sf-top">
@@ -311,17 +312,18 @@
           <p class="sf-claim">Built for resilience.<br>Made for impact.</p>
         </div>
         <div class="sf-links">
-          <div><h4>Platform</h4><a href="solutions.html">Solutions</a><a href="technology.html">Technology</a><a href="sustainability-impact.html">Impact</a></div>
-          <div><h4>Company</h4><a href="mission.html">What we do</a><a href="people.html">Leadership</a><a href="company-global-footprint.html">Global footprint</a><a href="press.html">Press</a></div>
-          <div><h4>Connect</h4><a href="careers.html">Careers</a><a href="investors.html">Investors</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
+          <div><h2>Company</h2><a href="mission.html">What we do</a><a href="press.html">Press</a></div>
+          <div><h2>Connect</h2><a href="careers.html">Careers</a><a href="contact.html">Contact</a><a href="https://www.linkedin.com/company/planetafoods/" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
-      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a></nav></div>
+      <div class="sf-legal"><p>© <span data-year>2026</span> Planet A Foods GmbH</p><nav aria-label="Legal"><a href="imprint.html">Imprint</a><a href="privacy-policy.html">Privacy</a><a href="privacy-policy.html#cookies" data-cookie-settings>Cookie Settings</a></nav></div>
     </div>
   </footer>
 
-  <script src="assets/main.js?v=32"></script>
-  <script src="assets/home.js?v=3"></script>
-  <script src="assets/subpage.js?v=4"></script>
+  <script src="assets/consent-config.js?v=2"></script>
+  <script src="assets/consent.js?v=3"></script>
+  <script src="assets/main.js?v=33"></script>
+  <script src="assets/home.js?v=16"></script>
+  <script src="assets/subpage.js?v=5"></script>
 </body>
 </html>
