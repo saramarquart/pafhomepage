@@ -38,3 +38,7 @@
 .sf-legal a:hover { color: #fff; }
 @media (min-width: 900px) { .sf-top { grid-template-columns: 1fr 1.6fr; } .sf-links { margin-top: 12px; } }
 @media (max-width: 560px) { .sf-links { grid-template-columns: 1fr 1fr; } }
+
+/* two link columns (Company, Connect), aligned to the right edge like the legal links below */
+.sf-links { grid-template-columns: repeat(2, auto); justify-content: end; column-gap: clamp(56px, 7vw, 120px); }
+@media (max-width: 899px) { .sf-links { justify-content: start; } }
