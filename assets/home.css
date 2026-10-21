@@ -566,3 +566,9 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 }
 @media (prefers-reduced-motion: reduce) { .tech-step, .tech-step:hover .tp-route { transition: none; animation: none; } }
 
+
+/* hero: "fragile commodities." stays together on one line where it fits */
+@media (min-width: 700px) {
+  .hero h1 { max-width: 17ch; }
+  .hero h1 .nw { white-space: nowrap; }
+}
