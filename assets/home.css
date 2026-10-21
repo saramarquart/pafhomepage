@@ -572,3 +572,28 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
   .hero h1 { max-width: 17ch; }
   .hero h1 .nw { white-space: nowrap; }
 }
+
+/* Benefits: no numbers (all equally important); clear card edges on a slightly deeper ground; one calm colour */
+.benefits { background: #F1EFF7; }
+.benefit-grid .benefit:not(.big) { background: #fff; box-shadow: 0 0 0 1px rgba(50,15,153,.10), 0 10px 28px -22px rgba(50,15,153,.35); }
+.benefit-grid .benefit:not(.big):hover { background: #fff; box-shadow: 0 0 0 1px rgba(50,15,153,.22), 0 24px 46px -28px rgba(50,15,153,.45); }
+.benefit h3 { margin-top: 0; }
+.benefit.big h3 { margin-top: 0; }
+.benefit:not(.big) .b-list b::before, .benefit:not(.big) .b-list li:nth-child(2) b::before { background: var(--purple); }
+.benefit.big .b-list b::before, .benefit.big .b-list li:nth-child(2) b::before { background: #fff; }
+.benefit.big .b-list li { border-top-color: rgba(255,255,255,.22); }
+.sec-head h2 { text-wrap: balance; }
+
+/* small colour hints, one per card: a short bar at the top, matching bullet dots, and a tinted outline on hover */
+.benefit-grid .benefit:nth-child(2) { --acc: var(--green); --acc-rgb: 130,199,174; }
+.benefit-grid .benefit:nth-child(3) { --acc: var(--gold); --acc-rgb: 238,182,80; }
+.benefit-grid .benefit:nth-child(4) { --acc: var(--purple); --acc-rgb: 50,15,153; }
+.benefit-grid .benefit:not(.big)::before { content: ""; position: absolute; left: 30px; top: 0; width: 44px; height: 4px; border-radius: 0 0 4px 4px; background: var(--acc);
+  transition: width .5s var(--ease); }
+.benefit-grid .benefit:not(.big):hover::before { width: 88px; }
+.benefit-grid .benefit:not(.big) .b-list b::before, .benefit-grid .benefit:not(.big) .b-list li:nth-child(2) b::before { background: var(--acc); }
+.benefit-grid .benefit:not(.big):hover { box-shadow: 0 0 0 1px rgba(var(--acc-rgb), .55), 0 24px 46px -28px rgba(50,15,153,.4); }
+.benefit-grid .benefit:not(.big) .b-more { color: var(--purple); }
+.benefit.big .b-list li:nth-child(1) b::before { background: var(--green); }
+.benefit.big .b-list li:nth-child(2) b::before { background: var(--gold); }
+@media (prefers-reduced-motion: reduce) { .benefit-grid .benefit:not(.big)::before { transition: none; } }
