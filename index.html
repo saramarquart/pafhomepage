@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="assets/home.css?v=48" />
+  <link rel="stylesheet" href="assets/home.css?v=49" />
   <link rel="stylesheet" href="assets/footer.css?v=2" />
   <link rel="preload" as="image" href="assets/img/hero-booster-powder.jpg?v=3" />
   <meta property="og:title" content="Planet A Foods — A backbone for the world's most fragile commodities" />
@@ -402,35 +402,52 @@
           </div>
           <span class="pill">Benefits</span>
         </div>
-        <div class="benefit-grid">
-          <article class="benefit big reveal">
-            <svg class="deco-a d-benefit" aria-hidden="true"><use href="#paf-a"/></svg>
-            <h3>Taste &amp; nutrition</h3>
-            <ul class="b-list">
-              <li><b>Taste</b><span>Matches the original in flavour and mouthfeel.</span></li>
-              <!-- TODO: health wording needs regulatory clearance (EU health claims) -->
-              <li><b>Nutrition</b><span>Better nutritional profiles, e.g. reduced sugar.</span></li>
-            </ul>
+        <!-- six cards in a bento layout: Taste leads, Sustainability runs tall, Integration runs wide -->
+        <div class="bx-grid">
+          <article class="bx bx-taste reveal">
+            <div class="bx-photo" aria-hidden="true"></div>
+            <span class="bx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+            <h3>Taste</h3>
+            <p>Matches the original in flavour and mouthfeel – the experience your consumers already know.</p>
           </article>
-          <article class="benefit reveal">
+          <article class="bx bx-nutri reveal">
+            <span class="bx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
+            <h3>Nutrition</h3>
+            <!-- TODO: health wording needs regulatory clearance (EU health claims) -->
+            <p>Better nutritional profiles, e.g. reduced sugar.</p>
+          </article>
+          <article class="bx bx-sust reveal">
+            <span class="bx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
             <h3>Sustainability</h3>
             <p>A measurably lower carbon footprint than the conventional ingredient.</p>
+            <span class="bx-co2" aria-hidden="true">CO<sub>2</sub></span>
             <a class="b-more" href="#impact">See the numbers <span aria-hidden="true">↑</span></a>
           </article>
-          <article class="benefit reveal">
-            <h3>Seamless integration &amp; scalability</h3>
-            <ul class="b-list">
-              <li><b>Seamless integration</b><span>Natural ingredients that fit your existing recipes and lines – no retooling, no risk to your brand.</span></li>
-              <li><b>Scalability</b><span>Proven in industrial settings – from supply chain to process.</span></li>
+          <article class="bx bx-price reveal">
+            <span class="bx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <h3>Stable prices, better value</h3>
+            <!-- TODO: confirm pricing commitment is cleared for publication -->
+            <p>Prices that hold for years, independent of volume – no hedging, predictable P&amp;Ls. And better value: more functionality for the cost than comparable solutions.</p>
+            <figure class="bx-chart" aria-hidden="true">
+              <svg viewBox="0 0 240 70" preserveAspectRatio="none"><path class="bx-line-market" d="M0 40 L20 22 L38 48 L58 18 L78 44 L98 12 L118 50 L140 26 L160 56 L182 16 L204 42 L222 24 L240 46"/><path class="bx-line-ours" d="M0 36 H240"/></svg>
+              <figcaption><span class="k-market">Commodity market</span><span class="k-ours">Planet A Foods</span></figcaption>
+            </figure>
+          </article>
+          <article class="bx bx-integ reveal">
+            <div class="bx-body">
+              <span class="bx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span>
+              <h3>Seamless integration</h3>
+              <p>Natural ingredients that fit your existing recipes and lines – no retooling, no risk to your brand.</p>
+            </div>
+            <ul class="bx-chips" aria-label="What stays the same">
+              <li>Existing recipes</li><li>Existing lines</li><li>No retooling</li>
             </ul>
           </article>
-          <article class="benefit reveal">
-            <h3>Stable prices &amp; value</h3>
-            <ul class="b-list">
-              <!-- TODO: confirm pricing commitment is cleared for publication -->
-              <li><b>Stable prices</b><span>Prices that hold for years, independent of volume. No hedging, predictable P&amp;Ls.</span></li>
-              <li><b>Value</b><span>More functionality for the cost than comparable solutions.</span></li>
-            </ul>
+          <article class="bx bx-scale reveal">
+            <span class="bx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+            <h3>Scalability</h3>
+            <p>Proven in industrial settings – from supply chain to process.</p>
+            <div class="bx-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </article>
         </div>
       </div>

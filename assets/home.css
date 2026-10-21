@@ -597,3 +597,86 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .benefit.big .b-list li:nth-child(1) b::before { background: var(--green); }
 .benefit.big .b-list li:nth-child(2) b::before { background: var(--gold); }
 @media (prefers-reduced-motion: reduce) { .benefit-grid .benefit:not(.big)::before { transition: none; } }
+
+/* ============ BENEFITS: six cards in a bento layout ============ */
+/* phones: one column · tablet: two columns · desktop: Taste leads (tall), Sustainability runs tall, Integration runs wide */
+.bx-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+.bx { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 28px 28px 30px;
+  border-radius: var(--r); background: #fff; color: var(--ink); box-shadow: 0 0 0 1px rgba(50,15,153,.10), 0 10px 28px -22px rgba(50,15,153,.35);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease), opacity 1s var(--ease); }
+.bx.reveal.in:hover { transform: translateY(-6px); box-shadow: 0 0 0 1px rgba(50,15,153,.22), 0 26px 50px -30px rgba(50,15,153,.45); }
+.bx > :not(.deco-a) { position: relative; z-index: 1; }
+.bx h3 { margin: 6px 0 0; font-size: clamp(1.25rem, 1.5vw, 1.5rem); line-height: 1.2; }
+.bx p { margin: 0; color: var(--ink-2); line-height: 1.55; max-width: 40ch; text-wrap: pretty; }
+.bx-ico { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: var(--lilac); color: var(--purple);
+  transition: transform .5s var(--ease); }
+.bx-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.bx:hover .bx-ico { transform: rotate(-8deg) scale(1.06); }
+
+/* Taste: the lead card in brand purple */
+.bx-taste { background: var(--purple); color: #fff; justify-content: flex-end; min-height: 420px; }
+/* a real chocolate photo in the upper part, fading into the purple behind the text */
+.bx-photo { position: absolute !important; z-index: 0 !important; inset: 0 0 auto 0; height: 72%; background: url("img/prod-choviva.jpg") center 40% / cover no-repeat;
+  transition: transform 1.2s var(--ease); }
+.bx-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(50,15,153,.05) 0%, rgba(50,15,153,.35) 45%, var(--purple) 100%); }
+.bx-taste:hover .bx-photo { transform: scale(1.04); }
+.bx-taste .bx-ico { background: rgba(255,255,255,.14); color: #fff; }
+.bx-taste h3 { font-size: clamp(1.9rem, 3vw, 3rem); }
+.bx-taste p { color: rgba(255,255,255,.82); font-size: clamp(1.02rem, 1.2vw, 1.15rem); }
+/* Nutrition: green hint */
+.bx-nutri .bx-ico { background: var(--green-lt); color: #2F6B57; }
+/* Sustainability: brand light green, a large CO2 mark behind */
+.bx-sust { background: var(--green); }
+.bx-sust .bx-ico { background: rgba(255,255,255,.45); color: var(--ink); }
+.bx-sust p { color: rgba(14,11,26,.78); }
+.bx-co2 { position: absolute !important; z-index: 0 !important; right: -6px; bottom: 34px; font-weight: 800; font-size: clamp(4.5rem, 7vw, 7rem); line-height: 1; letter-spacing: -.04em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(14,11,26,.16); pointer-events: none; }
+.bx-co2 sub { font-size: .45em; vertical-align: baseline; }
+@supports not (-webkit-text-stroke: 1px #000) { .bx-co2 { color: rgba(14,11,26,.08); } }
+.bx-sust .b-more { color: var(--ink); }
+/* Stable prices: gold tint, a calm line against a volatile market */
+.bx-price { background: var(--gold-lt); box-shadow: 0 0 0 1px rgba(238,182,80,.45), 0 10px 28px -22px rgba(120,80,10,.35); }
+.bx-price .bx-ico { background: var(--gold); color: var(--ink); }
+.bx-chart { margin: auto 0 0; padding-top: 14px; width: 100%; }
+.bx-chart svg { display: block; width: 100%; height: 64px; overflow: visible; clip-path: inset(-10px 100% -10px 0); transition: clip-path 1.8s var(--ease) .3s; }
+.bx-price.in .bx-chart svg { clip-path: inset(-10px 0 -10px 0); }
+.bx-chart path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.bx-line-market { stroke: rgba(14,11,26,.28); stroke-width: 1.5; }
+.bx-line-ours { stroke: var(--purple); stroke-width: 3; }
+.bx-chart figcaption { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; font-size: .85rem; color: var(--ink-2); }
+.bx-chart figcaption span::before { content: ""; display: inline-block; width: 16px; height: 0; margin-right: 8px; vertical-align: middle; border-top: 1.5px solid rgba(14,11,26,.35); }
+.bx-chart .k-ours::before { border-top: 3px solid var(--purple); }
+/* Integration: wide card, the three things that stay the same as chips */
+.bx-chips { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.bx-chips li { padding: 7px 14px; border-radius: 999px; background: var(--lilac); color: var(--purple); font-weight: 500; font-size: .92rem; }
+.bx-body { display: grid; gap: 10px; }
+/* Scalability: dark card, bars that grow in */
+.bx-scale { background: var(--ink); color: #fff; box-shadow: none; }
+.bx-scale .bx-ico { background: rgba(255,255,255,.1); color: var(--gold); }
+.bx-scale p { color: rgba(255,255,255,.75); }
+.bx-bars { margin-top: auto; padding-top: 18px; display: flex; align-items: flex-end; gap: 8px; height: 76px; }
+.bx-bars i { display: block; width: 18px; height: 0; border-radius: 4px 4px 0 0; background: var(--gold); transition: height 1s var(--ease); }
+.bx-bars i:nth-child(1) { opacity: .4; } .bx-bars i:nth-child(2) { opacity: .6; } .bx-bars i:nth-child(3) { opacity: .8; }
+.bx-scale.in .bx-bars i:nth-child(1) { height: 22%; transition-delay: .3s; }
+.bx-scale.in .bx-bars i:nth-child(2) { height: 45%; transition-delay: .45s; }
+.bx-scale.in .bx-bars i:nth-child(3) { height: 70%; transition-delay: .6s; }
+.bx-scale.in .bx-bars i:nth-child(4) { height: 100%; transition-delay: .75s; }
+
+@media (min-width: 700px) {
+  .bx-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "taste nutri" "taste sust" "price price" "integ scale"; }
+  .bx-taste { grid-area: taste; } .bx-nutri { grid-area: nutri; } .bx-sust { grid-area: sust; }
+  .bx-price { grid-area: price; } .bx-integ { grid-area: integ; } .bx-scale { grid-area: scale; }
+}
+@media (min-width: 1000px) {
+  .bx-grid { grid-template-columns: 1.25fr 1fr 1fr; grid-template-areas: "taste nutri sust" "taste price sust" "integ integ scale"; gap: 20px; }
+  .bx-integ { display: grid; grid-template-columns: 1fr auto; align-items: center; align-content: center; column-gap: 32px; }
+  .bx-integ .bx-chips { margin: 0; justify-content: flex-end; max-width: 300px; }
+  .bx-taste { min-height: 0; }
+  .bx-co2 { font-size: clamp(7rem, 10vw, 10rem); bottom: 30%; }
+  .bx-sust .b-more { margin-top: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bx, .bx-ico, .bx-bars i, .bx-chart svg { transition: none; }
+  .bx-chart svg { clip-path: none; }
+  .bx-bars i:nth-child(1) { height: 22%; } .bx-bars i:nth-child(2) { height: 45%; } .bx-bars i:nth-child(3) { height: 70%; } .bx-bars i:nth-child(4) { height: 100%; }
+}
