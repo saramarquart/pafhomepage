@@ -221,3 +221,9 @@ html:not(.ms-js) .ms-reveal { display: none; }
 .ms-hero h1, main h2, main h3, .ms-sub, .ms-story .center-head .lead { text-wrap: balance; }
 main p, main li { text-wrap: pretty; }
 .ms-ev p { text-wrap: balance; }
+
+/* hero: "Alternative ingredients" stays on one line (two-line heading) where it fits */
+@media (min-width: 700px) {
+  .ms-hero h1 { max-width: 22ch; text-wrap: wrap; }
+  .ms-hero h1 .nw { white-space: nowrap; }
+}
