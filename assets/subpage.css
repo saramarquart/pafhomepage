@@ -654,3 +654,27 @@
   @keyframes bob { 50% { translate: 0 -5px; } }
 }
 
+/* ---- Quick start (final): three circles in a row, sensory check as a full-width card below ---- */
+.qs { grid-template-columns: 1fr !important; gap: 36px; }
+.qs-col { grid-template-columns: 1fr; justify-items: center; }
+.qs-1, .qs-3 { translate: none !important; }
+.qs .qs-check { position: static !important; rotate: none; max-width: none; }
+@media (min-width: 900px) {
+  .qs-col { grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .qs-col .step { width: min(100%, 290px); }
+  .qs-line { top: 50%; bottom: auto; left: 16%; right: 16%; width: auto; height: 0; border-left: 0; border-top: 3px dashed var(--lilac-2); }
+  .qs .qs-check { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px 48px; padding: 32px 44px; }
+  .qs .qs-check h3 { margin: 0; white-space: nowrap; }
+  .qs .qs-check ul { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 32px; }
+  .qs .qs-check .link-arrow { white-space: nowrap; }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 900px) {
+    .story .qs-line { animation-name: qsLineX; transform-origin: left; }
+    @keyframes qsLineX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .story .qs-col .qs-2 { animation-range: entry 6% cover 41%; } .story .qs-col .qs-3 { animation-range: entry 12% cover 47%; }
+    .story .qs-check { animation-name: qsCardUp; }
+    @keyframes qsCardUp { from { transform: translateY(50px); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+}
+
