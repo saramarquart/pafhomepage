@@ -24,6 +24,10 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
 /* ---------- 1 · HEADER: brand banner ---------- */
 .ct-banner { position: relative; overflow: hidden; isolation: isolate; background: var(--purple); color: #fff;
   min-height: clamp(230px, 19vw, 300px); display: grid; place-items: center; padding: 92px var(--gutter) 60px; }
+/* the large brand rings in a lighter violet, as in the banner artwork */
+.ct-ring { position: absolute; z-index: -1; aspect-ratio: 57 / 60; height: auto; color: #fff; opacity: .07; pointer-events: none; }
+.ct-ring-1 { width: max(560px, 44vw); left: 50%; top: 50%; transform: translate(-58%, -40%) rotate(-8deg); }
+.ct-ring-2 { width: max(900px, 74vw); right: -46%; top: -30%; transform: rotate(14deg); opacity: .06; }
 
 /* ---------- 2 · CONTACT ---------- */
 .ct-intro h1 { margin: 18px 0 0; font-size: clamp(2rem, 3.2vw, 3.1rem); line-height: 1.06; max-width: 16ch; text-wrap: balance; }
