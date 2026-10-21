@@ -3,7 +3,8 @@
 (function () {
   "use strict";
   // Offline-safe submit: compose a pre-filled email (swap for a real form endpoint at go-live — see README).
-  // Buttons elsewhere link here with ?interest=sample|codev|volumes: start on that topic.
+  // Buttons elsewhere link here with ?interest=booster|product|sample|codev|volumes: start on that topic.
+  // Cocoa booster inquiries go to the sales team, everything else to hello@.
   var want = new URLSearchParams(location.search).get("interest"), pick = document.getElementById("interest");
   if (want && pick && pick.querySelector('option[value="' + want + '"]')) pick.value = want;
   var f = document.getElementById("contactForm");
@@ -13,8 +14,9 @@
     var sel = document.getElementById("interest");
     var body = "Name: " + g("name") + "%0D%0ACompany: " + g("company") + "%0D%0AEmail: " + g("email") +
                "%0D%0AInterest: " + encodeURIComponent(sel.options[sel.selectedIndex].text) + "%0D%0A%0D%0A" + g("message");
-    window.location.href = "mailto:hello@forplaneta.com?subject=" +
-      encodeURIComponent("Enquiry via planet-a-foods.com") + "&body=" + body;
+    var to = sel.value === "booster" ? "sales@forplaneta.com" : "hello@forplaneta.com";
+    window.location.href = "mailto:" + to + "?subject=" +
+      encodeURIComponent("Inquiry via planet-a-foods.com") + "&body=" + body;
     document.getElementById("formOk").style.display = "block";
   });
 })();

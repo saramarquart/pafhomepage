@@ -1,5 +1,5 @@
 /* Contact page — built on the homepage system (home.css: nav, hero, pill, btn, footer, reveal).
-   Hero photo, then a white sheet with the team's details and the enquiry form. */
+   Hero photo, then a white sheet with the team's details and the inquiry form. */
 
 /* ---------- Brand tokens: same as careers.css — ONLY colours from Brand Guideline V1.0 (Apr 2025).
    Warm Violet #320F99 · Blue Print #332D84 · Slate Grey #2D2D2D · Neutral Dark #444444 · Neutral #666666
@@ -28,38 +28,23 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
 .ct-ring { position: absolute; z-index: -1; aspect-ratio: 57 / 60; height: auto; color: #fff; opacity: .07; pointer-events: none; }
 .ct-ring-1 { width: max(560px, 44vw); left: 50%; top: 50%; transform: translate(-58%, -40%) rotate(-8deg); }
 .ct-ring-2 { width: max(900px, 74vw); right: -46%; top: -30%; transform: rotate(14deg); opacity: .06; }
-.ct-claim { margin: 0; display: grid; justify-items: start; line-height: .92; font-weight: 800; letter-spacing: -.02em; }
-.ct-claim-line { display: flex; align-items: baseline; gap: .22em; }
-.ct-out { font-size: clamp(1.6rem, 2.6vw, 2.6rem); font-weight: 600; color: transparent; -webkit-text-stroke: 1.2px #fff; letter-spacing: 0; }
-.ct-for { font-size: clamp(.85rem, 1.05vw, 1.05rem); font-weight: 500; letter-spacing: 0; }
-.ct-claim-big { font-size: clamp(1.9rem, 3.2vw, 3.2rem); margin-bottom: .08em; }
-/* browsers without text outlines: plain white words */
-@supports not (-webkit-text-stroke: 1px #fff) { .ct-out { color: #fff; } }
 
 /* ---------- 2 · CONTACT ---------- */
 .ct-intro h1 { margin: 18px 0 0; font-size: clamp(2rem, 3.2vw, 3.1rem); line-height: 1.06; max-width: 16ch; text-wrap: balance; }
 .ct-lead { margin: 16px 0 0; max-width: 52ch; color: var(--ink-2); font-size: clamp(1.02rem, 1.2vw, 1.2rem); line-height: 1.55; text-wrap: pretty; }
 .ct-sec { position: relative; z-index: 1; margin-top: -32px; border-radius: 28px 28px 0 0; background: #fff; overflow: clip;
   padding: clamp(40px, 4vw, 64px) 0 clamp(72px, 8vw, 128px); box-shadow: 0 -24px 48px -32px rgba(17,17,17,.45); }
-.ct-deco { color: var(--lilac-2); opacity: .7; width: min(30vw, 440px); right: -9vw; top: -6%; transform: rotate(16deg); }
-/* desktop: intro + details on the left, the form starts right away on the right; phones: intro → form → details */
-.ct-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); grid-template-areas: "intro form" "info form";
-  grid-template-rows: auto 1fr; column-gap: clamp(40px, 6vw, 96px); row-gap: clamp(36px, 4vw, 56px); align-items: start; }
+/* desktop: intro on the left, the form on the right; phones: intro → form */
+.ct-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); grid-template-areas: "intro form"; column-gap: clamp(40px, 6vw, 96px); row-gap: clamp(36px, 4vw, 56px); align-items: start; }
 .ct-intro { grid-area: intro; }
-.ct-info { grid-area: info; }
+/* one block per inquiry route: Cocoa booster (sales) first, the other solutions (hello) below */
+.ct-topics { margin-top: clamp(28px, 3vw, 40px); display: grid; gap: clamp(22px, 2.4vw, 30px); max-width: 52ch; }
+.ct-topic { padding-top: clamp(20px, 2.2vw, 26px); border-top: 1px solid rgba(14,11,26,.12); display: grid; gap: 8px; }
+.ct-topic h2 { margin: 0; font-size: clamp(1.25rem, 1.6vw, 1.5rem); line-height: 1.2; }
+.ct-topic p { margin: 0; color: var(--ink-2); line-height: 1.55; text-wrap: pretty; }
+.ct-mail { width: fit-content; margin-top: 4px; color: var(--purple); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(50,15,153,.35); }
+.ct-mail:hover { text-decoration-color: var(--purple); }
 .ct-form { grid-area: form; }
-
-.ct-info h2 { margin: 0 0 22px; font-size: clamp(1.3rem, 1.7vw, 1.6rem); text-wrap: balance; }
-.ct-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
-.ct-list li { display: flex; gap: 18px; align-items: flex-start; }
-.ct-list li > div { display: grid; gap: 4px; padding-top: 2px; }
-.ct-list b { font-weight: 600; font-size: 1.05rem; color: var(--ink); }
-.ct-list span:not(.ct-icon), .ct-list a { color: var(--ink-2); line-height: 1.5; text-wrap: pretty; }
-.ct-list a { color: var(--purple); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(50,15,153,.35); width: fit-content; }
-.ct-list a:hover { text-decoration-color: var(--purple); }
-.ct-icon { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: var(--gold); color: var(--ink); }
-.ct-list li:nth-child(even) .ct-icon { background: var(--green); }
-.ct-ico { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 /* form card */
 .ct-form { background: var(--grey); border-radius: var(--r); padding: clamp(24px, 3vw, 44px); display: grid; gap: 18px; }
@@ -84,7 +69,7 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
-  .ct-grid { grid-template-columns: 1fr; grid-template-areas: "intro" "form" "info"; grid-template-rows: auto; }
+  .ct-grid { grid-template-columns: 1fr; grid-template-areas: "intro" "form"; }
 }
 @media (max-width: 640px) {
   .ct-sec { margin-top: -24px; border-radius: 24px 24px 0 0; }
