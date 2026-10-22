@@ -277,17 +277,25 @@ var KEY_FACTS = [
   "use strict";
   var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   var cards = [].slice.call(document.querySelectorAll("[data-value]"));
-  // how far to move (and how much to enlarge) the title so it sits in the middle of its box
-  function centre(card) {
-    var t = card.querySelector(".cr-value-title");
-    var pad = 24, w = t.offsetWidth, h = t.offsetHeight;
-    var scale = Math.max(1, Math.min(1.35, (card.clientWidth - 2 * pad) / w));
-    card.style.setProperty("--cx", ((card.clientWidth - w) / 2 - t.offsetLeft) + "px");
-    card.style.setProperty("--cy", ((card.clientHeight - h) / 2 - t.offsetTop) + "px");
-    card.style.setProperty("--cs", scale.toFixed(3));
-    card.classList.add("is-centred");
+  // how far to move (and how much to enlarge) the titles so they sit in the middle of their boxes;
+  // all boxes share one size and one top line (sized for the tallest title), so the titles stay aligned
+  function centreAll() {
+    var pad = 24, scale = 1.35, maxH = 0;
+    cards.forEach(function (card) {
+      var t = card.querySelector(".cr-value-title");
+      scale = Math.min(scale, (card.clientWidth - 2 * pad) / t.offsetWidth);
+      maxH = Math.max(maxH, t.offsetHeight);
+    });
+    scale = Math.max(1, scale);
+    cards.forEach(function (card) {
+      var t = card.querySelector(".cr-value-title"), w = t.offsetWidth, h = t.offsetHeight;
+      var top = (card.clientHeight - maxH * scale) / 2;
+      card.style.setProperty("--cx", ((card.clientWidth - w) / 2 - t.offsetLeft) + "px");
+      card.style.setProperty("--cy", (top - t.offsetTop - h / 2 + h * scale / 2) + "px");
+      card.style.setProperty("--cs", scale.toFixed(3));
+      card.classList.add("is-centred");
+    });
   }
-  function centreAll() { cards.forEach(centre); }
   cards.forEach(function (card) {
     var btn = card.querySelector(".cr-value-btn");
     var hover = false, focus = false, pinned = false;

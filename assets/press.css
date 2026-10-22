@@ -16,9 +16,9 @@
 .pr-room-hero::after, .pr-hero::after { content: ""; position: absolute; right: -8vw; bottom: -40%; width: min(52vw, 720px); aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle, rgba(255,255,255,.10), rgba(255,255,255,0) 65%); pointer-events: none; }
 .pr-room-hero h1, .pr-hero h1 { color: #fff; margin: 0; }
-.pr-room-hero .eyebrow { color: var(--gold); }
 .pr-room-hero h1 { font-size: clamp(2.8rem, 6.4vw, 5.6rem); }
 .pr-room-hero .lead { color: rgba(255,255,255,.82); margin-top: 20px; max-width: 56ch; }
+@media (min-width: 1000px) { .pr-room-hero .lead { max-width: none; white-space: nowrap; } }   /* the subline on one line */
 .pr-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
 .pr-jump a { padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.32); color: #fff; font-size: .95rem; transition: background .3s ease, border-color .3s ease; }
 .pr-jump a:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.6); }
@@ -103,7 +103,7 @@
 @media (max-width: 520px) { .pr-kit-item { grid-template-columns: auto 1fr auto; } .pr-kit-size { display: none; } }
 
 /* ---------- press contact ---------- */
-.pr-contact-sec { padding: 0 0 clamp(72px, 9vw, 120px); }
+.pr-contact-sec { padding: clamp(64px, 8vw, 110px) 0 0; }   /* the media kit follows below and brings the space */
 .pr-contact { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; padding: clamp(28px, 4vw, 56px); border-radius: 18px; background: var(--lilac); }
 @media (min-width: 720px) { .pr-contact { grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 64px); } }
 .pr-contact-photo { width: clamp(140px, 16vw, 200px); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 6px #fff; }

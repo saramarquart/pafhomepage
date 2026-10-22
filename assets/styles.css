@@ -23,7 +23,7 @@
   --espresso:   #241811;
   --purple:     #3B1E9A;   /* Planet A accent — used sparingly */
   --purple-2:   #5B3FD6;
-  --green:      #3E5A39;
+  --purple-mid: #9C8DD9;
   --gold:       #B98A3E;
 
   --maxw: 1200px;
@@ -179,7 +179,7 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
 .tag { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:5px 11px; border-radius: var(--r-pill); display:inline-block; }
 .tag-alt { background: rgba(59,30,154,.1); color: var(--purple); }
 .tag-boost { background: rgba(185,138,62,.16); color: #8A6222; }
-.tag-solution { background: rgba(62,90,57,.14); color: var(--green); }
+.tag-solution { background: rgba(50,15,153,.14); color: var(--purple-mid); }
 .chips { display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; }
 .chip { font-size:.74rem; color: var(--ink-2); border:1px solid var(--line); border-radius: var(--r-pill); padding: 5px 11px; }
 .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
@@ -264,7 +264,7 @@ section { padding: clamp(72px, 10vw, 152px) 0; }
 .field textarea { min-height: 120px; resize: vertical; }
 .field-row { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-note { font-size:.82rem; color: var(--muted); margin-top: 14px; }
-.form-ok { display:none; margin-top:16px; padding:14px 16px; border-radius:12px; background: rgba(62,90,57,.1); color: var(--green); font-weight:600; }
+.form-ok { display:none; margin-top:16px; padding:14px 16px; border-radius:12px; background: rgba(50,15,153,.1); color: var(--purple-mid); font-weight:600; }
 @media (max-width:720px){ .contact-grid, .field-row { grid-template-columns: 1fr; } }
 
 /* generic two-col intro for subpages */
@@ -322,7 +322,7 @@ h3 { font-weight: 470; font-variation-settings: "opsz" 90; }
 body {
   background:
     radial-gradient(1200px 620px at 100% -6%, rgba(185,138,62,.07), transparent 60%),
-    radial-gradient(1000px 520px at -6% 42%, rgba(62,90,57,.055), transparent 55%),
+    radial-gradient(1000px 520px at -6% 42%, rgba(50,15,153,.055), transparent 55%),
     var(--cream);
 }
 
@@ -338,7 +338,7 @@ body {
 .blob { position: absolute; border-radius: 50%; filter: blur(46px); pointer-events: none; z-index: 0; will-change: transform; }
 .blob-1 { width: min(560px,60vw); aspect-ratio:1; left: -8%; top: 4%;  background: radial-gradient(circle at 32% 30%, rgba(91,63,214,.55), transparent 68%); animation: floatA 19s ease-in-out infinite alternate; }
 .blob-2 { width: min(500px,54vw); aspect-ratio:1; right:-7%; bottom:-10%; background: radial-gradient(circle at 60% 42%, rgba(185,138,62,.5), transparent 68%);  animation: floatB 23s ease-in-out infinite alternate; }
-.blob-3 { width: min(320px,34vw); aspect-ratio:1; right:20%; top: 10%; background: radial-gradient(circle at 50% 50%, rgba(62,90,57,.5), transparent 70%);      animation: floatA 27s ease-in-out infinite alternate; }
+.blob-3 { width: min(320px,34vw); aspect-ratio:1; right:20%; top: 10%; background: radial-gradient(circle at 50% 50%, rgba(50,15,153,.5), transparent 70%);      animation: floatA 27s ease-in-out infinite alternate; }
 @keyframes floatA { to { transform: translate(42px,-32px) scale(1.09); } }
 @keyframes floatB { to { transform: translate(-38px,28px) scale(1.07); } }
 .scroll-cue { position:absolute; left:50%; bottom:24px; transform:translateX(-50%); z-index:3;
@@ -356,7 +356,7 @@ body {
   background-size: cover; background-position: center;
   background-image:
     radial-gradient(80% 120% at 18% 8%,  rgba(185,138,62,.34), transparent 55%),
-    radial-gradient(90% 120% at 92% 92%, rgba(62,90,57,.42),  transparent 55%),
+    radial-gradient(90% 120% at 92% 92%, rgba(50,15,153,.42),  transparent 55%),
     linear-gradient(158deg, #3A2416 0%, #241811 55%, #150C07 100%);
   animation: kenburns 30s ease-in-out infinite alternate; will-change: transform; }
 .cinematic::after { content: ""; position: absolute; inset: 0; z-index: 1;
@@ -495,7 +495,6 @@ body { background:
   --espresso:   #17130E;  /* deep warm charcoal for dark sections + footer */
   --purple:     #5E6A4E;  /* retired → repurposed to muted olive (natural safety net) */
   --purple-2:   #5E6A4E;
-  --green:      #55604A;
   --gold:       #B08D4F;  /* muted brass */
 }
 
@@ -1399,7 +1398,7 @@ hr { border: 0; height: 1px; background: var(--line); margin: clamp(32px, 5vw, 6
 
 /* ============================================================================
    RELAUNCH 2026 CI — the sub-pages wear the homepage's identity (home.css):
-   Rethink Sans · brand purple #320F99 · light green #82C7AE · Ronchi gold #EEB650 ·
+   Rethink Sans · brand purple #320F99 · purple tints · Ronchi gold #EEB650 ·
    light grey #F7F7F9 · white. Olive and espresso are retired. Final authoritative
    layer: tokens, type, the components that carried olive, then the footer, which
    mirrors home.css (keep the two in sync). The nav is site-nav.css.
@@ -1408,8 +1407,7 @@ hr { border: 0; height: 1px; background: var(--line); margin: clamp(32px, 5vw, 6
   --purple:    #320F99;
   --purple-2:  #4A2BB0;
   --purple-dk: #1F0866;
-  --green:     #82C7AE;
-  --green-lt:  #D5EEE5;
+  --purple-mid: #9C8DD9;   /* soft purple: the former light-green accent slots (tech pictogram shade) */
   --gold:      #EEB650;
   --gold-lt:   #FBF0DA;
   --lilac:     #EFECF9;
@@ -1473,7 +1471,7 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.0
 /* ---- stats: the homepage's colour-coded bars (green · gold · purple) ---- */
 .stat, .statrow .stat { border-top: 0; position: relative; padding-top: 20px; }
 .stat::before { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 6px; border-radius: 999px;
-  background: var(--green); transition: width .6s var(--ease); }
+  background: var(--purple-mid); transition: width .6s var(--ease); }
 .stat:nth-child(3n+2)::before { background: var(--gold); }
 .stat:nth-child(3n)::before { background: var(--purple); }
 .stat:hover::before { width: 64px; }
@@ -1484,7 +1482,7 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.0
 .tint, .dark, .challenge, .engine, .trusted { background: var(--grey); }
 .cta-band { background: var(--purple); }
 .cta-band .lead { color: rgba(255,255,255,.84); }
-.form-ok { background: var(--green-lt); color: #0D2B22; }
+.form-ok { background: var(--lilac); color: var(--ink); }
 .benefits li::before { background: var(--lilac); }
 
 /* ---- footer (mirrors home.css): light grey, link columns, logo + claim, the big "A" ---- */
@@ -1510,7 +1508,7 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.0
 }
 
 /* reading-progress bar, as on the homepage */
-.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--green) 70%, var(--gold)); z-index: 200; pointer-events: none; }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--purple-mid) 70%, var(--gold)); z-index: 200; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .scroll-progress { display: none; } }
 
 /* skip link: first tab stop on every page, visible only when focused */

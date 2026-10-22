@@ -72,7 +72,7 @@
 
   /* ---- Why now: hover / focus / click a driver to open it and swap the image ---- */
   var drivers = [].slice.call(document.querySelectorAll(".driver"));
-  var whyImgs = [].slice.call(document.querySelectorAll(".why-media img"));
+  var whyImgs = [].slice.call(document.querySelectorAll(".why-media [data-for]"));   // one figure (image + fact) per driver
   function activate(btn) {
     var key = btn.getAttribute("data-key");
     drivers.forEach(function (d) { var on = d === btn; d.classList.toggle("on", on); d.setAttribute("aria-selected", on); });

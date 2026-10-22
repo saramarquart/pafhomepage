@@ -3,7 +3,7 @@
 
 /* ---------- Brand tokens: same as careers.css — ONLY colours from Brand Guideline V1.0 (Apr 2025).
    Warm Violet #320F99 · Blue Print #332D84 · Slate Grey #2D2D2D · Neutral Dark #444444 · Neutral #666666
-   Neutral lighter #CCCCCC · Background #F3F3F3 · White · Ronchi #EEB650 · light green #82C7AE ---------- */
+   Neutral lighter #CCCCCC · Background #F3F3F3 · White · Ronchi #EEB650 · purple tints ---------- */
 :root {
   --purple:    #320F99;
   --purple-2:  #332D84;
@@ -14,7 +14,7 @@
   --ink-2:     #444444;
   --muted:     #666666;
   --line:      #CCCCCC;
-  --green:     #82C7AE;
+  --purple-mid: #9C8DD9;   /* soft purple: the former light-green accent slots (tech pictogram shade) */
   --gold:      #EEB650;
 }
 /* typography weights per guideline: Bold headlines, Semi Bold subheads/UI */
@@ -65,7 +65,7 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
 .ct-submit:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .ct-note { margin: 0; font-size: .92rem; color: var(--ink-2); line-height: 1.5; text-wrap: pretty; }
 .ct-note a { color: var(--purple); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
-.ct-ok { display: none; padding: 12px 16px; border-radius: 8px; background: var(--green); color: var(--ink); font-weight: 500; }
+.ct-ok { display: none; padding: 12px 16px; border-radius: 8px; background: var(--purple-mid); color: var(--ink); font-weight: 500; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
