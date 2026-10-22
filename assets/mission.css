@@ -24,15 +24,15 @@
 .ms-figure img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
 .ms-figure::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: var(--r); transform: translate(18px, 18px); }
 .ms-figure-sky::before { background: var(--sky); }
-.ms-figure-green::before { background: var(--green); transform: translate(-18px, 18px); }
+.ms-figure-green::before { background: var(--purple-mid); transform: translate(-18px, 18px); }
 .ms-why { background: #fff; }
 .ms-d-why { color: var(--lilac); width: min(32vw, 480px); left: -10vw; top: -10%; transform: rotate(-16deg); }
 
 /* ---------- mission statement on violet ---------- */
 .ms-statement { color: #fff; isolation: isolate;
   background:
-    radial-gradient(60% 80% at 85% 10%, rgba(176,220,224,.22) 0%, rgba(176,220,224,0) 60%),
-    radial-gradient(50% 70% at 5% 100%, rgba(130,199,174,.16) 0%, rgba(130,199,174,0) 60%),
+    radial-gradient(60% 80% at 85% 10%, rgba(220,214,243,.22) 0%, rgba(220,214,243,0) 60%),
+    radial-gradient(50% 70% at 5% 100%, rgba(156,141,217,.16) 0%, rgba(156,141,217,0) 60%),
     linear-gradient(160deg, #320F99 0%, #332D84 100%); }
 .ms-d-statement { color: #fff; opacity: .07; width: min(40vw, 620px); right: -8vw; top: -20%; transform: rotate(14deg); }
 .ms-statement-in { max-width: 980px; margin: 0 auto; text-align: center; }
@@ -53,7 +53,7 @@
 .ms-ch:first-child { border-top: 0; padding-top: 0; }
 .ms-ch-year { display: block; font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 700; line-height: .9; letter-spacing: -.05em;
   color: transparent; -webkit-text-stroke: 2px var(--purple); }
-.ms-ch:nth-child(even) .ms-ch-year { -webkit-text-stroke-color: var(--green); }
+.ms-ch:nth-child(even) .ms-ch-year { -webkit-text-stroke-color: var(--purple-mid); }
 .ms-ch-no { display: block; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .ms-ch-head h3 { margin: 8px 0 10px; font-size: clamp(1.6rem, 2.4vw, 2.3rem); line-height: 1.1; color: var(--ink); }
 .ms-ch-head p { margin: 0; max-width: 52ch; font-size: clamp(1.02rem, 1.25vw, 1.15rem); color: var(--ink-2); }
@@ -84,7 +84,7 @@ html:not(.ms-js) .ms-reveal { display: none; }
 
 /* the year's events on a line */
 .ms-evs { list-style: none; margin: 0; padding: 0 0 0 30px; border-left: 2px solid var(--sky); transition: margin-top .55s var(--ease); }
-.ms-ch:nth-child(even) .ms-evs { border-left-color: var(--green); }
+.ms-ch:nth-child(even) .ms-evs { border-left-color: var(--purple-mid); }
 .ms-ev { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: baseline; padding: 14px 0; }
 .ms-ev + .ms-ev { border-top: 1px solid #F0F0F0; }
 .ms-ev::before { content: ""; position: absolute; left: -38px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: #fff;
@@ -92,8 +92,8 @@ html:not(.ms-js) .ms-reveal { display: none; }
 .ms-q { display: inline-flex; justify-content: center; padding: 3px 0; border-radius: 999px; background: var(--grey); color: var(--purple); font-weight: 700; font-size: .85rem; }
 .ms-ev p { margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.45; color: var(--ink); }
 .ms-ev-next { margin-top: 10px; padding: 22px 22px 22px 18px; border-radius: var(--r); background: var(--purple); }
-.ms-ev-next::before { background: var(--green); box-shadow: 0 0 0 5px rgba(130,199,174,.35); top: 30px; }
-.ms-ev-next .ms-q { background: var(--green); color: var(--ink); }
+.ms-ev-next::before { background: var(--purple-mid); box-shadow: 0 0 0 5px rgba(156,141,217,.35); top: 30px; }
+.ms-ev-next .ms-q { background: var(--purple-mid); color: var(--ink); }
 .ms-ev-next p { color: #fff; font-weight: 600; }
 .ms-ev + .ms-ev-next { border-top: 0; }
 .ms-link { display: flex; gap: 8px; margin-top: 10px; color: #fff; font-weight: 600; font-size: 1rem; }
@@ -150,7 +150,7 @@ html:not(.ms-js) .ms-reveal { display: none; }
 
 /* the open list clips for the slide animation, so the line is drawn inside it and the dots stay inside its box */
 .ms-evs { padding-left: 40px; border-left: 0; background: linear-gradient(var(--sky), var(--sky)) 8px 0 / 2px 100% no-repeat; }
-.ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--green), var(--green)); }
+.ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--purple-mid), var(--purple-mid)); }
 .ms-ev::before { left: -38px; }
 .ms-ev-next::before { left: -38px; }
 @media (max-width: 640px) { .ms-evs { padding-left: 34px; } .ms-ev::before, .ms-ev-next::before { left: -32px; } }
@@ -174,7 +174,7 @@ html:not(.ms-js) .ms-reveal { display: none; }
   padding: clamp(28px, 3.6vw, 48px) clamp(24px, 4vw, 56px) clamp(28px, 3.6vw, 48px) clamp(30px, 4.4vw, 62px);
   box-shadow: 0 1px 0 rgba(14,11,26,.04), 0 22px 44px -36px rgba(50,15,153,.4); --acc: var(--purple); }
 .ms-ch::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--acc); }
-.ms-ch:nth-child(3n+2) { --acc: var(--green); }
+.ms-ch:nth-child(3n+2) { --acc: var(--purple-mid); }
 .ms-ch:nth-child(3n) { --acc: var(--gold); }
 .ms-ch .ms-ch-year, .ms-ch:nth-child(even) .ms-ch-year { -webkit-text-stroke-color: var(--acc); }
 .ms-ch .ms-evs, .ms-ch:nth-child(even) .ms-evs { background-image: linear-gradient(var(--acc), var(--acc)); }

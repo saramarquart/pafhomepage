@@ -4,7 +4,7 @@
   "use strict";
   // Offline-safe submit: compose a pre-filled email (swap for a real form endpoint at go-live — see README).
   // Buttons elsewhere link here with ?interest=booster|product|sample|codev|volumes: start on that topic.
-  // Cocoa booster inquiries go to the sales team, everything else to hello@.
+  // Cocoa Booster inquiries go to the sales team, everything else to hello@.
   var want = new URLSearchParams(location.search).get("interest"), pick = document.getElementById("interest");
   if (want && pick && pick.querySelector('option[value="' + want + '"]')) pick.value = want;
   var f = document.getElementById("contactForm");

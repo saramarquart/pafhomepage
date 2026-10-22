@@ -2,7 +2,7 @@
    Rethink Sans, no external resources. Works on the homepage and the subpages alike. */
 :root {
   --pc-purple: #320F99; --pc-purple-dk: #240A70; --pc-ink: #0E0B1A; --pc-ink-2: #3D3A4A;
-  --pc-green: #82C7AE; --pc-grey: #F3F3F3; --pc-line: rgba(14, 11, 26, .12); --pc-r: 8px;
+  --pc-focus: #EEB650; --pc-grey: #F3F3F3; --pc-line: rgba(14, 11, 26, .12); --pc-r: 8px;
 }
 .pc-banner, .pc-dialog { text-align: left; font-family: "Rethink Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--pc-ink); letter-spacing: normal; }
 .pc-banner *, .pc-dialog * { box-sizing: border-box; }
@@ -34,7 +34,7 @@ html.pc-has-banner body { padding-bottom: var(--pc-banner-h, 0px); }
 .pc-ghost { background: #fff; color: var(--pc-purple); }
 .pc-ghost:hover { background: var(--pc-grey); }
 .pc-btn:focus-visible, .pc-close:focus-visible, .pc-text a:focus-visible, .pc-switch input:focus-visible + .pc-sr + .pc-slider {
-  outline: 3px solid var(--pc-green); outline-offset: 2px; }
+  outline: 3px solid var(--pc-focus); outline-offset: 2px; }
 
 /* ---- settings dialog ---- */
 .pc-dialog { width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); padding: 0; border: 0;

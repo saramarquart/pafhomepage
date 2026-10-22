@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="assets/home.css?v=50" />
+  <link rel="stylesheet" href="assets/home.css?v=65" />
   <link rel="stylesheet" href="assets/footer.css?v=4" />
   <link rel="preload" as="image" href="assets/img/hero-booster-powder.jpg?v=3" />
   <meta property="og:title" content="Planet A Foods — A backbone for the world's most fragile commodities" />
@@ -56,7 +56,7 @@
   { "@context": "https://schema.org", "@type": "WebSite", "name": "Planet A Foods", "url": "https://test.planet-a-foods.com/" }
 ]
   </script>
-  <link rel="stylesheet" href="assets/consent.css?v=3">
+  <link rel="stylesheet" href="assets/consent.css?v=4">
 </head>
 <body class="home">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -114,7 +114,7 @@
          Each name links to its page; the stripe next to it shows that shot. -->
     <section class="hero" id="top">
       <div class="hero-stage" aria-hidden="true">
-        <div class="reel still on" data-label="Cocoa booster"><img src="assets/img/hero-booster-powder.jpg?v=3" alt=""></div>
+        <div class="reel still on" data-label="Cocoa Booster"><img src="assets/img/hero-booster-powder.jpg?v=3" alt=""></div>
         <div class="reel" data-label="Coffee solutions" data-in="drop"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-coffee.jpg"><source src="assets/img/hero-coffee.mp4" type="video/mp4"></video></div>
         <div class="reel still" data-label="Nuts solutions"><img src="assets/img/hero-nuts-hq.jpg" alt=""></div>
         <div class="reel" data-label="Chocolate solutions"><video muted playsinline preload="metadata" poster="assets/img/poster-hero-cocoa.jpg"><source src="assets/img/hero-cocoa.mp4" type="video/mp4"></video></div>
@@ -123,7 +123,7 @@
       <div class="hero-shade" aria-hidden="true"></div>
 
       <ol class="reel-index" aria-label="Our ingredient solutions">
-        <li class="on"><a href="product-cocoa-booster.html">Cocoa booster</a><button class="reel-go" type="button" aria-label="Show Cocoa booster"></button></li>
+        <li class="on"><a href="product-cocoa-booster.html">Cocoa Booster</a><button class="reel-go" type="button" aria-label="Show Cocoa Booster"></button></li>
         <li><a href="contact.html?interest=product">Coffee solutions</a><button class="reel-go" type="button" aria-label="Show Coffee solutions"></button></li>
         <li><a href="contact.html?interest=product">Nuts solutions</a><button class="reel-go" type="button" aria-label="Show Nuts solutions"></button></li>
         <li><a href="https://choviva.com/" target="_blank" rel="noopener noreferrer">Chocolate solutions</a><button class="reel-go" type="button" aria-label="Show Chocolate solutions"></button></li>
@@ -135,22 +135,25 @@
         <div class="hero-foot reveal">
           <p>We supply a growing portfolio of food ingredient alternatives for climate-threatened and highly regulated raw materials. One technology platform.</p>
           <div class="hero-actions">
-            <a class="btn-text" href="#numbers">Tell me more <span aria-hidden="true">↓</span></a>
+            <a class="btn-text" href="#what-we-do">Tell me more <span aria-hidden="true">↓</span></a>
             <a class="btn btn-white" href="#portfolio">Our ingredient portfolio <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 02 · NUMBERS + WHY NOW — Warum jetzt? -->
-    <!-- Figures: keep identical to deck + data room (one source of truth) -->
-    <section class="numbers" id="numbers">
-      <svg class="deco-a d-numbers" aria-hidden="true"><use href="#paf-a"/></svg>
-      <div class="wrap facts">
-        <div class="fact reveal"><b data-count="15000" data-suffix="+ t">15,000+ t</b><span>Annual production capacity</span></div>
-        <div class="fact reveal"><b data-count="230" data-suffix="+">230+</b><span>Products in retail</span></div>
-        <div class="fact reveal"><b data-count="12">12</b><span>Countries</span></div>
-        <div class="fact reveal"><b data-count="10" data-suffix="+">10+</b><span>Patent families</span></div>
+    <!-- 02 · WHAT WE DO — a compact strip: what the company is, in one line -->
+    <section class="wwd" id="what-we-do" aria-labelledby="wwd-title">
+      <svg class="deco-a d-wwd" aria-hidden="true"><use href="#paf-a"/></svg>
+      <div class="wrap wwd-in reveal">
+        <div class="wwd-head">
+          <span class="pill">What we do</span>
+          <h2 id="wwd-title">A new generation of food ingredients.</h2>
+        </div>
+        <div class="wwd-copy">
+          <p>We turn locally available crops into a growing portfolio of ingredients for food manufacturers – powered by one scalable fermentation platform.</p>
+          <p class="wwd-sub">Designed to reduce dependence on fragile supply chains.</p>
+        </div>
       </div>
     </section>
 
@@ -160,17 +163,47 @@
           <span class="pill pill-light">Why now?</span>
           <h2>The world’s most loved ingredients grow in fewer places, under more pressure.</h2>
         </div>
-        <div class="why-media reveal" aria-hidden="true">
-          <img class="on" data-for="climate" src="assets/img/why-climate-erosion.jpg" alt="">
-          <img data-for="volatility" src="assets/img/why-volatility-warehouse.jpg" alt="" loading="lazy">
-          <img data-for="regulation" src="assets/img/why-regulation-logging.jpg" alt="" loading="lazy">
+        <div class="why-media reveal">
+          <figure class="why-shot on" data-for="climate">
+            <img src="assets/img/why-climate-erosion.jpg" alt="">
+            <figcaption class="why-fact"><span>Disasters wipe out an estimated $123 billion of crop and livestock production every year.</span><small>Source: FAO, The Impact of Disasters on Agriculture and Food Security, 2023</small></figcaption>
+          </figure>
+          <!-- Volatility: static cocoa price chart over the photo. Data and paths: scripts/cocoa-chart.js (run it, paste the output here) -->
+          <figure class="why-shot why-shot-chart" data-for="volatility">
+            <img src="assets/img/why-volatility-warehouse.jpg" alt="" loading="lazy">
+            <div class="why-chart">
+              <span class="wc-unit" aria-hidden="true">Cocoa, USD per tonne</span>
+              <div class="wc-plot">
+                <svg viewBox="0 0 1000 400" preserveAspectRatio="none" role="img" aria-labelledby="wc-title wc-desc">
+                  <title id="wc-title">Cocoa price, USD per tonne, August 2022 to September 2026</title>
+                  <desc id="wc-desc">Cocoa rose from about $2,300 per tonne in 2022 to $10,750 in January 2025, fell to $3,240 in March 2026, and rebounded to $5,920 by September 2026.</desc>
+                  <path class="wc-area" d="M0 322.6C6.8 322.8 13.6 323.4 20.4 323.4C27.2 323.4 34 323.4 40.8 323C47.6 322.7 54.4 320.7 61.2 319.6C68 318.5 74.8 317.5 81.6 316.3C88.4 315.1 95.2 313.2 102 312.5C108.8 311.8 115.6 312.2 122.4 311.6C129.3 311 136.1 309.7 142.9 308.4C149.7 307.1 156.5 305.1 163.3 303.9C170.1 302.7 176.9 302.8 183.7 301.2C190.5 299.6 197.3 296.6 204.1 294.2C210.9 291.9 217.7 288.7 224.5 287.1C231.3 285.5 238.1 285.9 244.9 284.7C251.7 283.4 258.5 280 265.3 279.7C272.1 279.5 278.9 279.7 285.7 279C292.5 278.3 299.3 269 306.1 265.7C312.9 262.5 319.7 261.4 326.5 259.7C333.3 258 340.1 259.5 346.9 253.4C353.7 247.3 360.5 229.7 367.3 214.8C374.1 199.8 381 186.9 387.8 163.7C394.6 140.5 401.4 75.3 408.2 75.3C415 75.3 421.8 148.7 428.6 148.7C435.4 148.7 442.2 124.3 449 124.3C455.8 124.3 462.6 157.2 469.4 163.7C476.2 170.1 483 168 489.8 170.7C496.6 173.3 503.4 182.7 510.2 182.7C517 182.7 523.8 182.7 530.6 178C537.4 173.3 544.2 157.3 551 137C557.8 116.7 564.6 70.3 571.4 56C578.2 41.7 585 41.7 591.8 41.7C598.6 41.7 605.4 56.5 612.2 71.3C619 86.2 625.9 130.7 632.7 130.7C639.5 130.7 646.3 130.7 653.1 128.3C659.9 126 666.7 100.3 673.5 100.3C680.3 100.3 687.1 111 693.9 120C700.7 129 707.5 154.3 714.3 154.3C721.1 154.3 727.9 146.7 734.7 146.7C741.5 146.7 748.3 156.5 755.1 165.7C761.9 174.8 768.7 193.8 775.5 201.7C782.3 209.6 789.1 213 795.9 213C802.7 213 809.5 207.3 816.3 207.3C823.1 207.3 829.9 222.2 836.7 234.3C843.5 246.5 850.3 270.7 857.1 280.3C863.9 289.9 870.7 292 877.6 292C884.4 292 891.2 291.8 898 286.7C904.8 281.6 911.6 265.9 918.4 261.3C925.2 256.8 932 259.9 938.8 253.3C945.6 246.7 952.4 221.6 959.2 213C966 204.4 972.8 201.7 979.6 201.7C986.4 201.7 993.2 202.3 1000 202.7L1000 400L0 400Z"/>
+                  <path class="wc-line" d="M0 322.6C6.8 322.8 13.6 323.4 20.4 323.4C27.2 323.4 34 323.4 40.8 323C47.6 322.7 54.4 320.7 61.2 319.6C68 318.5 74.8 317.5 81.6 316.3C88.4 315.1 95.2 313.2 102 312.5C108.8 311.8 115.6 312.2 122.4 311.6C129.3 311 136.1 309.7 142.9 308.4C149.7 307.1 156.5 305.1 163.3 303.9C170.1 302.7 176.9 302.8 183.7 301.2C190.5 299.6 197.3 296.6 204.1 294.2C210.9 291.9 217.7 288.7 224.5 287.1C231.3 285.5 238.1 285.9 244.9 284.7C251.7 283.4 258.5 280 265.3 279.7C272.1 279.5 278.9 279.7 285.7 279C292.5 278.3 299.3 269 306.1 265.7C312.9 262.5 319.7 261.4 326.5 259.7C333.3 258 340.1 259.5 346.9 253.4C353.7 247.3 360.5 229.7 367.3 214.8C374.1 199.8 381 186.9 387.8 163.7C394.6 140.5 401.4 75.3 408.2 75.3C415 75.3 421.8 148.7 428.6 148.7C435.4 148.7 442.2 124.3 449 124.3C455.8 124.3 462.6 157.2 469.4 163.7C476.2 170.1 483 168 489.8 170.7C496.6 173.3 503.4 182.7 510.2 182.7C517 182.7 523.8 182.7 530.6 178C537.4 173.3 544.2 157.3 551 137C557.8 116.7 564.6 70.3 571.4 56C578.2 41.7 585 41.7 591.8 41.7C598.6 41.7 605.4 56.5 612.2 71.3C619 86.2 625.9 130.7 632.7 130.7C639.5 130.7 646.3 130.7 653.1 128.3C659.9 126 666.7 100.3 673.5 100.3C680.3 100.3 687.1 111 693.9 120C700.7 129 707.5 154.3 714.3 154.3C721.1 154.3 727.9 146.7 734.7 146.7C741.5 146.7 748.3 156.5 755.1 165.7C761.9 174.8 768.7 193.8 775.5 201.7C782.3 209.6 789.1 213 795.9 213C802.7 213 809.5 207.3 816.3 207.3C823.1 207.3 829.9 222.2 836.7 234.3C843.5 246.5 850.3 270.7 857.1 280.3C863.9 289.9 870.7 292 877.6 292C884.4 292 891.2 291.8 898 286.7C904.8 281.6 911.6 265.9 918.4 261.3C925.2 256.8 932 259.9 938.8 253.3C945.6 246.7 952.4 221.6 959.2 213C966 204.4 972.8 201.7 979.6 201.7C986.4 201.7 993.2 202.3 1000 202.7"/>
+                  <line class="wc-base" x1="0" y1="400" x2="1000" y2="400"/>
+                </svg>
+                <div aria-hidden="true">
+                  <span class="wc-year" style="left:10.2%">2023</span><span class="wc-year" style="left:34.7%">2024</span><span class="wc-year" style="left:59.2%">2025</span><span class="wc-year" style="left:83.7%">2026</span>
+                  <span class="wc-dot" style="left:59.2%;top:10.4%"></span>
+                  <span class="wc-ann wc-ann-right" style="left:59.2%;top:10.4%"><b>$10,750</b><small>Jan 2025</small></span>
+                  <span class="wc-dot" style="left:87.8%;top:73%"></span>
+                  <span class="wc-ann wc-ann-below" style="left:87.8%;top:73%"><b>$3,240</b><small>Mar 2026</small></span>
+                  <span class="wc-dot" style="left:100%;top:50.7%"></span>
+                  <span class="wc-ann wc-ann-above" style="bottom:49.3%"><b>$5,920</b><small>Sep 2026</small></span>
+                </div>
+              </div>
+            </div>
+            <figcaption class="why-fact"><span>When supply depends on a few regions, prices can multiply within months. The next shock is a question of when, not if.</span><small>Source: World Bank Commodity Price Data (Pink Sheet)</small></figcaption>
+          </figure>
+          <figure class="why-shot" data-for="regulation">
+            <img src="assets/img/why-regulation-logging.jpg" alt="" loading="lazy">
+            <figcaption class="why-fact"><span>From 30 December 2026, large and medium-sized companies must prove that cocoa and coffee placed on the EU market are traceable to deforestation-free land.</span><small>Source: EU Deforestation Regulation (EU) 2023/1115, as amended by Regulation (EU) 2025/2650</small></figcaption>
+          </figure>
         </div>
         <div class="drivers" role="tablist" aria-label="Why now">
           <button class="driver on" role="tab" aria-selected="true" data-key="climate">
             <span class="no">01</span>
             <h3>Climate</h3>
-            <!-- TODO: add verified key figure + linked source once cleared -->
-            <p>Growing regions worldwide are shrinking. We need to produce more food with less space to grow it.</p>
+            <p>Disasters now strike four times as often as they did in the 1970s. For agriculture, disruption is the new baseline.</p>
           </button>
           <button class="driver" role="tab" aria-selected="false" data-key="volatility">
             <span class="no">02</span>
@@ -180,7 +213,7 @@
           <button class="driver" role="tab" aria-selected="false" data-key="regulation">
             <span class="no">03</span>
             <h3>Regulation</h3>
-            <p>EUDR is mandatory, Scope&nbsp;3 targets are due, and rules on sugar and synthetic colours keep tightening.</p>
+            <p>Deforestation-free sourcing is no longer optional in the EU. Proof now starts at the ingredient.</p>
           </button>
         </div>
       </div>
@@ -188,11 +221,15 @@
 
     <!-- 03 · SUSTAINABILITY (CO₂ story) — full-bleed forest that slowly moves like footage; light green accents -->
     <section class="screen impact" id="impact">
-      <div class="impact-film" aria-hidden="true"><img src="assets/img/forest-aerial.jpg" alt=""></div>
+      <div class="wrap">
+      <!-- the forest as a rounded box on the white section, the content card inside it -->
+      <div class="impact-box">
+      <div class="impact-film" aria-hidden="true"><img src="assets/img/forest-canopy.jpg" alt=""></div>
       <div class="impact-shade" aria-hidden="true"></div>
-      <div class="wrap impact-grid">
-        <div class="impact-main reveal">
-          <span class="pill pill-green">Sustainability</span>
+      <div class="impact-card-wrap reveal">
+      <div class="impact-grid">
+        <div class="impact-main">
+          <span class="pill">Sustainability</span>
           <h2 class="impact-head">Less carbon, by design.</h2>
           <p class="impact-num"><span data-tick="73.6">−73.6</span><small>&thinsp;%</small></p>
           <p class="impact-sub">CO₂e per kg – ChoViva Smooth vs. conventional milk chocolate<sup><a href="#co2-sources" class="src-ref">1</a></sup></p>
@@ -203,18 +240,18 @@
             <div class="co2-row" title="Conventional milk chocolate (benchmark, DE): 10.64 kg CO₂e/kg">
               <span class="co2-label">Conventional milk chocolate</span>
               <span class="co2-track"><span class="co2-bar base" style="--w:100%"></span></span>
-              <span class="co2-val">10.64</span>
+              <span class="co2-val">10.64<small> kg CO₂e</small></span>
             </div>
             <div class="co2-row" title="ChoViva Smooth: 2.81 kg CO₂e/kg">
               <span class="co2-label"><b>ChoViva Smooth</b></span>
               <span class="co2-track"><span class="co2-bar ours" style="--w:26.4%"></span></span>
-              <span class="co2-val"><b>2.81</b></span>
+              <span class="co2-val"><b>2.81</b><small> kg CO₂e</small></span>
             </div>
           </figure>
           <p class="impact-pure">No offsets. The saving comes from the recipe itself.</p>
         </div>
 
-        <div class="impact-side reveal">
+        <div class="impact-side">
           <div class="impact-card"><span class="ic-no">Scope 3</span><h3>Reporting-ready data</h3><p>Supports our customers’ Scope&nbsp;3 climate targets.</p></div>
           <div class="impact-card"><span class="ic-no">EUDR</span><h3>Less deforestation risk</h3><p>Regional raw materials instead of deforestation-risk commodities – less due diligence in your supply chain.</p></div>
           <div class="impact-actions">
@@ -223,7 +260,6 @@
         </div>
       </div>
 
-      <div class="wrap">
         <details class="sources" id="co2-sources">
           <summary><span>Sources</span><span class="src-hint">LCA by inoqo / Planet A · methodology</span></summary>
           <div class="sources-body">
@@ -234,6 +270,8 @@
             <p>More on the inoqo methodology: <a href="https://www.inoqo.com/research-methodology" target="_blank" rel="noopener">inoqo.com/research-methodology ↗</a></p>
           </div>
         </details>
+      </div>
+      </div>
       </div>
     </section>
 
@@ -321,10 +359,13 @@
           </li>
           </ol>
         </div>
-        <div class="tech-foot reveal">
+      </div>
+      <!-- the patent row as a slim full-width band: a break from the white -->
+      <div class="tech-band">
+        <div class="wrap tech-foot reveal">
           <div class="fact"><b data-count="10" data-suffix="+">10+</b><span>Patent families</span></div>
           <div class="fact"><b data-count="30" data-suffix="+">30+</b><span>Scientists &amp; engineers</span></div>
-          <div class="fact"><b>Lab → Line</b><span>Proven scale-up</span></div>
+          <div class="fact"><b>From lab to line</b><span>Proven at industrial scale</span></div>
         </div>
       </div>
     </section>
@@ -343,8 +384,8 @@
         <div class="carousel reveal">
           <div class="track" tabindex="0" aria-label="Ingredient portfolio">
             <a class="slide" data-group="climate" href="product-cocoa-booster.html">
-              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-booster-powder.jpg?v=2" alt="Close-up of Cocoa booster powder" loading="lazy"></div>
-                <h3>Cocoa booster</h3><p>Extends cocoa – same taste and colour, less exposure.</p></div>
+              <div class="tile"><div class="tile-media"><img src="assets/img/portfolio-booster-powder.jpg?v=2" alt="Close-up of Cocoa Booster powder" loading="lazy"></div>
+                <h3>Cocoa Booster</h3><p>Extends cocoa – same taste and colour, less exposure.</p></div>
             </a>
             <a class="slide" data-group="climate" href="contact.html?interest=product">
               <div class="tile"><div class="tile-media"><video class="media-vid" muted loop playsinline preload="none" poster="assets/img/poster-portfolio-coffee-pour.jpg?v=2" aria-label="Brewed coffee alternative swirled and poured between lab glasses"><source src="assets/img/portfolio-coffee-pour.mp4?v=2" type="video/mp4"></video></div>
@@ -369,6 +410,19 @@
             <button class="arrow-btn" data-dir="1" aria-label="Next">→</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 05b · SCALE — the four key figures as circles, right under the portfolio -->
+    <!-- Figures: keep identical to deck + data room (one source of truth) -->
+    <section class="figures" id="numbers" aria-label="Planet A Foods in figures">
+      <div class="wrap">
+        <ul class="fig-row">
+          <li class="fig reveal"><b data-count="15000" data-suffix="+ t">15,000+ t</b><span>Annual production capacity</span></li>
+          <li class="fig reveal"><b data-count="230" data-suffix="+">230+</b><span>Products in retail</span></li>
+          <li class="fig reveal"><b data-count="12">12</b><span>Countries</span></li>
+          <li class="fig reveal"><b data-count="10" data-suffix="+">10+</b><span>Patent families</span></li>
+        </ul>
       </div>
     </section>
 
@@ -443,6 +497,6 @@
   <script src="assets/consent-config.js?v=2"></script>
   <script src="assets/consent.js?v=3"></script>
   <script src="assets/main.js?v=33"></script>
-  <script src="assets/home.js?v=16"></script>
+  <script src="assets/home.js?v=17"></script>
 </body>
 </html>

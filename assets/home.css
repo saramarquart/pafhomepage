@@ -1,6 +1,6 @@
 /* ============================================================================
    Planet A Foods — homepage (Relaunch 2026), designer system v1
-   Rethink Sans · brand purple #320F99 · light green #82C7AE · Ronchi gold #EEB650 · light grey #F7F7F9 · pills, rounded image
+   Rethink Sans · brand purple #320F99 · purple tints · Ronchi gold #EEB650 · light grey #F7F7F9 · pills, rounded image
    tiles with overlay copy, the striped ring mark. Each section is sized for
    one 16:9 desktop screen; phones fall back to a natural flow.
    Scoped to this page only; sub-pages keep using styles.css.
@@ -10,8 +10,7 @@
   --purple:    #320F99;   /* brand purple */
   --purple-2:  #4A2BB0;
   --purple-dk: #1F0866;
-  --green:     #82C7AE;   /* brand light green */
-  --green-lt:  #D5EEE5;
+  --purple-mid: #9C8DD9;   /* soft purple: the former light-green accent slots (tech pictogram shade) */
   --gold:      #EEB650;   /* Ronchi (Brand Guideline): the warm contrast to the purple */
   --gold-lt:   #FBF0DA;
   --lilac:     #EFECF9;   /* light purple tint: hovers, soft chips */
@@ -169,8 +168,6 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 @keyframes tick { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* ============================ 02 NUMBERS + WHY NOW ============================ */
-.numbers { padding: clamp(110px, 15vh, 160px) 0 clamp(64px, 11vh, 120px); }
-.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 24px; }
 
 .why { background: var(--purple); color: #fff; overflow: hidden; }
 .why-grid { display: grid; gap: 32px; }
@@ -250,8 +247,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .scale-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 /* ============================ 05 SUSTAINABILITY — forest film ============================ */
-.impact { --g-ink: #fff; --g-ink-2: rgba(255,255,255,.82); --g-acc: var(--green); --g-base: rgba(255,255,255,.45);
-  background: #0E2A1E; color: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+.impact { --g-ink: #fff; --g-ink-2: rgba(255,255,255,.82); --g-acc: var(--purple-mid); --g-base: rgba(255,255,255,.45);
+  background: var(--purple-dk); color: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
 /* the still is animated like slow aerial footage: drifting pan + gentle zoom */
 .impact-film { position: absolute; inset: -6%; z-index: 0; overflow: hidden; }
 .impact-film img { width: 100%; height: 100%; object-fit: cover; animation: flyover 38s ease-in-out infinite alternate; will-change: transform; }
@@ -265,13 +262,13 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
   linear-gradient(0deg, rgba(8,30,20,.7), transparent 40%); }
 .impact .wrap { position: relative; z-index: 1; }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
-.pill-green { background: var(--green); color: #0D2B22; }
+.pill-green { background: var(--purple-mid); color: var(--ink); }
 .impact-head { margin-top: 22px; color: #fff; }
 .impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 10rem); margin-top: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; color: #fff; }
 .impact-num small { font-size: .5em; letter-spacing: -.02em; }
 .impact-sub { font-size: clamp(1rem, 1.3vw, 1.25rem); font-weight: 500; margin-top: 12px; color: #fff; max-width: 44ch; }
 .impact-sub sup, .sources sup { font-size: .65em; }
-.src-ref { color: var(--green); text-decoration: none; margin-left: 2px; }
+.src-ref { color: var(--purple-mid); text-decoration: none; margin-left: 2px; }
 .src-ref:hover { text-decoration: underline; }
 .impact-pure { margin-top: 16px; font-size: .95rem; color: var(--gold); font-weight: 500; }
 /* comparison bars: thin, rounded data-end, values in text colour */
@@ -282,18 +279,18 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .co2-track { position: relative; height: 14px; }
 .co2-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 0 4px 4px 0; transition: width 1.6s var(--ease) .3s; }
 .co2-bar.base { background: var(--g-base); }
-.co2-bar.ours { background: var(--green); }
+.co2-bar.ours { background: var(--purple-mid); }
 .reveal.in .co2-bar { width: var(--w); }
 .co2-val { text-align: right; font-variant-numeric: tabular-nums; }
 .impact-side { display: grid; gap: 14px; }
 .impact-card { padding: 24px 26px; border-radius: var(--r); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(14px) saturate(1.2); transition: background .35s ease, transform .5s var(--ease); }
 .impact-card:hover { background: rgba(255,255,255,.18); transform: translateY(-4px); }
-.ic-no { display: inline-block; padding: 3px 12px; border-radius: 999px; background: var(--gold); color: #0D2B22; font-weight: 600; font-size: .85rem; }
-.impact-card:nth-child(2) .ic-no { background: var(--green); }
+.ic-no { display: inline-block; padding: 3px 12px; border-radius: 999px; background: var(--gold); color: var(--ink); font-weight: 600; font-size: .85rem; }
+.impact-card:nth-child(2) .ic-no { background: var(--purple-mid); }
 .impact-card h3 { margin-top: 14px; color: #fff; }
 .impact-card p { color: var(--g-ink-2); margin-top: 6px; }
 .impact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 10px; }
-.btn-mint { background: var(--green); color: #0D2B22; }
+.btn-mint { background: var(--purple-mid); color: var(--ink); }
 .btn-mint:hover { background: var(--gold); }
 .impact .btn-text:hover span { transform: translate(3px, -3px); }
 /* sources: collapsed by default, full wording on demand */
@@ -304,7 +301,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .sources[open] summary::before { transform: rotate(45deg); }
 .src-hint { color: var(--g-ink-2); font-weight: 400; }
 .sources-body { display: grid; gap: 8px; max-width: 92ch; padding: 10px 0 4px 38px; }
-.sources-body a { color: var(--green); }
+.sources-body a { color: var(--purple-mid); }
 .sources-body a:hover { color: var(--gold); }
 
 /* ============================ 07 COMPANY ============================ */
@@ -327,7 +324,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .footer-legal { font-size: .82rem; color: var(--muted); }
 .footer-legal a:hover { color: var(--purple); }
 
-.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--green) 70%, var(--gold)); z-index: 200; }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--purple), var(--purple-mid) 70%, var(--gold)); z-index: 200; }
 
 /* ============================ PORTFOLIO GROUPS ============================ */
 .groups { display: inline-flex; gap: 6px; padding: 5px; margin-top: 30px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px rgba(46,17,147,.14); }
@@ -356,7 +353,6 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 
 /* ============================ TABLET ============================ */
 @media (min-width: 700px) {
-  .facts { grid-template-columns: repeat(4, auto); justify-content: center; column-gap: clamp(40px, 6vw, 110px); }
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .tiles.four { grid-template-columns: repeat(2, 1fr); }
   .tiles.layers { grid-template-columns: repeat(2, 1fr); }
@@ -435,10 +431,9 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 /* ============================ BRAND COLOUR ELEMENTS ============================
    Purple carries, light green + sky accent. The "A" mark (ring + arc of the
    logo) recurs as a quiet graphic element; small colour codes repeat 1-2-3. */
-.screen, .numbers, .footer { position: relative; }
+.screen, .wwd, .footer { position: relative; }
 .deco-a { position: absolute; pointer-events: none; z-index: 0; width: 40vw; aspect-ratio: 57 / 60; height: auto; }
 .wrap { position: relative; z-index: 1; }
-.d-numbers { color: var(--lilac); width: min(30vw, 460px); left: -8vw; top: -30%; transform: rotate(-18deg); }
 .d-portfolio { color: var(--lilac-2); opacity: .8; width: min(42vw, 680px); right: -12vw; top: -16%; transform: rotate(14deg); }
 .d-benefit { color: #fff; opacity: .07; width: min(72%, 420px); right: -6%; bottom: -38%; transform: rotate(-12deg); transition: transform 1.2s var(--ease); }
 .benefit.big:hover .d-benefit { transform: rotate(-4deg) scale(1.04); }
@@ -446,25 +441,25 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 /* colour codes: 01 green · 02 sky · 03 white/lilac · 04 green */
 .fact b { position: relative; }
 .numbers .fact, .big-facts .fact, .tech-foot .fact { padding-top: 18px; position: relative; }
-.numbers .fact::before, .big-facts .fact::before, .tech-foot .fact::before { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 6px; border-radius: 999px; background: var(--green); transform-origin: left; transition: width .6s var(--ease); }
+.numbers .fact::before, .big-facts .fact::before, .tech-foot .fact::before { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 6px; border-radius: 999px; background: var(--purple-mid); transform-origin: left; transition: width .6s var(--ease); }
 .numbers .fact:nth-child(2)::before, .big-facts .fact:nth-child(2)::before, .tech-foot .fact:nth-child(2)::before { background: var(--gold); }
 .numbers .fact:nth-child(3)::before, .big-facts .fact:nth-child(3)::before, .tech-foot .fact:nth-child(3)::before { background: var(--purple); }
 .numbers .fact:hover::before, .big-facts .fact:hover::before, .tech-foot .fact:hover::before { width: 64px; }
 
-.layers .tile:nth-child(1) .badge, .company .tile:nth-child(1) .badge { background: var(--green); color: var(--ink); }
+.layers .tile:nth-child(1) .badge, .company .tile:nth-child(1) .badge { background: var(--purple-mid); color: var(--ink); }
 .layers .tile:nth-child(2) .badge, .company .tile:nth-child(2) .badge { background: var(--gold); color: var(--ink); }
 .layers .tile:nth-child(3) .badge, .company .tile:nth-child(3) .badge { background: #fff; color: var(--purple); }
-.layers .tile:nth-child(4) .badge, .company .tile:nth-child(4) .badge { background: var(--green); color: var(--ink); }
+.layers .tile:nth-child(4) .badge, .company .tile:nth-child(4) .badge { background: var(--purple-mid); color: var(--ink); }
 /* a colour line grows along each technology layer on hover */
-.layers .tile::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; z-index: 2; transition: width .7s var(--ease); background: var(--green); }
+.layers .tile::before { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 0; z-index: 2; transition: width .7s var(--ease); background: var(--purple-mid); }
 .layers .tile:nth-child(2)::before { background: var(--gold); }
 .layers .tile:nth-child(3)::before { background: #fff; }
 .layers .tile:hover::before { width: 100%; }
 
 /* Why now: light-green numbering + active marker */
-.why .driver .no { color: var(--green); }
+.why .driver .no { color: var(--purple-mid); }
 .driver { position: relative; }
-.driver::before { content: ""; position: absolute; left: -18px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: var(--green); transform: scaleY(0); transition: transform .5s var(--ease); }
+.driver::before { content: ""; position: absolute; left: -18px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: var(--purple-mid); transform: scaleY(0); transition: transform .5s var(--ease); }
 .driver.on::before { transform: scaleY(1); }
 .pill-light { background: var(--gold); color: var(--purple); }
 
@@ -477,16 +472,16 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 
 /* Benefits: each card picks up its colour on hover */
 .benefits { overflow: hidden; }
-.benefit-grid .benefit:nth-child(2) .b-no { background: var(--green); color: var(--ink); }
+.benefit-grid .benefit:nth-child(2) .b-no { background: var(--purple-mid); color: var(--ink); }
 .benefit-grid .benefit:nth-child(3) .b-no { background: var(--gold); color: var(--ink); }
-.benefit-grid .benefit:nth-child(4) .b-no { background: var(--green-lt); color: var(--ink); }
-.benefit-grid .benefit:nth-child(2):hover { background: var(--green-lt); }
+.benefit-grid .benefit:nth-child(4) .b-no { background: var(--lilac); color: var(--ink); }
+.benefit-grid .benefit:nth-child(2):hover { background: var(--lilac); }
 .benefit-grid .benefit:nth-child(3):hover { background: var(--gold-lt); }
-.benefit-grid .benefit:nth-child(4):hover { background: #EEF6F2; }
+.benefit-grid .benefit:nth-child(4):hover { background: var(--lilac); }
 .benefit.big { overflow: hidden; }
 .benefit.big > :not(.deco-a) { position: relative; z-index: 1; }
 .b-list li { border-top-color: rgba(238,182,80,.35); }
-.b-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 10px; vertical-align: middle; }
+.b-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--purple-mid); margin-right: 10px; vertical-align: middle; }
 .b-list li:nth-child(2) b::before { background: var(--gold); }
 .b-list li:nth-child(3) b::before { background: #fff; }
 /* the paired benefits inside the white cards */
@@ -511,7 +506,7 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .scale-media { isolation: isolate; }
 
 /* Hero ticker + nav hover in brand accents */
-.reel-index li.on .reel-go::before { background: var(--green); }
+.reel-index li.on .reel-go::before { background: var(--purple-mid); }
 .nav-pill a:hover, .lang:hover { background: var(--lilac); color: var(--purple); }
 
 /* Footer "A" in sky → light green */
@@ -585,7 +580,7 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .sec-head h2 { text-wrap: balance; }
 
 /* small colour hints, one per card: a short bar at the top, matching bullet dots, and a tinted outline on hover */
-.benefit-grid .benefit:nth-child(2) { --acc: var(--green); --acc-rgb: 130,199,174; }
+.benefit-grid .benefit:nth-child(2) { --acc: var(--purple-mid); --acc-rgb: 156,141,217; }
 .benefit-grid .benefit:nth-child(3) { --acc: var(--gold); --acc-rgb: 238,182,80; }
 .benefit-grid .benefit:nth-child(4) { --acc: var(--purple); --acc-rgb: 50,15,153; }
 .benefit-grid .benefit:not(.big)::before { content: ""; position: absolute; left: 30px; top: 0; width: 44px; height: 4px; border-radius: 0 0 4px 4px; background: var(--acc);
@@ -594,7 +589,7 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .benefit-grid .benefit:not(.big) .b-list b::before, .benefit-grid .benefit:not(.big) .b-list li:nth-child(2) b::before { background: var(--acc); }
 .benefit-grid .benefit:not(.big):hover { box-shadow: 0 0 0 1px rgba(var(--acc-rgb), .55), 0 24px 46px -28px rgba(50,15,153,.4); }
 .benefit-grid .benefit:not(.big) .b-more { color: var(--purple); }
-.benefit.big .b-list li:nth-child(1) b::before { background: var(--green); }
+.benefit.big .b-list li:nth-child(1) b::before { background: var(--purple-mid); }
 .benefit.big .b-list li:nth-child(2) b::before { background: var(--gold); }
 @media (prefers-reduced-motion: reduce) { .benefit-grid .benefit:not(.big)::before { transition: none; } }
 
@@ -609,10 +604,154 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .bx-ico { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--lilac); color: var(--purple); }
 .bx-ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .bx .b-more { margin-top: auto; }
-@media (min-width: 700px) { .bx-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 700px) { .bx-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; } }   /* every box the same height */
+@media (min-width: 1000px) { .benefits .sec-head .lead { max-width: none; white-space: nowrap; } }   /* the subline on one line */
 @media (min-width: 1000px) {
   .bx-grid { grid-template-columns: repeat(10, 1fr); gap: 20px; }
   .bx { grid-column: span 3; }
   .bx:nth-child(1), .bx:nth-child(6) { grid-column: span 4; }
 }
-@media (prefers-reduced-motion: reduce) { .bx { transition: none; } }
+/* colour: the two wide cards carry the brand colours (purple, soft purple), the four white ones have purple icon
+   circles; a colour line grows along the bottom on hover */
+.bx { position: relative; overflow: hidden; }
+.bx::before { content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: 0; background: var(--purple); transition: width .7s var(--ease); }
+.bx:hover::before { width: 100%; }
+.bx:nth-child(1) { background: var(--purple); color: #fff; box-shadow: 0 18px 40px -26px rgba(50,15,153,.7); }
+.bx:nth-child(1) p { color: rgba(255,255,255,.84); }
+.bx:nth-child(1) .bx-ico { background: var(--gold); color: var(--purple); }
+.bx:nth-child(1)::before { background: var(--gold); }
+.bx:nth-child(6) { background: var(--purple-mid); color: var(--ink); box-shadow: 0 18px 40px -26px rgba(50,15,153,.55); }
+.bx:nth-child(6) p { color: var(--ink); }
+.bx:nth-child(6) .bx-ico { background: #fff; color: var(--purple); }
+.bx:nth-child(n+2):nth-child(-n+5) .bx-ico { background: var(--purple); color: #fff; }
+.bx-ico { transition: transform .5s var(--ease); }
+.bx:hover .bx-ico { transform: scale(1.08) rotate(-6deg); }
+@media (prefers-reduced-motion: reduce) { .bx { transition: none; } .bx::before, .bx-ico { transition: none; } }
+
+
+/* ======================= HOMEPAGE BUNDLE (Oct 2026) ======================= */
+/* palette: white · purple shades · gold only as a small accent */
+
+/* ---- 02 · What we do: a compact strip, the upright gold A behind it ---- */
+.wwd { overflow: hidden; padding: clamp(48px, 7vw, 92px) 0; background: #fff; }
+.d-wwd { color: var(--gold); opacity: .22; width: clamp(260px, 30vw, 460px); right: clamp(-120px, -4vw, -40px); top: 50%; transform: translateY(-50%); }
+.wwd-in { position: relative; z-index: 1; display: grid; gap: 18px 64px; align-items: end; }
+.wwd-head h2 { margin-top: 18px; font-size: clamp(1.8rem, 3.4vw, 3rem); max-width: 18ch; text-wrap: balance; }
+.wwd-copy p { margin: 0; max-width: 52ch; font-size: clamp(1.05rem, 1.3vw, 1.25rem); line-height: 1.55; color: var(--ink-2); text-wrap: pretty; }
+.wwd-copy .wwd-sub { margin-top: 12px; font-size: .98rem; color: var(--purple); font-weight: 500; }
+@media (min-width: 1000px) { .wwd-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (max-width: 699px) { .d-wwd { opacity: .16; width: 230px; right: -90px; } }
+
+/* ---- 05b · Scale figures as true circles ---- */
+.figures { padding: clamp(56px, 7vw, 100px) 0;   /* deep purple band with soft glows; the circles are fine glass rings on it */
+  background:
+    radial-gradient(55% 90% at 88% 0%, rgba(220,214,243,.18) 0%, rgba(220,214,243,0) 60%),
+    radial-gradient(45% 80% at 6% 100%, rgba(156,141,217,.22) 0%, rgba(156,141,217,0) 60%),
+    linear-gradient(160deg, var(--purple) 0%, var(--purple-dk) 100%); }
+.fig-row { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 40px); max-width: 1180px; }
+.fig { container-type: inline-size; position: relative; aspect-ratio: 1 / 1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 12%; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.28); color: #fff; transition: box-shadow .5s var(--ease), background .5s ease; }
+.fig::after { content: ""; position: absolute; top: 9%; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--gold); }   /* the one tiny gold accent */
+.fig:hover { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 2px var(--gold); }   /* gold ring on hover */
+.fig b { display: block; font-weight: 500; letter-spacing: -.03em; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; font-size: clamp(1.4rem, 17cqi, 4rem); }
+.fig span { display: block; margin-top: 8%; font-size: clamp(.78rem, 7.4cqi, 1.05rem); line-height: 1.3; color: rgba(255,255,255,.78); max-width: 15ch; text-wrap: balance; }
+@media (min-width: 1000px) { .fig-row { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* ---- 03 · Why now: gold accents, landscape images with a fact overlay ---- */
+.why .driver .no { color: var(--gold); }
+.driver::before { background: var(--gold); }
+.why-media { aspect-ratio: 3 / 2; height: auto; }
+.why-shot { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 1s ease; }
+.why-shot.on { opacity: 1; }
+.why-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transform: scale(1.06); transition: transform 6s var(--ease); }
+.why-shot.on img { transform: scale(1); }
+.why-fact { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(40px, 8%, 90px) clamp(16px, 4%, 32px) clamp(14px, 3.4%, 26px);
+  background: linear-gradient(to top, rgba(14,11,26,.9) 0%, rgba(14,11,26,.74) 62%, rgba(14,11,26,0) 100%);   /* ≥ 4.5:1 for the white text even on a bright patch */ color: #fff; display: grid; gap: 6px; }
+.why-fact span { font-size: clamp(.92rem, 1.25vw, 1.15rem); font-weight: 500; line-height: 1.4; max-width: 46ch; text-wrap: pretty; }
+.why-fact small { font-size: clamp(.7rem, .8vw, .8rem); color: rgba(255,255,255,.78); max-width: 60ch; }
+.why-fact small::before { content: ""; display: inline-block; width: 14px; height: 2px; margin-right: 8px; vertical-align: middle; background: var(--gold); }
+@media (min-width: 1000px) { .why-media { height: auto; aspect-ratio: 3 / 2; align-self: center; } }
+
+/* Volatility: a static cocoa price chart over the photo (markup + data: index.html, scripts/cocoa-chart.js).
+   Layers: photo · dark purple overlay (55%, deeper behind the chart so the labels pass AA over the bright window)
+   · chart from 29% to ~73%, sitting right on top of the callout · the usual dark band with callout and source at the bottom */
+.why-media { container-type: inline-size; }
+.why-shot-chart::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, rgba(31,8,102,.74) 0%, rgba(31,8,102,.72) 78%); }
+.why-shot-chart .why-fact { z-index: 2; }
+.why-chart { position: absolute; z-index: 2; top: 29%; left: 4.5%; right: 4.5%; height: 44%; color: #fff; }
+.wc-unit { position: absolute; top: 0; left: 0; font-size: 12px; line-height: 1; color: var(--lilac-2); }
+.wc-plot { position: absolute; inset: 0 0 22px 0; }
+.wc-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.wc-area { fill: var(--gold); fill-opacity: .14; }
+.wc-line { fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.wc-base { stroke: rgba(255,255,255,.25); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.wc-year { position: absolute; top: calc(100% + 7px); transform: translateX(-50%); font-size: 11px; line-height: 1; color: var(--lilac-2); }
+.wc-dot { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 2px var(--purple-dk); }
+.wc-ann { position: absolute; display: grid; gap: 2px; white-space: nowrap; line-height: 1.15; }
+.wc-ann b { font-size: 13px; font-weight: 500; color: #fff; }
+.wc-ann small { font-size: 11px; color: var(--lilac-2); }
+.wc-ann-right { transform: translate(14px, -50%); }
+.wc-ann-below { transform: translate(-50%, 11px); text-align: center; }
+.wc-ann-above { right: 0; margin-bottom: 11px; text-align: right; }
+/* narrow card: prices only, smaller callout so it stays clear of the chart */
+@container (max-width: 479px) {
+  .wc-ann small { display: none; }
+  .why-chart { top: 20%; height: 43%; }
+  .wc-unit { font-size: 11px; }
+  .why-shot-chart .why-fact span { font-size: .8rem; }
+}
+@media (max-width: 520px) { .why-media { aspect-ratio: 4 / 3; } .why-fact { padding: 34px 14px 12px; gap: 4px; } .why-fact span { font-size: .82rem; line-height: 1.35; } .why-fact small { font-size: .66rem; } }
+
+/* ---- 04 · Sustainability: the content on one light card over the (unchanged) forest image ---- */
+.impact-shade { background: linear-gradient(180deg, var(--purple) 0%, rgba(50,15,153,.35) 16%, rgba(50,15,153,0) 34%), linear-gradient(0deg, rgba(14,11,26,.28), rgba(14,11,26,0) 45%); }
+.impact-card-wrap { position: relative; padding: clamp(24px, 4vw, 56px); border-radius: 18px; background: rgba(255,255,255,.88); color: var(--ink);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1); backdrop-filter: blur(16px) saturate(1.1); box-shadow: 0 40px 80px -50px rgba(14,11,26,.6); }
+.impact .impact-head, .impact .impact-num, .impact .impact-sub, .impact .co2-row, .impact .impact-card h3, .impact .sources summary { color: var(--ink); }
+.impact { --g-ink-2: var(--ink-2); --g-base: rgba(50,15,153,.18); }
+.impact .co2-bar.ours { background: var(--purple); }
+.impact .co2-row { grid-template-columns: 230px 1fr auto; }
+.co2-val small { font-size: .78em; color: var(--ink-2); font-weight: 400; white-space: nowrap; }
+.impact .impact-pure { color: var(--purple); }
+.impact .impact-card { background: var(--lilac); border-color: rgba(50,15,153,.10); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.impact .impact-card:hover { background: #E7E2F8; }
+.impact .impact-card p { color: var(--ink-2); }
+.impact .ic-no, .impact .impact-card:nth-child(2) .ic-no { background: #fff; color: var(--purple); box-shadow: inset 0 0 0 1px rgba(50,15,153,.18); }
+.impact .btn-text { color: var(--purple); }
+.impact .src-ref, .impact .sources-body a { color: var(--purple); }
+.impact .sources { border-top-color: rgba(50,15,153,.14); }
+.impact .sources summary::before { background: var(--lilac); color: var(--purple); }
+@media (max-width: 699px) { .impact .co2-row { grid-template-columns: 1fr auto; } }
+
+/* ---- 05 · Technology: the patent row as a slim full-width purple band ---- */
+.tech-band { margin-top: clamp(40px, 6vh, 72px); background: var(--purple); color: #fff; }
+.tech-band .tech-foot { margin-top: 0; padding-block: clamp(22px, 3vw, 34px); align-items: center; }
+.tech-band .fact b { color: #fff; font-size: clamp(1.6rem, 3vw, 2.8rem); }
+.tech-band .fact span { color: rgba(255,255,255,.82); }
+.tech .tech-band .fact::before { background: var(--gold); }
+.tech { padding-bottom: 0 !important; }
+@media (min-width: 1000px) { .tech-band .tech-foot { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 699px) { .tech-band .tech-foot { grid-template-columns: 1fr 1fr; } .tech-band .fact:last-child { grid-column: 1 / -1; } }
+.tech { flex-direction: column; align-items: stretch; justify-content: center; }
+.tech > .wrap { width: 100%; }
+
+/* Sustainability on a white ground: the forest image sits in a rounded box (like the case-study block) */
+.impact { background: #fff; padding-block: clamp(48px, 7vw, 96px); min-height: 0; }
+.impact-box { position: relative; overflow: hidden; isolation: isolate; border-radius: 18px; padding: clamp(16px, 3vw, 40px); background: var(--purple-dk); }
+.impact-box .impact-film { inset: -6%; }
+.impact-box .impact-shade { background: linear-gradient(0deg, rgba(14,11,26,.22), rgba(14,11,26,0) 50%); }
+.impact-box .impact-card-wrap { position: relative; z-index: 1; }
+/* no inner card: text and data sit directly on the forest, a dark shade keeps it legible */
+.impact-box { padding: clamp(28px, 5vw, 72px); }
+.impact-box .impact-shade { background: linear-gradient(90deg, rgba(14,11,26,.78) 0%, rgba(14,11,26,.6) 50%, rgba(14,11,26,.42) 100%), linear-gradient(0deg, rgba(14,11,26,.35), rgba(14,11,26,0) 50%); }
+.impact-box .impact-card-wrap { padding: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; border-radius: 0; color: #fff; }
+.impact-box .impact-head, .impact-box .impact-num, .impact-box .impact-sub, .impact-box .co2-row, .impact-box .impact-card h3, .impact-box .sources summary { color: #fff; }
+.impact-box { --g-ink-2: rgba(255,255,255,.82); --g-base: rgba(255,255,255,.4); }
+.impact-box .co2-bar.ours { background: var(--gold); }
+.impact-box .co2-val small, .impact-box .impact-card p, .impact-box .sources { color: rgba(255,255,255,.8); }
+.impact-box .impact-pure { color: var(--gold); }
+.impact-box .impact-card { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.impact-box .impact-card:hover { background: rgba(255,255,255,.16); }
+.impact-box .btn-text, .impact-box .src-ref, .impact-box .sources-body a { color: #fff; }
+.impact-box .sources { border-top-color: rgba(255,255,255,.22); }
+.impact-box .sources summary::before { background: rgba(255,255,255,.16); color: #fff; }
