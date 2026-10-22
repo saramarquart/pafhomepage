@@ -752,6 +752,7 @@ span.group { cursor: default; }   /* single group: a label, not a tab */
 .impact-box .impact-pure { color: var(--gold); }
 .impact-box .impact-card { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .impact-box .impact-card:hover { background: rgba(255,255,255,.16); }
+.impact-box .ic-no, .impact-box .impact-card:nth-child(2) .ic-no { background: var(--gold); color: var(--ink); box-shadow: none; }
 .impact-box .btn-text, .impact-box .src-ref, .impact-box .sources-body a { color: #fff; }
 .impact-box .sources { border-top-color: rgba(255,255,255,.22); }
 .impact-box .sources summary::before { background: rgba(255,255,255,.16); color: #fff; }
