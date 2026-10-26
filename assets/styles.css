@@ -1021,6 +1021,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .split-media, .scale-band .bg, .insight-media, .page-hero .bg { transform: none; }
+  .reveal { transform: none; transition: none; }   /* repeats line 280: the .reveal rules above override it */
 
 }
 
