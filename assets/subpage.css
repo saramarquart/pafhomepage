@@ -565,6 +565,7 @@
 .cb-hero-dark .cb-shot-frame img { object-position: 50% 58%; transform-origin: 52% 30%; animation: pileIn 3.2s cubic-bezier(.3,.5,.4,1) both, pileFocus 20s ease-in-out 3.2s infinite alternate; }   /* zooms toward the peak */
 @keyframes pileIn { from { transform: scale(1.14); filter: blur(6px) brightness(.7); } to { transform: scale(1); filter: blur(0) brightness(1); } }
 @keyframes pileFocus { from { transform: scale(1); } to { transform: scale(1.1) translate3d(0, 1.5%, 0); } }
+@media (prefers-reduced-motion: reduce) { .cb-shot-full .cb-shot-frame, .cb-hero-dark .cb-shot-frame img { animation: none; } }   /* these outrank the reset at line 456 */
 .cb-dark-shade { position: absolute; inset: 0; z-index: 0; pointer-events: none; background:
   linear-gradient(0deg, rgba(40,18,6,.82) 0%, rgba(40,18,6,.38) 28%, rgba(40,18,6,0) 52%),
   linear-gradient(180deg, rgba(40,18,6,.4) 0%, rgba(40,18,6,0) 22%); }
