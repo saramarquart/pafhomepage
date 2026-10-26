@@ -226,4 +226,4 @@ main p, main li { text-wrap: pretty; }
   .ms-hero h1 { max-width: 22ch; text-wrap: wrap; }
   .ms-hero h1 .nw { white-space: nowrap; }
 }
-.ms-figure-wide { aspect-ratio: 3 / 2; }   /* landscape photo (Our journey): no offset block behind it */
+.ms-figure-wide { aspect-ratio: 4 / 3; }   /* landscape photo (Our journey): no offset block behind it */
