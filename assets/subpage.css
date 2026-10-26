@@ -555,7 +555,7 @@
 .cb-h1 { font-size: clamp(1.9rem, 4.1vw, 4.4rem); }
 .cb-h1 > span { display: block; white-space: nowrap; }
 .cb-hero-light .lead { max-width: 46ch; }
-@media (max-width: 560px) { .cb-h1 { font-size: clamp(1.45rem, 7.4vw, 2.2rem); } }
+@media (max-width: 560px) { .cb-hero .cb-h1 { font-size: clamp(1.45rem, 7.4vw, 2.2rem); } }   /* .cb-hero: must beat .cb-hero h1 (line 43), or the 2.4rem minimum cuts the first line on phones */
 
 /* =================== 2026-10-21 round =================== */
 
