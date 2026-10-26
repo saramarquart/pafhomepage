@@ -335,8 +335,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .group.on { background: var(--purple); color: #fff; }
 span.group { cursor: default; }   /* single group: a label, not a tab */
 .group-note { margin: 16px auto 0; max-width: 52ch; color: var(--ink-2); }
-.portfolio .group-note { margin-top: 24px; max-width: 44ch; font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.4; color: var(--ink); }   /* "Crops under pressure" subline, a step up from body copy */
-.portfolio .group-note span { display: block; margin-top: 8px; font-size: .78em; color: var(--purple); font-weight: 500; }
+.portfolio .group-note { margin-top: 24px; max-width: 52ch; font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.4; color: var(--ink); }   /* "Crops under pressure" subline, a step up from body copy */
+.portfolio .group-note span { display: block; margin-top: 8px; color: var(--purple); font-weight: 500; }
 .slide[hidden] { display: none; }
 /* colour alternatives: a swatch tile in natural colour bands until a photo exists */
 
