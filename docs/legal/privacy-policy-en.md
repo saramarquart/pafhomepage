@@ -95,7 +95,9 @@ Our legitimate interest lies in the technically error-free provision, stability 
 
 When you contact us, for example via the email addresses provided on our website or by phone, we process your information in order to handle your enquiry and in case of follow-up questions.
 
-The contact links on our website (for example "Partner with us") open the email program on your own device. No data is transmitted to us via the website itself; we only receive your message once you send the email.
+The contact links on our website (for example "Partner with us") open the email program on your own device. No data is transmitted to us via these links; we only receive your message once you send the email.
+
+The sample request form on our Cocoa Booster page works differently: when you submit it, the details you entered (name, business email address, company and, if provided, role, country, application, cocoa powder type, annual volume and your requirements) are sent directly to our internal sales system. There we store your request as a new contact or add it to the existing record of you or your company (see section 6), and our sales team is notified by email. To recognize whether your company is already one of our customers, we compare the company name with our existing customer records, also with the help of an AI model (see section 12). Every suggested match is reviewed by a member of our sales team; no automated decision is made. To prevent misuse of the form, we store a one-way hashed form of your IP address, used only to limit repeated submissions; we do not store the IP address itself.
 
 We process your name, your contact details and any other information arising from your enquiry.
 

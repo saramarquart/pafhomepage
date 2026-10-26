@@ -7,7 +7,7 @@ every HTML page, and the allowlist below.
 ## Content Security Policy
 
 ```
-default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'
+default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://sales.planet-a-foods.com; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'
 ```
 
 On Azure the header version adds `frame-ancestors 'self'` (browsers ignore `frame-ancestors` in a `<meta>` tag).
@@ -19,7 +19,7 @@ On Azure the header version adds `frame-ancestors 'self'` (browsers ignore `fram
 | `style-src` | `'self'`, `'unsafe-inline'` | Many pages use `style="…"` attributes. Removing them is a separate clean-up; scripts stay strict. |
 | `img-src` | `'self'`, `data:`, `https://*.google-analytics.com`, `https://*.googletagmanager.com` | Own images and small inline SVGs in CSS; Google Analytics measurement requests (only after consent). |
 | `font-src` | `'self'` | Rethink Sans is self-hosted (`assets/fonts/`). |
-| `connect-src` | `'self'`, `https://*.google-analytics.com`, `https://*.analytics.google.com`, `https://*.googletagmanager.com` | Google Analytics measurement requests (only after consent). Wildcards as recommended by Google's GA4 CSP guide, so regional endpoints are not blocked. |
+| `connect-src` | `'self'`, `https://*.google-analytics.com`, `https://*.analytics.google.com`, `https://*.googletagmanager.com`, `https://sales.planet-a-foods.com` | Google Analytics measurement requests (only after consent). Wildcards as recommended by Google's GA4 CSP guide, so regional endpoints are not blocked. `sales.planet-a-foods.com` is PAForce (paf_sales): the Cocoa Booster sample form posts to its `/api/public/inquiry`, only when the visitor submits. |
 | `media-src` | `'self'` | Own videos. |
 | `object-src`, `frame-src` | `'none'` | No plugins, no embedded frames. |
 | `base-uri`, `form-action`, `manifest-src` | `'self'` | |

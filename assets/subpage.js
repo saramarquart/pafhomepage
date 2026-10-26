@@ -1,10 +1,12 @@
 /* Planet A Foods — ingredient detail pages.
-   Sample-request form (pre-filled email until CRM routing exists) and
-   links that pre-fill the form (color profile, requested document). */
+   Sample-request form (sent to PAForce, the sales CRM; pre-filled email only as
+   the fallback when that fails) and links that pre-fill the form (color
+   profile, requested document). */
 (function () {
   "use strict";
   var form = document.getElementById("sampleForm");
   if (!form) return;
+  var started = Date.now(); // PAForce treats forms sent within 3 s as spam
 
   // "Discuss your reference" / profile cards / document cards pre-fill the form
   document.querySelectorAll("[data-prefill-profile], [data-prefill-req]").forEach(function (a) {
@@ -16,15 +18,8 @@
     });
   });
 
-  // TODO: replace with CRM routing (Salesforce, source "Web – Cocoa Booster", UTM parameters)
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var msg = form.querySelector(".form-msg");
-    if (!form.checkValidity()) {
-      msg.textContent = "Please fill in the required fields (*) and accept the privacy policy.";
-      form.reportValidity && form.reportValidity();
-      return;
-    }
+  // Pre-filled email with the same answers: the fallback when sending fails.
+  function mailtoHref() {
     var v = function (n) { return (form[n] && form[n].value) || "–"; };
     var body = [
       "Name: " + v("name"), "Email: " + v("email"), "Company: " + v("company"),
@@ -33,9 +28,49 @@
       "Sample requested: " + (form.sample.checked ? "yes" : "no"), "", v("req"),
       "", "Source: Web – Cocoa Booster" + (location.search ? " " + location.search : "")
     ].join("\n");
-    window.location.href = "mailto:sales@forplaneta.com?subject=" +
+    return "mailto:sales@forplaneta.com?subject=" +
       encodeURIComponent("Cocoa Booster sample request – " + v("company")) + "&body=" + encodeURIComponent(body);
-    msg.textContent = "Your email client opens with the request pre-filled.";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var msg = form.querySelector(".form-msg");
+    var btn = form.querySelector('button[type="submit"]');
+    if (!form.checkValidity()) {
+      msg.textContent = "Please fill in the required fields (*) and accept the privacy policy.";
+      form.reportValidity && form.reportValidity();
+      return;
+    }
+    var v = function (n) { return (form[n] && form[n].value) || ""; };
+    var data = {
+      form: "cocoa-booster-sample",
+      name: v("name"), email: v("email"), company: v("company"), role: v("role"), country: v("country"),
+      application: v("application"), profile: v("profile"), volume: v("volume"), requirements: v("req"),
+      sample: form.sample.checked, privacy: form.privacy.checked,
+      website: v("website"), elapsedMs: Date.now() - started, pageUrl: location.href
+    };
+    var fallback = mailtoHref();
+    btn.disabled = true;
+    msg.textContent = "Sending …";
+    fetch(form.getAttribute("data-endpoint"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (res) {
+        if (!r.ok || !res.ok) throw new Error(res.error || String(r.status));
+      });
+    }).then(function () {
+      form.reset();
+      msg.textContent = "Thank you – your request is with our sales team. We'll get back to you shortly.";
+    }).catch(function () {
+      msg.textContent = "Your request could not be sent. Please ";
+      var a = document.createElement("a");
+      a.href = fallback;
+      a.textContent = "email it to sales@forplaneta.com";
+      msg.appendChild(a);
+      msg.appendChild(document.createTextNode(" instead."));
+    }).then(function () { btn.disabled = false; });
   });
 })();
 
