@@ -169,7 +169,7 @@
 .cb-apps .app-mid p { color: rgba(255,255,255,.85); }
 
 /* colour grounds */
-.cb-why { background: linear-gradient(180deg, var(--lilac), #fff); }
+.cb-why { background: linear-gradient(180deg, var(--lilac), #fff); overflow-x: clip; overflow-y: visible; }   /* the big mark (.why-mark) may rise above the section, never past the screen edge */
 .cb-pillars { background: var(--gold-lt); }
 .cb-pillars .pillar { box-shadow: none; }
 .cb-platform { background: linear-gradient(180deg, #fff, var(--lilac)); }
