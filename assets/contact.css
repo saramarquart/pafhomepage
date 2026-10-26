@@ -65,7 +65,13 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
 .ct-submit:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .ct-note { margin: 0; font-size: .92rem; color: var(--ink-2); line-height: 1.5; text-wrap: pretty; }
 .ct-note a { color: var(--purple); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
-.ct-ok { display: none; padding: 12px 16px; border-radius: 8px; background: var(--purple-mid); color: var(--ink); font-weight: 500; }
+.ct-note:empty { display: none; }
+.ct-tick { display: flex; align-items: center; gap: 10px; font-size: .92rem; color: var(--ink-2); }
+.ct-tick input { width: 18px; height: 18px; accent-color: var(--purple); }
+.ct-tick a { color: var(--purple); text-decoration: underline; text-underline-offset: 3px; }
+.ct-submit[disabled] { opacity: .6; cursor: progress; }
+/* spam trap: off-screen, only bots fill it */
+.ct-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
@@ -77,9 +83,3 @@ h3, .btn, .pill, .nav-pill a { font-weight: 600; }
   .ct-submit { justify-self: stretch; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) { .ct-field input, .ct-field select, .ct-field textarea { transition: none; } }
-
-/* note under the button: two lines; "Prefer to write directly?" stays on one line with the address */
-.ct-note-line { display: block; }
-.ct-note-direct { white-space: nowrap; }
-@media (max-width: 480px) { .ct-note-direct { font-size: clamp(.74rem, 3.4vw, .92rem); } }
-@media (max-width: 340px) { .ct-note-direct { white-space: normal; } }
