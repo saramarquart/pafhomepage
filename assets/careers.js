@@ -9,7 +9,7 @@ var OPEN_POSITIONS_URL = "https://planetafoods.jobs.personio.de/?language=en";
 var KEY_FACTS = [
   { icon: "map-pin", number: "2",   label: "Locations",     text: "Our headquarters in Munich & own production in Pilsen." },
   { icon: "users",   number: "~70", label: "Team members",  text: "Around 70 people building the future of food together." },
-  { icon: "scale",   number: "44%", label: "Women",         text: "We're proud of the balance we've built: in our leadership team, 60% are women." },
+  { icon: "scale",   number: "44%", label: "Women",         text: "We’re proud of the balance we’ve built: in our leadership team, 60% are women." },
   { icon: "globe",   number: "16",  label: "Nationalities", text: "Different backgrounds and perspectives, on one shared mission. Our company language is English." }
 ];
 
