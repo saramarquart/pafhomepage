@@ -8,9 +8,14 @@
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".nav-toggle");
   if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", nav.classList.contains("open"));
+    var setOpen = function (open) {
+      nav.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", open);
+    };
+    toggle.addEventListener("click", function () { setOpen(!nav.classList.contains("open")); });
+    // Esc closes the drawer and puts focus back on the menu button
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) { setOpen(false); toggle.focus(); }
     });
     // mobile: tapping a top-level item expands its dropdown instead of navigating
     nav.querySelectorAll(".nav-top").forEach(function (t) {
@@ -19,8 +24,8 @@
       });
     });
     // close the mobile drawer when an actual destination link is tapped
-    nav.querySelectorAll(".nav-links a:not(.nav-top)").forEach(function (a) {
-      a.addEventListener("click", function () { nav.classList.remove("open"); });
+    nav.querySelectorAll(".nav-links a:not(.nav-top), .nav-pill a").forEach(function (a) {
+      a.addEventListener("click", function () { setOpen(false); });
     });
   }
 
