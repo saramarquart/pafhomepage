@@ -269,7 +269,11 @@
 .sform .tick input { width: 18px; height: 18px; accent-color: var(--purple); }
 .sform .tick a { color: var(--purple); text-decoration: underline; }
 .sform .btn { justify-self: start; border: 0; cursor: pointer; margin-top: 6px; }
+.sform .btn[disabled] { opacity: .6; cursor: progress; }
+/* spam trap: off-screen, only bots fill it */
+.sform .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .form-msg { font-size: .9rem; color: var(--purple); min-height: 1.4em; }
+.form-msg a { color: var(--purple); text-decoration: underline; }
 .contact-side { display: grid; gap: 14px; }
 .person { background: var(--grey); border-radius: var(--r); padding: 26px; display: grid; gap: 4px; justify-items: start; }
 .person small { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
