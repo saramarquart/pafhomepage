@@ -9,12 +9,12 @@ const PROD = "https://planet-a-foods.com";
 const DUMMY_ID = "G-TEST000000";
 const GOOGLE = /(^|\.)(google|googletagmanager|google-analytics|googleapis|gstatic|doubleclick|googlesyndication)\.[a-z.]+$/;
 
-// Pages of the site = the committed HTML files in the repo root.
+// Pages of the site = the committed HTML files in the repo root (not the Google Search Console verification file).
 function sitePages() {
   try {
-    return execSync("git ls-files '*.html'", { cwd: ROOT }).toString().split("\n").filter((f) => f && !f.includes("/"));
+    return execSync("git ls-files '*.html'", { cwd: ROOT }).toString().split("\n").filter((f) => f && !f.includes("/") && !/^google[0-9a-f]+\.html$/.test(f));
   } catch (e) {
-    return fs.readdirSync(ROOT).filter((f) => f.endsWith(".html"));
+    return fs.readdirSync(ROOT).filter((f) => f.endsWith(".html") && !/^google[0-9a-f]+\.html$/.test(f));
   }
 }
 
