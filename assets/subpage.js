@@ -33,7 +33,7 @@
       "Sample requested: " + (form.sample.checked ? "yes" : "no"), "", v("req"),
       "", "Source: Web – Cocoa Booster" + (location.search ? " " + location.search : "")
     ].join("\n");
-    window.location.href = "mailto:hello@forplaneta.com?subject=" +
+    window.location.href = "mailto:sales@forplaneta.com?subject=" +
       encodeURIComponent("Cocoa Booster sample request – " + v("company")) + "&body=" + encodeURIComponent(body);
     msg.textContent = "Your email client opens with the request pre-filled.";
   });

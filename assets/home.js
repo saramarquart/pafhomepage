@@ -6,7 +6,7 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function play(v) { if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
 
-  /* ---- Hero: ingredient reel (cocoa booster → coffee → nuts → chocolate → speciality fats) ---- */
+  /* ---- Hero: ingredient reel (cocoa booster → coffee → nuts → chocolate → specialty fats) ---- */
   var reels = [].slice.call(document.querySelectorAll(".hero .reel"));
   var marks = [].slice.call(document.querySelectorAll(".reel-index li"));
   var current = 0, timer = null, HOLD = 5200;
@@ -25,13 +25,13 @@
     current = i;
   }
   function next() { show((current + 1) % reels.length); }
-  // the name links to its page; the stripe next to it shows that shot and restarts the timer
+  // the name and the stripe next to it both show that shot and restart the timer
   marks.forEach(function (m, k) {
-    var go = m.querySelector(".reel-go");
-    if (!go) return;
-    go.addEventListener("click", function () {
-      show(k);
-      if (timer) { clearInterval(timer); timer = setInterval(next, HOLD); }
+    m.querySelectorAll(".reel-name, .reel-go").forEach(function (b) {
+      b.addEventListener("click", function () {
+        show(k);
+        if (timer) { clearInterval(timer); timer = setInterval(next, HOLD); }
+      });
     });
   });
   if (reels.length) {

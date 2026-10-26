@@ -61,3 +61,17 @@ test("11 · no page uses localStorage/sessionStorage or loads anything from anot
   }
   expect(net.external).toEqual([]);
 });
+
+test("12 · nav and footer are identical on every page (they are copied per page, so nothing may drift)", async () => {
+  // read straight from the files; 404.html uses root-relative links and the current page carries aria-current — both are normalized
+  const norm = (s) => s.replace(/(href|src)="\//g, '$1="').replace(/ aria-current="page"/g, "").replace(/\s+/g, " ").trim();
+  const part = (html, re) => { const m = html.match(re); return m ? norm(m[0]) : null; };
+  const NAV = /<nav class="nav-pill"[\s\S]*?<\/nav>/, FOOTER = /<footer class="site-footer">[\s\S]*?<\/footer>/;
+  const ref = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  for (const p of pages) {
+    const html = fs.readFileSync(path.join(ROOT, p), "utf8");
+    if (!html.includes('class="site-footer"')) continue;   // dev-only helper pages without site chrome
+    expect(part(html, NAV), p + " nav").toBe(part(ref, NAV));
+    expect(part(html, FOOTER), p + " footer").toBe(part(ref, FOOTER));
+  }
+});

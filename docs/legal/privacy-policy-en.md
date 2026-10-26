@@ -52,7 +52,7 @@ Germany
 
 (hereinafter also referred to as "Planet A Foods").
 
-You can contact us at any time with any questions regarding data protection or to exercise your data subject rights at the following email address: [hello@forplaneta.com](mailto:hello@forplaneta.com)
+You can contact us at any time with any questions regarding data protection or to exercise your data subject rights at the following email address: [sales@forplaneta.com](mailto:sales@forplaneta.com)
 
 ## 2. Data Protection Officer
 
@@ -378,7 +378,7 @@ Fraunhoferstr. 11a
 82152 Planegg
 Germany
 
-or to the following email address: hello@forplaneta.com
+or to the following email address: sales@forplaneta.com
 
 ### 16.7 Right to Withdraw Your Consent, Art. 7(3) GDPR
 
@@ -386,7 +386,7 @@ Where we process your data on the basis of your consent, you have the right to w
 
 ### 16.8 Contact Information for Exercising Data Subject Rights
 
-To exercise your data subject rights, you can contact us at the following email address: hello@forplaneta.com
+To exercise your data subject rights, you can contact us at the following email address: sales@forplaneta.com
 
 ### 16.9 Right to Lodge a Complaint, Art. 77 GDPR
 
