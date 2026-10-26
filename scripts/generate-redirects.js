@@ -81,7 +81,8 @@ for (const [id, [target, ...slugs]] of Object.entries(PRESS)) {
   }
 }
 
-const FOLDERS = new Set(["/de", "/en", "/press"]);
+// Folders, so no stub sits in the repo root next to the real pages (tests treat root *.html as site pages).
+const FOLDERS = new Set(["/de", "/en", "/press", "/partners"]);
 
 function stub(target) {
   const abs = target.startsWith("http") ? target : SITE + target;
