@@ -1,7 +1,15 @@
-# TEST / STAGING domain — intentionally kept out of search engines until go-live
-# on the apex domain. Pages stay crawlable so the per-page
-# <meta name="robots" content="noindex"> is read and honored. Do not add
-# "Disallow: /" here — that would block crawlers from seeing the noindex.
+# www.planet-a-foods.com — production. Every page is open to search engines.
+# Pages that must stay out of search (404, embargoed pages) carry their own
+# <meta name="robots" content="noindex">; do not block them here, or crawlers
+# can't read that tag.
+# GitHub Pages serves the whole repo, so keep the repo's own files out of search.
 User-agent: *
 Allow: /
-Disallow: /_masktest.html
+Disallow: /docs/
+Disallow: /tests/
+Disallow: /scripts/
+Disallow: /README.md
+Disallow: /CLAUDE.md
+Disallow: /staticwebapp.config.json
+
+Sitemap: https://www.planet-a-foods.com/sitemap.xml
