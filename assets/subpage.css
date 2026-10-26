@@ -620,7 +620,9 @@
 /* ---- Applications: explanation on one line ---- */
 @media (min-width: 1000px) {
   .cb-apps .cb-head.row > div { max-width: none; }   /* room for the note on one line */
-  .apps-note { white-space: nowrap; font-size: clamp(.9rem, 1.05vw, 1.1rem); }
+  /* the box is as long as the line: plain inline layout here, Safari under-measures the flex version */
+  .apps-note { display: inline-block; white-space: nowrap; max-width: none; font-size: clamp(.9rem, 1.05vw, 1.1rem); }
+  .apps-note-bar { display: inline-block; vertical-align: middle; width: 64px; margin-right: 16px; }
   .apps-note > span:last-child { display: inline; }
 }
 
