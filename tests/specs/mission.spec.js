@@ -11,7 +11,7 @@ test("anchors: hero Learn more and the dropdown targets exist, sections are not 
   await setup(context, {}); await decided(context);
   await page.goto(base(false) + "/mission.html");
   await page.getByRole("link", { name: "Learn more" }).click();
-  await expect(page).toHaveURL(/#why$/);
+  await expect(page).toHaveURL(/#our-mission$/);
   for (const id of ["our-mission", "journey", "story"]) {
     // arrive fresh, as from the dropdown on another page (a second jump started mid smooth-scroll can stop short — browser behaviour)
     await page.goto(base(false) + "/index.html");

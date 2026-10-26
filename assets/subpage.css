@@ -166,11 +166,7 @@
 .cb-apps .app-link { color: var(--gold); }
 .cb-apps .mi { stroke: #fff; }
 .cb-apps .app:hover .mi { stroke: var(--gold); }
-/* descriptions shimmer: a soft light sweep runs across the text */
-.cb-apps .app-mid p { color: transparent; background: linear-gradient(100deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.78) 40%, #fff 48%, var(--gold) 52%, rgba(255,255,255,.78) 60%, rgba(255,255,255,.78) 100%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; animation: shimmer 5s ease-in-out infinite; }
-.cb-apps .app:nth-child(2) .app-mid p { animation-delay: .6s; } .cb-apps .app:nth-child(3) .app-mid p { animation-delay: 1.2s; }
-.cb-apps .app:nth-child(4) .app-mid p { animation-delay: 1.8s; } .cb-apps .app:nth-child(5) .app-mid p { animation-delay: 2.4s; }
-@keyframes shimmer { 0% { background-position: 120% 0; } 60%, 100% { background-position: -20% 0; } }
+.cb-apps .app-mid p { color: rgba(255,255,255,.85); }
 
 /* colour grounds */
 .cb-why { background: linear-gradient(180deg, var(--lilac), #fff); }
@@ -281,8 +277,6 @@
 .person b { font-size: 1.2rem; font-weight: 500; }
 .person span { color: var(--ink-2); }
 .person a { margin-top: 12px; color: var(--purple); font-weight: 500; }
-.events { border-radius: var(--r); padding: 18px 22px; box-shadow: inset 0 0 0 1.5px var(--gold); color: var(--ink-2); }
-.events b { color: var(--purple); font-weight: 600; }
 
 /* ---------- responsive ---------- */
 @media (min-width: 700px) {
@@ -318,8 +312,7 @@
   .hb span { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cb-stage img, .apps-bg img, .mi *, .cb-apps .app-mid p { animation: none !important; }
-  .cb-apps .app-mid p { color: rgba(255,255,255,.85); background: none; }
+  .cb-stage img, .apps-bg img, .mi * { animation: none !important; }
   .hb i, .range i { transition: none; }
   .reveal .hb i { width: var(--w); } .reveal .range i { width: calc(var(--b) - var(--a)); }
 }
@@ -536,7 +529,6 @@
 
 .cb-contact { background: var(--grey); }
 .person { background: #fff; }
-.events { box-shadow: inset 0 0 0 1.5px var(--lilac-2); }
 
 /* footer: dark (brand) blue-purple as in the preview */
 .footer.footer-dark { background: var(--purple); color: #fff; padding: clamp(72px, 10vh, 120px) 0 32px; overflow: hidden; }
@@ -586,6 +578,7 @@
 .cb-hero-dark .cb-hero-copy { max-width: none; }
 .cb-hero-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: clamp(24px, 4vh, 44px); }
 .cb-hero-dark .lead { color: #fff; font-weight: 500; margin: 0; max-width: 44ch; }
+@media (min-width: 1100px) { .cb-hero-dark .lead { max-width: none; white-space: nowrap; } }   /* subline on one line on desktop */
 .cb-hero-dark .hero-actions { display: flex; align-items: center; gap: 32px; flex: 0 0 auto; }
 .cb-hero-dark .btn-text { color: #fff; }
 .subpage .nav:not(.scrolled) .brand { color: #fff; }
@@ -709,3 +702,16 @@
 /* sensory check on hover: the card turns light lilac, so the letters invert to purple */
 .qs .qs-check:hover h3, .qs .qs-check:hover ul, .qs .qs-check:hover b, .qs .qs-check:hover .link-arrow, .qs .qs-check:hover li::before { color: var(--purple); }
 
+
+
+/* ---- Why now: sources under the two figures, a fold-out like the homepage CO₂ sources ---- */
+.cb-why .sources { margin-top: clamp(24px, 4vh, 40px); border-top: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.8); font-size: .88rem; }
+.cb-why .sources summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 16px 0 4px; color: #fff; font-weight: 500; }
+.cb-why .sources summary::-webkit-details-marker { display: none; }
+.cb-why .sources summary::before { content: "+"; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.16); transition: transform .35s var(--ease); }
+.cb-why .sources[open] summary::before { transform: rotate(45deg); }
+.cb-why .src-hint { color: rgba(255,255,255,.7); font-weight: 400; }
+.cb-why .sources-body { display: grid; gap: 8px; max-width: 92ch; padding: 10px 0 4px 38px; }
+.cb-why .sources-body a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.cb-why sup { font-size: .65em; }
+.src-ref { color: inherit; text-decoration: none; }

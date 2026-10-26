@@ -25,7 +25,6 @@
 .ms-figure::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: var(--r); transform: translate(18px, 18px); }
 .ms-figure-sky::before { background: var(--sky); }
 .ms-figure-green::before { background: var(--purple-mid); transform: translate(-18px, 18px); }
-.ms-why { background: #fff; }
 .ms-d-why { color: var(--lilac); width: min(32vw, 480px); left: -10vw; top: -10%; transform: rotate(-16deg); }
 
 /* ---------- mission statement on violet ---------- */
