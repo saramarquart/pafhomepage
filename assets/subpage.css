@@ -192,6 +192,7 @@
 .mi-sponge .l2 { animation-delay: .25s; fill: var(--gold); } .mi-sponge .l3 { animation-delay: .5s; }
 @keyframes layer { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(2px); } }
 .mi-sponge .m-air { stroke: var(--gold); stroke-dasharray: 6; animation: air 1.6s linear infinite; }
+.mi-drink .m-steam { stroke: var(--gold); stroke-dasharray: 6; animation: air 1.6s linear infinite; }
 @keyframes air { to { stroke-dashoffset: -12; } }
 .mi-pudding .m-cream { stroke: var(--gold); stroke-width: 2.4; animation: wobble 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes wobble { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.92) translateY(1px); } }
@@ -568,10 +569,12 @@
 /* ---- hero: landing-page powder image, dark shade, white type (as on the homepage hero) ---- */
 .cb-hero-dark { color: #fff; background: #3a1d10; align-items: flex-end; min-height: min(92vh, 900px); padding-bottom: clamp(48px, 9vh, 100px); }
 .cb-hero-dark .cb-shot-frame { background: #3a1d10; }
-.cb-hero-dark .cb-shot-frame img { object-position: 50% 50%; transform-origin: 50% 50%; animation: push 9s cubic-bezier(.3,.5,.4,1) both, fullMove 24s ease-in-out 9s infinite alternate; }
+.cb-hero-dark .cb-shot-frame img { object-position: 50% 58%; transform-origin: 52% 30%; animation: pileIn 3.2s cubic-bezier(.3,.5,.4,1) both, pileFocus 20s ease-in-out 3.2s infinite alternate; }   /* zooms toward the peak */
+@keyframes pileIn { from { transform: scale(1.14); filter: blur(6px) brightness(.7); } to { transform: scale(1); filter: blur(0) brightness(1); } }
+@keyframes pileFocus { from { transform: scale(1); } to { transform: scale(1.1) translate3d(0, 1.5%, 0); } }
 .cb-dark-shade { position: absolute; inset: 0; z-index: 0; pointer-events: none; background:
-  linear-gradient(0deg, rgba(14,8,6,.78) 0%, rgba(14,8,6,.35) 45%, rgba(14,8,6,.25) 100%),
-  linear-gradient(90deg, rgba(14,8,6,.45), transparent 60%); }
+  linear-gradient(0deg, rgba(40,18,6,.82) 0%, rgba(40,18,6,.38) 28%, rgba(40,18,6,0) 52%),
+  linear-gradient(180deg, rgba(40,18,6,.4) 0%, rgba(40,18,6,0) 22%); }
 .cb-hero-dark .wrap { z-index: 1; }
 .cb-hero-dark { align-items: stretch; padding-top: 112px; }
 .cb-hero-dark .wrap { display: flex; flex-direction: column; }
@@ -593,15 +596,29 @@
   .cb-hero-dark .cb-shot.cb-shot-full { position: absolute; inset: 0; margin: 0; width: auto; aspect-ratio: auto; }
 }
 
-/* ---- Why Cocoa Booster: light lilac cards, dark blue on hover, always readable ---- */
-.cb-pillars .pillar, .cb-pillars .pillar:nth-child(even) { background: var(--lilac); color: var(--ink); }
-.cb-pillars .pillar h3, .pi-no { color: var(--purple); }
-.cb-pillars .pillar p { color: var(--ink-2); }
-.cb-pillars .pillar .pi-ic { stroke: var(--purple); }
-.cb-pillars .pillar:hover, .cb-pillars .pillar:nth-child(n):hover { background: var(--purple); color: #fff; box-shadow: 0 26px 44px -30px rgba(50,15,153,.6); }
-.cb-pillars .pillar:hover h3, .cb-pillars .pillar:hover .pi-no { color: #fff; }
-.cb-pillars .pillar:hover p { color: rgba(255,255,255,.9); }
-.cb-pillars .pillar:hover .pi-ic { stroke: #fff; }
+/* ---- Why Cocoa Booster: palette of the landing-page benefits — lilac section, white cards with round
+   icon badges, the first card purple and the last soft purple; on hover the icon gives way to the copy ---- */
+.cb-pillars { background: var(--lilac); }
+.cb-pillars .pillar, .cb-pillars .pillar:nth-child(n) { background: #fff; color: var(--ink); box-shadow: 0 0 0 1px rgba(50,15,153,.10), 0 10px 28px -22px rgba(50,15,153,.35); }
+.cb-pillars .pillar:hover, .cb-pillars .pillar:nth-child(n):hover { background: #fff; box-shadow: 0 0 0 1px rgba(50,15,153,.22), 0 24px 46px -28px rgba(50,15,153,.45); }
+.cb-pillars .pillar h3, .cb-pillars .pillar .pi-no, .cb-pillars .pillar:hover h3, .cb-pillars .pillar:hover .pi-no { color: var(--ink); }
+.cb-pillars .pillar p, .cb-pillars .pillar:hover p { color: var(--ink-2); }
+.cb-pillars .pillar .pi-ic, .cb-pillars .pillar:hover .pi-ic { box-sizing: border-box; width: 46px; height: 46px; padding: 11px; border-radius: 50%; background: var(--purple); stroke: #fff; }
+.cb-pillars .pillar:first-child, .cb-pillars .pillar:first-child:hover { background: var(--purple); color: #fff; box-shadow: 0 24px 46px -28px rgba(50,15,153,.55); }
+.cb-pillars .pillar:first-child h3, .cb-pillars .pillar:first-child .pi-no { color: #fff; }
+.cb-pillars .pillar:first-child p { color: rgba(255,255,255,.85); }
+.cb-pillars .pillar:first-child .pi-ic { background: var(--gold); stroke: var(--purple); }
+.cb-pillars .pillar:last-child, .cb-pillars .pillar:last-child:hover { background: var(--purple-mid, #9C8DD9); box-shadow: 0 24px 46px -28px rgba(50,15,153,.45); }
+.cb-pillars .pillar:last-child .pi-ic { background: #fff; stroke: var(--purple); }
+@media (hover: hover) and (min-width: 700px) {
+  .cb-pillars .pillar { min-height: 250px; }
+  .cb-pillars .pillar h3 { margin-top: auto; min-height: 0; }
+  .cb-pillars .pillar .pi-ic { max-height: 46px; transition: max-height .5s var(--ease), margin .5s var(--ease), opacity .3s ease, padding .5s var(--ease); }
+  .cb-pillars .pillar:hover .pi-ic { max-height: 0; padding-block: 0; margin-block: 0; opacity: 0; animation: none; }
+  .cb-pillars .pillar p { max-height: 0; margin-top: 0; opacity: 0; overflow: hidden; transform: translateY(8px); transition: max-height .5s var(--ease), margin-top .5s var(--ease), opacity .35s ease .1s, transform .5s var(--ease); }
+  .cb-pillars .pillar:hover p { max-height: 12em; margin-top: 10px; opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .cb-pillars .pillar .pi-ic, .cb-pillars .pillar p { transition: none; } }
 
 /* ---- Why now: brand purple, only the pill in gold ---- */
 .cb-why .pill-gold { background: #EEB650; color: var(--purple-dk); }
@@ -684,9 +701,11 @@
 .cb-apps .mi .m-chip, .cb-apps .mi .m-spoon-h { fill: #EEB650; }
 .cb-apps .mi-muffin .m-top { fill: #EEB650; }
 .cb-apps .mi-sponge .l2 { fill: #EEB650; }
-.cb-apps .mi-sponge .m-air, .cb-apps .mi-pudding .m-cream, .cb-apps .mi-filling .m-swirl { stroke: #EEB650; }
+.cb-apps .mi-sponge .m-air, .cb-apps .mi-pudding .m-cream, .cb-apps .mi-filling .m-swirl, .cb-apps .mi-drink .m-steam { stroke: #EEB650; }
 .cb-apps .app:hover .mi { stroke: #EEB650; }
 .hb i, .hb i.base { background: #EEB650; } .hb i.base { opacity: .45; }
 .donut { background: radial-gradient(closest-side, #fff 70%, transparent 71% 100%), conic-gradient(var(--purple) calc(var(--p) * 1%), #FBF0DA 0); }
 .step.check li::before { color: #EEB650; }
+/* sensory check on hover: the card turns light lilac, so the letters invert to purple */
+.qs .qs-check:hover h3, .qs .qs-check:hover ul, .qs .qs-check:hover b, .qs .qs-check:hover .link-arrow, .qs .qs-check:hover li::before { color: var(--purple); }
 
