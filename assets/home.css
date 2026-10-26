@@ -137,6 +137,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .reel.on[data-fx="rise"] { animation: fx-rise 1.6s cubic-bezier(.7,0,.2,1) both; }
 .reel.on[data-fx="drop"] { animation: fx-drop 1.6s cubic-bezier(.7,0,.2,1) both; }
 .reel.on[data-fx="zoom"] { animation: fx-zoom 2s cubic-bezier(.3,0,.2,1) both; }
+.reel.on[data-fx="slow"] { animation: fx-dissolve 3.2s cubic-bezier(.45,0,.25,1) both; }   /* gentler crossfade where the reel loops back to the start */
 @keyframes fx-dissolve { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fx-wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
 @keyframes fx-rise { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
