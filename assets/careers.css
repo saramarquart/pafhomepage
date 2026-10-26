@@ -478,7 +478,8 @@ h3, .btn, .pill, .tag, .nav-pill a, .footer h2 { font-weight: 600; }
 .cr-dayline { margin: 28px 0 12px !important; color: rgba(255,255,255,.88); font-weight: 500; }
 .cr-social { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .cr-social .cr-kununu { margin-top: 0; }
-.cr-li { display: inline-flex; align-items: center; justify-content: center; width: 69px; height: 69px; border-radius: 10px; background: #fff; color: var(--purple);
+.cr-li { --linkedin: #0A66C2;   /* LinkedIn brand blue: a third-party logo keeps its own color, like the kununu badge */
+  display: inline-flex; align-items: center; justify-content: center; width: 69px; height: 69px; border-radius: 10px; background: #fff; color: var(--linkedin);
   box-shadow: 0 12px 28px -16px rgba(17,17,17,.6); transition: transform .3s ease, box-shadow .3s ease; }
 .cr-li svg { width: 34px; height: 34px; }
 .cr-li:hover { transform: translateY(-3px); box-shadow: 0 18px 34px -16px rgba(17,17,17,.7); }

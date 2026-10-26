@@ -137,6 +137,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .reel.on[data-fx="rise"] { animation: fx-rise 1.6s cubic-bezier(.7,0,.2,1) both; }
 .reel.on[data-fx="drop"] { animation: fx-drop 1.6s cubic-bezier(.7,0,.2,1) both; }
 .reel.on[data-fx="zoom"] { animation: fx-zoom 2s cubic-bezier(.3,0,.2,1) both; }
+.reel.on[data-fx="slow"] { animation: fx-dissolve 3.2s cubic-bezier(.45,0,.25,1) both; }   /* gentler crossfade where the reel loops back to the start */
 @keyframes fx-dissolve { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fx-wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
 @keyframes fx-rise { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -158,12 +159,12 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .reel-index li.on { color: #fff; }
 /* the name is a link to its page; the stripe is a button that shows that shot */
 .reel-index { z-index: 2; }
-.reel-index a { color: inherit; transition: color .3s ease; }
-.reel-index a:hover, .reel-index a:focus-visible { color: #fff; }
+.reel-name { font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; transition: color .3s ease; }
+.reel-name:hover, .reel-name:focus-visible { color: #fff; }
 .reel-go { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 40px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; }
 .reel-go::after { content: ""; position: absolute; right: 8px; top: 50%; width: 22px; height: 1.5px; background: rgba(255,255,255,.3); transition: background .3s ease, transform .3s ease; }
 .reel-go:hover::after, .reel-go:focus-visible::after { background: rgba(255,255,255,.9); transform: scaleY(1.8); }
-.reel-go:focus-visible, .reel-index a:focus-visible { outline: 1.5px solid #fff; outline-offset: 3px; border-radius: 3px; }
+.reel-go:focus-visible, .reel-name:focus-visible { outline: 1.5px solid #fff; outline-offset: 3px; border-radius: 3px; }
 .reel-index li.on .reel-go::before { content: ""; position: absolute; right: 8px; top: 50%; height: 1.5px; width: 22px; background: #fff; transform-origin: left; animation: tick 5.2s linear both; z-index: 1; }
 @keyframes tick { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
@@ -264,6 +265,7 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .impact-grid { display: grid; gap: 40px; align-items: center; }
 .pill-green { background: var(--purple-mid); color: var(--ink); }
 .impact-head { margin-top: 22px; color: #fff; }
+.impact-main .pill + .pill { margin-left: 6px; }   /* "Case Study ChoViva" label beside the section pill */
 .impact-num { font-weight: 500; letter-spacing: -.05em; line-height: .9; font-size: clamp(4.2rem, 11vw, 10rem); margin-top: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; color: #fff; }
 .impact-num small { font-size: .5em; letter-spacing: -.02em; }
 .impact-sub { font-size: clamp(1rem, 1.3vw, 1.25rem); font-weight: 500; margin-top: 12px; color: #fff; max-width: 44ch; }
@@ -333,6 +335,8 @@ h3 { font-size: clamp(1.2rem, 1.7vw, 1.8rem); }
 .group.on { background: var(--purple); color: #fff; }
 span.group { cursor: default; }   /* single group: a label, not a tab */
 .group-note { margin: 16px auto 0; max-width: 52ch; color: var(--ink-2); }
+.portfolio .group-note { margin-top: 24px; max-width: 52ch; font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.4; color: var(--ink); }   /* "Crops under pressure" subline, a step up from body copy */
+.portfolio .group-note span { display: block; margin-top: 8px; color: var(--purple); font-weight: 500; }
 .slide[hidden] { display: none; }
 /* colour alternatives: a swatch tile in natural colour bands until a photo exists */
 

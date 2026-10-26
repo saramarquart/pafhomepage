@@ -8,7 +8,7 @@ test("Volatility tab shows the cocoa chart with its title and the callout", asyn
   await page.locator('.driver[data-key="volatility"]').click();
   const card = page.locator('.why-shot[data-for="volatility"]');
   await expect(card).toHaveClass(/\bon\b/);
-  await expect(card.locator('svg[role="img"] title')).toHaveText(/Cocoa price, USD per tonne/);
+  await expect(card.locator('svg[role="img"] title')).toHaveText(/Cocoa price, USD per metric ton/);
   await expect(card.locator(".wc-line")).toHaveAttribute("d", /^M0 [\d.]+C/);
   await expect(card.locator(".why-fact span")).toHaveText(/The next shock is a question of when, not if/);
   // switching back hides it again
