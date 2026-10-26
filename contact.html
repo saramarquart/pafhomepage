@@ -12,7 +12,7 @@
   <link rel="preload" href="assets/fonts/rethink-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/home.css?v=69" />
-  <link rel="stylesheet" href="assets/contact.css?v=12" />
+  <link rel="stylesheet" href="assets/contact.css?v=13" />
   <link rel="stylesheet" href="assets/footer.css?v=4" />
   <meta property="og:title" content="Contact – Planet A Foods" />
   <meta property="og:description" content="Request a sample or start a co-development conversation with Planet A Foods." />
@@ -151,7 +151,7 @@
       <svg class="ct-ring ct-ring-2" aria-hidden="true"><use href="#paf-a"/></svg>
     </section>
 
-    <!-- 2 · CONTACT — intro on the left, inquiry form on the right (assets/contact.js composes the email) -->
+    <!-- 2 · CONTACT — intro on the left, inquiry form on the right (assets/contact.js sends it to PAForce) -->
     <section class="ct-sec" data-tone="light" aria-labelledby="ct-title">
       <div class="wrap ct-grid">
         <div class="ct-intro reveal">
@@ -171,7 +171,7 @@
             </div>
           </div>
         </div>
-        <form class="ct-form reveal" id="contactForm">
+        <form class="ct-form reveal" id="contactForm" data-endpoint="https://sales.planet-a-foods.com/api/public/inquiry">
           <h2 class="ct-form-title">Send us your inquiry</h2>
           <div class="ct-row">
             <div class="ct-field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
@@ -191,9 +191,10 @@
             </div>
           </div>
           <div class="ct-field"><label for="message">How can we help?</label><textarea id="message" name="message" rows="6" placeholder="Your application, the challenge you're solving (supply, cost, reliability…), and any volumes or timelines."></textarea></div>
+          <label class="ct-tick"><input type="checkbox" id="privacy" name="privacy" required> I agree to the <a href="privacy-policy.html">privacy policy</a></label>
+          <label class="ct-hp" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label>
           <button class="btn ct-submit" type="submit">Send inquiry <span aria-hidden="true">↗</span></button>
-          <p class="ct-note"><span class="ct-note-line">This opens your email client with the details pre-filled.</span></p>
-          <div class="ct-ok" id="formOk" role="status">Thanks — your email client should be opening. We'll be in touch shortly.</div>
+          <p class="ct-note" id="formMsg" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -219,6 +220,6 @@
   <script src="assets/consent.js?v=3"></script>
   <script src="assets/main.js?v=34"></script>
   <script src="assets/home.js?v=18"></script>
-  <script src="assets/contact.js?v=5"></script>
+  <script src="assets/contact.js?v=6"></script>
 </body>
 </html>
