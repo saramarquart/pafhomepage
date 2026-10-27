@@ -25,6 +25,10 @@ var KEY_FACTS = [
     var where = a.getAttribute("data-open-positions");
     a.setAttribute("href", OPEN_POSITIONS_URL + (where ? "&utm_content=" + encodeURIComponent(where) : ""));
     if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    // GA4 event per click (window.gtag only exists once consent.js has loaded analytics with consent).
+    a.addEventListener("click", function () {
+      if (typeof window.gtag === "function") window.gtag("event", "open_positions_click", { placement: where || "other", transport_type: "beacon" });
+    });
   });
 
   /* Key facts */

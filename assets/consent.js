@@ -68,7 +68,8 @@
     window.gtag("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
     window.gtag("consent", "update", { analytics_storage: "granted" });
     window.gtag("js", new Date());
-    // Repeats our GA4 property settings on purpose, as a second safeguard. Standard page views only;
+    // Repeats our GA4 property settings on purpose, as a second safeguard. Standard page views (plus the
+    // open_positions_click event in careers.js);
     // the address is sent without query string or #fragment so no parameters can carry personal data.
     window.gtag("config", id, {
       allow_google_signals: false,
