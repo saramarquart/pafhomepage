@@ -3,7 +3,8 @@
    reveal + count-up. No dependencies; respects prefers-reduced-motion. */
 
 // Job board (Personio) — every "View our open positions" button links here.
-var OPEN_POSITIONS_URL = "https://planetafoods.jobs.personio.de/?language=en";
+// The UTM tags count clicks from our site; each button adds its placement as utm_content.
+var OPEN_POSITIONS_URL = "https://planetafoods.jobs.personio.de/?language=en&utm_source=planet-a-foods.com&utm_medium=website&utm_campaign=careers-page";
 
 /* Key facts — edit the figures here (plain strings; a leading number counts up). */
 var KEY_FACTS = [
@@ -21,8 +22,13 @@ var KEY_FACTS = [
 
   /* "View our open positions" buttons */
   $$("[data-open-positions]").forEach(function (a) {
-    a.setAttribute("href", OPEN_POSITIONS_URL);
+    var where = a.getAttribute("data-open-positions");
+    a.setAttribute("href", OPEN_POSITIONS_URL + (where ? "&utm_content=" + encodeURIComponent(where) : ""));
     if (/^https?:/.test(OPEN_POSITIONS_URL)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    // GA4 event per click (window.gtag only exists once consent.js has loaded analytics with consent).
+    a.addEventListener("click", function () {
+      if (typeof window.gtag === "function") window.gtag("event", "open_positions_click", { placement: where || "other", transport_type: "beacon" });
+    });
   });
 
   /* Key facts */
