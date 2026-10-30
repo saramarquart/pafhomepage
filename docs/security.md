@@ -28,6 +28,45 @@ On Azure the header version adds `frame-ancestors 'self'` (browsers ignore `fram
 Plain links to other sites (LinkedIn, Personio, kununu, inoqo, the old CMS downloads on `*.blob.core.windows.net`)
 are normal navigations and are not affected by the CSP.
 
+## Bot check on the inquiry forms (Cloudflare Turnstile): off until switched on
+
+`assets/turnstile.js` adds a Cloudflare Turnstile check to the contact form (`contact.html`) and the Cocoa Booster
+sample form (`product-cocoa-booster.html`); PAForce verifies the token. While `TURNSTILE_SITE_KEY` in that file is
+empty (the default) nothing is loaded from Cloudflare and both forms post exactly as before. That is why the CSP above
+does not list Cloudflare yet: a `<meta>` CSP cannot depend on whether a key is set, so the allowance is added in the
+same change that sets the key.
+
+When it is on, Cloudflare's script is only loaded once a visitor starts filling in one of the two forms, and the widget
+stays invisible unless Cloudflare wants the visitor to tick a box. If the script cannot load (for example because the
+CSP was not updated), the form still sends without a token and PAForce decides.
+
+To switch it on, in this order:
+
+1. **Cloudflare dashboard → Turnstile → Add widget**: hostnames `www.planet-a-foods.com` and `planet-a-foods.com`,
+   widget mode "Managed". This gives a public **site key** and a **secret key**.
+2. **Privacy policy**: add a paragraph on Cloudflare Turnstile to section 5 ("Contacting Us") before the key goes live.
+   Turnstile processes the visitor's IP address, TLS fingerprint and browser (User-Agent) for bot detection;
+   Cloudflare acts as our processor for that, and as its own controller when it uses the signals to improve Turnstile
+   (see https://www.cloudflare.com/turnstile-privacy-policy/). The legal basis would be Art. 6(1)(f) GDPR (protecting
+   the forms against misuse).
+3. **Website**: put the site key into `TURNSTILE_SITE_KEY` in `assets/turnstile.js` and bump `turnstile.js?v=` on the two
+   form pages. In the same change, allow Cloudflare in the CSP, in every page's `<meta>` tag, in
+   `staticwebapp.config.json` and in this file (keep all copies identical):
+   - `script-src 'self' https://*.googletagmanager.com https://challenges.cloudflare.com`
+   - `frame-src https://challenges.cloudflare.com` (replaces `frame-src 'none'`)
+
+   For the pages and the Azure config, from the repo root:
+   `perl -pi -e "s#script-src 'self' https://\*\.googletagmanager\.com;#script-src 'self' https://*.googletagmanager.com https://challenges.cloudflare.com;#; s#frame-src 'none';#frame-src https://challenges.cloudflare.com;#" *.html staticwebapp.config.json`
+   (it touches only the CSP), then update the CSP block and the `script-src` / `frame-src` rows above by hand.
+4. **PAForce (paf_sales)**: once the site with the key is live, set `TURNSTILE_SECRET_KEY` on the PAForce service. From
+   then on an inquiry without a valid token is refused. The other order would refuse every inquiry until the site
+   sends tokens.
+
+Cloudflare's test keys work on any host, including `127.0.0.1`: site key `1x00000000000000000000AA` always passes,
+`2x00000000000000000000AB` always fails, `3x00000000000000000000FF` forces the visible challenge; the matching secret
+`1x0000000000000000000000000000000AA` always passes. `tests/specs/bot-check.spec.js` checks the off state, the token in
+the request and the CSP above with a stand-in for Cloudflare's script.
+
 ## Other headers (Azure only)
 
 | Header | Value |
