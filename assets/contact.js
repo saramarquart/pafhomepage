@@ -9,6 +9,8 @@
   var f = document.getElementById("contactForm");
   if (!f) return;
   var started = Date.now(); // PAForce treats forms sent within 3 s as spam
+  // Bot check (assets/turnstile.js): does nothing until a Turnstile site key is set there.
+  var bot = window.pafBotCheck ? window.pafBotCheck.attach(f) : null;
 
   function val(name) { return (f.elements[name] && f.elements[name].value) || ""; }
 
@@ -35,10 +37,13 @@
     var fallback = mailtoHref();
     btn.disabled = true;
     msg.textContent = "Sending …";
-    fetch(f.getAttribute("data-endpoint"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+    (bot ? bot.token() : Promise.resolve("")).then(function (token) {
+      if (token) data.turnstileToken = token;
+      return fetch(f.getAttribute("data-endpoint"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (res) {
         if (!r.ok || !res.ok) throw new Error(res.error || String(r.status));
@@ -53,6 +58,6 @@
       a.textContent = "email it to sales@forplaneta.com";
       msg.appendChild(a);
       msg.appendChild(document.createTextNode(" instead."));
-    }).then(function () { btn.disabled = false; });
+    }).then(function () { btn.disabled = false; if (bot) bot.reset(); });
   });
 })();
