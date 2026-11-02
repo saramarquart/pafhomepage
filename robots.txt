@@ -13,3 +13,5 @@ Disallow: /CLAUDE.md
 Disallow: /staticwebapp.config.json
 
 Sitemap: https://www.planet-a-foods.com/sitemap.xml
+# Temporary, until Google has followed the old site's redirects (see scripts/generate-redirects.js).
+Sitemap: https://www.planet-a-foods.com/sitemap-old-urls.xml
