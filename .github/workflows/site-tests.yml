@@ -12,7 +12,8 @@ permissions:
 
 jobs:
   playwright:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest is 26.04 now, which Playwright 1.55 can't install browsers on.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     defaults:
       run:
