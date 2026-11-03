@@ -21,17 +21,18 @@ test("anchors: hero Learn more and the dropdown targets exist, sections are not 
   }
 });
 
-test("dropdown: hovering Mission shows Mission / Journey / Story and they lead to the sections", async ({ context, page }) => {
+// The Mission dropdown (Mission / Journey / Story) was collapsed to a single link on 2026-10-23
+// (f7b613e, all 25 pages); the section anchors are covered by the "anchors" test above.
+test("nav: Mission is a single link, without a dropdown, and leads to the mission page", async ({ context, page }) => {
   await setup(context, {}); await decided(context);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(base(false) + "/index.html");
-  const item = page.locator(".nav-item", { has: page.locator('> a[href="mission.html"]') });
-  await item.hover();
-  const links = item.locator(".nav-sub a");
-  await expect(links).toHaveText(["Mission", "Journey", "Story"]);
-  await expect(links.first()).toBeVisible();
-  await links.nth(2).click();
-  await expect(page).toHaveURL(/mission\.html#story$/);
+  const nav = page.locator("nav.nav-pill");
+  await expect(nav.locator(".nav-item, .nav-sub")).toHaveCount(0);
+  const link = nav.locator('> a[href="mission.html"]');
+  await expect(link).toHaveText("Mission");
+  await link.click();
+  await expect(page).toHaveURL(/mission\.html$/);
 });
 
 test("year cards: reveal on scroll, open/close with mouse and keyboard, aria-expanded follows", async ({ context, page }) => {
