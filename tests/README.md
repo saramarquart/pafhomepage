@@ -1,8 +1,7 @@
 # Site tests (dev-only)
 
 Automated checks for the consent banner, the Google Analytics gating, the privacy policy and site-wide rules.
-Nothing in this folder is part of the website. To run them automatically on every pull request, move `tests/ci/site-tests.yml` to `.github/workflows/site-tests.yml`
-(this needs a GitHub login or token with the `workflow` permission).
+Nothing in this folder is part of the website. They run automatically on every pull request (`.github/workflows/site-tests.yml`).
 
 Run locally (needs Node.js 20+ and Python 3):
 
